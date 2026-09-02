@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Informativa privacy e cookie — VEE</title>
-<meta name="description" content="VEE S.r.l. — Società di ingegneria e architettura, Torino. Diagnosi energetiche, progettazione impiantistica e architettonica in BIM, direzione lavori, sicurezza.">
+<meta name="description" content="VEE S.r.l. — Società di ingegneria e architettura, Torino. Diagnosi energetiche, progettazione architettonica e impiantistica in BIM, direzione dei lavori e sicurezza.">
 <meta name="robots" content="noindex, nofollow">
 <meta property="og:title" content="VEE — Società di ingegneria e architettura, Torino">
-<meta property="og:description" content="Diagnosi energetiche, progettazione impiantistica e architettonica in BIM, direzione lavori e sicurezza.">
+<meta property="og:description" content="Diagnosi energetiche, progettazione architettonica e impiantistica in BIM, direzione dei lavori e sicurezza.">
 <meta property="og:type" content="website">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
@@ -218,6 +218,23 @@
   .photos figure:last-child { border-radius: 0 0 0 44px; }
   .photos-cap { margin: 12px 0 0; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
   @media (max-width: 760px) { .photos { grid-template-columns: 1fr; gap: 16px; } }
+  .quallist { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; }
+  .quallist li { display: grid; grid-template-columns: 14px 1fr; gap: 14px; align-items: start; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 0.9375rem; color: var(--ink); }
+  .quallist .q { margin-top: 6px; }
+  @media (max-width: 760px) { .quallist { grid-template-columns: 1fr; } }
+  .hero h1 { max-width: 11ch; }
+  .news-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 32px 24px; }
+  .news-grid li { display: grid; grid-template-columns: 1fr; gap: 14px; border-top: 1px solid var(--line-strong); padding-top: 18px; }
+  .news-grid img { height: 64px; width: auto; max-width: 64px; object-fit: contain; display: block; }
+  .news-grid .nw-com { display: block; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .news-grid strong { display: block; font-family: var(--display); font-weight: 500; color: var(--ink); font-size: 1.05rem; line-height: 1.25; }
+  .news-grid .nw-addr { display: block; font-size: 0.875rem; color: var(--muted); margin-top: 4px; }
+  .news-grid .nw-amt { display: block; font-family: var(--mono); font-size: 0.95rem; color: var(--ink); margin-top: 12px; }
+  .news-grid .nw-amt small { display: block; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+  @media (max-width: 1100px) { .news-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 640px) { .news-grid { grid-template-columns: 1fr 1fr; gap: 24px 16px; } }
+  .card .meta a.map { color: var(--teal-ink); text-decoration: none; }
+  .card .meta a.map:hover { text-decoration: underline; }
   .legal { max-width: 760px; }
   .legal h2 { font-size: 1.2rem; margin: 36px 0 10px; }
   .legal p, .legal li { font-size: 0.9375rem; }
@@ -249,7 +266,7 @@
   <div class="container">
     <a class="brand" href="index.html" aria-label="VEE — Società di ingegneria e architettura, Torino"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 478 210" aria-hidden="true"><g fill="none" stroke="var(--lg-red)" stroke-width="1.8" stroke-dasharray="7 5"><circle cx="239" cy="105" r="65"/><circle cx="397" cy="105" r="65"/><line x1="0" y1="40" x2="478" y2="40"/><line x1="0" y1="105" x2="478" y2="105"/><line x1="0" y1="170" x2="478" y2="170"/></g><polygon points="10,40 150,40 80,170" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M239 40 A65 65 0 0 0 239 170 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M245 105 L245 40.28 A65 65 0 0 1 304 105 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M397 40 A65 65 0 0 0 397 170 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M403 105 L403 40.28 A65 65 0 0 1 462 105 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/></svg><span class="payoff">società di ingegneria<br>e architettura<br>torino</span></a>
     <button class="toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Apri il menu"><svg width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M0 1h22M0 7h22M0 13h22"/></svg></button>
-    <nav id="nav" aria-label="Sezioni"><a href="index.html#societa">Società</a><a href="index.html#servizi">Servizi</a><a href="index.html#incarichi">Incarichi</a><a href="index.html#competenze">Competenze</a><a href="index.html#contatti">Contatti</a></nav>
+    <nav id="nav" aria-label="Sezioni"><a href="index.html#societa">Società</a><a href="index.html#servizi">Servizi</a><a href="index.html#incarichi">Incarichi</a><a href="index.html#competenze">Competenze</a><a href="#news">News</a><a href="index.html#contatti">Contatti</a></nav>
   </div>
 </header>
 
