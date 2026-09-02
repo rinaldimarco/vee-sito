@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Informativa privacy e cookie — VEE</title>
+<meta name="description" content="VEE S.r.l. — Società di ingegneria e architettura, Torino. Diagnosi energetiche, progettazione impiantistica e architettonica in BIM, direzione lavori, sicurezza.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="VEE — Società di ingegneria e architettura, Torino">
+<meta property="og:description" content="Diagnosi energetiche, progettazione impiantistica e architettonica in BIM, direzione lavori e sicurezza.">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#F5F2EA">
+<style>
+  @font-face { font-family: 'Jost'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/jost-latin-400-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'Jost'; font-style: normal; font-weight: 500; font-display: swap; src: url('fonts/jost-latin-500-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'Jost'; font-style: normal; font-weight: 600; font-display: swap; src: url('fonts/jost-latin-600-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'Jost'; font-style: normal; font-weight: 700; font-display: swap; src: url('fonts/jost-latin-700-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/ibm-plex-mono-latin-400-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url('fonts/ibm-plex-mono-latin-500-normal.woff2') format('woff2'); }
+  :root {
+    color-scheme: light;
+    --ardesia: #0B3A3F; --nebbia: #D08A54; --teal: #2FA6AE; --verde: #C9B48A;
+    --ink: #0B3A3F; --text: #2F4F53; --muted: #5C7A7E; --teal-ink: #0B6E76;
+    --bg: #FFFFFF; --bg-alt: #F3F6F7; --line: rgba(11,58,63,.2); --line-strong: rgba(11,58,63,.6);
+    --header-bg: rgba(255,255,255,.92);
+    --btn-bg: #0B3A3F; --btn-fg: #FFFFFF; --btn-hover: #D08A54;
+    --mono-bg: #0B3A3F; --mono-fg: #FFFFFF; --mono2-bg: #2FA6AE; --mono2-fg: #FFFFFF;
+    --display: "Poppins", "Segoe UI", system-ui, sans-serif;
+    --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", Consolas, monospace;
+    --body-size: 1.0625rem; --h1-size: clamp(2.4rem, 6vw, 4.8rem); --h2-size: clamp(1.7rem, 3vw, 2.5rem);
+    --h-transform: none; --h-spacing: -0.03em; --h2-spacing: -0.02em; --h-weight: 600; --h3-weight: 500;
+    --radius: 0px; --img-radius: 0 44px 0 0;
+    --e1h: var(--ardesia); --e1q: var(--verde); --e2h: var(--nebbia); --e2q: var(--teal);
+    --e1h-o: .10; --e1q-o: .32; --e2h-o: .16; --e2q-o: .26;
+    --container: 1180px; --gutter: clamp(20px, 4vw, 44px);
+    --lg-ink: #0B3A3F; --lg-red: #D08A54; --lg-grid: #7FC4C9;
+
+    --ardesia: #0B3A3F; --nebbia: #D08A54; --teal: #2FA6AE; --verde: #C9B48A;
+    --ink: #0B3A3F; --text: #2F4F53; --muted: #5C7A7E; --teal-ink: #0B6E76;
+    --bg: #F5F2EA; --bg-alt: #EDE9DE; --line: rgba(11,58,63,.2); --line-strong: rgba(11,58,63,.6);
+    --header-bg: rgba(245,242,234,.92);
+    --btn-bg: #0B3A3F; --btn-fg: #FFFFFF; --btn-hover: #D08A54;
+    --mono-bg: #0B3A3F; --mono-fg: #FFFFFF; --mono2-bg: #2FA6AE; --mono2-fg: #FFFFFF;
+    --display: "Jost", "Futura", sans-serif; --body: "Jost", "Futura", sans-serif; --body-size: 1.08rem;
+    --h-weight: 700; --h-spacing: -0.02em; --h2-spacing: -0.01em; --h3-weight: 600;
+    --e1h: #1F4E9C; --e1q: #E63946; --e2h: #F4C20D; --e2q: #111111; --e1h-o: 1; --e1q-o: 1; --e2h-o: 1; --e2q-o: 1;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--body); font-size: var(--body-size); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3 { font-family: var(--display); color: var(--ink); margin: 0; text-wrap: balance; }
+  h1 { font-weight: var(--h-weight); font-size: var(--h1-size); line-height: 1.05; letter-spacing: var(--h-spacing); text-transform: var(--h-transform); }
+  h2 { font-weight: var(--h-weight); font-size: var(--h2-size); line-height: 1.12; letter-spacing: var(--h2-spacing); text-transform: var(--h-transform); }
+  h3 { font-weight: var(--h3-weight); font-size: 1.15rem; line-height: 1.35; }
+  p { margin: 0; }
+  a { color: var(--teal-ink); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+  .container { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
+  .eyebrow { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  @media (max-width: 480px) { .eyebrow { font-size: 0.66rem; letter-spacing: 0.1em; } }
+
+  .q { display: inline-block; width: 14px; height: 14px; background: var(--ardesia); }
+  .q.tl { border-radius: 100% 0 0 0; } .q.tr { border-radius: 0 100% 0 0; } .q.br { border-radius: 0 0 100% 0; } .q.bl { border-radius: 0 0 0 100%; }
+  .q.teal { background: var(--teal); } .q.verde { background: var(--verde); } .q.nebbia { background: var(--nebbia); }
+
+  header { position: sticky; top: 0; z-index: 20; background: var(--header-bg); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  header .container { display: flex; align-items: center; justify-content: space-between; height: 74px; }
+  header .brand svg { height: 38px; width: auto; display: block; }
+  .brand { display: inline-flex; align-items: center; gap: 18px; color: inherit; }
+  .brand:hover { text-decoration: none; }
+  .brand .payoff { font-family: var(--body); font-weight: 400; font-size: .8rem; line-height: 1.35; color: var(--ink); letter-spacing: .08em; border-left: 1.5px solid var(--ink); padding-left: 16px; }
+  @media (max-width: 560px) { .brand { gap: 10px; } .brand .payoff { font-size: .62rem; line-height: 1.3; letter-spacing: .06em; padding-left: 10px; } header .brand svg { height: 44px; } }
+  nav { display: flex; gap: clamp(18px, 2.6vw, 34px); }
+  nav a { font-family: var(--display); font-weight: 500; font-size: 0.95rem; color: var(--ink); }
+  nav a.is-active { color: var(--teal-ink); }
+  .toggle { display: none; background: none; border: 0; width: 40px; height: 40px; cursor: pointer; color: var(--ink); padding: 0; }
+  @media (max-width: 760px) {
+    .toggle { display: block; }
+    nav { display: none; position: absolute; left: 0; right: 0; top: 74px; background: var(--bg); border-bottom: 1px solid var(--line); flex-direction: column; padding: 8px var(--gutter) 14px; gap: 0; }
+    nav.is-open { display: flex; }
+    nav a { padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 1.05rem; }
+    nav a:last-child { border-bottom: 0; }
+  }
+
+  .hero { position: relative; overflow: hidden; padding: clamp(72px, 12vw, 150px) 0 clamp(64px, 9vw, 120px); }
+  .shapes { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+  .deco { display: none; }
+  .e { position: absolute; width: clamp(260px, 34vw, 500px); height: clamp(260px, 34vw, 500px); }
+  .e .half { position: absolute; left: 0; top: 0; width: 50%; height: 100%; border-radius: 100% 0 0 100% / 50% 0 0 50%; }
+  .e .quarter { position: absolute; left: 50%; top: 0; width: 50%; height: 50%; border-radius: 0 100% 0 0; }
+  .e1 { right: 30vw; top: 20px; }
+  .e1 .half { background: var(--e1h); opacity: var(--e1h-o); }
+  .e1 .quarter { background: var(--e1q); opacity: var(--e1q-o); }
+  .e2 { right: -4vw; top: 110px; }
+  .e2 .half { background: var(--e2h); opacity: var(--e2h-o); }
+  .e2 .quarter { background: var(--e2q); opacity: var(--e2q-o); }
+  @media (max-width: 760px) { .e { width: 58vw; height: 58vw; } .e1 { right: 44vw; top: 0; } .e2 { right: -14vw; top: 80px; } .shapes { opacity: .55; } }
+  .hero .container { position: relative; z-index: 1; }
+  .hero h1 { margin: 24px 0 28px; max-width: 14ch; }
+  .hero .lead { max-width: 44ch; font-size: clamp(1.05rem, 1.5vw, 1.22rem); }
+  .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 500; font-size: 0.95rem; padding: 14px 24px; border: 1px solid transparent; border-radius: var(--radius); }
+  .btn:hover { text-decoration: none; }
+  .btn-primary { background: var(--btn-bg); color: var(--btn-fg); }
+  .btn-primary:hover { background: var(--btn-hover); }
+  .btn-ghost { border-color: var(--line-strong); color: var(--ink); }
+  .btn-ghost:hover { border-color: var(--ink); }
+
+  section { padding: clamp(64px, 9vw, 120px) 0; }
+  section.alt { background: var(--bg-alt); }
+  .head { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 64px; align-items: end; margin-bottom: clamp(36px, 5vw, 64px); }
+  .head h2 { margin-top: 16px; max-width: 16ch; }
+  .head p { max-width: 52ch; }
+  @media (max-width: 800px) { .head { grid-template-columns: 1fr; } }
+  .prose { max-width: 60ch; }
+  .prose p + p { margin-top: 1em; }
+  .studio { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 64px; }
+  .quals { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 24px; align-content: start; }
+  .qual { display: grid; grid-template-columns: 14px 1fr; gap: 12px; align-items: start; font-size: 0.9375rem; color: var(--ink); }
+  .qual .q { margin-top: 5px; }
+  @media (max-width: 800px) { .studio { grid-template-columns: 1fr; } }
+  @media (max-width: 480px) { .quals { grid-template-columns: 1fr; } }
+
+  .services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px 40px; }
+  .service .q { width: 28px; height: 28px; margin-bottom: 20px; }
+  .service p { margin-top: 8px; font-size: 0.9375rem; }
+  .service .ref { margin-top: 12px; font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
+  @media (max-width: 960px) { .services { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .services { grid-template-columns: 1fr; gap: 32px; } }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 28px; }
+  .card { display: flex; flex-direction: column; border-radius: var(--radius); }
+  .card figure { margin: 0 0 16px; aspect-ratio: 3 / 2; overflow: hidden; background: var(--bg-alt); border-radius: var(--img-radius); }
+  .card img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1); transition: filter .35s ease, transform .6s ease; }
+  .card:hover img, .card:focus-within img { filter: none; transform: scale(1.03); }
+  .card .when { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal-ink); }
+  .card h3 { font-size: 1.15rem; margin-top: 6px; }
+  .card p { margin-top: 6px; font-size: 0.9375rem; }
+  .card .meta { margin-top: 10px; font-family: var(--mono); font-size: 0.7rem; color: var(--muted); line-height: 1.6; }
+  .card .amount { margin-top: auto; padding-top: 12px; font-family: var(--mono); font-size: 0.85rem; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .card .amount small { color: var(--muted); margin-left: 6px; font-size: 0.68rem; }
+  @media (max-width: 960px) { .grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; gap: 32px; } }
+  .more { margin-top: 48px; border-top: 1px solid var(--line-strong); }
+  .more .row { display: grid; grid-template-columns: 110px 1fr auto; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); align-items: baseline; font-size: 0.9375rem; }
+  .more .row .y { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
+  .more .row .t { color: var(--ink); font-weight: 500; }
+  .more .row .t span { color: var(--muted); font-weight: 400; }
+  .more .row .a { font-family: var(--mono); font-size: 0.8rem; color: var(--ink); white-space: nowrap; }
+  @media (max-width: 600px) { .more .row { grid-template-columns: 1fr; gap: 2px; } }
+  .pnote { margin-top: 18px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 0.9rem; color: var(--muted); }
+
+  .people { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .person { display: grid; grid-template-columns: 84px 1fr; gap: 22px; align-items: start; }
+  .mono-g { width: 84px; height: 84px; background: var(--mono-bg); color: var(--mono-fg); border-radius: 50% 0 0 0; display: grid; place-items: center; font-family: var(--display); font-weight: 500; font-size: 1.4rem; }
+  .person:nth-child(2) .mono-g { background: var(--mono2-bg); color: var(--mono2-fg); border-radius: 0 50% 0 0; }
+  .person .role { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 6px 0 10px; }
+  .person p { font-size: 0.9375rem; }
+  .person ul { margin: 10px 0 0; padding: 0; list-style: none; font-size: 0.875rem; }
+  .person li { padding-left: 16px; position: relative; }
+  .person li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 7px; height: 7px; background: var(--verde); border-radius: 0 0 100% 0; }
+  @media (max-width: 760px) { .people { grid-template-columns: 1fr; } }
+
+  .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 40px 64px; align-items: start; }
+  .contact h2 { margin-top: 16px; max-width: 14ch; }
+  .contact .prose { margin-top: 18px; }
+  .details { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 32px; padding-top: 10px; margin: 0; }
+  .details dt { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .details dd { margin: 0; color: var(--ink); line-height: 1.5; }
+  .details dd a { color: var(--ink); }
+  .details dd a:hover { color: var(--teal-ink); }
+  .details .wide { grid-column: 1 / -1; }
+  @media (max-width: 800px) { .contact { grid-template-columns: 1fr; } }
+  @media (max-width: 480px) { .details { grid-template-columns: 1fr; } }
+
+  footer { border-top: 1px solid var(--line-strong); padding: 32px 0 44px; position: relative; }
+  footer .container { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px 32px; font-size: 0.8125rem; color: var(--muted); }
+  footer svg { height: 30px; width: auto; display: block; }
+  footer a { color: var(--muted); }
+  .draft { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+  /* Stile Bauhaus (consolidato) */
+  h1 { text-transform: lowercase; }
+  .e1 { right: 34vw; top: 30px; width: clamp(220px, 28vw, 420px); height: clamp(220px, 28vw, 420px); }
+  .e2 { right: -6vw; top: 140px; width: clamp(220px, 28vw, 420px); height: clamp(220px, 28vw, 420px); }
+  .deco-bauhaus { display: block; position: absolute; right: 8vw; bottom: -40px; width: clamp(140px, 16vw, 240px); height: auto; opacity: .95; }
+  .head, .more { border-top: 3px solid var(--ink); padding-top: 22px; }
+  .card figure { border-radius: 0 0 0 0; }
+  .card:nth-child(3n+1) figure { border-radius: 50% 0 0 0; }
+  .card:nth-child(3n+2) figure { border-radius: 0 0 50% 0; }
+  .mono-g { border-radius: 50%; }
+  .person:nth-child(2) .mono-g { border-radius: 0; }
+  .service .q { width: 34px; height: 34px; }
+  @media (max-width: 760px) { .shapes { opacity: .35; } }
+
+  /* Hero: il disegno di costruzione del marchio al posto delle forme piene */
+  .hero-draw { position: absolute; right: -2vw; top: 50%; transform: translateY(-52%); width: min(58vw, 720px); height: auto; }
+  .hero .e, .hero .deco-bauhaus { display: none; }
+  @media (max-width: 860px) { .hero { display: flex; flex-direction: column; } .hero .container { order: 1; } .hero-draw { order: 2; position: static; transform: none; width: 100%; margin-top: 34px; } .hero { padding-bottom: 40px; } }
+  header .brand svg { height: 60px; width: auto; }
+  header .container { height: 88px; }
+  html { scroll-padding-top: 92px; }
+  @media (max-width: 760px) { nav { top: 88px; } header .brand svg { height: 44px; } header .container { height: 72px; } }
+  footer .foot-logo svg { height: 56px; width: auto; display: block; }
+
+
+  .photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+  .photos figure { margin: 0; aspect-ratio: 3 / 2; overflow: hidden; background: var(--bg-alt); }
+  .photos img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1); transition: filter .5s ease; }
+  .photos figure:hover img { filter: none; }
+  .photos figure:first-child { border-radius: 0 44px 0 0; }
+  .photos figure:last-child { border-radius: 0 0 0 44px; }
+  .photos-cap { margin: 12px 0 0; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  @media (max-width: 760px) { .photos { grid-template-columns: 1fr; gap: 16px; } }
+  .legal { max-width: 760px; }
+  .legal h2 { font-size: 1.2rem; margin: 36px 0 10px; }
+  .legal p, .legal li { font-size: 0.9375rem; }
+  .legal ul { padding-left: 20px; }
+
+  /* --- versione istituzionale --- */
+  .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 24px; margin: 0; align-content: start; border-left: 3px solid var(--ink); padding-left: 24px; }
+  .facts div { display: flex; flex-direction: column; gap: 4px; }
+  .facts dt { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .facts dd { margin: 0; font-family: var(--display); font-weight: 500; font-size: 1.35rem; color: var(--ink); line-height: 1.1; }
+  @media (max-width: 480px) { .facts { grid-template-columns: 1fr 1fr; } }
+  .card.noimg figure { color: var(--ink); }
+  .card .ph { width: 100%; height: 100%; display: block; background: #fff; }
+  .profiles { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .profile { display: grid; grid-template-columns: 84px 1fr; gap: 22px; align-items: start; }
+  .profile .mono-g svg { width: 56px; height: 56px; }
+  .profile .role { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 6px 0 12px; line-height: 1.6; }
+  .profile ul { margin: 0; padding: 0; list-style: none; font-size: 0.9375rem; }
+  .profile li { padding: 7px 0 7px 18px; position: relative; border-bottom: 1px solid var(--line); }
+  .profile li:last-child { border-bottom: 0; }
+  .profile li::before { content: ""; position: absolute; left: 0; top: 0.95em; width: 8px; height: 8px; background: var(--nebbia); border-radius: 0 0 100% 0; }
+  .profile:nth-child(2) li::before { background: var(--teal); border-radius: 100% 0 0 0; }
+  @media (max-width: 760px) { .profiles { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <a class="brand" href="index.html" aria-label="VEE — Società di ingegneria e architettura, Torino"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 478 210" aria-hidden="true"><g fill="none" stroke="var(--lg-red)" stroke-width="1.8" stroke-dasharray="7 5"><circle cx="239" cy="105" r="65"/><circle cx="397" cy="105" r="65"/><line x1="0" y1="40" x2="478" y2="40"/><line x1="0" y1="105" x2="478" y2="105"/><line x1="0" y1="170" x2="478" y2="170"/></g><polygon points="10,40 150,40 80,170" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M239 40 A65 65 0 0 0 239 170 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M245 105 L245 40.28 A65 65 0 0 1 304 105 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M397 40 A65 65 0 0 0 397 170 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M403 105 L403 40.28 A65 65 0 0 1 462 105 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/></svg><span class="payoff">società di ingegneria<br>e architettura<br>torino</span></a>
+    <button class="toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Apri il menu"><svg width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M0 1h22M0 7h22M0 13h22"/></svg></button>
+    <nav id="nav" aria-label="Sezioni"><a href="index.html#societa">Società</a><a href="index.html#servizi">Servizi</a><a href="index.html#incarichi">Incarichi</a><a href="index.html#competenze">Competenze</a><a href="index.html#contatti">Contatti</a></nav>
+  </div>
+</header>
+
+<main id="top">
+  <section id="privacy">
+    <div class="container">
+      <div class="head">
+        <div><span class="eyebrow">Informativa</span><h2>Privacy e cookie.</h2></div>
+        <p>Informazioni rese ai sensi degli articoli 13 e 14 del Regolamento (UE) 2016/679 (GDPR) a chi consulta questo sito e a chi contatta la società.</p>
+      </div>
+      <div class="legal prose">
+        <h2>Titolare del trattamento</h2>
+        <p>VEE S.r.l., Piazza C.L.N. 255, 10123 Torino (TO), P.IVA 12904260010. Contatti: <a class="em em-text" data-u="area.tecnica" data-d="vee.it" href="#">area.tecnica [at] vee.it</a> · PEC <a class="em em-text" data-u="info" data-d="pec.vee.it" href="#">info [at] pec.vee.it</a>.</p>
+        <h2>Dati trattati e finalità</h2>
+        <p>Il sito è una pagina informativa statica: non contiene moduli di registrazione o di contatto e non raccoglie dati personali degli utenti. Chi scrive agli indirizzi email indicati fornisce volontariamente i propri dati di contatto e le informazioni contenute nel messaggio; tali dati sono trattati esclusivamente per rispondere alla richiesta e per l'eventuale gestione del rapporto professionale che ne consegue.</p>
+        <p>Base giuridica: esecuzione di misure precontrattuali adottate su richiesta dell'interessato (art. 6, par. 1, lett. b, GDPR) e legittimo interesse del titolare a rispondere alle comunicazioni ricevute (art. 6, par. 1, lett. f). Il conferimento è facoltativo; in sua assenza non è possibile dare seguito alla richiesta.</p>
+        <h2>Dati tecnici di navigazione</h2>
+        <p>Il sito è ospitato sull'infrastruttura GitHub Pages di GitHub, Inc. Come per qualsiasi servizio web, i sistemi che erogano il sito possono registrare dati tecnici di accesso (indirizzo IP, data e ora della richiesta, pagina richiesta, tipo di browser) per finalità di sicurezza e di corretto funzionamento del servizio, secondo l'informativa del fornitore (<a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub General Privacy Statement</a>). Il titolare non ha accesso a tali dati in forma identificativa e non li utilizza. L'eventuale trasferimento di dati verso paesi extra UE avviene con le garanzie previste dal capo V del GDPR.</p>
+        <h2 id="cookie">Cookie</h2>
+        <p>Il sito non utilizza cookie, né propri né di terze parti, e non impiega strumenti di profilazione, di analisi statistica o di tracciamento. Per questo motivo non è presente alcun banner di consenso. Il collegamento a Google Maps nella sezione Contatti apre un servizio esterno solo su azione volontaria dell'utente, con le regole di privacy del relativo gestore.</p>
+        <h2>Conservazione</h2>
+        <p>I dati delle comunicazioni ricevute sono conservati per il tempo necessario a gestire la richiesta e, in caso di rapporto professionale, per la durata dello stesso e per i termini previsti dagli obblighi di legge, fiscali e contabili.</p>
+        <h2>Destinatari</h2>
+        <p>I dati non sono diffusi. Possono venirne a conoscenza il personale e i collaboratori della società autorizzati al trattamento e i fornitori di servizi tecnici (posta elettronica, hosting) che agiscono come responsabili del trattamento o come titolari autonomi.</p>
+        <h2>Diritti dell'interessato</h2>
+        <p>In ogni momento è possibile esercitare i diritti previsti dagli articoli 15–22 del GDPR (accesso, rettifica, cancellazione, limitazione, opposizione, portabilità) scrivendo ai contatti del titolare. È inoltre possibile proporre reclamo all'Autorità Garante per la protezione dei dati personali (www.garanteprivacy.it).</p>
+        <p class="photos-cap">Ultimo aggiornamento: settembre 2026.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 790 210"><g fill="none" stroke="var(--lg-red)" stroke-width="1.2" stroke-dasharray="5 4"><circle cx="239" cy="105" r="65"/><circle cx="397" cy="105" r="65"/><line x1="0" y1="40" x2="478" y2="40"/><line x1="0" y1="105" x2="478" y2="105"/><line x1="0" y1="170" x2="478" y2="170"/></g><polygon points="10,40 150,40 80,170" fill="none" stroke="var(--lg-ink)" stroke-width="2.6" stroke-linejoin="round"/><path d="M239 40 A65 65 0 0 0 239 170 Z" fill="none" stroke="var(--lg-ink)" stroke-width="2.6" stroke-linejoin="round"/><path d="M245 105 L245 40.28 A65 65 0 0 1 304 105 Z" fill="none" stroke="var(--lg-ink)" stroke-width="2.6" stroke-linejoin="round"/><path d="M397 40 A65 65 0 0 0 397 170 Z" fill="none" stroke="var(--lg-ink)" stroke-width="2.6" stroke-linejoin="round"/><path d="M403 105 L403 40.28 A65 65 0 0 1 462 105 Z" fill="none" stroke="var(--lg-ink)" stroke-width="2.6" stroke-linejoin="round"/><rect x="494" y="40" width="3" height="130" fill="var(--lg-ink)"/><path d="M526.068 74.898 524.682 75.756Q524.968 76.35 525.529 76.922Q526.09 77.494 526.904 77.857Q527.718 78.22 528.73 78.22Q530.292 78.22 531.249 77.34Q532.206 76.46 532.206 75.14Q532.206 74.238 531.777 73.666Q531.348 73.094 530.622 72.687Q529.896 72.28 529.016 71.928Q528.488 71.708 528.004 71.46600000000001Q527.52 71.224 527.212 70.916Q526.904 70.608 526.904 70.212Q526.904 69.706 527.3 69.464Q527.696 69.22200000000001 528.246 69.22200000000001Q529.038 69.22200000000001 529.665 69.596Q530.292 69.97 530.71 70.542L532.118 69.64Q531.81 69.068 531.26 68.628Q530.71 68.188 529.995 67.924Q529.28 67.66 528.466 67.66Q527.652 67.66 526.893 67.946Q526.134 68.232 525.6610000000001 68.826Q525.188 69.42 525.188 70.322Q525.188 71.202 525.639 71.785Q526.09 72.368 526.761 72.731Q527.432 73.094 528.092 73.358Q528.686 73.578 529.2139999999999 73.831Q529.742 74.084 530.083 74.447Q530.424 74.81 530.424 75.338Q530.424 75.932 529.995 76.273Q529.566 76.614 528.818 76.614Q528.202 76.614 527.685 76.38300000000001Q527.168 76.152 526.7719999999999 75.756Q526.376 75.36 526.068 74.898Z M535.836 72.94Q535.836 74.458 536.529 75.657Q537.222 76.856 538.4100000000001 77.538Q539.5980000000001 78.22 541.072 78.22Q542.568 78.22 543.745 77.538Q544.922 76.856 545.615 75.657Q546.308 74.458 546.308 72.94Q546.308 71.4 545.615 70.212Q544.922 69.024 543.745 68.342Q542.568 67.66 541.072 67.66Q539.5980000000001 67.66 538.4100000000001 68.342Q537.222 69.024 536.529 70.212Q535.836 71.4 535.836 72.94ZM537.618 72.94Q537.618 71.884 538.069 71.059Q538.52 70.234 539.3009999999999 69.77199999999999Q540.082 69.31 541.072 69.31Q542.062 69.31 542.8430000000001 69.77199999999999Q543.624 70.234 544.075 71.059Q544.5260000000001 71.884 544.5260000000001 72.94Q544.5260000000001 73.996 544.075 74.81Q543.624 75.624 542.8430000000001 76.097Q542.062 76.57 541.072 76.57Q540.082 76.57 539.3009999999999 76.097Q538.52 75.624 538.069 74.81Q537.618 73.996 537.618 72.94Z M551.72 72.94Q551.72 71.884 552.171 71.059Q552.6220000000001 70.234 553.403 69.77199999999999Q554.184 69.31 555.174 69.31Q555.988 69.31 556.703 69.563Q557.418 69.816 557.946 70.23400000000001Q558.474 70.652 558.6940000000001 71.158V68.958Q558.166 68.342 557.187 68.001Q556.208 67.66 555.174 67.66Q553.7 67.66 552.5120000000001 68.342Q551.3240000000001 69.024 550.6310000000001 70.212Q549.938 71.4 549.938 72.94Q549.938 74.458 550.6310000000001 75.657Q551.3240000000001 76.856 552.5120000000001 77.538Q553.7 78.22 555.174 78.22Q556.208 78.22 557.187 77.87899999999999Q558.166 77.538 558.6940000000001 76.922V74.722Q558.474 75.206 557.946 75.63499999999999Q557.418 76.064 556.703 76.317Q555.988 76.57 555.174 76.57Q554.184 76.57 553.403 76.097Q552.6220000000001 75.624 552.171 74.81Q551.72 73.996 551.72 72.94Z M563.644 63.7Q563.644 64.184 564.0070000000001 64.547Q564.37 64.91 564.854 64.91Q565.36 64.91 565.712 64.547Q566.0640000000001 64.184 566.0640000000001 63.7Q566.0640000000001 63.194 565.712 62.842Q565.36 62.49 564.854 62.49Q564.37 62.49 564.0070000000001 62.842Q563.644 63.194 563.644 63.7ZM563.974 67.88V78.0H565.734V67.88Z M575.48 78.22Q577.108 78.22 578.307 77.571Q579.506 76.922 580.298 75.646L578.8679999999999 74.744Q578.318 75.668 577.5260000000001 76.119Q576.734 76.57 575.6999999999999 76.57Q574.6659999999999 76.57 573.9399999999999 76.13Q573.2139999999999 75.69 572.8399999999999 74.854Q572.466 74.018 572.466 72.83Q572.4879999999999 71.664 572.873 70.861Q573.258 70.058 573.973 69.629Q574.688 69.2 575.6999999999999 69.2Q576.558 69.2 577.1959999999999 69.57400000000001Q577.834 69.94800000000001 578.1969999999999 70.608Q578.56 71.268 578.56 72.17Q578.56 72.324 578.4939999999999 72.555Q578.428 72.786 578.362 72.896L579.066 71.884H571.806V73.38H580.452Q580.452 73.336 580.463 73.17099999999999Q580.4739999999999 73.006 580.4739999999999 72.852Q580.4739999999999 71.246 579.902 70.08Q579.33 68.914 578.263 68.287Q577.196 67.66 575.6999999999999 67.66Q574.204 67.66 573.0709999999999 68.32Q571.938 68.98 571.3109999999999 70.168Q570.684 71.356 570.684 72.94Q570.684 74.502 571.289 75.69Q571.894 76.878 572.983 77.549Q574.072 78.22 575.48 78.22Z M583.554 67.88V69.53H588.6139999999999V67.88ZM585.204 64.36V78.0H586.9639999999999V64.36Z M593.366 75.03Q593.366 74.414 593.652 73.974Q593.938 73.534 594.521 73.292Q595.1039999999999 73.05 595.9839999999999 73.05Q596.952 73.05 597.722 73.303Q598.492 73.556 599.24 74.084V73.05Q599.086 72.852 598.668 72.533Q598.25 72.214 597.557 71.961Q596.864 71.708 595.896 71.708Q594.6859999999999 71.708 593.7069999999999 72.104Q592.728 72.5 592.156 73.281Q591.584 74.062 591.584 75.25Q591.584 76.174 592.0129999999999 76.834Q592.442 77.494 593.2339999999999 77.857Q594.026 78.22 595.06 78.22Q596.116 78.22 596.9739999999999 77.857Q597.832 77.494 598.3489999999999 76.801Q598.866 76.108 598.866 75.14L598.514 74.04Q598.514 74.986 598.129 75.55799999999999Q597.744 76.13 597.062 76.394Q596.38 76.658 595.5 76.658Q594.7959999999999 76.658 594.323 76.471Q593.85 76.284 593.608 75.921Q593.366 75.558 593.366 75.03ZM593.366 70.256Q593.608 70.08 594.037 69.827Q594.466 69.574 595.06 69.387Q595.654 69.2 596.38 69.2Q597.216 69.2 597.865 69.58500000000001Q598.514 69.97 598.514 70.74V78.0H600.274V70.74Q600.274 69.75 599.779 69.068Q599.284 68.386 598.415 68.023Q597.5459999999999 67.66 596.38 67.66Q595.016 67.66 594.048 68.078Q593.0799999999999 68.496 592.5079999999999 68.914ZM592.86 63.04 596.8199999999999 66.34 597.81 65.68 594.51 62.16Z M621.834 60.84V78.0H623.5939999999999V60.84ZM613.3639999999999 72.94Q613.3639999999999 74.568 614.0459999999999 75.756Q614.728 76.944 615.872 77.582Q617.016 78.22 618.3799999999999 78.22Q619.656 78.22 620.6019999999999 77.582Q621.5479999999999 76.944 622.087 75.756Q622.626 74.568 622.626 72.94Q622.626 71.29 622.087 70.113Q621.5479999999999 68.936 620.6019999999999 68.298Q619.656 67.66 618.3799999999999 67.66Q617.016 67.66 615.872 68.298Q614.728 68.936 614.0459999999999 70.113Q613.3639999999999 71.29 613.3639999999999 72.94ZM615.146 72.94Q615.146 71.774 615.6189999999999 70.96000000000001Q616.092 70.146 616.884 69.72800000000001Q617.6759999999999 69.31 618.5999999999999 69.31Q619.3699999999999 69.31 620.1179999999999 69.72800000000001Q620.866 70.146 621.3499999999999 70.96000000000001Q621.834 71.774 621.834 72.94Q621.834 74.106 621.3499999999999 74.91999999999999Q620.866 75.734 620.1179999999999 76.15199999999999Q619.3699999999999 76.57 618.5999999999999 76.57Q617.6759999999999 76.57 616.884 76.15199999999999Q616.092 75.734 615.6189999999999 74.91999999999999Q615.146 74.106 615.146 72.94Z M628.9839999999999 63.7Q628.9839999999999 64.184 629.347 64.547Q629.7099999999999 64.91 630.194 64.91Q630.6999999999999 64.91 631.0519999999999 64.547Q631.404 64.184 631.404 63.7Q631.404 63.194 631.0519999999999 62.842Q630.6999999999999 62.49 630.194 62.49Q629.7099999999999 62.49 629.347 62.842Q628.9839999999999 63.194 628.9839999999999 63.7ZM629.314 67.88V78.0H631.074V67.88Z M645.7039999999998 63.7Q645.7039999999998 64.184 646.0669999999998 64.547Q646.4299999999998 64.91 646.9139999999999 64.91Q647.4199999999998 64.91 647.7719999999999 64.547Q648.1239999999999 64.184 648.1239999999999 63.7Q648.1239999999999 63.194 647.7719999999999 62.842Q647.4199999999998 62.49 646.9139999999999 62.49Q646.4299999999998 62.49 646.0669999999998 62.842Q645.7039999999998 63.194 645.7039999999998 63.7ZM646.0339999999999 67.88V78.0H647.7939999999999V67.88Z M660.1139999999998 71.84V78.0H661.8739999999998V71.62Q661.8739999999998 69.794 660.9389999999999 68.727Q660.0039999999998 67.66 658.3979999999998 67.66Q657.4079999999998 67.66 656.6489999999999 68.1Q655.8899999999999 68.54 655.3839999999998 69.464V67.88H653.6239999999998V78.0H655.3839999999998V71.84Q655.3839999999998 71.092 655.7029999999997 70.52000000000001Q656.0219999999998 69.94800000000001 656.6049999999998 69.629Q657.1879999999999 69.31 657.9579999999999 69.31Q659.0139999999998 69.31 659.5639999999999 69.94800000000001Q660.1139999999998 70.586 660.1139999999998 71.84Z M666.6919999999998 78.66Q666.6919999999998 79.958 667.3299999999998 80.959Q667.9679999999998 81.96 669.1009999999999 82.50999999999999Q670.2339999999998 83.06 671.7079999999999 83.06Q672.9839999999998 83.06 674.1279999999998 82.46600000000001Q675.2719999999998 81.872 675.9979999999998 80.695Q676.7239999999998 79.518 676.7239999999998 77.78V67.88H674.9639999999998V77.78Q674.9639999999998 79.056 674.4689999999998 79.85900000000001Q673.9739999999998 80.662 673.2259999999999 81.036Q672.4779999999998 81.41 671.7079999999999 81.41Q670.7179999999998 81.41 669.9919999999998 81.025Q669.2659999999998 80.64 668.8699999999999 80.013Q668.4739999999998 79.386 668.4739999999998 78.66ZM666.4939999999998 72.94Q666.4939999999998 74.568 667.1759999999998 75.756Q667.8579999999998 76.944 669.0019999999998 77.582Q670.1459999999998 78.22 671.5099999999998 78.22Q672.7859999999998 78.22 673.7319999999997 77.582Q674.6779999999998 76.944 675.2169999999999 75.756Q675.7559999999999 74.568 675.7559999999999 72.94Q675.7559999999999 71.29 675.2169999999999 70.113Q674.6779999999998 68.936 673.7319999999997 68.298Q672.7859999999998 67.66 671.5099999999998 67.66Q670.1459999999998 67.66 669.0019999999998 68.298Q667.8579999999998 68.936 667.1759999999998 70.113Q666.4939999999998 71.29 666.4939999999998 72.94ZM668.2759999999998 72.94Q668.2759999999998 71.774 668.7489999999998 70.96000000000001Q669.2219999999999 70.146 670.0139999999999 69.72800000000001Q670.8059999999998 69.31 671.7299999999998 69.31Q672.3019999999998 69.31 672.8739999999998 69.55199999999999Q673.4459999999998 69.794 673.9189999999999 70.256Q674.3919999999998 70.718 674.6779999999999 71.38900000000001Q674.9639999999998 72.06 674.9639999999998 72.94Q674.9639999999998 74.106 674.4799999999998 74.91999999999999Q673.9959999999999 75.734 673.2479999999998 76.15199999999999Q672.4999999999998 76.57 671.7299999999998 76.57Q670.8059999999998 76.57 670.0139999999999 76.15199999999999Q669.2219999999999 75.734 668.7489999999998 74.91999999999999Q668.2759999999998 74.106 668.2759999999998 72.94Z M686.0299999999999 78.22Q687.6579999999998 78.22 688.8569999999997 77.571Q690.0559999999998 76.922 690.8479999999998 75.646L689.4179999999998 74.744Q688.8679999999998 75.668 688.0759999999998 76.119Q687.2839999999999 76.57 686.2499999999998 76.57Q685.2159999999998 76.57 684.4899999999998 76.13Q683.7639999999998 75.69 683.3899999999999 74.854Q683.0159999999998 74.018 683.0159999999998 72.83Q683.0379999999998 71.664 683.4229999999998 70.861Q683.8079999999999 70.058 684.5229999999999 69.629Q685.2379999999998 69.2 686.2499999999998 69.2Q687.1079999999998 69.2 687.7459999999999 69.57400000000001Q688.3839999999998 69.94800000000001 688.7469999999998 70.608Q689.1099999999998 71.268 689.1099999999998 72.17Q689.1099999999998 72.324 689.0439999999999 72.555Q688.9779999999998 72.786 688.9119999999998 72.896L689.6159999999999 71.884H682.3559999999999V73.38H691.0019999999998Q691.0019999999998 73.336 691.0129999999998 73.17099999999999Q691.0239999999998 73.006 691.0239999999998 72.852Q691.0239999999998 71.246 690.4519999999998 70.08Q689.8799999999999 68.914 688.8129999999999 68.287Q687.7459999999999 67.66 686.2499999999998 67.66Q684.7539999999998 67.66 683.6209999999999 68.32Q682.4879999999998 68.98 681.8609999999999 70.168Q681.2339999999998 71.356 681.2339999999998 72.94Q681.2339999999998 74.502 681.8389999999998 75.69Q682.4439999999998 76.878 683.5329999999999 77.549Q684.6219999999998 78.22 686.0299999999999 78.22Z M694.9619999999998 78.66Q694.9619999999998 79.958 695.5999999999998 80.959Q696.2379999999998 81.96 697.3709999999999 82.50999999999999Q698.5039999999998 83.06 699.9779999999998 83.06Q701.2539999999998 83.06 702.3979999999998 82.46600000000001Q703.5419999999998 81.872 704.2679999999998 80.695Q704.9939999999998 79.518 704.9939999999998 77.78V67.88H703.2339999999998V77.78Q703.2339999999998 79.056 702.7389999999998 79.85900000000001Q702.2439999999998 80.662 701.4959999999999 81.036Q700.7479999999998 81.41 699.9779999999998 81.41Q698.9879999999998 81.41 698.2619999999998 81.025Q697.5359999999998 80.64 697.1399999999999 80.013Q696.7439999999998 79.386 696.7439999999998 78.66ZM694.7639999999998 72.94Q694.7639999999998 74.568 695.4459999999998 75.756Q696.1279999999998 76.944 697.2719999999998 77.582Q698.4159999999998 78.22 699.7799999999997 78.22Q701.0559999999998 78.22 702.0019999999997 77.582Q702.9479999999998 76.944 703.4869999999999 75.756Q704.0259999999998 74.568 704.0259999999998 72.94Q704.0259999999998 71.29 703.4869999999999 70.113Q702.9479999999998 68.936 702.0019999999997 68.298Q701.0559999999998 67.66 699.7799999999997 67.66Q698.4159999999998 67.66 697.2719999999998 68.298Q696.1279999999998 68.936 695.4459999999998 70.113Q694.7639999999998 71.29 694.7639999999998 72.94ZM696.5459999999998 72.94Q696.5459999999998 71.774 697.0189999999998 70.96000000000001Q697.4919999999998 70.146 698.2839999999999 69.72800000000001Q699.0759999999998 69.31 699.9999999999998 69.31Q700.5719999999998 69.31 701.1439999999998 69.55199999999999Q701.7159999999998 69.794 702.1889999999999 70.256Q702.6619999999998 70.718 702.9479999999999 71.38900000000001Q703.2339999999998 72.06 703.2339999999998 72.94Q703.2339999999998 74.106 702.7499999999998 74.91999999999999Q702.2659999999998 75.734 701.5179999999998 76.15199999999999Q700.7699999999998 76.57 699.9999999999998 76.57Q699.0759999999998 76.57 698.2839999999999 76.15199999999999Q697.4919999999998 75.734 697.0189999999998 74.91999999999999Q696.5459999999998 74.106 696.5459999999998 72.94Z M716.8739999999998 71.84V78.0H718.6339999999998V71.62Q718.6339999999998 69.794 717.6989999999998 68.727Q716.7639999999998 67.66 715.1579999999998 67.66Q714.1679999999998 67.66 713.4089999999999 68.1Q712.6499999999999 68.54 712.1439999999998 69.464V67.88H710.3839999999998V78.0H712.1439999999998V71.84Q712.1439999999998 71.092 712.4629999999997 70.52000000000001Q712.7819999999998 69.94800000000001 713.3649999999998 69.629Q713.9479999999999 69.31 714.7179999999998 69.31Q715.7739999999998 69.31 716.3239999999998 69.94800000000001Q716.8739999999998 70.586 716.8739999999998 71.84Z M728.0499999999998 78.22Q729.6779999999998 78.22 730.8769999999997 77.571Q732.0759999999998 76.922 732.8679999999998 75.646L731.4379999999998 74.744Q730.8879999999998 75.668 730.0959999999998 76.119Q729.3039999999999 76.57 728.2699999999998 76.57Q727.2359999999998 76.57 726.5099999999998 76.13Q725.7839999999998 75.69 725.4099999999999 74.854Q725.0359999999998 74.018 725.0359999999998 72.83Q725.0579999999998 71.664 725.4429999999998 70.861Q725.8279999999999 70.058 726.5429999999999 69.629Q727.2579999999998 69.2 728.2699999999998 69.2Q729.1279999999998 69.2 729.7659999999998 69.57400000000001Q730.4039999999998 69.94800000000001 730.7669999999998 70.608Q731.1299999999998 71.268 731.1299999999998 72.17Q731.1299999999998 72.324 731.0639999999999 72.555Q730.9979999999998 72.786 730.9319999999998 72.896L731.6359999999999 71.884H724.3759999999999V73.38H733.0219999999998Q733.0219999999998 73.336 733.0329999999998 73.17099999999999Q733.0439999999998 73.006 733.0439999999998 72.852Q733.0439999999998 71.246 732.4719999999998 70.08Q731.8999999999999 68.914 730.8329999999999 68.287Q729.7659999999998 67.66 728.2699999999998 67.66Q726.7739999999998 67.66 725.6409999999998 68.32Q724.5079999999998 68.98 723.8809999999999 70.168Q723.2539999999998 71.356 723.2539999999998 72.94Q723.2539999999998 74.502 723.8589999999998 75.69Q724.4639999999998 76.878 725.5529999999999 77.549Q726.6419999999998 78.22 728.0499999999998 78.22Z M739.4239999999998 67.88H737.6639999999998V78.0H739.4239999999998ZM742.4819999999997 69.816 743.4499999999998 68.364Q743.0539999999997 67.946 742.5809999999998 67.803Q742.1079999999998 67.66 741.5579999999998 67.66Q740.8539999999998 67.66 740.1719999999998 68.21000000000001Q739.4899999999998 68.76 739.0609999999998 69.695Q738.6319999999998 70.63 738.6319999999998 71.84H739.4239999999998Q739.4239999999998 71.114 739.5669999999998 70.542Q739.7099999999998 69.97 740.0839999999998 69.64Q740.4579999999997 69.31 741.1179999999998 69.31Q741.5579999999998 69.31 741.8439999999998 69.431Q742.1299999999998 69.55199999999999 742.4819999999997 69.816Z M747.4099999999997 63.7Q747.4099999999997 64.184 747.7729999999997 64.547Q748.1359999999997 64.91 748.6199999999998 64.91Q749.1259999999997 64.91 749.4779999999998 64.547Q749.8299999999998 64.184 749.8299999999998 63.7Q749.8299999999998 63.194 749.4779999999998 62.842Q749.1259999999997 62.49 748.6199999999998 62.49Q748.1359999999997 62.49 747.7729999999997 62.842Q747.4099999999997 63.194 747.4099999999997 63.7ZM747.7399999999998 67.88V78.0H749.4999999999998V67.88Z M756.1219999999997 74.876Q756.1219999999997 74.326 756.3859999999997 73.93Q756.6499999999997 73.534 757.1889999999997 73.314Q757.7279999999997 73.094 758.5859999999997 73.094Q759.5099999999998 73.094 760.3239999999997 73.32499999999999Q761.1379999999997 73.556 761.9079999999997 74.084V73.05Q761.7539999999997 72.852 761.3139999999996 72.533Q760.8739999999997 72.214 760.1369999999997 71.961Q759.3999999999997 71.708 758.2999999999997 71.708Q756.4299999999997 71.708 755.3849999999998 72.59899999999999Q754.3399999999997 73.49 754.3399999999997 74.964Q754.3399999999997 75.998 754.8239999999997 76.724Q755.3079999999998 77.45 756.1109999999998 77.83500000000001Q756.9139999999998 78.22 757.8379999999997 78.22Q758.6739999999998 78.22 759.5209999999997 77.912Q760.3679999999997 77.604 760.9509999999998 76.96600000000001Q761.5339999999998 76.328 761.5339999999998 75.36L761.1819999999997 74.04Q761.1819999999997 74.832 760.7969999999997 75.437Q760.4119999999997 76.042 759.7629999999997 76.372Q759.1139999999997 76.702 758.2999999999997 76.702Q757.6619999999997 76.702 757.1669999999997 76.493Q756.6719999999997 76.284 756.3969999999997 75.866Q756.1219999999997 75.448 756.1219999999997 74.876ZM755.8579999999997 70.212Q756.0999999999997 70.036 756.5179999999997 69.794Q756.9359999999997 69.55199999999999 757.5409999999997 69.376Q758.1459999999997 69.2 758.8939999999998 69.2Q759.3559999999998 69.2 759.7739999999997 69.28800000000001Q760.1919999999997 69.376 760.5109999999997 69.57400000000001Q760.8299999999997 69.772 761.0059999999996 70.113Q761.1819999999997 70.45400000000001 761.1819999999997 70.982V78.0H762.9419999999997V70.74Q762.9419999999997 69.75 762.4469999999997 69.068Q761.9519999999998 68.386 761.0609999999997 68.023Q760.1699999999997 67.66 758.9819999999997 67.66Q757.5739999999997 67.66 756.5729999999998 68.078Q755.5719999999998 68.496 754.9999999999998 68.914Z M529.566 110.22Q531.194 110.22 532.393 109.571Q533.592 108.922 534.384 107.646L532.954 106.744Q532.404 107.668 531.6120000000001 108.119Q530.82 108.57 529.786 108.57Q528.752 108.57 528.026 108.13Q527.3 107.69 526.9259999999999 106.854Q526.552 106.018 526.552 104.83Q526.574 103.664 526.9590000000001 102.861Q527.344 102.058 528.059 101.629Q528.774 101.2 529.786 101.2Q530.644 101.2 531.2819999999999 101.57400000000001Q531.92 101.94800000000001 532.2829999999999 102.608Q532.646 103.268 532.646 104.17Q532.646 104.324 532.5799999999999 104.555Q532.514 104.786 532.448 104.896L533.152 103.884H525.892V105.38H534.538Q534.538 105.336 534.549 105.17099999999999Q534.56 105.006 534.56 104.852Q534.56 103.246 533.988 102.08Q533.416 100.914 532.349 100.287Q531.282 99.66 529.786 99.66Q528.29 99.66 527.1569999999999 100.32Q526.024 100.98 525.3969999999999 102.168Q524.77 103.356 524.77 104.94Q524.77 106.502 525.375 107.69Q525.98 108.878 527.069 109.549Q528.158 110.22 529.566 110.22Z M548.7719999999999 106.876Q548.7719999999999 106.326 549.036 105.93Q549.3 105.534 549.8389999999999 105.314Q550.3779999999999 105.094 551.2359999999999 105.094Q552.16 105.094 552.9739999999999 105.32499999999999Q553.7879999999999 105.556 554.5579999999999 106.084V105.05Q554.4039999999999 104.852 553.9639999999999 104.533Q553.5239999999999 104.214 552.7869999999999 103.961Q552.05 103.708 550.9499999999999 103.708Q549.0799999999999 103.708 548.0349999999999 104.59899999999999Q546.9899999999999 105.49 546.9899999999999 106.964Q546.9899999999999 107.998 547.4739999999999 108.724Q547.958 109.45 548.761 109.83500000000001Q549.564 110.22 550.4879999999999 110.22Q551.324 110.22 552.1709999999999 109.912Q553.0179999999999 109.604 553.6009999999999 108.96600000000001Q554.184 108.328 554.184 107.36L553.8319999999999 106.04Q553.8319999999999 106.832 553.4469999999999 107.437Q553.0619999999999 108.042 552.4129999999999 108.372Q551.7639999999999 108.702 550.9499999999999 108.702Q550.3119999999999 108.702 549.8169999999999 108.493Q549.3219999999999 108.284 549.0469999999999 107.866Q548.7719999999999 107.448 548.7719999999999 106.876ZM548.5079999999999 102.212Q548.7499999999999 102.036 549.1679999999999 101.794Q549.5859999999999 101.55199999999999 550.1909999999999 101.376Q550.7959999999999 101.2 551.544 101.2Q552.006 101.2 552.424 101.28800000000001Q552.8419999999999 101.376 553.1609999999998 101.57400000000001Q553.4799999999999 101.772 553.656 102.113Q553.8319999999999 102.45400000000001 553.8319999999999 102.982V110.0H555.5919999999999V102.74Q555.5919999999999 101.75 555.097 101.068Q554.602 100.386 553.711 100.023Q552.8199999999999 99.66 551.632 99.66Q550.2239999999999 99.66 549.223 100.078Q548.222 100.496 547.65 100.914Z M562.5219999999999 99.88H560.762V110.0H562.5219999999999ZM565.5799999999999 101.816 566.548 100.364Q566.1519999999999 99.946 565.679 99.803Q565.206 99.66 564.656 99.66Q563.952 99.66 563.27 100.21000000000001Q562.588 100.76 562.159 101.695Q561.73 102.63 561.73 103.84H562.5219999999999Q562.5219999999999 103.114 562.665 102.542Q562.808 101.97 563.182 101.64Q563.5559999999999 101.31 564.216 101.31Q564.656 101.31 564.942 101.431Q565.228 101.55199999999999 565.5799999999999 101.816Z M571.3 104.94Q571.3 103.884 571.751 103.059Q572.202 102.234 572.983 101.77199999999999Q573.7639999999999 101.31 574.7539999999999 101.31Q575.568 101.31 576.2829999999999 101.563Q576.9979999999999 101.816 577.526 102.23400000000001Q578.054 102.652 578.274 103.158V100.958Q577.746 100.342 576.7669999999999 100.001Q575.7879999999999 99.66 574.7539999999999 99.66Q573.28 99.66 572.092 100.342Q570.904 101.024 570.211 102.212Q569.5179999999999 103.4 569.5179999999999 104.94Q569.5179999999999 106.458 570.211 107.657Q570.904 108.856 572.092 109.538Q573.28 110.22 574.7539999999999 110.22Q575.7879999999999 110.22 576.7669999999999 109.87899999999999Q577.746 109.538 578.274 108.922V106.722Q578.054 107.206 577.526 107.63499999999999Q576.9979999999999 108.064 576.2829999999999 108.317Q575.568 108.57 574.7539999999999 108.57Q573.7639999999999 108.57 572.983 108.097Q572.202 107.624 571.751 106.81Q571.3 105.996 571.3 104.94Z M584.9839999999999 92.84H583.2239999999999V110.0H584.9839999999999ZM589.7139999999999 103.84V110.0H591.4739999999999V103.62Q591.4739999999999 102.3 591.045 101.42Q590.616 100.54 589.835 100.1Q589.054 99.66 587.9979999999999 99.66Q586.942 99.66 586.1389999999999 100.21000000000001Q585.3359999999999 100.76 584.8739999999999 101.695Q584.4119999999999 102.63 584.4119999999999 103.84H584.9839999999999Q584.9839999999999 103.114 585.3029999999999 102.542Q585.622 101.97 586.2049999999999 101.64Q586.788 101.31 587.558 101.31Q588.636 101.31 589.175 101.94800000000001Q589.7139999999999 102.586 589.7139999999999 103.84Z M596.9739999999999 95.7Q596.9739999999999 96.184 597.337 96.547Q597.6999999999999 96.91 598.184 96.91Q598.6899999999999 96.91 599.0419999999999 96.547Q599.394 96.184 599.394 95.7Q599.394 95.194 599.0419999999999 94.842Q598.6899999999999 94.49 598.184 94.49Q597.6999999999999 94.49 597.337 94.842Q596.9739999999999 95.194 596.9739999999999 95.7ZM597.304 99.88V110.0H599.064V99.88Z M603.3539999999999 99.88V101.53H608.4139999999999V99.88ZM605.0039999999999 96.36V110.0H606.7639999999999V96.36Z M616.29 110.22Q617.9179999999999 110.22 619.117 109.571Q620.3159999999999 108.922 621.108 107.646L619.6779999999999 106.744Q619.1279999999999 107.668 618.336 108.119Q617.544 108.57 616.5099999999999 108.57Q615.4759999999999 108.57 614.7499999999999 108.13Q614.0239999999999 107.69 613.6499999999999 106.854Q613.276 106.018 613.276 104.83Q613.2979999999999 103.664 613.683 102.861Q614.068 102.058 614.7829999999999 101.629Q615.4979999999999 101.2 616.5099999999999 101.2Q617.3679999999999 101.2 618.0059999999999 101.57400000000001Q618.6439999999999 101.94800000000001 619.0069999999998 102.608Q619.3699999999999 103.268 619.3699999999999 104.17Q619.3699999999999 104.324 619.3039999999999 104.555Q619.2379999999999 104.786 619.1719999999999 104.896L619.876 103.884H612.616V105.38H621.262Q621.262 105.336 621.2729999999999 105.17099999999999Q621.2839999999999 105.006 621.2839999999999 104.852Q621.2839999999999 103.246 620.712 102.08Q620.14 100.914 619.073 100.287Q618.006 99.66 616.5099999999999 99.66Q615.0139999999999 99.66 613.8809999999999 100.32Q612.7479999999999 100.98 612.1209999999999 102.168Q611.4939999999999 103.356 611.4939999999999 104.94Q611.4939999999999 106.502 612.0989999999999 107.69Q612.704 108.878 613.7929999999999 109.549Q614.882 110.22 616.29 110.22Z M624.3639999999999 99.88V101.53H629.4239999999999V99.88ZM626.0139999999999 96.36V110.0H627.7739999999999V96.36Z M631.8439999999999 99.88V101.53H636.9039999999999V99.88ZM633.4939999999999 96.36V110.0H635.2539999999999V96.36Z M642.6239999999999 106.04V99.88H640.8639999999999V106.26Q640.8639999999999 108.064 641.81 109.142Q642.756 110.22 644.3399999999999 110.22Q645.352 110.22 646.0999999999999 109.769Q646.848 109.318 647.3539999999999 108.416V110.0H649.1139999999999V99.88H647.3539999999999V106.04Q647.3539999999999 106.788 647.0349999999999 107.36Q646.7159999999999 107.932 646.1329999999999 108.251Q645.55 108.57 644.78 108.57Q643.7239999999999 108.57 643.174 107.91Q642.6239999999999 107.25 642.6239999999999 106.04Z M656.3739999999999 99.88H654.6139999999999V110.0H656.3739999999999ZM659.4319999999999 101.816 660.4 100.364Q660.0039999999999 99.946 659.531 99.803Q659.058 99.66 658.5079999999999 99.66Q657.804 99.66 657.122 100.21000000000001Q656.4399999999999 100.76 656.011 101.695Q655.582 102.63 655.582 103.84H656.3739999999999Q656.3739999999999 103.114 656.5169999999999 102.542Q656.66 101.97 657.0339999999999 101.64Q657.4079999999999 101.31 658.068 101.31Q658.5079999999999 101.31 658.7939999999999 101.431Q659.0799999999999 101.55199999999999 659.4319999999999 101.816Z M665.1519999999999 106.876Q665.1519999999999 106.326 665.4159999999999 105.93Q665.68 105.534 666.2189999999999 105.314Q666.7579999999999 105.094 667.6159999999999 105.094Q668.54 105.094 669.3539999999999 105.32499999999999Q670.1679999999999 105.556 670.9379999999999 106.084V105.05Q670.7839999999999 104.852 670.3439999999998 104.533Q669.9039999999999 104.214 669.1669999999999 103.961Q668.43 103.708 667.3299999999999 103.708Q665.4599999999999 103.708 664.415 104.59899999999999Q663.3699999999999 105.49 663.3699999999999 106.964Q663.3699999999999 107.998 663.8539999999999 108.724Q664.338 109.45 665.141 109.83500000000001Q665.944 110.22 666.8679999999999 110.22Q667.704 110.22 668.5509999999999 109.912Q669.3979999999999 109.604 669.981 108.96600000000001Q670.564 108.328 670.564 107.36L670.2119999999999 106.04Q670.2119999999999 106.832 669.8269999999999 107.437Q669.4419999999999 108.042 668.7929999999999 108.372Q668.1439999999999 108.702 667.3299999999999 108.702Q666.6919999999999 108.702 666.1969999999999 108.493Q665.7019999999999 108.284 665.4269999999999 107.866Q665.1519999999999 107.448 665.1519999999999 106.876ZM664.8879999999999 102.212Q665.1299999999999 102.036 665.5479999999999 101.794Q665.9659999999999 101.55199999999999 666.5709999999999 101.376Q667.1759999999999 101.2 667.924 101.2Q668.386 101.2 668.8039999999999 101.28800000000001Q669.2219999999999 101.376 669.5409999999999 101.57400000000001Q669.8599999999999 101.772 670.0359999999998 102.113Q670.2119999999999 102.45400000000001 670.2119999999999 102.982V110.0H671.9719999999999V102.74Q671.9719999999999 101.75 671.4769999999999 101.068Q670.982 100.386 670.0909999999999 100.023Q669.1999999999999 99.66 668.012 99.66Q666.6039999999999 99.66 665.603 100.078Q664.602 100.496 664.03 100.914Z M524.11 131.88V133.53H529.17V131.88ZM525.76 128.36V142.0H527.52V128.36Z M532.25 136.94Q532.25 138.458 532.943 139.65699999999998Q533.636 140.856 534.8240000000001 141.538Q536.0120000000001 142.22 537.486 142.22Q538.982 142.22 540.159 141.538Q541.336 140.856 542.029 139.65699999999998Q542.722 138.458 542.722 136.94Q542.722 135.4 542.029 134.212Q541.336 133.024 540.159 132.34199999999998Q538.982 131.66 537.486 131.66Q536.0120000000001 131.66 534.8240000000001 132.34199999999998Q533.636 133.024 532.943 134.212Q532.25 135.4 532.25 136.94ZM534.032 136.94Q534.032 135.88400000000001 534.483 135.05900000000003Q534.934 134.234 535.7149999999999 133.772Q536.496 133.31 537.486 133.31Q538.476 133.31 539.2570000000001 133.772Q540.038 134.234 540.489 135.05900000000003Q540.94 135.88400000000001 540.94 136.94Q540.94 137.996 540.489 138.81Q540.038 139.624 539.2570000000001 140.09699999999998Q538.476 140.57 537.486 140.57Q536.496 140.57 535.7149999999999 140.09699999999998Q534.934 139.624 534.483 138.81Q534.032 137.996 534.032 136.94Z M549.102 131.88H547.342V142.0H549.102ZM552.16 133.816 553.128 132.364Q552.732 131.946 552.259 131.803Q551.7860000000001 131.66 551.236 131.66Q550.532 131.66 549.85 132.20999999999998Q549.168 132.76 548.739 133.695Q548.3100000000001 134.63 548.3100000000001 135.84H549.102Q549.102 135.114 549.245 134.542Q549.388 133.97 549.762 133.64Q550.136 133.31 550.796 133.31Q551.236 133.31 551.5219999999999 133.43099999999998Q551.808 133.552 552.16 133.816Z M557.088 127.7Q557.088 128.184 557.451 128.547Q557.814 128.91 558.298 128.91Q558.804 128.91 559.156 128.547Q559.508 128.184 559.508 127.7Q559.508 127.194 559.156 126.842Q558.804 126.49 558.298 126.49Q557.814 126.49 557.451 126.842Q557.088 127.194 557.088 127.7ZM557.418 131.88V142.0H559.178V131.88Z M571.4979999999999 135.84V142.0H573.2579999999999V135.62Q573.2579999999999 133.794 572.3229999999999 132.727Q571.3879999999999 131.66 569.7819999999999 131.66Q568.7919999999999 131.66 568.0329999999999 132.1Q567.274 132.54 566.7679999999999 133.464V131.88H565.0079999999999V142.0H566.7679999999999V135.84Q566.7679999999999 135.092 567.087 134.52Q567.406 133.948 567.989 133.62900000000002Q568.572 133.31 569.342 133.31Q570.3979999999999 133.31 570.9479999999999 133.948Q571.4979999999999 134.586 571.4979999999999 135.84Z M577.8779999999999 136.94Q577.8779999999999 138.458 578.5709999999999 139.65699999999998Q579.2639999999999 140.856 580.452 141.538Q581.64 142.22 583.1139999999999 142.22Q584.6099999999999 142.22 585.7869999999999 141.538Q586.9639999999999 140.856 587.6569999999999 139.65699999999998Q588.3499999999999 138.458 588.3499999999999 136.94Q588.3499999999999 135.4 587.6569999999999 134.212Q586.9639999999999 133.024 585.7869999999999 132.34199999999998Q584.6099999999999 131.66 583.1139999999999 131.66Q581.64 131.66 580.452 132.34199999999998Q579.2639999999999 133.024 578.5709999999999 134.212Q577.8779999999999 135.4 577.8779999999999 136.94ZM579.66 136.94Q579.66 135.88400000000001 580.1109999999999 135.05900000000003Q580.5619999999999 134.234 581.3429999999998 133.772Q582.1239999999999 133.31 583.1139999999999 133.31Q584.1039999999999 133.31 584.885 133.772Q585.6659999999999 134.234 586.117 135.05900000000003Q586.568 135.88400000000001 586.568 136.94Q586.568 137.996 586.117 138.81Q585.6659999999999 139.624 584.885 140.09699999999998Q584.1039999999999 140.57 583.1139999999999 140.57Q582.1239999999999 140.57 581.3429999999998 140.09699999999998Q580.5619999999999 139.624 580.1109999999999 138.81Q579.66 137.996 579.66 136.94Z" fill="var(--lg-ink)"/></svg></div>
+    <span>© 2026 VEE S.r.l. · Società di ingegneria e architettura · P.IVA 12904260010 · Torino</span>
+    <span><a href="privacy.html">Privacy</a> · <a href="privacy.html#cookie">Cookie</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){var els=document.querySelectorAll('a.em');for(var i=0;i<els.length;i++){var a=els[i],m=a.getAttribute('data-u')+'@'+a.getAttribute('data-d');a.setAttribute('href','mailto:'+m);if(a.classList.contains('em-text'))a.textContent=m;}})();
+  (function () {
+    var btn = document.querySelector('.toggle'), nav = document.getElementById('nav');
+    if (btn && nav) { btn.addEventListener('click', function () { var o = nav.classList.toggle('is-open'); btn.setAttribute('aria-expanded', o ? 'true' : 'false'); }); }
+  })();
+</script>
+
+</body>
+</html>
