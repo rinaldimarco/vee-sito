@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>VEE Ingegneria e Architettura</title>
+<title>VEE — Società di ingegneria e architettura, Torino</title>
 <meta name="description" content="VEE S.r.l. — Società di ingegneria e architettura, Torino. Diagnosi energetiche, progettazione impiantistica e architettonica in BIM, direzione lavori, sicurezza.">
 <meta name="robots" content="noindex, nofollow">
 <meta property="og:title" content="VEE — Società di ingegneria e architettura, Torino">
@@ -209,6 +209,25 @@
   @media (max-width: 760px) { nav { top: 88px; } header .brand svg { height: 44px; } header .container { height: 72px; } }
   footer .foot-logo svg { height: 56px; width: auto; display: block; }
 
+
+  /* --- versione istituzionale --- */
+  .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 24px; margin: 0; align-content: start; border-left: 3px solid var(--ink); padding-left: 24px; }
+  .facts div { display: flex; flex-direction: column; gap: 4px; }
+  .facts dt { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .facts dd { margin: 0; font-family: var(--display); font-weight: 500; font-size: 1.35rem; color: var(--ink); line-height: 1.1; }
+  @media (max-width: 480px) { .facts { grid-template-columns: 1fr 1fr; } }
+  .card.noimg figure { color: var(--ink); }
+  .card .ph { width: 100%; height: 100%; display: block; background: #fff; }
+  .profiles { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .profile { display: grid; grid-template-columns: 84px 1fr; gap: 22px; align-items: start; }
+  .profile .mono-g svg { width: 56px; height: 56px; }
+  .profile .role { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 6px 0 12px; line-height: 1.6; }
+  .profile ul { margin: 0; padding: 0; list-style: none; font-size: 0.9375rem; }
+  .profile li { padding: 7px 0 7px 18px; position: relative; border-bottom: 1px solid var(--line); }
+  .profile li:last-child { border-bottom: 0; }
+  .profile li::before { content: ""; position: absolute; left: 0; top: 0.95em; width: 8px; height: 8px; background: var(--nebbia); border-radius: 0 0 100% 0; }
+  .profile:nth-child(2) li::before { background: var(--teal); border-radius: 100% 0 0 0; }
+  @media (max-width: 760px) { .profiles { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -217,7 +236,7 @@
   <div class="container">
     <a class="brand" href="#top" aria-label="VEE — Società di ingegneria e architettura, Torino"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 478 210" aria-hidden="true"><g fill="none" stroke="var(--lg-red)" stroke-width="1.8" stroke-dasharray="7 5"><circle cx="239" cy="105" r="65"/><circle cx="397" cy="105" r="65"/><line x1="0" y1="40" x2="478" y2="40"/><line x1="0" y1="105" x2="478" y2="105"/><line x1="0" y1="170" x2="478" y2="170"/></g><polygon points="10,40 150,40 80,170" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M239 40 A65 65 0 0 0 239 170 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M245 105 L245 40.28 A65 65 0 0 1 304 105 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M397 40 A65 65 0 0 0 397 170 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M403 105 L403 40.28 A65 65 0 0 1 462 105 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/></svg><span class="payoff">società di ingegneria<br>e architettura<br>torino</span></a>
     <button class="toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Apri il menu"><svg width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M0 1h22M0 7h22M0 13h22"/></svg></button>
-    <nav id="nav" aria-label="Sezioni"><a href="#studio">Studio</a><a href="#servizi">Servizi</a><a href="#progetti">Progetti</a><a href="#team">Team</a><a href="#contatti">Contatti</a></nav>
+    <nav id="nav" aria-label="Sezioni"><a href="#societa">Società</a><a href="#servizi">Servizi</a><a href="#incarichi">Incarichi</a><a href="#competenze">Competenze</a><a href="#contatti">Contatti</a></nav>
   </div>
 </header>
 
@@ -236,32 +255,31 @@
     <div class="container">
       <span class="eyebrow">Società di ingegneria e architettura · Torino</span>
       <h1>Energia, impianti, edifici.</h1>
-      <p class="lead">Diagnosi energetiche, progettazione impiantistica e architettonica in BIM, direzione lavori e sicurezza. Dal 2010, per amministrazioni pubbliche, condomìni e imprese in tutta Italia.</p>
+      <p class="lead">Diagnosi energetiche, progettazione impiantistica e architettonica in BIM, direzione lavori e coordinamento della sicurezza. Dal 2010 al fianco di amministrazioni pubbliche, condomìni e imprese, con oltre 80 milioni di euro di lavori progettati in tutta Italia.</p>
       <div class="actions">
-        <a class="btn btn-primary" href="#servizi">I nostri servizi</a>
-        <a class="btn btn-ghost" href="#contatti">Contattaci</a>
+        <a class="btn btn-primary" href="#servizi">Servizi</a>
+        <a class="btn btn-ghost" href="#contatti">Contatti</a>
       </div>
     </div>
   </div>
 
-  <section id="studio">
+  <section id="societa">
     <div class="container">
       <div class="head">
-        <div><span class="eyebrow">Studio</span><h2>Con sede a Torino, al lavoro in tutta Italia.</h2></div>
-        <p>Riqualificazione energetica e impiantistica del patrimonio edilizio esistente: caserme e immobili demaniali, scuole, sedi comunali, edifici per la ricerca e condomìni.</p>
+        <div><span class="eyebrow">La società</span><h2>Con sede a Torino, al lavoro in tutta Italia.</h2></div>
+        <p>Riqualificazione energetica e impiantistica del patrimonio edilizio esistente: immobili demaniali e caserme, scuole, sedi comunali, edifici per la ricerca e condomìni.</p>
       </div>
       <div class="studio">
         <div class="prose">
-          <p>VEE S.r.l. è fondata e guidata dall'ing. Marco Rinaldi. Seguiamo l'intervento in tutte le sue fasi — dalla diagnosi energetica allo studio di fattibilità, dalla progettazione in BIM alla direzione lavori e al coordinamento della sicurezza — con attenzione costante alla convenienza economica e all'accesso a incentivi e programmi di finanziamento pubblico.</p>
+          <p>VEE S.r.l. è una società di ingegneria e architettura fondata e guidata dall'ing. Marco Rinaldi. Segue l'intervento in tutte le sue fasi — diagnosi energetica, studio di fattibilità tecnico-economica, progettazione in BIM, direzione lavori e coordinamento della sicurezza — con attenzione costante alla convenienza economica e all'accesso a incentivi e programmi di finanziamento pubblico: PREPAC, Conto Termico, Certificati Bianchi, PNRR.</p>
+          <p>Opera per le amministrazioni centrali e locali, anche attraverso accordi quadro con l'Agenzia del Demanio e la Città Metropolitana di Napoli, e per committenti privati.</p>
         </div>
-        <div class="quals">
-          <div class="qual"><span class="q tl"></span><span>Ordine degli Ingegneri di Rieti, n. A-729</span></div>
-          <div class="qual"><span class="q tr verde"></span><span>Esperto in Gestione dell'Energia, UNI CEI 11339</span></div>
-          <div class="qual"><span class="q br teal"></span><span>BIM Manager, UNI 11337</span></div>
-          <div class="qual"><span class="q bl nebbia"></span><span>Project Manager, UNI 11648</span></div>
-          <div class="qual"><span class="q tl"></span><span>Coordinatore della sicurezza, D.Lgs 81/08</span></div>
-          <div class="qual"><span class="q tr verde"></span><span>Executive MBA, SDA Bocconi</span></div>
-        </div>
+        <dl class="facts">
+          <div><dt>Attività</dt><dd>dal 2010</dd></div>
+          <div><dt>Incarichi</dt><dd>37</dd></div>
+          <div><dt>Lavori progettati</dt><dd>oltre 80 M€</dd></div>
+          <div><dt>Regioni</dt><dd>7</dd></div>
+        </dl>
       </div>
     </div>
   </section>
@@ -270,7 +288,7 @@
     <div class="container">
       <div class="head">
         <div><span class="eyebrow">Servizi</span><h2>Dalla diagnosi al cantiere.</h2></div>
-        <p>Sei aree di lavoro che coprono l'intero ciclo dell'intervento di efficientamento, svolte da professionisti certificati con riferimento alle norme tecniche di settore.</p>
+        <p>Sei aree di attività che coprono l'intero ciclo dell'intervento, svolte da professionisti certificati con riferimento alle norme tecniche di settore.</p>
       </div>
       <div class="services">
         <div class="service"><span class="q tl"></span><h3>Diagnosi energetiche</h3><p>Edifici, processi e trasporti; diagnosi obbligatorie per grandi imprese ed energivore.</p><div class="ref">UNI CEI EN 16247 · D.Lgs 102/14 art. 8</div></div>
@@ -283,18 +301,18 @@
     </div>
   </section>
 
-  <section id="progetti">
+  <section id="incarichi">
     <div class="container">
       <div class="head">
-        <div><span class="eyebrow">Progetti</span><h2>Incarichi recenti.</h2></div>
-        <p>Interventi su patrimonio pubblico e privato in Piemonte, Lombardia, Emilia-Romagna, Lazio, Campania e Sardegna. Importi lavori e categorie secondo il DM 17/06/2016.</p>
+        <div><span class="eyebrow">Incarichi</span><h2>Principali incarichi dal 2011.</h2></div>
+        <p>Interventi su patrimonio pubblico e privato in Piemonte, Lombardia, Emilia-Romagna, Toscana, Lazio, Campania e Sardegna. Importi lavori e categorie secondo il DM 17/06/2016; elenco degli incarichi di importo superiore a 200.000 euro.</p>
       </div>
       <div class="grid">
         <article class="card">
-          <figure><img src="img/coldilana.jpg" alt="Caserma "Col di Lana", Cremona" loading="lazy"></figure>
+          <figure><img src="img/coldilana.jpg" alt="Caserma &quot;Col di Lana&quot;, Cremona" loading="lazy"></figure>
           <div class="when">2025 – in corso</div>
-          <h3>Caserma "Col di Lana", Cremona</h3>
-          <p>Completamento della progettazione impiantistica, distribuzione interna e sistemazioni esterne della palazzina in adeguamento sismico.</p>
+          <h3>Caserma &quot;Col di Lana&quot;, Cremona</h3>
+          <p>Completamento della progettazione impiantistica, distribuzione interna e sistemazioni esterne della palazzina in adeguamento sismico all&#x27;interno della caserma.</p>
           <div class="meta">Preliminare · Esecutiva · CSP<br>E.15 E.18 IA.02 IA.04 S.03</div>
           <div class="amount">3.703.956 €<small>importo lavori</small></div>
         </article>
@@ -302,89 +320,258 @@
           <figure><img src="img/posta.jpg" alt="Palazzo della Posta, Piacenza" loading="lazy"></figure>
           <div class="when">2025 – in corso</div>
           <h3>Palazzo della Posta, Piacenza</h3>
-          <p>Progetto di fattibilità tecnico-economica in BIM, rilievi e analisi conoscitive per il consolidamento strutturale del compendio demaniale.</p>
+          <p>Progetto di fattibilità tecnico-economica in metodologia BIM, rilievi e analisi conoscitive per il consolidamento strutturale del compendio demaniale.</p>
           <div class="meta">PFTE in BIM · Rilievi<br>E.22</div>
           <div class="amount">1.713.500 €<small>importo lavori</small></div>
         </article>
         <article class="card">
-          <figure><img src="img/specola.jpg" alt="Specola di Mantova, Liceo "Virgilio"" loading="lazy"></figure>
+          <figure><img src="img/specola.jpg" alt="Specola di Mantova, Liceo &quot;Virgilio&quot;" loading="lazy"></figure>
           <div class="when">2025 – in corso</div>
-          <h3>Specola di Mantova, Liceo "Virgilio"</h3>
-          <p>Attività tecniche per il restauro della torre della Specola, porzione dell'edificio scolastico della Provincia di Mantova.</p>
+          <h3>Specola di Mantova, Liceo &quot;Virgilio&quot;</h3>
+          <p>Attività tecniche per il restauro della torre della Specola, porzione dell&#x27;edificio sede del liceo classico, per la Provincia di Mantova.</p>
           <div class="meta">Preliminare · Esecutiva<br>E.22</div>
           <div class="amount">450.000 €<small>importo lavori</small></div>
+        </article>
+        <article class="card">
+          <figure><img src="img/sanmartino.jpg" alt="Condominio San Martino, Pinerolo (TO)" loading="lazy"></figure>
+          <div class="when">2022 – in corso</div>
+          <h3>Condominio San Martino, Pinerolo (TO)</h3>
+          <p>Ristrutturazione importante di secondo livello del condominio di via Nazionale 315.</p>
+          <div class="meta">Esecutiva<br>IA.02 IA.03 E.20 S.04</div>
+          <div class="amount">692.438 €<small>importo lavori</small></div>
         </article>
         <article class="card">
           <figure><img src="img/senato.jpg" alt="Palazzo del Senato, Milano" loading="lazy"></figure>
           <div class="when">2024 – 2025</div>
           <h3>Palazzo del Senato, Milano</h3>
-          <p>Rimozione delle barriere fisiche e cognitive negli spazi museali e archivistici di via Boschetti — Accordo quadro Agenzia del Demanio, lotto 3.</p>
-          <div class="meta">PFTE · Esecutivo · Verifica e collaudo · CSP<br>E.22</div>
+          <p>Rimozione delle barriere fisiche e cognitive negli spazi museali, bibliotecari e archivistici di via Boschetti — Accordo quadro Agenzia del Demanio, lotto 3.</p>
+          <div class="meta">Preliminare · Esecutiva · CSP<br>E.22</div>
           <div class="amount">950.000 €<small>importo lavori</small></div>
         </article>
         <article class="card">
           <figure><img src="img/dabormida.jpg" alt="Caserma Dabormida, Torino" loading="lazy"></figure>
           <div class="when">2024 · PREPAC</div>
           <h3>Caserma Dabormida, Torino</h3>
-          <p>Documentazione tecnica progettuale per l'efficientamento energetico della palazzina Comando, per l'ammissione al programma PREPAC 2024.</p>
+          <p>Documentazione tecnica progettuale per l&#x27;efficientamento energetico della palazzina Comando, per l&#x27;ammissione al programma PREPAC 2024.</p>
           <div class="meta">Preliminare<br>IA.02 IA.03 E.22</div>
           <div class="amount">2.350.000 €<small>importo lavori</small></div>
-        </article>
-        <article class="card">
-          <figure><img src="img/alberti.jpg" alt="Liceo "L.B. Alberti", Napoli" loading="lazy"></figure>
-          <div class="when">2023 – 2024</div>
-          <h3>Liceo "L.B. Alberti", Napoli</h3>
-          <p>Adeguamento sismico ed efficientamento energetico — Accordo quadro Città Metropolitana di Napoli, lotto 6.</p>
-          <div class="meta">Definitiva · Esecutiva<br>IA.01 IA.02 IA.03 E.20 S.03</div>
-          <div class="amount">4.970.943 €<small>importo lavori</small></div>
-        </article>
-        <article class="card">
-          <figure><img src="img/donorione.jpg" alt="Alloggi demaniali Don Orione, Cuneo" loading="lazy"></figure>
-          <div class="when">2023 – 2024</div>
-          <h3>Alloggi demaniali Don Orione, Cuneo</h3>
-          <p>Ammodernamento e rinnovamento di strutture e parti comuni del fabbricato di via Don Orione 6-8 e via Minella 4.</p>
-          <div class="meta">Definitiva · Esecutiva<br>IA.02 IA.03 E.20</div>
-          <div class="amount">4.257.042 €<small>importo lavori</small></div>
-        </article>
-        <article class="card">
-          <figure><img src="img/musine.jpg" alt="Condominio Parc Musinè, Rivoli (TO)" loading="lazy"></figure>
-          <div class="when">2022 – 2024</div>
-          <h3>Condominio Parc Musinè, Rivoli (TO)</h3>
-          <p>Diagnosi energetica, fattibilità e riqualificazione energetica di quattro edifici; progetto esecutivo in BIM e direzione lavori.</p>
-          <div class="meta">Esecutiva · Direzione lavori<br>IA.03 E.20 S.03</div>
-          <div class="amount">4.774.179 €<small>importo lavori</small></div>
         </article>
         <article class="card">
           <figure><img src="img/nizza.jpg" alt="Condominio Nizza 31, Torino" loading="lazy"></figure>
           <div class="when">2022 – 2024</div>
           <h3>Condominio Nizza 31, Torino</h3>
-          <p>Isolamento dell'involucro, serramenti, pompa di calore ibrida, riscaldamento a pavimento, VMC, ricarica auto elettriche e rifacimento impianti.</p>
-          <div class="meta">Dal preliminare all'esecutivo · Direzione lavori<br>IA.01 IA.02 IA.03</div>
+          <p>Riqualificazione energetica integrale in BIM: isolamento dell&#x27;involucro, serramenti, pompa di calore ibrida, riscaldamento a pavimento, VMC, ricarica per veicoli elettrici e rifacimento degli impianti.</p>
+          <div class="meta">Preliminare · Definitiva · Esecutiva · Direzione lavori<br>IA.01 IA.02 IA.03</div>
           <div class="amount">1.310.377 €<small>importo lavori</small></div>
         </article>
+        <article class="card">
+          <figure><img src="img/musine.jpg" alt="Condominio Parc Musinè, Rivoli (TO)" loading="lazy"></figure>
+          <div class="when">2022 – 2024</div>
+          <h3>Condominio Parc Musinè, Rivoli (TO)</h3>
+          <p>Diagnosi energetica, studio di fattibilità, progettazione esecutiva in BIM e direzione lavori degli interventi di efficientamento energetico del complesso di via Alpignano 10.</p>
+          <div class="meta">Esecutiva · Direzione lavori<br>IA.03 E.20 S.03</div>
+          <div class="amount">4.774.179 €<small>importo lavori</small></div>
+        </article>
+        <article class="card">
+          <figure><img src="img/donorione.jpg" alt="Alloggi demaniali Don Orione, Cuneo" loading="lazy"></figure>
+          <div class="when">2023 – 2024</div>
+          <h3>Alloggi demaniali Don Orione, Cuneo</h3>
+          <p>Progettazione dell&#x27;ammodernamento di strutture e parti comuni del fabbricato di alloggi demaniali di via Don Orione 6-8 e via Minella 4.</p>
+          <div class="meta">Definitiva · Esecutiva<br>IA.02 IA.03 E.20</div>
+          <div class="amount">4.257.042 €<small>importo lavori</small></div>
+        </article>
+        <article class="card">
+          <figure><img src="img/alberti.jpg" alt="Liceo &quot;L.B. Alberti&quot;, Napoli" loading="lazy"></figure>
+          <div class="when">2023 – 2024</div>
+          <h3>Liceo &quot;L.B. Alberti&quot;, Napoli</h3>
+          <p>Progettazione dell&#x27;adeguamento sismico e dell&#x27;efficientamento energetico del liceo scientifico — Accordo quadro Città Metropolitana di Napoli, lotto 6.</p>
+          <div class="meta">Preliminare · Definitiva · Esecutiva<br>IA.01 IA.02 IA.03 E.20 S.03</div>
+          <div class="amount">4.970.943 €<small>importo lavori</small></div>
+        </article>
+        <article class="card">
+          <figure><img src="img/coppino.jpg" alt="Condominio Via Coppino 137, Torino" loading="lazy"></figure>
+          <div class="when">2022 – 2023</div>
+          <h3>Condominio Via Coppino 137, Torino</h3>
+          <p>Diagnosi energetica, studio di fattibilità tecnico-economica e progettazione esecutiva degli interventi di efficientamento energetico.</p>
+          <div class="meta">Esecutiva<br>E.20</div>
+          <div class="amount">526.121 €<small>importo lavori</small></div>
+        </article>
+        <article class="card">
+          <figure><img src="img/potenza.jpg" alt="Condominio Corso Potenza 93, Torino" loading="lazy"></figure>
+          <div class="when">2022 – 2023</div>
+          <h3>Condominio Corso Potenza 93, Torino</h3>
+          <p>Diagnosi energetica, studio di fattibilità tecnico-economica e progettazione in BIM degli interventi di efficientamento energetico.</p>
+          <div class="meta">Esecutiva<br>IA.03 E.20</div>
+          <div class="amount">546.002 €<small>importo lavori</small></div>
+        </article>
+        <article class="card">
+          <figure><img src="img/scoiattoli.jpg" alt="Condominio Gli Scoiattoli, Pragelato (TO)" loading="lazy"></figure>
+          <div class="when">2022 – 2023</div>
+          <h3>Condominio Gli Scoiattoli, Pragelato (TO)</h3>
+          <p>Diagnosi energetica, studio di fattibilità tecnico-economica e progettazione esecutiva degli interventi di efficientamento energetico del complesso residenziale.</p>
+          <div class="meta">Esecutiva<br>E.20</div>
+          <div class="amount">1.109.320 €<small>importo lavori</small></div>
+        </article>
+        <article class="card noimg">
+          <figure><svg class="ph" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><pattern id="g10" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="currentColor" stroke-opacity=".28" stroke-width="1"/></pattern><pattern id="g50" width="100" height="100" patternUnits="userSpaceOnUse"><rect width="100" height="100" fill="url(#g10)"/><path d="M100 0H0V100" fill="none" stroke="currentColor" stroke-opacity=".5" stroke-width="1"/></pattern></defs><rect width="900" height="600" fill="url(#g50)"/><g fill="none" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round"><polygon points="330,190 570,190 450,410"/></g><circle cx="450" cy="300" r="140" fill="none" stroke="var(--nebbia)" stroke-width="2.5" stroke-dasharray="7 6"/></svg></figure>
+          <div class="when">2022 – 2023</div>
+          <h3>ITS &quot;Rossi Doria&quot;, Marigliano (NA)</h3>
+          <p>Progettazione della manutenzione straordinaria e dell&#x27;adeguamento dell&#x27;istituto tecnico — Accordo quadro Città Metropolitana di Napoli, lotto 6.</p>
+          <div class="meta">Preliminare · Definitiva<br>S.03</div>
+          <div class="amount">1.030.019 €<small>importo lavori</small></div>
+        </article>
+        <article class="card">
+          <figure><img src="img/ottavio.jpg" alt="Condominio S. Ottavio 8, Torino" loading="lazy"></figure>
+          <div class="when">2021 – 2023</div>
+          <h3>Condominio S. Ottavio 8, Torino</h3>
+          <p>Rifacimento delle facciate del condominio residenziale e commerciale con accesso agli incentivi statali (bonus facciate).</p>
+          <div class="meta">Definitiva · Esecutiva · Direzione lavori · CSP/CSE<br>E.21</div>
+          <div class="amount">682.750 €<small>importo lavori</small></div>
+        </article>
+        <article class="card">
+          <figure><img src="img/rionero.jpg" alt="Condominio Rio Nero, Torino" loading="lazy"></figure>
+          <div class="when">2022</div>
+          <h3>Condominio Rio Nero, Torino</h3>
+          <p>Diagnosi energetica, studio di fattibilità tecnico-economica e progettazione in BIM degli interventi di efficientamento energetico.</p>
+          <div class="meta">Preliminare<br>IA.02 E.20</div>
+          <div class="amount">5.927.795 €<small>importo lavori</small></div>
+        </article>
+        <article class="card">
+          <figure><img src="img/leini.jpg" alt="Condominio Leini 20, Torino" loading="lazy"></figure>
+          <div class="when">2021 – 2022</div>
+          <h3>Condominio Leini 20, Torino</h3>
+          <p>Rifacimento delle facciate del condominio residenziale e commerciale con accesso agli incentivi statali (bonus facciate).</p>
+          <div class="meta">Definitiva · Esecutiva · Direzione lavori · CSP/CSE<br>E.20</div>
+          <div class="amount">282.519 €<small>importo lavori</small></div>
+        </article>
+        <article class="card">
+          <figure><img src="img/cavour.jpg" alt="Sede comunale di Piazza Cavour, Napoli" loading="lazy"></figure>
+          <div class="when">2021</div>
+          <h3>Sede comunale di Piazza Cavour, Napoli</h3>
+          <p>Progettazione e coordinamento della sicurezza in fase di progettazione per l&#x27;efficientamento energetico dell&#x27;edificio uffici del Comune di Napoli.</p>
+          <div class="meta">Definitiva · Esecutiva · CSP<br>IA.02 IA.03 IA.04 E.20</div>
+          <div class="amount">815.337 €<small>importo lavori</small></div>
+        </article>
+        <article class="card">
+          <figure><img src="img/cnrlecce.jpg" alt="CNR, area di ricerca di Lecce" loading="lazy"></figure>
+          <div class="when">2021</div>
+          <h3>CNR, area di ricerca di Lecce</h3>
+          <p>Diagnosi energetica e progettazione dell&#x27;efficientamento: illuminazione LED, building automation, recuperatori di calore sulle UTA, impianti fotovoltaici fissi e a inseguimento.</p>
+          <div class="meta">Preliminare · Definitiva · Esecutiva · CSP<br>IA.02</div>
+          <div class="amount">840.102 €<small>importo lavori</small></div>
+        </article>
+        <article class="card">
+          <figure><img src="img/siniscola.jpg" alt="Scuola secondaria di primo grado, Siniscola (NU)" loading="lazy"></figure>
+          <div class="when">2021</div>
+          <h3>Scuola secondaria di primo grado, Siniscola (NU)</h3>
+          <p>Interventi di adeguamento antisismico ed energetico dell&#x27;istituto di via Silvio Pellico.</p>
+          <div class="meta">Esecutiva<br>IA.03</div>
+          <div class="amount">340.849 €<small>importo lavori</small></div>
+        </article>
+        <article class="card noimg">
+          <figure><svg class="ph" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><pattern id="g10" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="currentColor" stroke-opacity=".28" stroke-width="1"/></pattern><pattern id="g50" width="100" height="100" patternUnits="userSpaceOnUse"><rect width="100" height="100" fill="url(#g10)"/><path d="M100 0H0V100" fill="none" stroke="currentColor" stroke-opacity=".5" stroke-width="1"/></pattern></defs><rect width="900" height="600" fill="url(#g50)"/><g fill="none" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round"><polygon points="330,190 570,190 450,410"/></g><circle cx="450" cy="300" r="140" fill="none" stroke="var(--nebbia)" stroke-width="2.5" stroke-dasharray="7 6"/></svg></figure>
+          <div class="when">2018</div>
+          <h3>Sede comunale di Orvinio (RI)</h3>
+          <p>Progettazione esecutiva degli interventi di efficientamento energetico della sede comunale.</p>
+          <div class="meta">Esecutiva<br>IA.02 IA.03</div>
+          <div class="amount">224.810 €<small>importo lavori</small></div>
+        </article>
+        <article class="card noimg">
+          <figure><svg class="ph" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><pattern id="g10" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="currentColor" stroke-opacity=".28" stroke-width="1"/></pattern><pattern id="g50" width="100" height="100" patternUnits="userSpaceOnUse"><rect width="100" height="100" fill="url(#g10)"/><path d="M100 0H0V100" fill="none" stroke="currentColor" stroke-opacity=".5" stroke-width="1"/></pattern></defs><rect width="900" height="600" fill="url(#g50)"/><g fill="none" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round"><polygon points="330,190 570,190 450,410"/></g><circle cx="450" cy="300" r="140" fill="none" stroke="var(--nebbia)" stroke-width="2.5" stroke-dasharray="7 6"/></svg></figure>
+          <div class="when">2017 – 2018</div>
+          <h3>Scuola &quot;Ferruccio Ulivi&quot;, Poggio Moiano (RI)</h3>
+          <p>Progettazione degli interventi di efficientamento energetico dell&#x27;edificio scolastico.</p>
+          <div class="meta">Preliminare · Definitiva · Esecutiva<br>IA.02 IA.03 E.21</div>
+          <div class="amount">214.531 €<small>importo lavori</small></div>
+        </article>
+        <article class="card noimg">
+          <figure><svg class="ph" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><pattern id="g10" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="currentColor" stroke-opacity=".28" stroke-width="1"/></pattern><pattern id="g50" width="100" height="100" patternUnits="userSpaceOnUse"><rect width="100" height="100" fill="url(#g10)"/><path d="M100 0H0V100" fill="none" stroke="currentColor" stroke-opacity=".5" stroke-width="1"/></pattern></defs><rect width="900" height="600" fill="url(#g50)"/><g fill="none" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round"><polygon points="330,190 570,190 450,410"/></g><circle cx="450" cy="300" r="140" fill="none" stroke="var(--nebbia)" stroke-width="2.5" stroke-dasharray="7 6"/></svg></figure>
+          <div class="when">2018</div>
+          <h3>Piscina comunale di Capranica (VT)</h3>
+          <p>Progettazione esecutiva degli interventi di efficientamento energetico dell&#x27;impianto natatorio.</p>
+          <div class="meta">Esecutiva<br>IA.02 IA.03</div>
+          <div class="amount">376.174 €<small>importo lavori</small></div>
+        </article>
+        <article class="card noimg">
+          <figure><svg class="ph" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><pattern id="g10" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="currentColor" stroke-opacity=".28" stroke-width="1"/></pattern><pattern id="g50" width="100" height="100" patternUnits="userSpaceOnUse"><rect width="100" height="100" fill="url(#g10)"/><path d="M100 0H0V100" fill="none" stroke="currentColor" stroke-opacity=".5" stroke-width="1"/></pattern></defs><rect width="900" height="600" fill="url(#g50)"/><g fill="none" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round"><polygon points="330,190 570,190 450,410"/></g><circle cx="450" cy="300" r="140" fill="none" stroke="var(--nebbia)" stroke-width="2.5" stroke-dasharray="7 6"/></svg></figure>
+          <div class="when">2018</div>
+          <h3>Sede comunale di Capranica (VT)</h3>
+          <p>Progettazione esecutiva degli interventi di efficientamento energetico della sede comunale.</p>
+          <div class="meta">Esecutiva<br>IA.02 IA.03</div>
+          <div class="amount">226.020 €<small>importo lavori</small></div>
+        </article>
+        <article class="card noimg">
+          <figure><svg class="ph" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><pattern id="g10" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="currentColor" stroke-opacity=".28" stroke-width="1"/></pattern><pattern id="g50" width="100" height="100" patternUnits="userSpaceOnUse"><rect width="100" height="100" fill="url(#g10)"/><path d="M100 0H0V100" fill="none" stroke="currentColor" stroke-opacity=".5" stroke-width="1"/></pattern></defs><rect width="900" height="600" fill="url(#g50)"/><g fill="none" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round"><polygon points="330,190 570,190 450,410"/></g><circle cx="450" cy="300" r="140" fill="none" stroke="var(--nebbia)" stroke-width="2.5" stroke-dasharray="7 6"/></svg></figure>
+          <div class="when">2017</div>
+          <h3>CNR, area di ricerca di Pisa</h3>
+          <p>Coordinamento della sicurezza in fase di progettazione per la sopraelevazione dell&#x27;edificio B dell&#x27;area di ricerca.</p>
+          <div class="meta">CSP<br>IA.02 IA.04 E.10 S.04 S.03</div>
+          <div class="amount">4.656.783 €<small>importo lavori</small></div>
+        </article>
+        <article class="card">
+          <figure><img src="img/lazio.jpg" alt="Regione Lazio, 92 edifici" loading="lazy"></figure>
+          <div class="when">2017</div>
+          <h3>Regione Lazio, 92 edifici</h3>
+          <p>Diagnosi energetiche di 92 edifici regionali: analisi dei sistemi energetici e dei contratti di fornitura, individuazione degli interventi, APE, analisi tecnico-economica e cronoprogramma.</p>
+          <div class="meta">Diagnosi energetica<br>E.20 IA.02 IA.03</div>
+          <div class="amount">37.263.778 €<small>importo lavori</small></div>
+        </article>
+        <article class="card noimg">
+          <figure><svg class="ph" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><pattern id="g10" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="currentColor" stroke-opacity=".28" stroke-width="1"/></pattern><pattern id="g50" width="100" height="100" patternUnits="userSpaceOnUse"><rect width="100" height="100" fill="url(#g10)"/><path d="M100 0H0V100" fill="none" stroke="currentColor" stroke-opacity=".5" stroke-width="1"/></pattern></defs><rect width="900" height="600" fill="url(#g50)"/><g fill="none" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round"><polygon points="330,190 570,190 450,410"/></g><circle cx="450" cy="300" r="140" fill="none" stroke="var(--nebbia)" stroke-width="2.5" stroke-dasharray="7 6"/></svg></figure>
+          <div class="when">2015</div>
+          <h3>Comune di Poggio Bustone (RI)</h3>
+          <p>Progettazione esecutiva dell&#x27;impianto fotovoltaico sull&#x27;edificio comunale per servizi e della pensilina fotovoltaica sul campo di calcio.</p>
+          <div class="meta">Esecutiva<br>IA.03</div>
+          <div class="amount">234.738 €<small>importo lavori</small></div>
+        </article>
+        <article class="card noimg">
+          <figure><svg class="ph" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><pattern id="g10" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="currentColor" stroke-opacity=".28" stroke-width="1"/></pattern><pattern id="g50" width="100" height="100" patternUnits="userSpaceOnUse"><rect width="100" height="100" fill="url(#g10)"/><path d="M100 0H0V100" fill="none" stroke="currentColor" stroke-opacity=".5" stroke-width="1"/></pattern></defs><rect width="900" height="600" fill="url(#g50)"/><g fill="none" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round"><polygon points="330,190 570,190 450,410"/></g><circle cx="450" cy="300" r="140" fill="none" stroke="var(--nebbia)" stroke-width="2.5" stroke-dasharray="7 6"/></svg></figure>
+          <div class="when">2011</div>
+          <h3>ASM Rieti, officina di via Donatori di Sangue</h3>
+          <p>Progettazione esecutiva dell&#x27;impianto fotovoltaico sulla copertura a shed dell&#x27;officina di manutenzione mezzi dell&#x27;azienda municipalizzata.</p>
+          <div class="meta">Esecutiva<br>IA.03</div>
+          <div class="amount">283.187 €<small>importo lavori</small></div>
+        </article>
       </div>
-      <div class="more">
-        <div class="row"><span class="y">2022 – 2023</span><span class="t">Condominio Gli Scoiattoli <span>· Pragelato (TO) · progettazione esecutiva</span></span><span class="a">1.109.320 €</span></div>
-        <div class="row"><span class="y">2022 – 2023</span><span class="t">Condominio Via Coppino 137 <span>· Torino · progettazione esecutiva</span></span><span class="a">526.121 €</span></div>
-        <div class="row"><span class="y">2022 – 2023</span><span class="t">Condominio Corso Potenza 93 <span>· Torino · progettazione esecutiva in BIM</span></span><span class="a">546.002 €</span></div>
-        <div class="row"><span class="y">2022 – in corso</span><span class="t">Condominio San Martino <span>· Pinerolo (TO) · progettazione esecutiva</span></span><span class="a">692.438 €</span></div>
-        <div class="row"><span class="y">2021 – 2023</span><span class="t">Condominio S. Ottavio 8 <span>· Torino · progettazione, DL, CSP/CSE</span></span><span class="a">682.750 €</span></div>
-        <div class="row"><span class="y">2021</span><span class="t">CNR di Lecce <span>· diagnosi energetica e progettazione esecutiva</span></span><span class="a">840.102 €</span></div>
-        <div class="row"><span class="y">2017</span><span class="t">Regione Lazio <span>· diagnosi energetiche di 92 edifici</span></span><span class="a">37.263.778 €</span></div>
-      </div>
-      <div class="pnote"><span>Elenco completo degli incarichi dal 2010 disponibile su richiesta.</span><a href="#contatti">Richiedi il curriculum della società →</a></div>
+      <div class="pnote"><span>Curriculum completo della società, con gli incarichi di minore importo, disponibile su richiesta.</span><a href="#contatti">Richiedi il curriculum →</a></div>
     </div>
   </section>
 
-  <section class="alt" id="team">
+  <section class="alt" id="competenze">
     <div class="container">
       <div class="head">
-        <div><span class="eyebrow">Team</span><h2>Le persone.</h2></div>
-        <p>Una struttura snella, con competenze certificate su energia, BIM, sicurezza e project management, integrata da collaboratori specialistici a seconda dell'incarico.</p>
+        <div><span class="eyebrow">Competenze</span><h2>Qualifiche certificate.</h2></div>
+        <p>La società opera con professionisti iscritti agli Ordini e in possesso di certificazioni accreditate nei campi dell'energia, del BIM, della sicurezza e della gestione dei progetti, integrati da collaboratori specialistici a seconda dell'incarico.</p>
       </div>
-      <div class="people">
-        <div class="person"><div class="mono-g" aria-hidden="true">MR</div><div><h3>Ing. Marco Rinaldi</h3><div class="role">Amministratore unico · Progettista e direttore lavori</div><p>Ingegnere, laureato alla Sapienza di Roma ed Executive MBA SDA Bocconi. Guida la società e ne firma la progettazione energetica e impiantistica.</p><ul><li>EGE UNI CEI 11339, settore civile e industriale</li><li>BIM Manager UNI 11337 · Project Manager UNI 11648</li><li>CSP/CSE D.Lgs 81/08</li></ul></div></div>
-        <div class="person"><div class="mono-g" aria-hidden="true">SS</div><div><h3>Arch. Silvia Secci</h3><div class="role">Architetto · Progettazione e modellazione BIM</div><p>Architetto iscritta all'Ordine di Torino. Cura la modellazione architettonica e impiantistica, la certificazione energetica e la prevenzione incendi.</p><ul><li>Modellazione BIM architettonica e impianti</li><li>Certificatore energetico</li><li>Professionista antincendio</li></ul></div></div>
+      <div class="profiles">
+        <div class="profile">
+          <div class="mono-g" aria-hidden="true"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><polygon points="34,60 166,60 100,174" fill="none" stroke="currentColor" stroke-width="9" stroke-linejoin="round"/></svg></div>
+          <div>
+            <h3>Ingegneria</h3>
+            <div class="role">Direzione tecnica · Progettazione energetica e impiantistica · Direzione lavori</div>
+            <ul>
+              <li>Iscrizione all'Ordine degli Ingegneri dal 2011</li>
+              <li>Esperto in Gestione dell'Energia certificato UNI CEI 11339, settori civile e industriale</li>
+              <li>BIM Manager certificato UNI 11337</li>
+              <li>Project Manager certificato UNI 11648</li>
+              <li>Coordinatore per la sicurezza in fase di progettazione ed esecuzione, D.Lgs 81/08</li>
+              <li>Executive MBA, SDA Bocconi School of Management</li>
+            </ul>
+          </div>
+        </div>
+        <div class="profile">
+          <div class="mono-g" aria-hidden="true"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path d="M100 40 A60 60 0 0 0 100 160 Z" fill="none" stroke="currentColor" stroke-width="9" stroke-linejoin="round"/><path d="M106 100 L106 40.3 A60 60 0 0 1 160 100 Z" fill="none" stroke="currentColor" stroke-width="9" stroke-linejoin="round"/></svg></div>
+          <div>
+            <h3>Architettura</h3>
+            <div class="role">Progettazione architettonica · Modellazione BIM · Prevenzione incendi</div>
+            <ul>
+              <li>Iscrizione all'Ordine degli Architetti di Torino</li>
+              <li>Modellazione BIM architettonica e impiantistica, UNI 11337</li>
+              <li>Certificatore energetico</li>
+              <li>Professionista antincendio</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -393,8 +580,8 @@
     <div class="container contact">
       <div>
         <span class="eyebrow">Contatti</span>
-        <h2>Parliamo del vostro edificio.</h2>
-        <p class="prose">Per una diagnosi energetica, uno studio di fattibilità o un'offerta per servizi di ingegneria, scriveteci o chiamateci: rispondiamo entro due giorni lavorativi.</p>
+        <h2>Richieste e informazioni.</h2>
+        <p class="prose">Per richieste di offerta, diagnosi energetiche, studi di fattibilità o informazioni sui servizi della società. Riscontro entro due giorni lavorativi.</p>
         <div class="actions" style="margin-top: 28px;"><a class="btn btn-primary" href="mailto:m.rinaldi@vee.it">Scrivi a VEE</a><a class="btn btn-ghost" href="tel:+39336605072">+39 336 605072</a></div>
       </div>
       <dl class="details">
