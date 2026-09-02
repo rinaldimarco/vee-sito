@@ -211,6 +211,17 @@
   footer .foot-logo svg { height: 56px; width: auto; display: block; }
 
 
+  /* logo grande: disegno progressivo al caricamento (solo CSS) */
+  .hero-draw .hd-grid { opacity: 0; animation: hd-fade .9s ease-out .1s forwards; }
+  .hero-draw .hd-con { opacity: 0; animation: hd-fade .9s ease-out .5s forwards, hd-crawl 40s linear 1.4s infinite; }
+  .hero-draw .hd-let { stroke-dasharray: 1; stroke-dashoffset: 1; animation: hd-draw 1.3s cubic-bezier(.4, 0, .2, 1) forwards; }
+  .hero-draw .hd-let-1 { animation-delay: .9s; } .hero-draw .hd-let-2 { animation-delay: 1.3s; } .hero-draw .hd-let-3 { animation-delay: 1.6s; }
+  .hero-draw .hd-let-4 { animation-delay: 1.9s; } .hero-draw .hd-let-5 { animation-delay: 2.2s; }
+  .hero-draw .hd-txt { opacity: 0; animation: hd-fade .8s ease-out 3s forwards; }
+  @keyframes hd-fade { to { opacity: 1; } }
+  @keyframes hd-draw { to { stroke-dashoffset: 0; } }
+  @keyframes hd-crawl { to { stroke-dashoffset: -90; } }
+  @media (prefers-reduced-motion: reduce) { .hero-draw .hd-grid, .hero-draw .hd-con, .hero-draw .hd-let, .hero-draw .hd-txt { animation: none; opacity: 1; stroke-dashoffset: 0; } }
   .photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
   .photos figure { margin: 0; aspect-ratio: 3 / 2; overflow: hidden; background: var(--bg-alt); }
   .photos img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1); transition: filter .5s ease; }
@@ -220,8 +231,8 @@
   .photos-cap { margin: 12px 0 0; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
   @media (max-width: 760px) { .photos { grid-template-columns: 1fr; gap: 16px; } }
   .quallist { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; }
-  .quallist li { display: grid; grid-template-columns: 14px 1fr; gap: 14px; align-items: start; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 0.9375rem; color: var(--ink); }
-  .quallist .q { margin-top: 6px; }
+  .quallist li { display: grid; grid-template-columns: 32px 1fr; gap: 16px; align-items: start; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 0.9375rem; color: var(--ink); }
+  .quallist .ic { width: 32px; height: 32px; color: var(--ink); margin-top: 2px; }
   @media (max-width: 760px) { .quallist { grid-template-columns: 1fr; } }
   .hero h1 { max-width: 11ch; }
   .news-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 32px 24px; }
