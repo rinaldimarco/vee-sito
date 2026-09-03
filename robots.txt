@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /aggiorna/
+
+Sitemap: https://www.vee.it/sitemap.xml
