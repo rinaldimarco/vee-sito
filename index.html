@@ -237,11 +237,11 @@
   html.anim .quallist.in .ic { animation: hd-fade .2s ease var(--d, 0s) forwards; }
   html.anim .quallist.in .ic path { animation: hd-draw 1.1s cubic-bezier(.4, 0, .2, 1) var(--d, 0s) forwards; }
   html.anim .quallist.in .ic circle { animation: hd-fade .4s ease calc(var(--d, 0s) + .9s) forwards; }
-  html.anim .facts dd, html.anim .news-grid li { opacity: 0; transform: translateY(10px); }
-  html.anim .facts.in dd, html.anim .news-grid.in li { animation: sy-rise .6s cubic-bezier(.2, .8, .2, 1) var(--d, 0s) forwards; }
+  html.anim .facts dd, html.anim .news-list .nw { opacity: 0; transform: translateY(10px); }
+  html.anim .facts.in dd, html.anim .news-list.in .nw { animation: sy-rise .6s cubic-bezier(.2, .8, .2, 1) var(--d, 0s) forwards; }
   @keyframes sy-pop { to { transform: none; } }
   @keyframes sy-rise { to { opacity: 1; transform: none; } }
-.news-grid li:nth-child(9) { --d: .96s; } .news-grid li:nth-child(10) { --d: 1.08s; }
+.news-list .nw:nth-child(9) { --d: .96s; } .news-list .nw:nth-child(10) { --d: 1.08s; }
   /* logo grande: disegno progressivo al caricamento (solo CSS) */
   .hero-draw .hd-grid { opacity: 0; animation: hd-fade .9s ease-out .1s forwards; }
   .hero-draw .hd-con { opacity: 0; animation: hd-fade .9s ease-out .5s forwards, hd-crawl 40s linear 1.4s infinite; }
@@ -266,16 +266,32 @@
   .quallist .ic { width: 32px; height: 32px; color: var(--ink); margin-top: 2px; }
   @media (max-width: 760px) { .quallist { grid-template-columns: 1fr; } }
   .hero h1 { max-width: 11ch; }
-  .news-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 32px 24px; }
-  .news-grid li { display: grid; grid-template-columns: 1fr; gap: 14px; border-top: 1px solid var(--line-strong); padding-top: 18px; }
-  .news-grid img { height: 64px; width: auto; max-width: 64px; object-fit: contain; display: block; }
-  .news-grid .nw-com { display: block; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-  .news-grid strong { display: block; font-family: var(--display); font-weight: 500; color: var(--ink); font-size: 1.05rem; line-height: 1.25; }
-  .news-grid .nw-addr { display: block; font-size: 0.875rem; color: var(--muted); margin-top: 4px; }
-  .news-grid .nw-amt { display: block; font-family: var(--mono); font-size: 0.95rem; color: var(--ink); margin-top: 12px; }
-  .news-grid .nw-amt small { display: block; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
-  @media (max-width: 1100px) { .news-grid { grid-template-columns: repeat(3, 1fr); } }
-  @media (max-width: 640px) { .news-grid { grid-template-columns: 1fr 1fr; gap: 24px 16px; } }
+  .news-bar { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; border-top: 3px solid var(--ink); padding-top: 16px; margin-bottom: 28px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); background: none; border: 1px solid var(--line); padding: 7px 12px; cursor: pointer; transition: background .2s ease, color .2s ease, border-color .2s ease; }
+  .chip:hover { border-color: var(--ink); color: var(--ink); }
+  .chip.is-on { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .pager { display: flex; align-items: center; gap: 10px; }
+  .news-count { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; color: var(--muted); min-width: 44px; text-align: center; }
+  .pg { width: 34px; height: 34px; border: 1px solid var(--line-strong); background: none; color: var(--ink); font-size: 1.15rem; line-height: 1; cursor: pointer; transition: background .2s ease, color .2s ease; }
+  .pg:hover:not(:disabled) { background: var(--ink); color: #fff; }
+  .pg:disabled { opacity: .3; cursor: default; }
+  .news-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 32px; }
+  .nw[hidden] { display: none; }
+  .nw { display: grid; gap: 10px; align-content: start; border-top: 1px solid var(--line-strong); padding-top: 18px; }
+  .nw-top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.09em; text-transform: uppercase; }
+  .nw-date { color: var(--nebbia); }
+  .nw-tag { color: var(--muted); text-align: right; }
+  .nw h3 { font-family: var(--display); font-weight: 500; font-size: 1.15rem; line-height: 1.2; color: var(--ink); margin: 2px 0 0; }
+  .nw p { margin: 0; font-size: 0.9375rem; color: var(--text); }
+  .nw-foot { display: flex; align-items: center; gap: 16px; margin-top: 6px; }
+  .nw-foot img { height: 52px; width: auto; max-width: 52px; object-fit: contain; display: block; }
+  .nw-amt { font-family: var(--mono); font-size: 0.95rem; color: var(--ink); }
+  .nw-link { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; color: var(--teal-ink); text-decoration: none; margin-top: 4px; display: inline-block; }
+  .nw-link:hover { text-decoration: underline; }
+  .nw-amt small { display: block; font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+  @media (max-width: 980px) { .news-list { grid-template-columns: repeat(2, 1fr); gap: 32px 24px; } }
+  @media (max-width: 620px) { .news-list { grid-template-columns: 1fr; } }
   .card .meta a.map { color: var(--teal-ink); text-decoration: none; }
   .card .meta a.map:hover { text-decoration: underline; }
   .legal { max-width: 760px; }
@@ -533,14 +549,6 @@
           <div class="amount">682.750 €<small>importo complessivo dei lavori</small></div>
         </article>
         <article class="card">
-          <figure><button class="galbtn" type="button" data-gal="img/rionero.jpg::Condominio Rio Nero, Torino|img/rionero-2.jpg::Rilievo laser scanner del complesso" data-title="Condominio Rio Nero, Torino" aria-label="Apri le 2 foto: Condominio Rio Nero, Torino"><img src="img/rionero.jpg" alt="Condominio Rio Nero, Torino" loading="lazy"><span class="gal-n">2 foto</span></button></figure>
-          <div class="when">2022</div>
-          <h3>Condominio Rio Nero, Torino</h3>
-          <p>Diagnosi energetica, studio di fattibilità tecnico-economica e progettazione in BIM degli interventi di efficientamento energetico.</p>
-          <div class="meta">Preliminare<br>IA.02 E.20 · <a class="map" href="https://www.google.com/maps/search/?api=1&query=Corso%20Monte%20Cucco%20130%2C%20Torino" target="_blank" rel="noopener">Mappa ↗</a></div>
-          <div class="amount">11.895.590 €<small>importo complessivo dei lavori</small></div>
-        </article>
-        <article class="card">
           <figure><button class="galbtn" type="button" data-gal="img/leini.jpg::Condominio Leini 20, Torino|img/leini-2.jpg::L&#x27;edificio su via Leinì|img/leini-3.jpg::Il portone d&#x27;ingresso" data-title="Condominio Leini 20, Torino" aria-label="Apri le 3 foto: Condominio Leini 20, Torino"><img src="img/leini.jpg" alt="Condominio Leini 20, Torino" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2021 – 2022</div>
           <h3>Condominio Leini 20, Torino</h3>
@@ -622,22 +630,130 @@
   <section id="news">
     <div class="container">
       <div class="head">
-        <div><span class="eyebrow">News · settembre 2026</span><h2>Conto Termico 3.0: dieci interventi finanziati al 100%.</h2></div>
-        <p>Il GSE ha accettato tutte le dieci richieste di incentivo presentate da VEE S.r.l. nell'ambito del Conto Termico 3.0 (DM 7 agosto 2025) per conto di cinque Comuni piemontesi, sulla base delle diagnosi energetiche sviluppate dalla società: dieci edifici pubblici — scuole, asili, impianti sportivi e un teatro — per complessivi 5,64 milioni di euro di incentivi riconosciuti, pari al 100% del costo degli interventi di riqualificazione energetica.</p>
+        <div><span class="eyebrow">News</span><h2>Ultime notizie.</h2></div>
+        <p>Approvazioni, incarichi e avanzamento dei lavori. In evidenza il Conto Termico 3.0 (DM 7 agosto 2025): il GSE ha accettato tutte le dieci richieste di incentivo presentate dalla società per conto di cinque Comuni piemontesi, per complessivi 5,64 milioni di euro riconosciuti, pari al 100% del costo degli interventi.</p>
       </div>
-      <ul class="news-grid">
-        <li><img src="img/stemmi/brandizzo.png" alt="Stemma del Comune di Brandizzo" loading="lazy"><div><span class="nw-com">Comune di Brandizzo</span><strong>Scuola &quot;Don Milani&quot;</strong><span class="nw-addr">via Nicolao Cena 2</span><span class="nw-amt">1.119.188 €<small>incentivo riconosciuto · 100% del costo</small></span></div></li>
-        <li><img src="img/stemmi/brandizzo.png" alt="Stemma del Comune di Brandizzo" loading="lazy"><div><span class="nw-com">Comune di Brandizzo</span><strong>Scuola &quot;Martiri della Libertà&quot;</strong><span class="nw-addr">via Alba 10</span><span class="nw-amt">677.050 €<small>incentivo riconosciuto · 100% del costo</small></span></div></li>
-        <li><img src="img/stemmi/cavour.png" alt="Stemma del Comune di Cavour" loading="lazy"><div><span class="nw-com">Comune di Cavour</span><strong>Palazzetto dello sport</strong><span class="nw-addr">via Vigone 5/7</span><span class="nw-amt">974.833 €<small>incentivo riconosciuto · 100% del costo</small></span></div></li>
-        <li><img src="img/stemmi/cavour.png" alt="Stemma del Comune di Cavour" loading="lazy"><div><span class="nw-com">Comune di Cavour</span><strong>Bocciofila</strong><span class="nw-addr">via Vigone 5/7</span><span class="nw-amt">602.805 €<small>incentivo riconosciuto · 100% del costo</small></span></div></li>
-        <li><img src="img/stemmi/cumiana.png" alt="Stemma del Comune di Cumiana" loading="lazy"><div><span class="nw-com">Comune di Cumiana</span><strong>Scuola dell&#x27;infanzia</strong><span class="nw-addr">via Provinciale 35</span><span class="nw-amt">805.115 €<small>incentivo riconosciuto · 100% del costo</small></span></div></li>
-        <li><img src="img/stemmi/cumiana.png" alt="Stemma del Comune di Cumiana" loading="lazy"><div><span class="nw-com">Comune di Cumiana</span><strong>Asilo nido &quot;Don F. Pozzo&quot;</strong><span class="nw-addr">via Michelangelo Ferrero</span><span class="nw-amt">511.624 €<small>incentivo riconosciuto · 100% del costo</small></span></div></li>
-        <li><img src="img/stemmi/roletto.png" alt="Stemma del Comune di Roletto" loading="lazy"><div><span class="nw-com">Comune di Roletto</span><strong>Scuola &quot;G. Rodari&quot;</strong><span class="nw-addr">via Costa 23</span><span class="nw-amt">423.194 €<small>incentivo riconosciuto · 100% del costo</small></span></div></li>
-        <li><img src="img/stemmi/roletto.png" alt="Stemma del Comune di Roletto" loading="lazy"><div><span class="nw-com">Comune di Roletto</span><strong>Palestra e biblioteca</strong><span class="nw-addr">via Costa 25</span><span class="nw-amt">184.719 €<small>incentivo riconosciuto · 100% del costo</small></span></div></li>
-        <li><img src="img/stemmi/buriasco.png" alt="Stemma del Comune di Buriasco" loading="lazy"><div><span class="nw-com">Comune di Buriasco</span><strong>Scuola primaria</strong><span class="nw-addr">via IV Novembre</span><span class="nw-amt">208.747 €<small>incentivo riconosciuto · 100% del costo</small></span></div></li>
-        <li><img src="img/stemmi/buriasco.png" alt="Stemma del Comune di Buriasco" loading="lazy"><div><span class="nw-com">Comune di Buriasco</span><strong>Teatro Blu</strong><span class="nw-addr">piazza Roma 3</span><span class="nw-amt">133.603 €<small>incentivo riconosciuto · 100% del costo</small></span></div></li>
-      </ul>
-      <p class="photos-cap">Importi degli incentivi come da comunicazioni di accoglimento del GSE, massimali a preventivo.</p>
+      <div class="news-bar">
+        <div class="chips"><button type="button" class="chip is-on" data-cat="">Tutte</button><button type="button" class="chip" data-cat="ultimi-incentivi-ottenuti">Ultimi incentivi ottenuti</button><button type="button" class="chip" data-cat="energia-e-normativa">Energia e normativa</button><button type="button" class="chip" data-cat="nuovi-incarichi">Nuovi incarichi</button></div>
+        <div class="pager"><button type="button" class="pg" data-pg="prev" aria-label="Notizie più recenti">‹</button><span class="news-count" aria-live="polite"></span><button type="button" class="pg" data-pg="next" aria-label="Notizie meno recenti">›</button></div>
+      </div>
+      <div class="news-list">
+        <article class="nw" data-cat="ultimi-incentivi-ottenuti">
+          <div class="nw-top"><span class="nw-date">24 agosto 2026</span><span class="nw-tag">Ultimi incentivi ottenuti</span></div>
+          <h3>Roletto: scuola &quot;G. Rodari&quot;</h3>
+          <p>Il GSE ha accolto la richiesta di incentivo presentata dalla società nell&#x27;ambito del Conto Termico 3.0, sulla base della diagnosi energetica dell&#x27;edificio: isolamento dell&#x27;involucro e nuovo impianto di climatizzazione della scuola di via Costa 23.</p>
+          <div class="nw-foot"><img src="img/stemmi/roletto.png" alt="" loading="lazy"><span class="nw-amt">423.194 €<small>incentivo riconosciuto · 100% del costo</small></span></div>
+        </article>
+        <article class="nw" data-cat="ultimi-incentivi-ottenuti">
+          <div class="nw-top"><span class="nw-date">24 agosto 2026</span><span class="nw-tag">Ultimi incentivi ottenuti</span></div>
+          <h3>Buriasco: scuola primaria</h3>
+          <p>Il GSE ha accolto la richiesta di incentivo presentata dalla società nell&#x27;ambito del Conto Termico 3.0, sulla base della diagnosi energetica dell&#x27;edificio: riqualificazione energetica della scuola di via IV Novembre.</p>
+          <div class="nw-foot"><img src="img/stemmi/buriasco.png" alt="" loading="lazy"><span class="nw-amt">208.747 €<small>incentivo riconosciuto · 100% del costo</small></span></div>
+        </article>
+        <article class="nw" data-cat="ultimi-incentivi-ottenuti">
+          <div class="nw-top"><span class="nw-date">24 agosto 2026</span><span class="nw-tag">Ultimi incentivi ottenuti</span></div>
+          <h3>Roletto: palestra e biblioteca</h3>
+          <p>Il GSE ha accolto la richiesta di incentivo presentata dalla società nell&#x27;ambito del Conto Termico 3.0, sulla base della diagnosi energetica dell&#x27;edificio: efficientamento dell&#x27;edificio di via Costa 25.</p>
+          <div class="nw-foot"><img src="img/stemmi/roletto.png" alt="" loading="lazy"><span class="nw-amt">184.719 €<small>incentivo riconosciuto · 100% del costo</small></span></div>
+        </article>
+        <article class="nw" data-cat="ultimi-incentivi-ottenuti">
+          <div class="nw-top"><span class="nw-date">24 agosto 2026</span><span class="nw-tag">Ultimi incentivi ottenuti</span></div>
+          <h3>Buriasco: Teatro Blu</h3>
+          <p>Il GSE ha accolto la richiesta di incentivo presentata dalla società nell&#x27;ambito del Conto Termico 3.0, sulla base della diagnosi energetica dell&#x27;edificio: riqualificazione del teatro comunale di piazza Roma 3.</p>
+          <div class="nw-foot"><img src="img/stemmi/buriasco.png" alt="" loading="lazy"><span class="nw-amt">133.603 €<small>incentivo riconosciuto · 100% del costo</small></span></div>
+        </article>
+        <article class="nw" data-cat="ultimi-incentivi-ottenuti">
+          <div class="nw-top"><span class="nw-date">12 agosto 2026</span><span class="nw-tag">Ultimi incentivi ottenuti</span></div>
+          <h3>Cumiana: scuola dell&#x27;infanzia</h3>
+          <p>Il GSE ha accolto la richiesta di incentivo presentata dalla società nell&#x27;ambito del Conto Termico 3.0, sulla base della diagnosi energetica dell&#x27;edificio: isolamento e nuovo impianto della scuola di via Provinciale 35.</p>
+          <div class="nw-foot"><img src="img/stemmi/cumiana.png" alt="" loading="lazy"><span class="nw-amt">805.115 €<small>incentivo riconosciuto · 100% del costo</small></span></div>
+        </article>
+        <article class="nw" data-cat="ultimi-incentivi-ottenuti">
+          <div class="nw-top"><span class="nw-date">12 agosto 2026</span><span class="nw-tag">Ultimi incentivi ottenuti</span></div>
+          <h3>Brandizzo: scuola &quot;Martiri della Libertà&quot;</h3>
+          <p>Il GSE ha accolto la richiesta di incentivo presentata dalla società nell&#x27;ambito del Conto Termico 3.0, sulla base della diagnosi energetica dell&#x27;edificio: riqualificazione energetica della scuola di via Alba 10.</p>
+          <div class="nw-foot"><img src="img/stemmi/brandizzo.png" alt="" loading="lazy"><span class="nw-amt">677.050 €<small>incentivo riconosciuto · 100% del costo</small></span></div>
+        </article>
+        <article class="nw" data-cat="ultimi-incentivi-ottenuti">
+          <div class="nw-top"><span class="nw-date">12 agosto 2026</span><span class="nw-tag">Ultimi incentivi ottenuti</span></div>
+          <h3>Cumiana: asilo nido &quot;Don F. Pozzo&quot;</h3>
+          <p>Il GSE ha accolto la richiesta di incentivo presentata dalla società nell&#x27;ambito del Conto Termico 3.0, sulla base della diagnosi energetica dell&#x27;edificio: efficientamento dell&#x27;asilo nido di via Michelangelo Ferrero.</p>
+          <div class="nw-foot"><img src="img/stemmi/cumiana.png" alt="" loading="lazy"><span class="nw-amt">511.624 €<small>incentivo riconosciuto · 100% del costo</small></span></div>
+        </article>
+        <article class="nw" data-cat="ultimi-incentivi-ottenuti">
+          <div class="nw-top"><span class="nw-date">7 agosto 2026</span><span class="nw-tag">Ultimi incentivi ottenuti</span></div>
+          <h3>Cavour: palazzetto dello sport</h3>
+          <p>Il GSE ha accolto la richiesta di incentivo presentata dalla società nell&#x27;ambito del Conto Termico 3.0, sulla base della diagnosi energetica dell&#x27;edificio: riqualificazione dell&#x27;impianto sportivo di via Vigone 5/7.</p>
+          <div class="nw-foot"><img src="img/stemmi/cavour.png" alt="" loading="lazy"><span class="nw-amt">974.833 €<small>incentivo riconosciuto · 100% del costo</small></span></div>
+        </article>
+        <article class="nw" data-cat="ultimi-incentivi-ottenuti">
+          <div class="nw-top"><span class="nw-date">14 luglio 2026</span><span class="nw-tag">Ultimi incentivi ottenuti</span></div>
+          <h3>Cavour: bocciofila</h3>
+          <p>Il GSE ha accolto la richiesta di incentivo presentata dalla società nell&#x27;ambito del Conto Termico 3.0, sulla base della diagnosi energetica dell&#x27;edificio: efficientamento della bocciofila comunale di via Vigone 5/7.</p>
+          <div class="nw-foot"><img src="img/stemmi/cavour.png" alt="" loading="lazy"><span class="nw-amt">602.805 €<small>incentivo riconosciuto · 100% del costo</small></span></div>
+        </article>
+        <article class="nw" data-cat="ultimi-incentivi-ottenuti">
+          <div class="nw-top"><span class="nw-date">8 giugno 2026</span><span class="nw-tag">Ultimi incentivi ottenuti</span></div>
+          <h3>Brandizzo: scuola &quot;Don Milani&quot;</h3>
+          <p>Il GSE ha accolto la richiesta di incentivo presentata dalla società nell&#x27;ambito del Conto Termico 3.0, sulla base della diagnosi energetica dell&#x27;edificio: isolamento dell&#x27;involucro e nuovo impianto della scuola di via Nicolao Cena 2.</p>
+          <div class="nw-foot"><img src="img/stemmi/brandizzo.png" alt="" loading="lazy"><span class="nw-amt">1.119.188 €<small>incentivo riconosciuto · 100% del costo</small></span></div>
+        </article>
+        <article class="nw" data-cat="energia-e-normativa">
+          <div class="nw-top"><span class="nw-date">3 agosto 2026</span><span class="nw-tag">Energia e normativa</span></div>
+          <h3>Rinnovabili obbligatorie: nuove quote negli edifici</h3>
+          <p>Dal 3 agosto si applicano le quote rivedute dall’allegato III del D.Lgs 199/2021, come modificato dal D.Lgs 5/2026 di recepimento della direttiva RED III: negli edifici pubblici la copertura da fonti rinnovabili sale al 65% per le nuove costruzioni, al 45% nelle ristrutturazioni importanti di primo livello e al 20% nelle ristrutturazioni di secondo livello e nella sostituzione del generatore. Il mancato rispetto comporta il diniego del titolo abilitativo.</p>
+          
+        </article>
+        <article class="nw" data-cat="energia-e-normativa">
+          <div class="nw-top"><span class="nw-date">28 luglio 2026</span><span class="nw-tag">Energia e normativa</span></div>
+          <h3>Certificati Bianchi: nuova Guida Operativa</h3>
+          <p>Il MASE ha approvato con decreto direttoriale n. 203 l’aggiornamento della Guida Operativa dei Certificati Bianchi, pubblicata sul sito del GSE: nuovi ambiti ammessi (economia circolare, autoconsumo elettrico rinnovabile, data center), semplificazioni per i progetti con risparmi stabili e apertura a raggruppamenti di soggetti pubblici e privati come titolari di progetto.</p>
+          
+        </article>
+        <article class="nw" data-cat="energia-e-normativa">
+          <div class="nw-top"><span class="nw-date">13 aprile 2026</span><span class="nw-tag">Energia e normativa</span></div>
+          <h3>Conto Termico 3.0: portale GSE di nuovo operativo</h3>
+          <p>Dopo la sospensione del 3 marzo, il 13 aprile il GSE ha riaperto il Portaltermico 3.0 con le nuove regole applicative del DM 7 agosto 2025. Per la pubblica amministrazione resta la possibilità di prenotare l’incentivo prima dell’avvio dei lavori, con copertura fino al 100% della spesa per scuole, strutture sanitarie ed edifici dei Comuni fino a 15.000 abitanti.</p>
+          
+        </article>
+        <article class="nw" data-cat="nuovi-incarichi">
+          <div class="nw-top"><span class="nw-date">maggio 2026</span><span class="nw-tag">Nuovi incarichi</span></div>
+          <h3>Villa Dufour, Champoluc (AO)</h3>
+          <p>Nuovo incarico per la progettazione e la direzione dei lavori degli impianti meccanici, idrico-sanitari, elettrici e speciali della villa in frazione Champoluc, ad Ayas, con relazione ex Legge 10, pratica CIVA e collaudo funzionale.</p>
+          <a class="nw-link" href="#incarichi">Scheda dell’incarico →</a>
+        </article>
+        <article class="nw" data-cat="nuovi-incarichi">
+          <div class="nw-top"><span class="nw-date">febbraio 2026</span><span class="nw-tag">Nuovi incarichi</span></div>
+          <h3>Edificio residenziale di via Monginevro, Torino</h3>
+          <p>Affidata la progettazione impiantistica ed energetica della ristrutturazione dell’edificio: nuova distribuzione interna, riqualificazione delle facciate, adeguamento strutturale, ascensore e pompa di calore.</p>
+          <a class="nw-link" href="#incarichi">Scheda dell’incarico →</a>
+        </article>
+        <article class="nw" data-cat="nuovi-incarichi">
+          <div class="nw-top"><span class="nw-date">settembre 2025</span><span class="nw-tag">Nuovi incarichi</span></div>
+          <h3>Caserma “Col di Lana”, Cremona</h3>
+          <p>Consegnato il servizio di ingegneria per il completamento in BIM della progettazione della palazzina in adeguamento sismico: impianti, distribuzione interna e sistemazioni esterne (atto negoziale del 23 luglio 2025).</p>
+          <a class="nw-link" href="#incarichi">Scheda dell’incarico →</a>
+        </article>
+        <article class="nw" data-cat="nuovi-incarichi">
+          <div class="nw-top"><span class="nw-date">maggio 2025</span><span class="nw-tag">Nuovi incarichi</span></div>
+          <h3>Specola di Mantova, Liceo “Virgilio”</h3>
+          <p>Avviato il servizio di progettazione per il recupero della Specola, nell’ambito dell’accordo quadro con l’Agenzia del Demanio: contratto esecutivo del 30 aprile 2025, avvio del servizio il 9 maggio.</p>
+          <a class="nw-link" href="#incarichi">Scheda dell’incarico →</a>
+        </article>
+        <article class="nw" data-cat="nuovi-incarichi">
+          <div class="nw-top"><span class="nw-date">aprile 2025</span><span class="nw-tag">Nuovi incarichi</span></div>
+          <h3>Palazzo della Posta, Piacenza</h3>
+          <p>Affidato il progetto di fattibilità tecnico-economica in metodologia BIM, con rilievi e analisi conoscitive, per il consolidamento strutturale del compendio demaniale.</p>
+          <a class="nw-link" href="#incarichi">Scheda dell’incarico →</a>
+        </article>
+        <article class="nw" data-cat="nuovi-incarichi">
+          <div class="nw-top"><span class="nw-date">aprile 2025</span><span class="nw-tag">Nuovi incarichi</span></div>
+          <h3>Villa storica in collina, Torino</h3>
+          <p>Nuovo incarico per la progettazione impiantistica ed energetica del recupero di una villa d’epoca: pompa di calore, riscaldamento radiante, impianti idrico-sanitari ed elettrici, verifiche ex Legge 10 e APE.</p>
+          <a class="nw-link" href="#incarichi">Scheda dell’incarico →</a>
+        </article>
+      </div>
+      <p class="photos-cap">Per il Conto Termico: date delle comunicazioni di accoglimento del GSE, importi come da comunicazione (massimali a preventivo).</p>
     </div>
   </section>
   <section id="contatti">
@@ -686,7 +802,7 @@
   })();
 
   (function(){var els=document.querySelectorAll('a.em');for(var i=0;i<els.length;i++){var a=els[i],m=a.getAttribute('data-u')+'@'+a.getAttribute('data-d');a.setAttribute('href','mailto:'+m);if(a.classList.contains('em-text'))a.textContent=m;}})();
-(function(){var d=document.documentElement;if(!('IntersectionObserver' in window)||(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))return;d.className+=' anim';var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.12,rootMargin:'0px 0px -10% 0px'});var els=document.querySelectorAll('.services, .quallist, .facts, .news-grid');for(var i=0;i<els.length;i++)io.observe(els[i]);})();
+(function(){var d=document.documentElement;if(!('IntersectionObserver' in window)||(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))return;d.className+=' anim';var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.12,rootMargin:'0px 0px -10% 0px'});var els=document.querySelectorAll('.services, .quallist, .facts, .news-list');for(var i=0;i<els.length;i++)io.observe(els[i]);})();
 (function(){var bs=document.querySelectorAll('.galbtn');if(!bs.length)return;var ov,im,cp,list=[],idx=0,tt='',last=null;
 function show(){var p=list[idx].split('::');im.src=p[0];im.alt=p[1]||tt;cp.textContent=(p[1]||tt)+' · '+(idx+1)+'/'+list.length;var n=new Image();n.src=(list[(idx+1)%list.length]).split('::')[0];}
 function go(d){idx=(idx+d+list.length)%list.length;show();}
@@ -702,6 +818,17 @@ document.addEventListener('keydown',function(e){if(!ov||!ov.classList.contains('
 var x0=null;ov.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
 ov.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)go(dx<0?1:-1);x0=null;},{passive:true});}
 for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){if(!ov)build();last=this;list=this.getAttribute('data-gal').split('|');tt=this.getAttribute('data-title');idx=0;show();ov.classList.add('is-open');document.documentElement.style.overflow='hidden';ov.querySelector('.lb-x').focus();});})();
+(function(){var wrap=document.querySelector('.news-list');if(!wrap)return;
+var items=[].slice.call(wrap.querySelectorAll('.nw')),chips=[].slice.call(document.querySelectorAll('.chip')),
+cnt=document.querySelector('.news-count'),pgs=[].slice.call(document.querySelectorAll('.pg')),per=3,page=0,cat='';
+function vis(){return items.filter(function(it){return !cat||it.getAttribute('data-cat')===cat;});}
+function render(){var v=vis(),np=Math.max(1,Math.ceil(v.length/per));if(page>=np)page=np-1;if(page<0)page=0;
+items.forEach(function(it){it.hidden=true;});v.slice(page*per,page*per+per).forEach(function(it){it.hidden=false;});
+cnt.textContent=(page+1)+' / '+np;pgs[0].disabled=page===0;pgs[1].disabled=page>=np-1;}
+chips.forEach(function(c){c.addEventListener('click',function(){cat=this.getAttribute('data-cat');page=0;chips.forEach(function(x){x.classList.remove('is-on');});this.classList.add('is-on');render();});});
+pgs[0].addEventListener('click',function(){page--;render();});
+pgs[1].addEventListener('click',function(){page++;render();});
+render();})();
 </script>
 
 </body>
