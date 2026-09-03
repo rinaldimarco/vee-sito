@@ -215,6 +215,21 @@
   footer .foot-logo svg { height: 56px; width: auto; display: block; }
 
 
+  /* galleria foto: carosello sovrapposto alla pagina */
+  .galbtn { display: block; width: 100%; height: 100%; padding: 0; border: 0; background: none; color: inherit; font: inherit; cursor: zoom-in; position: relative; }
+  .gal-n { position: absolute; left: 12px; bottom: 12px; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--ink); color: #fff; padding: 5px 9px; opacity: .92; transition: background .2s ease; }
+  .galbtn:hover .gal-n, .galbtn:focus-visible .gal-n { background: var(--nebbia); }
+  .lb { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; background: rgba(11, 58, 63, .96); padding: 28px; }
+  .lb.is-open { display: flex; }
+  .lb-fig { margin: 0; max-width: 900px; width: 100%; }
+  .lb-fig img { display: block; width: 100%; height: auto; }
+  .lb-fig figcaption { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; color: var(--paper, #F5F2EA); opacity: .85; margin-top: 14px; text-align: center; }
+  .lb button { position: absolute; background: none; border: 0; color: #F5F2EA; cursor: pointer; line-height: 1; padding: 14px; font-size: 2.2rem; }
+  .lb button:hover { color: var(--nebbia); }
+  .lb-x { top: 10px; right: 12px; font-size: 1.35rem; }
+  .lb-p { left: 4px; top: 50%; transform: translateY(-50%); }
+  .lb-n { right: 4px; top: 50%; transform: translateY(-50%); }
+  @media (max-width: 560px) { .lb { padding: 14px; } .lb button { font-size: 1.7rem; padding: 10px; } }
   /* simboli: comparsa progressiva quando la sezione entra nello schermo (IntersectionObserver + animazioni CSS) */
   html.anim .services .service .q { transform: scale(0) rotate(-90deg); }
   html.anim .services.in .service .q { animation: sy-pop .7s cubic-bezier(.2, .8, .2, 1) var(--d, 0s) forwards; }

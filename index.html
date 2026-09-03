@@ -215,6 +215,21 @@
   footer .foot-logo svg { height: 56px; width: auto; display: block; }
 
 
+  /* galleria foto: carosello sovrapposto alla pagina */
+  .galbtn { display: block; width: 100%; height: 100%; padding: 0; border: 0; background: none; color: inherit; font: inherit; cursor: zoom-in; position: relative; }
+  .gal-n { position: absolute; left: 12px; bottom: 12px; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--ink); color: #fff; padding: 5px 9px; opacity: .92; transition: background .2s ease; }
+  .galbtn:hover .gal-n, .galbtn:focus-visible .gal-n { background: var(--nebbia); }
+  .lb { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; background: rgba(11, 58, 63, .96); padding: 28px; }
+  .lb.is-open { display: flex; }
+  .lb-fig { margin: 0; max-width: 900px; width: 100%; }
+  .lb-fig img { display: block; width: 100%; height: auto; }
+  .lb-fig figcaption { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; color: var(--paper, #F5F2EA); opacity: .85; margin-top: 14px; text-align: center; }
+  .lb button { position: absolute; background: none; border: 0; color: #F5F2EA; cursor: pointer; line-height: 1; padding: 14px; font-size: 2.2rem; }
+  .lb button:hover { color: var(--nebbia); }
+  .lb-x { top: 10px; right: 12px; font-size: 1.35rem; }
+  .lb-p { left: 4px; top: 50%; transform: translateY(-50%); }
+  .lb-n { right: 4px; top: 50%; transform: translateY(-50%); }
+  @media (max-width: 560px) { .lb { padding: 14px; } .lb button { font-size: 1.7rem; padding: 10px; } }
   /* simboli: comparsa progressiva quando la sezione entra nello schermo (IntersectionObserver + animazioni CSS) */
   html.anim .services .service .q { transform: scale(0) rotate(-90deg); }
   html.anim .services.in .service .q { animation: sy-pop .7s cubic-bezier(.2, .8, .2, 1) var(--d, 0s) forwards; }
@@ -374,7 +389,7 @@
       </div>
       <div class="grid">
         <article class="card">
-          <figure><img src="img/monginevro.jpg" alt="Edificio residenziale di via Monginevro, Torino" loading="lazy"></figure>
+          <figure><button class="galbtn" type="button" data-gal="img/monginevro.jpg::Edificio residenziale di via Monginevro, Torino|img/monginevro-2.jpg::Il fronte su strada|img/monginevro-3.jpg::Dettaglio delle facciate" data-title="Edificio residenziale di via Monginevro, Torino" aria-label="Apri le 3 foto: Edificio residenziale di via Monginevro, Torino"><img src="img/monginevro.jpg" alt="Edificio residenziale di via Monginevro, Torino" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2026 – in corso</div>
           <h3>Edificio residenziale di via Monginevro, Torino</h3>
           <p>Progettazione impiantistica ed energetica nella ristrutturazione dell&#x27;edificio: nuova distribuzione interna, riqualificazione delle facciate, adeguamento strutturale, installazione dell&#x27;ascensore e sostituzione del generatore con pompa di calore.</p>
@@ -382,7 +397,7 @@
           <div class="amount">—<small>importo dei lavori in definizione</small></div>
         </article>
         <article class="card">
-          <figure><img src="img/dufour.jpg" alt="Villa Dufour, Champoluc (AO)" loading="lazy"></figure>
+          <figure><button class="galbtn" type="button" data-gal="img/dufour.jpg::Villa Dufour, Champoluc (AO)|img/dufour-2.jpg::La villa nella stagione estiva|img/dufour-3.jpg::Il portico in pietra|img/dufour-4.jpg::Gli interni rivestiti in legno" data-title="Villa Dufour, Champoluc (AO)" aria-label="Apri le 4 foto: Villa Dufour, Champoluc (AO)"><img src="img/dufour.jpg" alt="Villa Dufour, Champoluc (AO)" loading="lazy"><span class="gal-n">4 foto</span></button></figure>
           <div class="when">2025 – in corso</div>
           <h3>Villa Dufour, Champoluc (AO)</h3>
           <p>Progettazione e direzione lavori degli impianti meccanici, idrico-sanitari, elettrici e speciali del fabbricato residenziale in frazione Champoluc, con relazione ex Legge 10, pratica CIVA e collaudo tecnico-funzionale.</p>
@@ -390,7 +405,7 @@
           <div class="amount">—<small>importo dei lavori in definizione</small></div>
         </article>
         <article class="card">
-          <figure><img src="img/giada.jpg" alt="Villa storica in collina, Torino" loading="lazy"></figure>
+          <figure><button class="galbtn" type="button" data-gal="img/giada.jpg::Villa storica in collina, Torino|img/giada-2.jpg::Il portico d&#x27;ingresso|img/giada-3.jpg::La sala con le boiserie" data-title="Villa storica in collina, Torino" aria-label="Apri le 3 foto: Villa storica in collina, Torino"><img src="img/giada.jpg" alt="Villa storica in collina, Torino" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2025 – in corso</div>
           <h3>Villa storica in collina, Torino</h3>
           <p>Progettazione impiantistica ed energetica per il recupero di una villa d&#x27;epoca: climatizzazione con pompa di calore, riscaldamento radiante, impianti idrico-sanitari ed elettrici, verifiche ex Legge 10 e attestato di prestazione energetica.</p>
@@ -398,7 +413,7 @@
           <div class="amount">—<small>importo dei lavori in definizione</small></div>
         </article>
         <article class="card">
-          <figure><img src="img/coldilana.jpg" alt="Caserma &quot;Col di Lana&quot;, Cremona" loading="lazy"></figure>
+          <figure><button class="galbtn" type="button" data-gal="img/coldilana.jpg::Caserma &quot;Col di Lana&quot;, Cremona|img/coldilana-2.jpg::La palazzina prima dell&#x27;intervento|img/coldilana-3.jpg::Le strutture interne in adeguamento sismico" data-title="Caserma &quot;Col di Lana&quot;, Cremona" aria-label="Apri le 3 foto: Caserma &quot;Col di Lana&quot;, Cremona"><img src="img/coldilana.jpg" alt="Caserma &quot;Col di Lana&quot;, Cremona" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2025 – in corso</div>
           <h3>Caserma &quot;Col di Lana&quot;, Cremona</h3>
           <p>Completamento in BIM della progettazione impiantistica, della distribuzione interna e delle sistemazioni esterne della palazzina in adeguamento sismico all&#x27;interno della caserma.</p>
@@ -406,7 +421,7 @@
           <div class="amount">14.253.413 €<small>importo complessivo dei lavori</small></div>
         </article>
         <article class="card">
-          <figure><img src="img/posta.jpg" alt="Palazzo della Posta, Piacenza" loading="lazy"></figure>
+          <figure><button class="galbtn" type="button" data-gal="img/posta.jpg::Palazzo della Posta, Piacenza|img/posta-2.jpg::Il fronte del palazzo su via Roma|img/posta-3.jpg::Il sottotetto con l&#x27;orditura lignea" data-title="Palazzo della Posta, Piacenza" aria-label="Apri le 3 foto: Palazzo della Posta, Piacenza"><img src="img/posta.jpg" alt="Palazzo della Posta, Piacenza" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2025 – in corso</div>
           <h3>Palazzo della Posta, Piacenza</h3>
           <p>Progetto di fattibilità tecnico-economica in metodologia BIM, rilievi e analisi conoscitive per il consolidamento strutturale del compendio demaniale.</p>
@@ -414,7 +429,7 @@
           <div class="amount">1.713.500 €<small>importo complessivo dei lavori</small></div>
         </article>
         <article class="card">
-          <figure><img src="img/specola.jpg" alt="Specola di Mantova, Liceo &quot;Virgilio&quot;" loading="lazy"></figure>
+          <figure><button class="galbtn" type="button" data-gal="img/specola.jpg::Specola di Mantova, Liceo &quot;Virgilio&quot;|img/specola-2.jpg::I tetti del centro storico dalla Specola|img/specola-3.jpg::Panoramica del rilievo laser scanner" data-title="Specola di Mantova, Liceo &quot;Virgilio&quot;" aria-label="Apri le 3 foto: Specola di Mantova, Liceo &quot;Virgilio&quot;"><img src="img/specola.jpg" alt="Specola di Mantova, Liceo &quot;Virgilio&quot;" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2025</div>
           <h3>Specola di Mantova, Liceo &quot;Virgilio&quot;</h3>
           <p>Attività tecniche per il restauro della torre della Specola, porzione dell&#x27;edificio sede del liceo classico, per la Provincia di Mantova.</p>
@@ -422,7 +437,7 @@
           <div class="amount">450.000 €<small>importo complessivo dei lavori</small></div>
         </article>
         <article class="card">
-          <figure><img src="img/sanmartino.jpg" alt="Condominio San Martino, Pinerolo (TO)" loading="lazy"></figure>
+          <figure><button class="galbtn" type="button" data-gal="img/sanmartino.jpg::Condominio San Martino, Pinerolo (TO)|img/sanmartino-2.jpg::Le logge sul fronte a valle|img/sanmartino-3.jpg::Il fabbricato prima dei lavori" data-title="Condominio San Martino, Pinerolo (TO)" aria-label="Apri le 3 foto: Condominio San Martino, Pinerolo (TO)"><img src="img/sanmartino.jpg" alt="Condominio San Martino, Pinerolo (TO)" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2022 – 2025</div>
           <h3>Condominio San Martino, Pinerolo (TO)</h3>
           <p>Ristrutturazione importante di secondo livello del condominio di via Nazionale 315.</p>
@@ -430,7 +445,7 @@
           <div class="amount">692.438 €<small>importo complessivo dei lavori</small></div>
         </article>
         <article class="card">
-          <figure><img src="img/senato.jpg" alt="Palazzo del Senato, Milano" loading="lazy"></figure>
+          <figure><button class="galbtn" type="button" data-gal="img/senato.jpg::Palazzo del Senato, Milano|img/senato-2.jpg::Il portico del cortile|img/senato-3.jpg::Il colonnato del cortile d&#x27;onore" data-title="Palazzo del Senato, Milano" aria-label="Apri le 3 foto: Palazzo del Senato, Milano"><img src="img/senato.jpg" alt="Palazzo del Senato, Milano" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2024 – 2025</div>
           <h3>Palazzo del Senato, Milano</h3>
           <p>Rimozione delle barriere fisiche e cognitive negli spazi museali, bibliotecari e archivistici di via Boschetti — Accordo quadro Agenzia del Demanio, lotto 3.</p>
@@ -438,7 +453,7 @@
           <div class="amount">950.000 €<small>importo complessivo dei lavori</small></div>
         </article>
         <article class="card">
-          <figure><img src="img/dabormida.jpg" alt="Caserma Dabormida, Torino" loading="lazy"></figure>
+          <figure><button class="galbtn" type="button" data-gal="img/dabormida.jpg::Caserma Dabormida, Torino|img/dabormida-2.jpg::L&#x27;ingresso della caserma|img/dabormida-3.jpg::L&#x27;atrio storico" data-title="Caserma Dabormida, Torino" aria-label="Apri le 3 foto: Caserma Dabormida, Torino"><img src="img/dabormida.jpg" alt="Caserma Dabormida, Torino" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2024 · PREPAC</div>
           <h3>Caserma Dabormida, Torino</h3>
           <p>Documentazione tecnica progettuale per l&#x27;efficientamento energetico della palazzina Comando, per l&#x27;ammissione al programma PREPAC 2024.</p>
@@ -446,7 +461,7 @@
           <div class="amount">2.350.000 €<small>importo complessivo dei lavori</small></div>
         </article>
         <article class="card">
-          <figure><img src="img/nizza.jpg" alt="Condominio Nizza 31, Torino" loading="lazy"></figure>
+          <figure><button class="galbtn" type="button" data-gal="img/nizza.jpg::Condominio Nizza 31, Torino|img/nizza-2.jpg::Rilievo laser scanner: il cortile|img/nizza-3.jpg::Rilievo laser scanner: l&#x27;androne" data-title="Condominio Nizza 31, Torino" aria-label="Apri le 3 foto: Condominio Nizza 31, Torino"><img src="img/nizza.jpg" alt="Condominio Nizza 31, Torino" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2022 – 2024</div>
           <h3>Condominio Nizza 31, Torino</h3>
           <p>Riqualificazione energetica integrale in BIM: isolamento dell&#x27;involucro, serramenti, pompa di calore ibrida, riscaldamento a pavimento, VMC, ricarica per veicoli elettrici e rifacimento degli impianti.</p>
@@ -454,7 +469,7 @@
           <div class="amount">8.331.871 €<small>importo complessivo dei lavori</small></div>
         </article>
         <article class="card">
-          <figure><img src="img/musine.jpg" alt="Condominio Parc Musinè, Rivoli (TO)" loading="lazy"></figure>
+          <figure><button class="galbtn" type="button" data-gal="img/musine.jpg::Condominio Parc Musinè, Rivoli (TO)|img/musine-2.jpg::I corpi di fabbrica dal parco|img/musine-3.jpg::Il portico d&#x27;ingresso" data-title="Condominio Parc Musinè, Rivoli (TO)" aria-label="Apri le 3 foto: Condominio Parc Musinè, Rivoli (TO)"><img src="img/musine.jpg" alt="Condominio Parc Musinè, Rivoli (TO)" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2022 – 2024</div>
           <h3>Condominio Parc Musinè, Rivoli (TO)</h3>
           <p>Diagnosi energetica, studio di fattibilità, progettazione esecutiva in BIM e direzione lavori degli interventi di efficientamento energetico del complesso di via Montenero 4, angolo via Alpignano.</p>
@@ -462,7 +477,7 @@
           <div class="amount">4.774.179 €<small>importo complessivo dei lavori</small></div>
         </article>
         <article class="card">
-          <figure><img src="img/donorione.jpg" alt="Alloggi demaniali Don Orione, Cuneo" loading="lazy"></figure>
+          <figure><button class="galbtn" type="button" data-gal="img/donorione.jpg::Alloggi demaniali Don Orione, Cuneo|img/donorione-2.jpg::Il fabbricato dopo l&#x27;intervento|img/donorione-3.jpg::Le palazzine demaniali" data-title="Alloggi demaniali Don Orione, Cuneo" aria-label="Apri le 3 foto: Alloggi demaniali Don Orione, Cuneo"><img src="img/donorione.jpg" alt="Alloggi demaniali Don Orione, Cuneo" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2023 – 2024</div>
           <h3>Alloggi demaniali Don Orione, Cuneo</h3>
           <p>Progettazione dell&#x27;ammodernamento di strutture e parti comuni del fabbricato di alloggi demaniali di via Don Orione 6-8 e via Minella 4.</p>
@@ -470,7 +485,7 @@
           <div class="amount">4.257.042 €<small>importo complessivo dei lavori</small></div>
         </article>
         <article class="card">
-          <figure><img src="img/alberti.jpg" alt="Liceo &quot;L.B. Alberti&quot;, Napoli" loading="lazy"></figure>
+          <figure><button class="galbtn" type="button" data-gal="img/alberti.jpg::Liceo &quot;L.B. Alberti&quot;, Napoli|img/alberti-2.jpg::Il liceo dal cortile|img/alberti-3.jpg::Le coperture dell&#x27;istituto" data-title="Liceo &quot;L.B. Alberti&quot;, Napoli" aria-label="Apri le 3 foto: Liceo &quot;L.B. Alberti&quot;, Napoli"><img src="img/alberti.jpg" alt="Liceo &quot;L.B. Alberti&quot;, Napoli" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2023 – 2024</div>
           <h3>Liceo &quot;L.B. Alberti&quot;, Napoli</h3>
           <p>Progettazione dell&#x27;adeguamento sismico e dell&#x27;efficientamento energetico del liceo scientifico — Accordo quadro Città Metropolitana di Napoli, lotto 6.</p>
@@ -478,7 +493,7 @@
           <div class="amount">5.188.337 €<small>importo complessivo dei lavori</small></div>
         </article>
         <article class="card">
-          <figure><img src="img/coppino.jpg" alt="Condominio Via Coppino 137, Torino" loading="lazy"></figure>
+          <figure><button class="galbtn" type="button" data-gal="img/coppino.jpg::Condominio Via Coppino 137, Torino|img/coppino-2.jpg::Il fronte su via Coppino|img/coppino-3.jpg::La posa dell&#x27;isolamento in copertura" data-title="Condominio Via Coppino 137, Torino" aria-label="Apri le 3 foto: Condominio Via Coppino 137, Torino"><img src="img/coppino.jpg" alt="Condominio Via Coppino 137, Torino" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2022 – 2023</div>
           <h3>Condominio Via Coppino 137, Torino</h3>
           <p>Diagnosi energetica, studio di fattibilità tecnico-economica e progettazione esecutiva degli interventi di efficientamento energetico.</p>
@@ -486,7 +501,7 @@
           <div class="amount">526.121 €<small>importo complessivo dei lavori</small></div>
         </article>
         <article class="card">
-          <figure><img src="img/potenza.jpg" alt="Condominio Corso Potenza 93, Torino" loading="lazy"></figure>
+          <figure><button class="galbtn" type="button" data-gal="img/potenza.jpg::Condominio Corso Potenza 93, Torino|img/potenza-2.jpg::Modello BIM: il fronte di progetto|img/potenza-3.jpg::Modello BIM: il nuovo prospetto" data-title="Condominio Corso Potenza 93, Torino" aria-label="Apri le 3 foto: Condominio Corso Potenza 93, Torino"><img src="img/potenza.jpg" alt="Condominio Corso Potenza 93, Torino" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2022 – 2023</div>
           <h3>Condominio Corso Potenza 93, Torino</h3>
           <p>Diagnosi energetica, studio di fattibilità tecnico-economica e progettazione in BIM degli interventi di efficientamento energetico.</p>
@@ -494,7 +509,7 @@
           <div class="amount">546.002 €<small>importo complessivo dei lavori</small></div>
         </article>
         <article class="card">
-          <figure><img src="img/scoiattoli.jpg" alt="Condominio Gli Scoiattoli, Pragelato (TO)" loading="lazy"></figure>
+          <figure><button class="galbtn" type="button" data-gal="img/scoiattoli.jpg::Condominio Gli Scoiattoli, Pragelato (TO)|img/scoiattoli-2.jpg::Gli edifici del complesso|img/scoiattoli-3.jpg::Il fronte a monte" data-title="Condominio Gli Scoiattoli, Pragelato (TO)" aria-label="Apri le 3 foto: Condominio Gli Scoiattoli, Pragelato (TO)"><img src="img/scoiattoli.jpg" alt="Condominio Gli Scoiattoli, Pragelato (TO)" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2022 – 2023</div>
           <h3>Condominio Gli Scoiattoli, Pragelato (TO)</h3>
           <p>Diagnosi energetica, studio di fattibilità tecnico-economica e progettazione esecutiva degli interventi di efficientamento energetico del complesso residenziale.</p>
@@ -502,7 +517,7 @@
           <div class="amount">1.109.320 €<small>importo complessivo dei lavori</small></div>
         </article>
         <article class="card">
-          <figure><img src="img/rossidoria.jpg" alt="ITS &quot;Rossi Doria&quot;, Marigliano (NA)" loading="lazy"></figure>
+          <figure><button class="galbtn" type="button" data-gal="img/rossidoria.jpg::ITS &quot;Rossi Doria&quot;, Marigliano (NA)|img/rossidoria-2.jpg::L&#x27;istituto dall&#x27;ingresso|img/rossidoria-3.jpg::Il corpo aule" data-title="ITS &quot;Rossi Doria&quot;, Marigliano (NA)" aria-label="Apri le 3 foto: ITS &quot;Rossi Doria&quot;, Marigliano (NA)"><img src="img/rossidoria.jpg" alt="ITS &quot;Rossi Doria&quot;, Marigliano (NA)" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2022 – 2023</div>
           <h3>ITS &quot;Rossi Doria&quot;, Marigliano (NA)</h3>
           <p>Progettazione della manutenzione straordinaria e dell&#x27;adeguamento dell&#x27;istituto tecnico — Accordo quadro Città Metropolitana di Napoli, lotto 6.</p>
@@ -510,7 +525,7 @@
           <div class="amount">1.030.019 €<small>importo complessivo dei lavori</small></div>
         </article>
         <article class="card">
-          <figure><img src="img/ottavio.jpg" alt="Condominio S. Ottavio 8, Torino" loading="lazy"></figure>
+          <figure><button class="galbtn" type="button" data-gal="img/ottavio.jpg::Condominio S. Ottavio 8, Torino|img/ottavio-2.jpg::Il giardino interno|img/ottavio-3.jpg::Le coperture verso il centro" data-title="Condominio S. Ottavio 8, Torino" aria-label="Apri le 3 foto: Condominio S. Ottavio 8, Torino"><img src="img/ottavio.jpg" alt="Condominio S. Ottavio 8, Torino" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2021 – 2023</div>
           <h3>Condominio S. Ottavio 8, Torino</h3>
           <p>Rifacimento delle facciate del condominio residenziale e commerciale con accesso agli incentivi statali (bonus facciate).</p>
@@ -518,7 +533,7 @@
           <div class="amount">682.750 €<small>importo complessivo dei lavori</small></div>
         </article>
         <article class="card">
-          <figure><img src="img/rionero.jpg" alt="Condominio Rio Nero, Torino" loading="lazy"></figure>
+          <figure><button class="galbtn" type="button" data-gal="img/rionero.jpg::Condominio Rio Nero, Torino|img/rionero-2.jpg::Rilievo laser scanner del complesso" data-title="Condominio Rio Nero, Torino" aria-label="Apri le 2 foto: Condominio Rio Nero, Torino"><img src="img/rionero.jpg" alt="Condominio Rio Nero, Torino" loading="lazy"><span class="gal-n">2 foto</span></button></figure>
           <div class="when">2022</div>
           <h3>Condominio Rio Nero, Torino</h3>
           <p>Diagnosi energetica, studio di fattibilità tecnico-economica e progettazione in BIM degli interventi di efficientamento energetico.</p>
@@ -526,7 +541,7 @@
           <div class="amount">11.895.590 €<small>importo complessivo dei lavori</small></div>
         </article>
         <article class="card">
-          <figure><img src="img/leini.jpg" alt="Condominio Leini 20, Torino" loading="lazy"></figure>
+          <figure><button class="galbtn" type="button" data-gal="img/leini.jpg::Condominio Leini 20, Torino|img/leini-2.jpg::L&#x27;edificio su via Leinì|img/leini-3.jpg::Il portone d&#x27;ingresso" data-title="Condominio Leini 20, Torino" aria-label="Apri le 3 foto: Condominio Leini 20, Torino"><img src="img/leini.jpg" alt="Condominio Leini 20, Torino" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2021 – 2022</div>
           <h3>Condominio Leini 20, Torino</h3>
           <p>Rifacimento delle facciate del condominio residenziale e commerciale con accesso agli incentivi statali (bonus facciate).</p>
@@ -534,7 +549,7 @@
           <div class="amount">282.519 €<small>importo complessivo dei lavori</small></div>
         </article>
         <article class="card">
-          <figure><img src="img/cavour.jpg" alt="Sede comunale di Piazza Cavour, Napoli" loading="lazy"></figure>
+          <figure><button class="galbtn" type="button" data-gal="img/cavour.jpg::Sede comunale di Piazza Cavour, Napoli|img/cavour-2.jpg::La sede comunale|img/cavour-3.jpg::La centrale termica" data-title="Sede comunale di Piazza Cavour, Napoli" aria-label="Apri le 3 foto: Sede comunale di Piazza Cavour, Napoli"><img src="img/cavour.jpg" alt="Sede comunale di Piazza Cavour, Napoli" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2021</div>
           <h3>Sede comunale di Piazza Cavour, Napoli</h3>
           <p>Progettazione e coordinamento della sicurezza in fase di progettazione per l&#x27;efficientamento energetico dell&#x27;edificio uffici del Comune di Napoli.</p>
@@ -542,7 +557,7 @@
           <div class="amount">815.337 €<small>importo complessivo dei lavori</small></div>
         </article>
         <article class="card">
-          <figure><img src="img/cnrlecce.jpg" alt="CNR, area di ricerca di Lecce" loading="lazy"></figure>
+          <figure><button class="galbtn" type="button" data-gal="img/cnrlecce.jpg::CNR, area di ricerca di Lecce|img/cnrlecce-2.jpg::I laboratori lungo la viabilità interna|img/cnrlecce-3.jpg::Il fronte vetrato" data-title="CNR, area di ricerca di Lecce" aria-label="Apri le 3 foto: CNR, area di ricerca di Lecce"><img src="img/cnrlecce.jpg" alt="CNR, area di ricerca di Lecce" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2021</div>
           <h3>CNR, area di ricerca di Lecce</h3>
           <p>Diagnosi energetica e progettazione dell&#x27;efficientamento: illuminazione LED, building automation, recuperatori di calore sulle UTA, impianti fotovoltaici fissi e a inseguimento.</p>
@@ -550,7 +565,7 @@
           <div class="amount">3.537.904 €<small>importo complessivo dei lavori</small></div>
         </article>
         <article class="card">
-          <figure><img src="img/siniscola.jpg" alt="Scuola secondaria di primo grado, Siniscola (NU)" loading="lazy"></figure>
+          <figure><button class="galbtn" type="button" data-gal="img/siniscola.jpg::Scuola secondaria di primo grado, Siniscola (NU)|img/siniscola-2.jpg::Il fronte della scuola|img/siniscola-3.jpg::Il corpo aule" data-title="Scuola secondaria di primo grado, Siniscola (NU)" aria-label="Apri le 3 foto: Scuola secondaria di primo grado, Siniscola (NU)"><img src="img/siniscola.jpg" alt="Scuola secondaria di primo grado, Siniscola (NU)" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2021</div>
           <h3>Scuola secondaria di primo grado, Siniscola (NU)</h3>
           <p>Interventi di adeguamento antisismico ed energetico dell&#x27;istituto di via Silvio Pellico.</p>
@@ -558,7 +573,7 @@
           <div class="amount">340.849 €<small>importo complessivo dei lavori</small></div>
         </article>
         <article class="card">
-          <figure><img src="img/cnrpisa.jpg" alt="CNR, area di ricerca di Pisa" loading="lazy"></figure>
+          <figure><button class="galbtn" type="button" data-gal="img/cnrpisa.jpg::CNR, area di ricerca di Pisa|img/cnrpisa-2.jpg::Le canalizzazioni in copertura|img/cnrpisa-3.jpg::I lavori sulla copertura" data-title="CNR, area di ricerca di Pisa" aria-label="Apri le 3 foto: CNR, area di ricerca di Pisa"><img src="img/cnrpisa.jpg" alt="CNR, area di ricerca di Pisa" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2017</div>
           <h3>CNR, area di ricerca di Pisa</h3>
           <p>Coordinamento della sicurezza in fase di progettazione per la sopraelevazione dell&#x27;edificio B dell&#x27;area di ricerca.</p>
@@ -574,7 +589,7 @@
           <div class="amount">37.263.778 €<small>importo complessivo dei lavori</small></div>
         </article>
         <article class="card">
-          <figure><img src="img/asm.jpg" alt="ASM Rieti, officina di via Donatori di Sangue" loading="lazy"></figure>
+          <figure><button class="galbtn" type="button" data-gal="img/asm.jpg::ASM Rieti, officina di via Donatori di Sangue|img/asm-2.jpg::L&#x27;officina dal parco|img/asm-3.jpg::L&#x27;interno dell&#x27;officina" data-title="ASM Rieti, officina di via Donatori di Sangue" aria-label="Apri le 3 foto: ASM Rieti, officina di via Donatori di Sangue"><img src="img/asm.jpg" alt="ASM Rieti, officina di via Donatori di Sangue" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2011</div>
           <h3>ASM Rieti, officina di via Donatori di Sangue</h3>
           <p>Progettazione esecutiva dell&#x27;impianto fotovoltaico sulla copertura a shed dell&#x27;officina di manutenzione mezzi dell&#x27;azienda municipalizzata.</p>
@@ -672,6 +687,21 @@
 
   (function(){var els=document.querySelectorAll('a.em');for(var i=0;i<els.length;i++){var a=els[i],m=a.getAttribute('data-u')+'@'+a.getAttribute('data-d');a.setAttribute('href','mailto:'+m);if(a.classList.contains('em-text'))a.textContent=m;}})();
 (function(){var d=document.documentElement;if(!('IntersectionObserver' in window)||(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))return;d.className+=' anim';var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.12,rootMargin:'0px 0px -10% 0px'});var els=document.querySelectorAll('.services, .quallist, .facts, .news-grid');for(var i=0;i<els.length;i++)io.observe(els[i]);})();
+(function(){var bs=document.querySelectorAll('.galbtn');if(!bs.length)return;var ov,im,cp,list=[],idx=0,tt='',last=null;
+function show(){var p=list[idx].split('::');im.src=p[0];im.alt=p[1]||tt;cp.textContent=(p[1]||tt)+' · '+(idx+1)+'/'+list.length;var n=new Image();n.src=(list[(idx+1)%list.length]).split('::')[0];}
+function go(d){idx=(idx+d+list.length)%list.length;show();}
+function close(){ov.classList.remove('is-open');document.documentElement.style.overflow='';if(last)last.focus();}
+function build(){ov=document.createElement('div');ov.className='lb';ov.setAttribute('role','dialog');ov.setAttribute('aria-modal','true');
+ov.innerHTML='<button class="lb-x" type="button" aria-label="Chiudi">✕</button><button class="lb-p" type="button" aria-label="Foto precedente">‹</button><figure class="lb-fig"><img alt=""><figcaption></figcaption></figure><button class="lb-n" type="button" aria-label="Foto successiva">›</button>';
+document.body.appendChild(ov);im=ov.querySelector('img');cp=ov.querySelector('figcaption');
+ov.querySelector('.lb-x').addEventListener('click',close);
+ov.querySelector('.lb-p').addEventListener('click',function(e){e.stopPropagation();go(-1);});
+ov.querySelector('.lb-n').addEventListener('click',function(e){e.stopPropagation();go(1);});
+ov.addEventListener('click',function(e){if(e.target===ov||e.target===ov.querySelector('.lb-fig'))close();});
+document.addEventListener('keydown',function(e){if(!ov||!ov.classList.contains('is-open'))return;if(e.key==='Escape')close();else if(e.key==='ArrowLeft')go(-1);else if(e.key==='ArrowRight')go(1);});
+var x0=null;ov.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
+ov.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)go(dx<0?1:-1);x0=null;},{passive:true});}
+for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){if(!ov)build();last=this;list=this.getAttribute('data-gal').split('|');tt=this.getAttribute('data-title');idx=0;show();ov.classList.add('is-open');document.documentElement.style.overflow='hidden';ov.querySelector('.lb-x').focus();});})();
 </script>
 
 </body>
