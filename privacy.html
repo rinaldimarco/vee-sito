@@ -272,8 +272,8 @@
   /* logo grande: foglio da disegno che si disegna da solo (SVG + CSS); .go avvia, .done stato finale (riduci movimento) */
   .hero-sheet { --hd-ink: var(--lg-ink); position: absolute; z-index: 2; padding: 0; background: none; }
   .hero-sheet svg.hd { display: block; width: 100%; height: auto; font-family: var(--mono); }
-  .hd-again { position: absolute; z-index: 2; right: 4px; top: 4px; width: 26px; height: 26px; border-radius: 0; border: 1px solid rgba(11,58,63,.22); background: transparent; color: rgba(11,58,63,.45); cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; transition: color .2s ease, border-color .2s ease, transform .3s ease; }
-  .hd-again:hover, .hd-again:focus-visible { color: var(--ink); border-color: var(--line-strong); transform: rotate(-40deg); }
+  .hd-again { position: absolute; z-index: 2; right: 4px; top: 4px; width: 26px; height: 26px; border-radius: 0; border: 1px solid rgba(11,58,63,.22); background: transparent; color: rgba(11,58,63,.45); cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; transition: color .2s ease, border-color .2s ease; }
+  .hd-again:hover, .hd-again:focus-visible { color: var(--ink); border-color: var(--line-strong); }
   .hd .grid { opacity: 0; } .hd.go .grid { animation: hd-fade 1s ease-out .1s forwards; }
   .hd .hp { fill: none; stroke: var(--lg-red); stroke-width: 1.2; stroke-linecap: butt; stroke-dasharray: 1; stroke-dashoffset: 1; opacity: .9; } .hd.go .hp { animation: hd-draw linear forwards; }
   .hd .cd { fill: none; stroke: var(--lg-red); stroke-width: 1.2; stroke-dasharray: 5 4; } .hd.go .cd { animation: hd-crawl 60s linear 3.7s infinite; }
