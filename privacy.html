@@ -195,7 +195,7 @@
   .e1 { right: 34vw; top: 30px; width: clamp(220px, 28vw, 420px); height: clamp(220px, 28vw, 420px); }
   .e2 { right: -6vw; top: 140px; width: clamp(220px, 28vw, 420px); height: clamp(220px, 28vw, 420px); }
   .deco-bauhaus { display: block; position: absolute; right: 8vw; bottom: -40px; width: clamp(140px, 16vw, 240px); height: auto; opacity: .95; }
-  .head, .more { border-top: 3px solid var(--ink); padding-top: 22px; }
+  .head, .more { border-top: 3px solid var(--ink); border-bottom: 3px solid var(--ink); padding: 22px 0 26px; }
   .card figure { border-radius: 0 0 0 0; }
   .card:nth-child(3n+1) figure { border-radius: 50% 0 0 0; }
   .card:nth-child(3n+2) figure { border-radius: 0 0 50% 0; }
@@ -308,16 +308,10 @@
   .mappa-wrap { grid-column: 1 / -1; margin-top: 12px; }
   .mappa-box { position: relative; aspect-ratio: 16 / 7; border: 1px solid var(--line); background: var(--bg-alt); overflow: hidden; }
   .mappa-box iframe { display: block; width: 100%; height: 100%; border: 0; }
-  .mappa-load { position: absolute; inset: 0; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: none; border: 0; cursor: pointer; padding: 24px; text-align: center; color: var(--ink); }
-  .mappa-load:hover { background: rgba(11,58,63,.03); }
-  .mappa-load .pin { width: 26px; height: 26px; color: var(--nebbia); }
-  .mappa-load .t { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
-  .mappa-load .s { font-size: 0.95rem; color: var(--text); }
-  .mappa-load .n { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.05em; color: var(--muted); max-width: 46ch; line-height: 1.5; }
   .mappa-cap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 10px; }
   .mappa-cap a { color: var(--teal-ink); }
   @media (max-width: 640px) { .mappa-box { aspect-ratio: 4 / 3; } .mappa-cap { font-size: 0.62rem; } }
-  .news-bar { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; border-top: 1px solid var(--line-strong); padding-top: 16px; margin-bottom: 28px; }
+  .news-bar { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding-top: 4px; margin-bottom: 28px; }
   .chips { display: flex; flex-wrap: wrap; gap: 8px; }
   .chip { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); background: none; border: 1px solid var(--line); padding: 7px 12px; cursor: pointer; transition: background .2s ease, color .2s ease, border-color .2s ease; }
   .chip:hover { border-color: var(--ink); color: var(--ink); }
@@ -397,7 +391,7 @@
         <h2>Dati tecnici di navigazione</h2>
         <p>Il sito è ospitato sull'infrastruttura GitHub Pages di GitHub, Inc. Come per qualsiasi servizio web, i sistemi che erogano il sito possono registrare dati tecnici di accesso (indirizzo IP, data e ora della richiesta, pagina richiesta, tipo di browser) per finalità di sicurezza e di corretto funzionamento del servizio, secondo l'informativa del fornitore (<a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub General Privacy Statement</a>). Il titolare non ha accesso a tali dati in forma identificativa e non li utilizza. Le statistiche di visita aggregate sono elaborate da Umami Software, Inc. in qualità di responsabile del trattamento (<a href="https://umami.is/privacy" target="_blank" rel="noopener">privacy policy</a>): i dati raccolti (pagina visitata, provenienza, tipo di dispositivo, paese) sono aggregati e non permettono di risalire all'interessato. L'eventuale trasferimento di dati verso paesi extra UE avviene con le garanzie previste dal capo V del GDPR.</p>
         <h2 id="cookie">Cookie</h2>
-        <p>Il sito non installa cookie propri e non impiega strumenti di profilazione o di tracciamento pubblicitario. Nella pagina dei contatti è presente una mappa di Google Maps che non viene caricata all'apertura della pagina: compare solo se l'utente sceglie di visualizzarla premendo il relativo pulsante. Fino a quel momento nessun dato è trasmesso a Google; una volta caricata, la mappa può installare cookie propri di Google LLC e comportare la trasmissione dell'indirizzo IP, secondo l'informativa del fornitore (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>). La scelta di caricarla costituisce il consenso ai sensi dell'art. 122 del Codice privacy. Per la sola misurazione delle visite è utilizzato Umami: uno strumento di statistica aggregata che non installa cookie, non memorizza informazioni sul dispositivo dell'utente e non consente di identificare i singoli visitatori né di seguirne la navigazione su altri siti. Poiché non vengono utilizzati cookie né altri identificatori memorizzati sul terminale, non è richiesto il consenso ai sensi dell'art. 122 del D.Lgs 196/2003 e non è presente alcun banner. Il collegamento a Google Maps nella sezione Contatti apre un servizio esterno solo su azione volontaria dell'utente, con le regole di privacy del relativo gestore.</p>
+        <p>Il sito non utilizza cookie, né propri né di terze parti, e non impiega strumenti di profilazione o di tracciamento pubblicitario. Nella pagina dei contatti è presente una mappa fornita da OpenStreetMap Foundation: non installa cookie, ma comporta il collegamento del browser ai server della fondazione, che possono registrare l'indirizzo IP per finalità tecniche e statistiche secondo la relativa informativa (<a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noopener">osmfoundation.org</a>). Per la sola misurazione delle visite è utilizzato Umami: uno strumento di statistica aggregata che non installa cookie, non memorizza informazioni sul dispositivo dell'utente e non consente di identificare i singoli visitatori né di seguirne la navigazione su altri siti. Poiché non vengono utilizzati cookie né altri identificatori memorizzati sul terminale, non è richiesto il consenso ai sensi dell'art. 122 del D.Lgs 196/2003 e non è presente alcun banner. Il collegamento a Google Maps nella sezione Contatti apre un servizio esterno solo su azione volontaria dell'utente, con le regole di privacy del relativo gestore.</p>
         <h2>Conservazione</h2>
         <p>I dati delle comunicazioni ricevute sono conservati per il tempo necessario a gestire la richiesta e, in caso di rapporto professionale, per la durata dello stesso e per i termini previsti dagli obblighi di legge, fiscali e contabili.</p>
         <h2>Destinatari</h2>
