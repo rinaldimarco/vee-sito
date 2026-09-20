@@ -305,7 +305,19 @@
   .quallist .ic { width: 32px; height: 32px; color: var(--ink); margin-top: 2px; }
   @media (max-width: 760px) { .quallist { grid-template-columns: 1fr; } }
   .hero h1 { max-width: 11ch; }
-  .news-bar { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; border-top: 3px solid var(--ink); padding-top: 16px; margin-bottom: 28px; }
+  .mappa-wrap { grid-column: 1 / -1; margin-top: 12px; }
+  .mappa-box { position: relative; aspect-ratio: 16 / 7; border: 1px solid var(--line); background: var(--bg-alt); overflow: hidden; }
+  .mappa-box iframe { display: block; width: 100%; height: 100%; border: 0; }
+  .mappa-load { position: absolute; inset: 0; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: none; border: 0; cursor: pointer; padding: 24px; text-align: center; color: var(--ink); }
+  .mappa-load:hover { background: rgba(11,58,63,.03); }
+  .mappa-load .pin { width: 26px; height: 26px; color: var(--nebbia); }
+  .mappa-load .t { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .mappa-load .s { font-size: 0.95rem; color: var(--text); }
+  .mappa-load .n { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.05em; color: var(--muted); max-width: 46ch; line-height: 1.5; }
+  .mappa-cap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 10px; }
+  .mappa-cap a { color: var(--teal-ink); }
+  @media (max-width: 640px) { .mappa-box { aspect-ratio: 4 / 3; } .mappa-cap { font-size: 0.62rem; } }
+  .news-bar { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; border-top: 1px solid var(--line-strong); padding-top: 16px; margin-bottom: 28px; }
   .chips { display: flex; flex-wrap: wrap; gap: 8px; }
   .chip { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); background: none; border: 1px solid var(--line); padding: 7px 12px; cursor: pointer; transition: background .2s ease, color .2s ease, border-color .2s ease; }
   .chip:hover { border-color: var(--ink); color: var(--ink); }
@@ -817,6 +829,7 @@
         <div><dt>PEC</dt><dd><a class="em em-text" data-u="info" data-d="pec.vee.it" href="#contatti">info <span aria-hidden="true">[at]</span> pec.vee.it</a></dd></div>
         <div><dt>Dati societari</dt><dd>P.IVA 12904260010<br>Cod. destinatario USAL8PV</dd></div>
       </dl>
+      <div class="mappa-wrap"><div class="mappa-box" id="mappa-box"><button type="button" class="mappa-load" id="mappa-load"><svg class="pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span class="t">Mostra la mappa</span><span class="s">Piazza C.L.N. 255, 10123 Torino (TO)</span><span class="n">La mappa è fornita da Google: viene caricata solo se la richiedi, perché il suo caricamento comporta cookie di Google.</span></button></div><p class="mappa-cap"><span>Sede operativa · Torino centro</span><a href="https://maps.google.com/?q=Piazza+CLN+255+Torino" target="_blank" rel="noopener">Apri in Google Maps ↗</a></p></div>
     </div>
   </section>
 </main>
@@ -870,6 +883,14 @@ document.addEventListener('keydown',function(e){if(!ov||!ov.classList.contains('
 var x0=null;ov.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
 ov.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)go(dx<0?1:-1);x0=null;},{passive:true});}
 for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){if(!ov)build();last=this;list=this.getAttribute('data-gal').split('|');tt=this.getAttribute('data-title');idx=parseInt(this.getAttribute('data-start')||'0',10)||0;show();ov.classList.add('is-open');document.documentElement.style.overflow='hidden';ov.querySelector('.lb-x').focus();});})();
+
+var mbx=document.getElementById('mappa-box');
+if(mbx){mbx.addEventListener('click',function(){
+var f=document.createElement('iframe');
+f.src='https://www.google.com/maps?q=Piazza+C.L.N.+255,+10123+Torino&z=17&hl=it&output=embed';
+f.title='Mappa della sede di VEE S.r.l., piazza C.L.N. 255, Torino';
+f.loading='lazy';f.referrerPolicy='no-referrer-when-downgrade';f.setAttribute('allowfullscreen','');
+mbx.innerHTML='';mbx.appendChild(f);},{once:true});}
 (function(){var wrap=document.querySelector('.news-list');if(!wrap)return;
 var items=[].slice.call(wrap.querySelectorAll('.nw')),chips=[].slice.call(document.querySelectorAll('.chip')),
 cnt=document.querySelector('.news-count'),pgs=[].slice.call(document.querySelectorAll('.pg')),per=3,page=0,cat='';
