@@ -374,7 +374,8 @@
   .pg { width: 34px; height: 34px; border: 1px solid var(--line-strong); background: none; color: var(--ink); font-size: 1.15rem; line-height: 1; cursor: pointer; transition: background .2s ease, color .2s ease; }
   .pg:hover:not(:disabled) { background: var(--ink); color: #fff; }
   .pg:disabled { opacity: .3; cursor: default; }
-  .nw-feat { display: grid; grid-template-columns: 4fr 8fr; gap: 0; background: var(--bg-alt); border-top: 3px solid var(--ink); margin-bottom: clamp(32px, 4vw, 48px); }
+  .nw-feat { border-top: 3px solid var(--ink); padding-top: 22px; margin-bottom: clamp(32px, 4vw, 48px); }
+  .nw-feat-in { display: grid; grid-template-columns: 4fr 8fr; gap: 0; background: var(--bg-alt); }
   .nw-feat-img { display: block; overflow: hidden; }
   .nw-feat-img img { display: block; width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1; transition: transform .9s cubic-bezier(.2, .8, .2, 1); }
   .nw-feat:hover .nw-feat-img img { transform: scale(1.04); }
@@ -387,7 +388,7 @@
   .nw-facts dt { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
   .nw-facts dd { margin: 0; font-family: var(--display); font-weight: 500; font-size: 1rem; color: var(--ink); }
   .nw-feat .nw-link { margin-top: 0; }
-  @media (max-width: 800px) { .nw-feat { grid-template-columns: 1fr; } .nw-feat-img img { aspect-ratio: 3 / 2; } }
+  @media (max-width: 800px) { .nw-feat-in { grid-template-columns: 1fr; } .nw-feat-img img { aspect-ratio: 3 / 2; } .nw-feat { padding-top: 16px; } }
   .news-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 32px; }
   .nw[hidden] { display: none; }
   .nw { display: grid; gap: 10px; align-content: start; border-top: 1px solid var(--line-strong); padding-top: 18px; }
@@ -736,7 +737,7 @@
         <div><span class="eyebrow">News</span><h2>Ultime notizie.</h2></div>
         <p>Incentivi ottenuti, nuovi incarichi, avanzamento dei lavori e aggiornamenti normativi del settore dell'energia e dell'edilizia.</p>
       </div>
-      <article class="nw-feat">
+      <article class="nw-feat"><div class="nw-feat-in">
         <a class="nw-feat-img" href="news/via-arsenale-14/" aria-label="Via Arsenale 14, Torino: leggi la notizia"><picture><source media="(max-width: 800px)" srcset="img/consiglio-regionale-via-arsenale-14-torino-2.jpg"><img src="img/consiglio-regionale-via-arsenale-14-torino-1.jpg" alt="Render della sede del Consiglio regionale del Piemonte di via Arsenale 14 a Torino dopo l'intervento" width="900" height="900" loading="lazy"></picture></a>
         <div class="nw-feat-txt">
           <div class="nw-top"><span class="nw-date">22 settembre 2026</span><span class="nw-tag">In evidenza · Nuovi incarichi</span></div>
@@ -748,7 +749,7 @@
           </dl>
           <a class="nw-link" href="news/via-arsenale-14/">Leggi la notizia completa →</a>
         </div>
-      </article>
+      </div></article>
       <div class="news-bar">
         <div class="chips"><button type="button" class="chip is-on" data-cat="">Tutte</button><button type="button" class="chip" data-cat="ultimi-incentivi-ottenuti">Ultimi incentivi ottenuti</button><button type="button" class="chip" data-cat="lavori-conclusi">Lavori conclusi</button><button type="button" class="chip" data-cat="energia-e-normativa">Energia e normativa</button><button type="button" class="chip" data-cat="nuovi-incarichi">Nuovi incarichi</button></div>
         <div class="pager"><button type="button" class="pg" data-pg="prev" aria-label="Notizie più recenti">‹</button><span class="news-count" aria-live="polite"></span><button type="button" class="pg" data-pg="next" aria-label="Notizie meno recenti">›</button></div>
