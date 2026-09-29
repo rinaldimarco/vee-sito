@@ -235,6 +235,8 @@
   .hero-draw { right: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter))); width: min(38vw, 500px); }
   @media (max-width: 1100px) { .hero-draw { width: min(40vw, 470px); } }
   /* scheda incarico: categorie con importi, attività VEE, importo complessivo */
+  .card { scroll-margin-top: 110px; }
+  .card:target { background: var(--bg-alt); box-shadow: 0 0 0 14px var(--bg-alt); }
   .card .amount { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 6px; }
   .card .amt { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 2px 0; }
   .card .amt span { color: var(--muted); font-size: 0.7rem; }
@@ -545,42 +547,42 @@
         <p>Interventi su patrimonio pubblico e privato in tutta Italia. Selezione dei principali incarichi; importi dei lavori e categorie d'opera secondo il DM 17/06/2016.</p>
       </div>
       <div class="grid">
-        <article class="card">
+        <article class="card" id="incarico-coldilana">
           <figure><button class="galbtn" type="button" data-gal="img/caserma-col-di-lana-cremona-1.jpg::Caserma &quot;Col di Lana&quot;, Cremona (CR)|img/caserma-col-di-lana-cremona-2.jpg::La palazzina prima dell&#x27;intervento|img/caserma-col-di-lana-cremona-3.jpg::Le strutture interne in adeguamento sismico" data-title="Caserma &quot;Col di Lana&quot;, Cremona (CR)" aria-label="Apri le 3 foto: Caserma &quot;Col di Lana&quot;, Cremona (CR)"><img src="img/caserma-col-di-lana-cremona-1.jpg" alt="Caserma &quot;Col di Lana&quot;, Cremona (CR)" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2025 – in corso · <a class="map" href="https://www.google.com/maps/search/?api=1&query=Caserma%20Col%20di%20Lana%2C%20Cremona" target="_blank" rel="noopener">Mappa ↗</a></div>
           <h3>Caserma &quot;Col di Lana&quot;, Cremona (CR)</h3>
           <p>Completamento in BIM della progettazione impiantistica, della distribuzione interna e delle sistemazioni esterne della palazzina in adeguamento sismico all&#x27;interno della caserma.</p>
           <div class="amount"><div class="amt"><span>Categorie</span><b>E.15 · E.18 · S.03 · IA.02 · IA.04</b></div><div class="act"><span>Attività in corso in RTP</span><b>PFTE · Prog. esecutiva · CSP</b></div><div class="amt tot"><span>Importo complessivo dei lavori</span><b>14.253.413 €</b></div></div>
         </article>
-        <article class="card">
+        <article class="card" id="incarico-nizza">
           <figure><button class="galbtn" type="button" data-gal="img/condominio-nizza-31-torino-1.jpg::Condominio Nizza 31, Torino (TO)|img/condominio-nizza-31-torino-2.jpg::Il fronte interno a lavori ultimati|img/condominio-nizza-31-torino-3.jpg::Il giardino del cortile|img/condominio-nizza-31-torino-4.jpg::Il pergolato e il cortile" data-title="Condominio Nizza 31, Torino (TO)" aria-label="Apri le 4 foto: Condominio Nizza 31, Torino (TO)"><img src="img/condominio-nizza-31-torino-1.jpg" alt="Condominio Nizza 31, Torino (TO)" loading="lazy"><span class="gal-n">4 foto</span></button></figure>
           <div class="when">2020 – 2025 · <a class="map" href="https://www.google.com/maps/search/?api=1&query=Via%20Nizza%2031%2C%20Torino" target="_blank" rel="noopener">Mappa ↗</a></div>
           <h3>Condominio Nizza 31, Torino (TO)</h3>
           <p>Riqualificazione energetica integrale in BIM: isolamento dell&#x27;involucro, serramenti, pompa di calore ibrida, riscaldamento a pavimento, VMC, ricarica per veicoli elettrici e rifacimento degli impianti.</p>
           <div class="amount"><div class="amt"><span>E.20</span><b>2.727.413 €</b></div><div class="amt"><span>S.04</span><b>4.363.647 €</b></div><div class="amt"><span>IA.01</span><b>253.910 €</b></div><div class="amt"><span>IA.02</span><b>694.208 €</b></div><div class="amt"><span>IA.03</span><b>362.259 €</b></div><div class="act"><span>Attività eseguite</span><b>Prog. preliminare · Prog. definitiva · Prog. esecutiva · Direzione lavori (IA.01 IA.02 IA.03)</b></div><div class="amt tot"><span>Importo complessivo dei lavori</span><b>8.401.438 €</b></div></div>
         </article>
-        <article class="card">
+        <article class="card" id="incarico-alberti">
           <figure><button class="galbtn" type="button" data-gal="img/liceo-alberti-napoli-1.jpg::Liceo &quot;L.B. Alberti&quot;, Napoli (NA)|img/liceo-alberti-napoli-2.jpg::Le coperture dell&#x27;istituto" data-title="Liceo &quot;L.B. Alberti&quot;, Napoli (NA)" aria-label="Apri le 2 foto: Liceo &quot;L.B. Alberti&quot;, Napoli (NA)"><img src="img/liceo-alberti-napoli-1.jpg" alt="Liceo &quot;L.B. Alberti&quot;, Napoli (NA)" loading="lazy"><span class="gal-n">2 foto</span></button></figure>
           <div class="when">2023 – 2024 · <a class="map" href="https://www.google.com/maps/search/?api=1&query=Liceo%20Scientifico%20Leon%20Battista%20Alberti%2C%20Napoli" target="_blank" rel="noopener">Mappa ↗</a></div>
           <h3>Liceo &quot;L.B. Alberti&quot;, Napoli (NA)</h3>
           <p>Progettazione dell&#x27;adeguamento sismico e dell&#x27;efficientamento energetico del liceo scientifico — Accordo quadro Città Metropolitana di Napoli, lotto 6.</p>
           <div class="amount"><div class="amt"><span>E.09</span><b>2.662.094 €</b></div><div class="amt"><span>S.03</span><b>1.867.698 €</b></div><div class="amt"><span>IA.01</span><b>39.566 €</b></div><div class="amt"><span>IA.02</span><b>329.806 €</b></div><div class="amt"><span>IA.03</span><b>289.171 €</b></div><div class="act"><span>Attività eseguite in RTP</span><b>Prog. definitiva · Prog. esecutiva in BIM</b></div><div class="amt tot"><span>Importo complessivo dei lavori</span><b>5.188.337 €</b></div></div>
         </article>
-        <article class="card">
+        <article class="card" id="incarico-musine">
           <figure><button class="galbtn" type="button" data-gal="img/condominio-parc-musine-rivoli-1.jpg::Condominio Parc Musinè, Rivoli (TO)|img/condominio-parc-musine-rivoli-2.jpg::I corpi di fabbrica dal parco|img/condominio-parc-musine-rivoli-3.jpg::Il portico d&#x27;ingresso" data-title="Condominio Parc Musinè, Rivoli (TO)" aria-label="Apri le 3 foto: Condominio Parc Musinè, Rivoli (TO)"><img src="img/condominio-parc-musine-rivoli-1.jpg" alt="Condominio Parc Musinè, Rivoli (TO)" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2022 – 2024 · <a class="map" href="https://www.google.com/maps/search/?api=1&query=Via%20Montenero%204%2C%2010098%20Rivoli%20TO" target="_blank" rel="noopener">Mappa ↗</a></div>
           <h3>Condominio Parc Musinè, Rivoli (TO)</h3>
           <p>Diagnosi energetica, studio di fattibilità, progettazione esecutiva in BIM e direzione lavori degli interventi di efficientamento energetico del complesso di via Montenero 4, angolo via Alpignano.</p>
           <div class="amount"><div class="amt"><span>E.20</span><b>3.662.509 €</b></div><div class="amt"><span>S.03</span><b>909.407 €</b></div><div class="amt"><span>IA.03</span><b>202.263 €</b></div><div class="act"><span>Attività eseguite</span><b>Diagnosi energetica · Prog. esecutiva (E.20 IA.03) · Direzione lavori · Asseverazione</b></div><div class="amt tot"><span>Importo complessivo dei lavori</span><b>4.774.179 €</b></div></div>
         </article>
-        <article class="card">
+        <article class="card" id="incarico-donorione">
           <figure><button class="galbtn" type="button" data-gal="img/alloggi-don-orione-cuneo-1.jpg::Alloggi demaniali Don Orione, Cuneo (CN)|img/alloggi-don-orione-cuneo-2.jpg::Il fabbricato dopo l&#x27;intervento|img/alloggi-don-orione-cuneo-3.jpg::Le palazzine demaniali" data-title="Alloggi demaniali Don Orione, Cuneo (CN)" aria-label="Apri le 3 foto: Alloggi demaniali Don Orione, Cuneo (CN)"><img src="img/alloggi-don-orione-cuneo-1.jpg" alt="Alloggi demaniali Don Orione, Cuneo (CN)" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2023 – 2024 · <a class="map" href="https://www.google.com/maps/search/?api=1&query=Via%20Don%20Orione%206%2C%20Cuneo" target="_blank" rel="noopener">Mappa ↗</a></div>
           <h3>Alloggi demaniali Don Orione, Cuneo (CN)</h3>
           <p>Progettazione dell&#x27;ammodernamento di strutture e parti comuni del fabbricato di alloggi demaniali di via Don Orione 6-8 e via Minella 4.</p>
           <div class="amount"><div class="amt"><span>E.20</span><b>3.943.443 €</b></div><div class="amt"><span>IA.02</span><b>80.971 €</b></div><div class="amt"><span>IA.03</span><b>232.629 €</b></div><div class="act"><span>Attività eseguite in RTP</span><b>Prog. esecutiva</b></div><div class="amt tot"><span>Importo complessivo dei lavori</span><b>4.257.042 €</b></div></div>
         </article>
-        <article class="card">
+        <article class="card" id="incarico-dabormida">
           <figure><button class="galbtn" type="button" data-gal="img/caserma-dabormida-torino-1.jpg::Caserma &quot;Dabormida&quot;, Torino (TO)|img/caserma-dabormida-torino-2.jpg::L&#x27;ingresso della caserma|img/caserma-dabormida-torino-3.jpg::L&#x27;atrio storico" data-title="Caserma &quot;Dabormida&quot;, Torino (TO)" aria-label="Apri le 3 foto: Caserma &quot;Dabormida&quot;, Torino (TO)"><img src="img/caserma-dabormida-torino-1.jpg" alt="Caserma &quot;Dabormida&quot;, Torino (TO)" loading="lazy"><span class="gal-n">3 foto</span></button></figure>
           <div class="when">2024 · PREPAC · <a class="map" href="https://www.google.com/maps/search/?api=1&query=Caserma%20Dabormida%2C%20Torino" target="_blank" rel="noopener">Mappa ↗</a></div>
           <h3>Caserma &quot;Dabormida&quot;, Torino (TO)</h3>
@@ -669,7 +671,7 @@
           <div class="nw-top"><span class="nw-date">luglio 2026</span><span class="nw-tag">Nuovi incarichi</span></div>
           <h3>Ex Ospedale Militare “Riberi”, Torino (TO)</h3>
           <p>Sottoscritto con l’Agenzia del Demanio il contratto attuativo dell’accordo quadro Lotto 1P, dedicato agli edifici di pregio storico-architettonico dell’ambito Nord, per la progettazione, in raggruppamento, della riqualificazione del padiglione Q da destinare ad archivio sanitario: progetto di fattibilità tecnico-economica, progetto esecutivo e coordinamento della sicurezza in fase di progettazione, per lavori stimati in 266.894 euro.</p>
-          <a class="nw-link" href="#incarichi">Scheda dell’incarico →</a>
+          <a class="nw-link" href="/incarichi/#incarico-riberi">Scheda dell’incarico →</a>
         </article>
         <article class="nw" data-cat="ultimi-incentivi-ottenuti"><div class="nw-more" hidden><div class="nwr"><span>Comuni</span><b>Brandizzo, Buriasco, Cavour, Cumiana, Roletto</b></div><div class="nwr"><span>Edifici</span><b>dieci: scuole, asilo nido, palestra e biblioteca, palazzetto dello sport, bocciofila, teatro</b></div><div class="nwr"><span>Incentivo complessivo</span><b>5.640.877 € · 100% del costo degli interventi</b></div><div class="nwr"><span>Riferimento</span><b>Conto Termico 3.0 — DM 7 agosto 2025</b></div><div class="nwr"><span>Attività VEE</span><b>diagnosi energetiche, consulenza e presentazione delle dieci richieste al GSE</b></div></div>
           <div class="nw-top"><span class="nw-date">settembre 2026</span><span class="nw-tag">Ultimi incentivi ottenuti</span></div>
@@ -681,7 +683,7 @@
           <div class="nw-top"><span class="nw-date">giugno 2026</span><span class="nw-tag">Lavori conclusi</span></div>
           <h3>Specola del Liceo “Virgilio”, Mantova (MN)</h3>
           <p>Concluso a giugno 2026 il servizio di progettazione per il restauro della torre della Specola, porzione dell’edificio sede del liceo classico: progetto di fattibilità tecnico-economica, progetto esecutivo e coordinamento della sicurezza in fase di progettazione, redatti da VEE S.r.l. in raggruppamento nell’ambito dell’accordo quadro Lotto 3 dell’Agenzia del Demanio.</p>
-          <a class="nw-link" href="#incarichi">Scheda dell’incarico →</a>
+          <a class="nw-link" href="/incarichi/#incarico-specola">Scheda dell’incarico →</a>
         </article>
       </div>
       <p class="sec-cta"><a class="btn" href="/news/">Tutte le news (23) →</a></p>

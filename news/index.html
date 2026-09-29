@@ -235,6 +235,8 @@
   .hero-draw { right: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter))); width: min(38vw, 500px); }
   @media (max-width: 1100px) { .hero-draw { width: min(40vw, 470px); } }
   /* scheda incarico: categorie con importi, attività VEE, importo complessivo */
+  .card { scroll-margin-top: 110px; }
+  .card:target { background: var(--bg-alt); box-shadow: 0 0 0 14px var(--bg-alt); }
   .card .amount { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 6px; }
   .card .amt { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 2px 0; }
   .card .amt span { color: var(--muted); font-size: 0.7rem; }
@@ -567,7 +569,7 @@
           <div class="nw-top"><span class="nw-date">luglio 2026</span><span class="nw-tag">Nuovi incarichi</span></div>
           <h3>Ex Ospedale Militare “Riberi”, Torino (TO)</h3>
           <p>Sottoscritto con l’Agenzia del Demanio il contratto attuativo dell’accordo quadro Lotto 1P, dedicato agli edifici di pregio storico-architettonico dell’ambito Nord, per la progettazione, in raggruppamento, della riqualificazione del padiglione Q da destinare ad archivio sanitario: progetto di fattibilità tecnico-economica, progetto esecutivo e coordinamento della sicurezza in fase di progettazione, per lavori stimati in 266.894 euro.</p>
-          <a class="nw-link" href="/#incarichi">Scheda dell’incarico →</a>
+          <a class="nw-link" href="/incarichi/#incarico-riberi">Scheda dell’incarico →</a>
         </article>
         <article class="nw" data-ord="1" data-cat="ultimi-incentivi-ottenuti"><div class="nw-more" hidden><div class="nwr"><span>Edificio</span><b>Scuola &quot;Don Milani&quot;, via Nicolao Cena 2 — Brandizzo (TO)</b></div><div class="nwr"><span>Interventi</span><b>isolamento dell’involucro e nuovo impianto</b></div><div class="nwr"><span>Incentivo</span><b>1.119.188 € · 100% del costo degli interventi</b></div><div class="nwr"><span>Riferimento</span><b>Conto Termico 3.0 — DM 7 agosto 2025</b></div><div class="nwr"><span>Attività VEE</span><b>diagnosi energetica, consulenza e presentazione della richiesta al GSE</b></div></div>
           <div class="nw-top"><span class="nw-date">8 giugno 2026</span><span class="nw-tag">Ultimi incentivi ottenuti</span></div>
@@ -579,7 +581,7 @@
           <div class="nw-top"><span class="nw-date">giugno 2026</span><span class="nw-tag">Lavori conclusi</span></div>
           <h3>Specola del Liceo “Virgilio”, Mantova (MN)</h3>
           <p>Concluso a giugno 2026 il servizio di progettazione per il restauro della torre della Specola, porzione dell’edificio sede del liceo classico: progetto di fattibilità tecnico-economica, progetto esecutivo e coordinamento della sicurezza in fase di progettazione, redatti da VEE S.r.l. in raggruppamento nell’ambito dell’accordo quadro Lotto 3 dell’Agenzia del Demanio.</p>
-          <a class="nw-link" href="/#incarichi">Scheda dell’incarico →</a>
+          <a class="nw-link" href="/incarichi/#incarico-specola">Scheda dell’incarico →</a>
         </article>
         <article class="nw" data-ord="11" data-cat="lavori-conclusi"><div class="nw-more" hidden><div class="nwr"><span>Committente</span><b>Agenzia del Demanio — Struttura per la Progettazione</b></div><div class="nwr"><span>Accordo quadro</span><b>Lotto 3, categoria E.22: servizi di ingegneria e architettura su immobili dell’Agenzia del Demanio, degli enti territoriali e dello Stato; stipulato il 16 aprile 2024</b></div><div class="nwr"><span>CIG</span><b>accordo quadro 9886394E68 · contratto esecutivo A058DA2BF3</b></div><div class="nwr"><span>Contratto esecutivo</span><b>luglio 2024</b></div><div class="nwr"><span>Prestazioni VEE</span><b>progetto di fattibilità tecnico-economica, progetto esecutivo e coordinamento della sicurezza in fase di progettazione, in raggruppamento</b></div><div class="nwr"><span>Finanziamento</span><b>PNRR M1C3, investimento 1.2: rimozione delle barriere fisiche e cognitive in musei, biblioteche e archivi</b></div><div class="nwr"><span>Importo dei lavori</span><b>950.000 €</b></div></div>
           <div class="nw-top"><span class="nw-date">27 maggio 2026</span><span class="nw-tag">Lavori conclusi</span></div>
@@ -591,7 +593,7 @@
           <div class="nw-top"><span class="nw-date">maggio 2026</span><span class="nw-tag">Nuovi incarichi</span></div>
           <h3>Villa Dufour, Champoluc (AO)</h3>
           <p>Nuovo incarico per la progettazione e la direzione dei lavori degli impianti meccanici, idrico-sanitari, elettrici e speciali della villa in frazione Champoluc, ad Ayas, con relazione ex Legge 10, pratica CIVA e collaudo funzionale.</p>
-          <a class="nw-link" href="/#incarichi">Scheda dell’incarico →</a>
+          <a class="nw-link" href="/incarichi/#incarico-dufour">Scheda dell’incarico →</a>
         </article>
         <article class="nw" data-ord="15" data-cat="energia-e-normativa"><div class="nw-more" hidden><div class="nwr"><span>Riferimento</span><b>DM 7 agosto 2025 — Conto Termico 3.0</b></div><div class="nwr"><span>Cronologia</span><b>portale sospeso il 3 marzo 2026, riaperto il 13 aprile 2026</b></div><div class="nwr"><span>Pubblica amministrazione</span><b>prenotazione dell’incentivo prima dell’avvio dei lavori</b></div><div class="nwr"><span>Copertura</span><b>fino al 100% della spesa per scuole, strutture sanitarie ed edifici dei Comuni fino a 15.000 abitanti</b></div></div>
           <div class="nw-top"><span class="nw-date">13 aprile 2026</span><span class="nw-tag">Energia e normativa</span></div>
@@ -603,25 +605,25 @@
           <div class="nw-top"><span class="nw-date">febbraio 2026</span><span class="nw-tag">Nuovi incarichi</span></div>
           <h3>Edificio residenziale di via Monginevro, Torino (TO)</h3>
           <p>Affidata la progettazione impiantistica ed energetica della ristrutturazione dell’edificio: nuova distribuzione interna, riqualificazione delle facciate, adeguamento strutturale, ascensore e pompa di calore.</p>
-          <a class="nw-link" href="/#incarichi">Scheda dell’incarico →</a>
+          <a class="nw-link" href="/incarichi/#incarico-monginevro">Scheda dell’incarico →</a>
         </article>
         <article class="nw" data-ord="16" data-cat="nuovi-incarichi"><div class="nw-more" hidden><div class="nwr"><span>Oggetto</span><b>palazzina in adeguamento sismico</b></div><div class="nwr"><span>Prestazioni VEE</span><b>completamento in BIM della progettazione: impianti, distribuzione interna e sistemazioni esterne</b></div><div class="nwr"><span>Cronologia</span><b>atto negoziale del 23 luglio 2025, servizio avviato a settembre 2025 e in corso</b></div></div>
           <div class="nw-top"><span class="nw-date">settembre 2025</span><span class="nw-tag">Nuovi incarichi</span></div>
           <h3>Caserma “Col di Lana”, Cremona (CR)</h3>
           <p>In corso il servizio di ingegneria per il completamento in BIM della progettazione della palazzina in adeguamento sismico: impianti, distribuzione interna e sistemazioni esterne (atto negoziale del 23 luglio 2025).</p>
-          <a class="nw-link" href="/#incarichi">Scheda dell’incarico →</a>
+          <a class="nw-link" href="/incarichi/#incarico-coldilana">Scheda dell’incarico →</a>
         </article>
         <article class="nw" data-ord="18" data-cat="nuovi-incarichi"><div class="nw-more" hidden><div class="nwr"><span>Committente</span><b>Agenzia del Demanio — Struttura per la Progettazione</b></div><div class="nwr"><span>Accordo quadro</span><b>Lotto 3, categoria E.22: servizi di ingegneria e architettura su immobili dell’Agenzia del Demanio, degli enti territoriali e dello Stato; stipulato il 16 aprile 2024</b></div><div class="nwr"><span>CIG</span><b>accordo quadro 9886394E68 · contratto esecutivo A06B7EA23A</b></div><div class="nwr"><span>Contratto esecutivo</span><b>prot. n. 538 dell’8 luglio 2025</b></div><div class="nwr"><span>Oggetto</span><b>consolidamento strutturale del compendio demaniale</b></div><div class="nwr"><span>Prestazioni VEE</span><b>progetto di fattibilità tecnico-economica in metodologia BIM, con rilievi e analisi conoscitive</b></div></div>
           <div class="nw-top"><span class="nw-date">aprile 2025</span><span class="nw-tag">Nuovi incarichi</span></div>
           <h3>Ex Palazzo della Posta, Piacenza (PC)</h3>
           <p>Affidato, con contratto esecutivo dell’accordo quadro Lotto 3 dell’Agenzia del Demanio, il progetto di fattibilità tecnico-economica in metodologia BIM, con rilievi e analisi conoscitive, per il consolidamento strutturale del compendio demaniale.</p>
-          <a class="nw-link" href="/#incarichi">Scheda dell’incarico →</a>
+          <a class="nw-link" href="/incarichi/#incarico-posta">Scheda dell’incarico →</a>
         </article>
         <article class="nw" data-ord="22" data-cat="nuovi-incarichi"><div class="nw-more" hidden><div class="nwr"><span>Oggetto</span><b>recupero di una villa d’epoca</b></div><div class="nwr"><span>Interventi</span><b>pompa di calore, riscaldamento radiante, impianti idrico-sanitari ed elettrici</b></div><div class="nwr"><span>Adempimenti</span><b>verifiche ex Legge 10 e APE</b></div></div>
           <div class="nw-top"><span class="nw-date">aprile 2025</span><span class="nw-tag">Nuovi incarichi</span></div>
           <h3>Villa storica in collina, Torino (TO)</h3>
           <p>Nuovo incarico per la progettazione impiantistica ed energetica del recupero di una villa d’epoca: pompa di calore, riscaldamento radiante, impianti idrico-sanitari ed elettrici, verifiche ex Legge 10 e APE.</p>
-          <a class="nw-link" href="/#incarichi">Scheda dell’incarico →</a>
+          <a class="nw-link" href="/incarichi/#incarico-giada">Scheda dell’incarico →</a>
         </article>
       </div>
       <p class="sec-cta"><a class="btn" href="/">Torna alla home</a></p>
