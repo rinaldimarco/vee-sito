@@ -428,6 +428,10 @@
   .nw-amt small { display: block; font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
   @media (max-width: 980px) { .news-list { grid-template-columns: repeat(2, 1fr); gap: 32px 24px; } }
   @media (max-width: 620px) { .news-list { grid-template-columns: 1fr; } }
+  .news-list.news-home { grid-template-columns: repeat(4, 1fr); gap: 36px 28px; }
+  .news-home .nw > p { display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
+  @media (max-width: 1100px) { .news-list.news-home { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 620px) { .news-list.news-home { grid-template-columns: 1fr; } }
   .card .meta a.map { color: var(--teal-ink); text-decoration: none; }
   .card .meta a.map:hover { text-decoration: underline; }
   .legal { max-width: 760px; }
@@ -660,76 +664,12 @@
           </div>
         </article>
       </div>
-      <div class="news-bar">
-        <div class="chips"><button type="button" class="chip is-on" data-cat="">Tutte</button><button type="button" class="chip" data-cat="ultimi-incentivi-ottenuti">Ultimi incentivi ottenuti</button><button type="button" class="chip" data-cat="lavori-conclusi">Lavori conclusi</button><button type="button" class="chip" data-cat="energia-e-normativa">Energia e normativa</button><button type="button" class="chip" data-cat="nuovi-incarichi">Nuovi incarichi</button></div>
-        <div class="pager"><button type="button" class="pg" data-pg="prev" aria-label="Notizie più recenti">‹</button><span class="news-count" aria-live="polite"></span><button type="button" class="pg" data-pg="next" aria-label="Notizie meno recenti">›</button></div>
-      </div>
-      <div class="news-list">
+      <div class="news-list news-home">
         <article class="nw" data-cat="ultimi-incentivi-ottenuti"><div class="nw-more" hidden><div class="nwr"><span>Comuni</span><b>Brandizzo, Buriasco, Cavour, Cumiana, Roletto</b></div><div class="nwr"><span>Edifici</span><b>dieci: scuole, asilo nido, palestra e biblioteca, palazzetto dello sport, bocciofila, teatro</b></div><div class="nwr"><span>Incentivo complessivo</span><b>5.640.877 € · 100% del costo degli interventi</b></div><div class="nwr"><span>Riferimento</span><b>Conto Termico 3.0 — DM 7 agosto 2025</b></div><div class="nwr"><span>Attività VEE</span><b>diagnosi energetiche, consulenza e presentazione delle dieci richieste al GSE</b></div></div>
           <div class="nw-top"><span class="nw-date">settembre 2026</span><span class="nw-tag">Ultimi incentivi ottenuti</span></div>
           <h3>Il bilancio: 5,64 milioni di euro di incentivi</h3>
           <p>Le dieci richieste presentate da VEE S.r.l. per conto di cinque Comuni piemontesi, tutte accolte dal GSE, valgono complessivamente 5.640.877 euro: dieci edifici pubblici — scuole, asili, impianti sportivi e un teatro — riqualificati con una copertura pari al 100% del costo degli interventi, senza oneri a carico dei bilanci comunali.</p>
           <div class="nw-foot"><span class="nw-amt">5.640.877 €<small>incentivo riconosciuto · 100% del costo</small></span></div>
-        </article>
-        <article class="nw" data-cat="ultimi-incentivi-ottenuti"><div class="nw-more" hidden><div class="nwr"><span>Edificio</span><b>Scuola &quot;Don Milani&quot;, via Nicolao Cena 2 — Brandizzo (TO)</b></div><div class="nwr"><span>Interventi</span><b>isolamento dell’involucro e nuovo impianto</b></div><div class="nwr"><span>Incentivo</span><b>1.119.188 € · 100% del costo degli interventi</b></div><div class="nwr"><span>Riferimento</span><b>Conto Termico 3.0 — DM 7 agosto 2025</b></div><div class="nwr"><span>Attività VEE</span><b>diagnosi energetica, consulenza e presentazione della richiesta al GSE</b></div></div>
-          <div class="nw-top"><span class="nw-date">8 giugno 2026</span><span class="nw-tag">Ultimi incentivi ottenuti</span></div>
-          <h3>Brandizzo: scuola &quot;Don Milani&quot;</h3>
-          <p>Il Comune ha ottenuto l&#x27;incentivo del Conto Termico 3.0 grazie all&#x27;attività di consulenza e alla diagnosi energetica sviluppate da VEE S.r.l., che ha curato anche la presentazione della richiesta al GSE: isolamento dell&#x27;involucro e nuovo impianto della scuola di via Nicolao Cena 2.</p>
-          <div class="nw-foot"><img src="img/stemmi/brandizzo.png" alt="" loading="lazy"><span class="nw-amt">1.119.188 €<small>incentivo riconosciuto · 100% del costo</small></span></div>
-        </article>
-        <article class="nw" data-cat="ultimi-incentivi-ottenuti"><div class="nw-more" hidden><div class="nwr"><span>Edificio</span><b>Palazzetto dello sport, via Vigone 5/7 — Cavour (TO)</b></div><div class="nwr"><span>Interventi</span><b>riqualificazione dell’impianto sportivo</b></div><div class="nwr"><span>Incentivo</span><b>974.833 € · 100% del costo degli interventi</b></div><div class="nwr"><span>Riferimento</span><b>Conto Termico 3.0 — DM 7 agosto 2025</b></div><div class="nwr"><span>Attività VEE</span><b>diagnosi energetica, consulenza e presentazione della richiesta al GSE</b></div></div>
-          <div class="nw-top"><span class="nw-date">7 agosto 2026</span><span class="nw-tag">Ultimi incentivi ottenuti</span></div>
-          <h3>Cavour: palazzetto dello sport</h3>
-          <p>Il Comune ha ottenuto l&#x27;incentivo del Conto Termico 3.0 grazie all&#x27;attività di consulenza e alla diagnosi energetica sviluppate da VEE S.r.l., che ha curato anche la presentazione della richiesta al GSE: riqualificazione dell&#x27;impianto sportivo di via Vigone 5/7.</p>
-          <div class="nw-foot"><img src="img/stemmi/cavour.png" alt="" loading="lazy"><span class="nw-amt">974.833 €<small>incentivo riconosciuto · 100% del costo</small></span></div>
-        </article>
-        <article class="nw" data-cat="ultimi-incentivi-ottenuti"><div class="nw-more" hidden><div class="nwr"><span>Edificio</span><b>Scuola dell&#x27;infanzia, via Provinciale 35 — Cumiana (TO)</b></div><div class="nwr"><span>Interventi</span><b>isolamento dell’involucro e nuovo impianto</b></div><div class="nwr"><span>Incentivo</span><b>805.115 € · 100% del costo degli interventi</b></div><div class="nwr"><span>Riferimento</span><b>Conto Termico 3.0 — DM 7 agosto 2025</b></div><div class="nwr"><span>Attività VEE</span><b>diagnosi energetica, consulenza e presentazione della richiesta al GSE</b></div></div>
-          <div class="nw-top"><span class="nw-date">12 agosto 2026</span><span class="nw-tag">Ultimi incentivi ottenuti</span></div>
-          <h3>Cumiana: scuola dell&#x27;infanzia</h3>
-          <p>Il Comune ha ottenuto l&#x27;incentivo del Conto Termico 3.0 grazie all&#x27;attività di consulenza e alla diagnosi energetica sviluppate da VEE S.r.l., che ha curato anche la presentazione della richiesta al GSE: isolamento e nuovo impianto della scuola di via Provinciale 35.</p>
-          <div class="nw-foot"><img src="img/stemmi/cumiana.png" alt="" loading="lazy"><span class="nw-amt">805.115 €<small>incentivo riconosciuto · 100% del costo</small></span></div>
-        </article>
-        <article class="nw" data-cat="ultimi-incentivi-ottenuti">
-          <div class="nw-top"><span class="nw-date">12 agosto 2026</span><span class="nw-tag">Ultimi incentivi ottenuti</span></div>
-          <h3>Brandizzo: scuola &quot;Martiri della Libertà&quot;</h3>
-          <p>Il Comune ha ottenuto l&#x27;incentivo del Conto Termico 3.0 grazie all&#x27;attività di consulenza e alla diagnosi energetica sviluppate da VEE S.r.l., che ha curato anche la presentazione della richiesta al GSE: riqualificazione energetica della scuola di via Alba 10.</p>
-          <div class="nw-foot"><img src="img/stemmi/brandizzo.png" alt="" loading="lazy"><span class="nw-amt">677.050 €<small>incentivo riconosciuto · 100% del costo</small></span></div>
-        </article>
-        <article class="nw" data-cat="ultimi-incentivi-ottenuti"><div class="nw-more" hidden><div class="nwr"><span>Edificio</span><b>Bocciofila comunale, via Vigone 5/7 — Cavour (TO)</b></div><div class="nwr"><span>Interventi</span><b>efficientamento energetico dell’edificio</b></div><div class="nwr"><span>Incentivo</span><b>602.805 € · 100% del costo degli interventi</b></div><div class="nwr"><span>Riferimento</span><b>Conto Termico 3.0 — DM 7 agosto 2025</b></div><div class="nwr"><span>Attività VEE</span><b>diagnosi energetica, consulenza e presentazione della richiesta al GSE</b></div></div>
-          <div class="nw-top"><span class="nw-date">14 luglio 2026</span><span class="nw-tag">Ultimi incentivi ottenuti</span></div>
-          <h3>Cavour: bocciofila</h3>
-          <p>Il Comune ha ottenuto l&#x27;incentivo del Conto Termico 3.0 grazie all&#x27;attività di consulenza e alla diagnosi energetica sviluppate da VEE S.r.l., che ha curato anche la presentazione della richiesta al GSE: efficientamento della bocciofila comunale di via Vigone 5/7.</p>
-          <div class="nw-foot"><img src="img/stemmi/cavour.png" alt="" loading="lazy"><span class="nw-amt">602.805 €<small>incentivo riconosciuto · 100% del costo</small></span></div>
-        </article>
-        <article class="nw" data-cat="ultimi-incentivi-ottenuti"><div class="nw-more" hidden><div class="nwr"><span>Edificio</span><b>Asilo nido &quot;Don F. Pozzo&quot;, via M. Ferrero 40 — Cumiana (TO)</b></div><div class="nwr"><span>Interventi</span><b>efficientamento energetico dell’asilo nido</b></div><div class="nwr"><span>Incentivo</span><b>511.624 € · 100% del costo degli interventi</b></div><div class="nwr"><span>Riferimento</span><b>Conto Termico 3.0 — DM 7 agosto 2025</b></div><div class="nwr"><span>Attività VEE</span><b>diagnosi energetica, consulenza e presentazione della richiesta al GSE</b></div></div>
-          <div class="nw-top"><span class="nw-date">12 agosto 2026</span><span class="nw-tag">Ultimi incentivi ottenuti</span></div>
-          <h3>Cumiana: asilo nido &quot;Don F. Pozzo&quot;</h3>
-          <p>Il Comune ha ottenuto l&#x27;incentivo del Conto Termico 3.0 grazie all&#x27;attività di consulenza e alla diagnosi energetica sviluppate da VEE S.r.l., che ha curato anche la presentazione della richiesta al GSE: efficientamento dell&#x27;asilo nido di via Michelangelo Ferrero.</p>
-          <div class="nw-foot"><img src="img/stemmi/cumiana.png" alt="" loading="lazy"><span class="nw-amt">511.624 €<small>incentivo riconosciuto · 100% del costo</small></span></div>
-        </article>
-        <article class="nw" data-cat="ultimi-incentivi-ottenuti"><div class="nw-more" hidden><div class="nwr"><span>Edificio</span><b>Scuola &quot;G. Rodari&quot;, via Costa 23 — Roletto (TO)</b></div><div class="nwr"><span>Interventi</span><b>isolamento dell&#x27;involucro e nuovo impianto di climatizzazione</b></div><div class="nwr"><span>Incentivo</span><b>423.194 € · 100% del costo degli interventi</b></div><div class="nwr"><span>Riferimento</span><b>Conto Termico 3.0 — DM 7 agosto 2025</b></div><div class="nwr"><span>Attività VEE</span><b>diagnosi energetica, consulenza e presentazione della richiesta al GSE</b></div></div>
-          <div class="nw-top"><span class="nw-date">24 agosto 2026</span><span class="nw-tag">Ultimi incentivi ottenuti</span></div>
-          <h3>Roletto: scuola &quot;G. Rodari&quot;</h3>
-          <p>Il Comune ha ottenuto l&#x27;incentivo del Conto Termico 3.0 grazie all&#x27;attività di consulenza e alla diagnosi energetica sviluppate da VEE S.r.l., che ha curato anche la presentazione della richiesta al GSE: isolamento dell&#x27;involucro e nuovo impianto di climatizzazione della scuola di via Costa 23.</p>
-          <div class="nw-foot"><img src="img/stemmi/roletto.png" alt="" loading="lazy"><span class="nw-amt">423.194 €<small>incentivo riconosciuto · 100% del costo</small></span></div>
-        </article>
-        <article class="nw" data-cat="ultimi-incentivi-ottenuti"><div class="nw-more" hidden><div class="nwr"><span>Edificio</span><b>Scuola primaria, via IV Novembre 31/33 — Buriasco (TO)</b></div><div class="nwr"><span>Interventi</span><b>riqualificazione energetica dell’edificio scolastico</b></div><div class="nwr"><span>Incentivo</span><b>208.747 € · 100% del costo degli interventi</b></div><div class="nwr"><span>Riferimento</span><b>Conto Termico 3.0 — DM 7 agosto 2025</b></div><div class="nwr"><span>Attività VEE</span><b>diagnosi energetica, consulenza e presentazione della richiesta al GSE</b></div></div>
-          <div class="nw-top"><span class="nw-date">24 agosto 2026</span><span class="nw-tag">Ultimi incentivi ottenuti</span></div>
-          <h3>Buriasco: scuola primaria</h3>
-          <p>Il Comune ha ottenuto l&#x27;incentivo del Conto Termico 3.0 grazie all&#x27;attività di consulenza e alla diagnosi energetica sviluppate da VEE S.r.l., che ha curato anche la presentazione della richiesta al GSE: riqualificazione energetica della scuola di via IV Novembre.</p>
-          <div class="nw-foot"><img src="img/stemmi/buriasco.png" alt="" loading="lazy"><span class="nw-amt">208.747 €<small>incentivo riconosciuto · 100% del costo</small></span></div>
-        </article>
-        <article class="nw" data-cat="ultimi-incentivi-ottenuti"><div class="nw-more" hidden><div class="nwr"><span>Edificio</span><b>Palestra e biblioteca comunale, via Costa 25 — Roletto (TO)</b></div><div class="nwr"><span>Interventi</span><b>efficientamento energetico dell’edificio</b></div><div class="nwr"><span>Incentivo</span><b>184.719 € · 100% del costo degli interventi</b></div><div class="nwr"><span>Riferimento</span><b>Conto Termico 3.0 — DM 7 agosto 2025</b></div><div class="nwr"><span>Attività VEE</span><b>diagnosi energetica, consulenza e presentazione della richiesta al GSE</b></div></div>
-          <div class="nw-top"><span class="nw-date">24 agosto 2026</span><span class="nw-tag">Ultimi incentivi ottenuti</span></div>
-          <h3>Roletto: palestra e biblioteca</h3>
-          <p>Il Comune ha ottenuto l&#x27;incentivo del Conto Termico 3.0 grazie all&#x27;attività di consulenza e alla diagnosi energetica sviluppate da VEE S.r.l., che ha curato anche la presentazione della richiesta al GSE: efficientamento dell&#x27;edificio di via Costa 25.</p>
-          <div class="nw-foot"><img src="img/stemmi/roletto.png" alt="" loading="lazy"><span class="nw-amt">184.719 €<small>incentivo riconosciuto · 100% del costo</small></span></div>
-        </article>
-        <article class="nw" data-cat="ultimi-incentivi-ottenuti"><div class="nw-more" hidden><div class="nwr"><span>Edificio</span><b>Teatro Blu, piazza Roma 3 — Buriasco (TO)</b></div><div class="nwr"><span>Interventi</span><b>riqualificazione energetica del teatro comunale</b></div><div class="nwr"><span>Incentivo</span><b>133.603 € · 100% del costo degli interventi</b></div><div class="nwr"><span>Riferimento</span><b>Conto Termico 3.0 — DM 7 agosto 2025</b></div><div class="nwr"><span>Attività VEE</span><b>diagnosi energetica, consulenza e presentazione della richiesta al GSE</b></div></div>
-          <div class="nw-top"><span class="nw-date">24 agosto 2026</span><span class="nw-tag">Ultimi incentivi ottenuti</span></div>
-          <h3>Buriasco: Teatro Blu</h3>
-          <p>Il Comune ha ottenuto l&#x27;incentivo del Conto Termico 3.0 grazie all&#x27;attività di consulenza e alla diagnosi energetica sviluppate da VEE S.r.l., che ha curato anche la presentazione della richiesta al GSE: riqualificazione del teatro comunale di piazza Roma 3.</p>
-          <div class="nw-foot"><img src="img/stemmi/buriasco.png" alt="" loading="lazy"><span class="nw-amt">133.603 €<small>incentivo riconosciuto · 100% del costo</small></span></div>
         </article>
         <article class="nw" data-cat="lavori-conclusi"><div class="nw-more" hidden><div class="nwr"><span>Committente</span><b>Agenzia del Demanio — accordo quadro per servizi di ingegneria e architettura</b></div><div class="nwr"><span>Finanziamento</span><b>PNRR, 1,4 milioni di euro</b></div><div class="nwr"><span>Interventi</span><b>nuova pavimentazione, ascensori, rampe, pannelli tattili, servizi accessibili e illuminazione dei cortili</b></div><div class="nwr"><span>Prestazioni VEE</span><b>progettazione definitiva ed esecutiva e coordinamento della sicurezza in fase di progettazione, in raggruppamento</b></div></div>
           <div class="nw-top"><span class="nw-date">26 maggio 2026</span><span class="nw-tag">Lavori conclusi</span></div>
@@ -743,60 +683,14 @@
           <p>Dal 3 agosto si applicano le quote rivedute dall’allegato III del D.Lgs 199/2021, come modificato dal D.Lgs 5/2026 di recepimento della direttiva RED III: negli edifici pubblici la copertura da fonti rinnovabili sale al 65% per le nuove costruzioni, al 45% nelle ristrutturazioni importanti di primo livello e al 20% nelle ristrutturazioni di secondo livello e nella sostituzione del generatore. Il mancato rispetto comporta il diniego del titolo abilitativo.</p>
           
         </article>
-        <article class="nw" data-cat="energia-e-normativa"><div class="nw-more" hidden><div class="nwr"><span>Riferimento</span><b>decreto direttoriale MASE n. 203</b></div><div class="nwr"><span>Nuovi ambiti</span><b>economia circolare, autoconsumo elettrico rinnovabile, data center</b></div><div class="nwr"><span>Semplificazioni</span><b>progetti con risparmi stabili; raggruppamenti di soggetti pubblici e privati come titolari di progetto</b></div><div class="nwr"><span>Documento</span><b>Guida Operativa pubblicata sul sito del GSE</b></div></div>
-          <div class="nw-top"><span class="nw-date">28 luglio 2026</span><span class="nw-tag">Energia e normativa</span></div>
-          <h3>Certificati Bianchi: nuova Guida Operativa</h3>
-          <p>Il MASE ha approvato con decreto direttoriale n. 203 l’aggiornamento della Guida Operativa dei Certificati Bianchi, pubblicata sul sito del GSE: nuovi ambiti ammessi (economia circolare, autoconsumo elettrico rinnovabile, data center), semplificazioni per i progetti con risparmi stabili e apertura a raggruppamenti di soggetti pubblici e privati come titolari di progetto.</p>
-          
-        </article>
-        <article class="nw" data-cat="energia-e-normativa"><div class="nw-more" hidden><div class="nwr"><span>Riferimento</span><b>DM 7 agosto 2025 — Conto Termico 3.0</b></div><div class="nwr"><span>Cronologia</span><b>portale sospeso il 3 marzo 2026, riaperto il 13 aprile 2026</b></div><div class="nwr"><span>Pubblica amministrazione</span><b>prenotazione dell’incentivo prima dell’avvio dei lavori</b></div><div class="nwr"><span>Copertura</span><b>fino al 100% della spesa per scuole, strutture sanitarie ed edifici dei Comuni fino a 15.000 abitanti</b></div></div>
-          <div class="nw-top"><span class="nw-date">13 aprile 2026</span><span class="nw-tag">Energia e normativa</span></div>
-          <h3>Conto Termico 3.0: portale GSE di nuovo operativo</h3>
-          <p>Dopo la sospensione del 3 marzo, il 13 aprile il GSE ha riaperto il Portaltermico 3.0 con le nuove regole applicative del DM 7 agosto 2025. Per la pubblica amministrazione resta la possibilità di prenotare l’incentivo prima dell’avvio dei lavori, con copertura fino al 100% della spesa per scuole, strutture sanitarie ed edifici dei Comuni fino a 15.000 abitanti.</p>
-          
-        </article>
         <article class="nw" data-cat="nuovi-incarichi"><div class="nw-more" hidden><div class="nwr"><span>Oggetto</span><b>palazzina in adeguamento sismico</b></div><div class="nwr"><span>Prestazioni VEE</span><b>completamento in BIM della progettazione: impianti, distribuzione interna e sistemazioni esterne</b></div><div class="nwr"><span>Cronologia</span><b>atto negoziale del 23 luglio 2025, servizio avviato a settembre 2025 e in corso</b></div></div>
           <div class="nw-top"><span class="nw-date">settembre 2025</span><span class="nw-tag">Nuovi incarichi</span></div>
           <h3>Caserma “Col di Lana”, Cremona (CR)</h3>
           <p>In corso il servizio di ingegneria per il completamento in BIM della progettazione della palazzina in adeguamento sismico: impianti, distribuzione interna e sistemazioni esterne (atto negoziale del 23 luglio 2025).</p>
           <a class="nw-link" href="#incarichi">Scheda dell’incarico →</a>
         </article>
-        <article class="nw" data-cat="nuovi-incarichi"><div class="nw-more" hidden><div class="nwr"><span>Committente</span><b>Agenzia del Demanio</b></div><div class="nwr"><span>Oggetto</span><b>consolidamento strutturale del compendio demaniale</b></div><div class="nwr"><span>Prestazioni VEE</span><b>progetto di fattibilità tecnico-economica in metodologia BIM, con rilievi e analisi conoscitive</b></div></div>
-          <div class="nw-top"><span class="nw-date">aprile 2025</span><span class="nw-tag">Nuovi incarichi</span></div>
-          <h3>Ex Palazzo della Posta, Piacenza (PC)</h3>
-          <p>Affidato il progetto di fattibilità tecnico-economica in metodologia BIM, con rilievi e analisi conoscitive, per il consolidamento strutturale del compendio demaniale.</p>
-          <a class="nw-link" href="#incarichi">Scheda dell’incarico →</a>
-        </article>
-        <article class="nw" data-cat="nuovi-incarichi"><div class="nw-more" hidden><div class="nwr"><span>Committente</span><b>Agenzia del Demanio — accordo quadro</b></div><div class="nwr"><span>Oggetto</span><b>recupero della Specola del Liceo “Virgilio”</b></div><div class="nwr"><span>Cronologia</span><b>contratto esecutivo del 30 aprile 2025, avvio del servizio il 9 maggio 2025</b></div></div>
-          <div class="nw-top"><span class="nw-date">maggio 2025</span><span class="nw-tag">Nuovi incarichi</span></div>
-          <h3>Specola del Liceo “Virgilio”, Mantova (MN)</h3>
-          <p>Avviato il servizio di progettazione per il recupero della Specola, nell’ambito dell’accordo quadro con l’Agenzia del Demanio: contratto esecutivo del 30 aprile 2025, avvio del servizio il 9 maggio.</p>
-          <a class="nw-link" href="#incarichi">Scheda dell’incarico →</a>
-        </article>
-        <article class="nw" data-cat="nuovi-incarichi"><div class="nw-more" hidden><div class="nwr"><span>Committente</span><b>Agenzia del Demanio — contratto attuativo di accordo quadro</b></div><div class="nwr"><span>Oggetto</span><b>riqualificazione del padiglione Q da destinare ad archivio sanitario</b></div><div class="nwr"><span>Prestazioni VEE</span><b>progetto di fattibilità tecnico-economica, progetto esecutivo e coordinamento della sicurezza in fase di progettazione, in raggruppamento</b></div><div class="nwr"><span>Lavori stimati</span><b>266.894 €</b></div></div>
-          <div class="nw-top"><span class="nw-date">luglio 2026</span><span class="nw-tag">Nuovi incarichi</span></div>
-          <h3>Ex Ospedale Militare “Riberi”, Torino (TO)</h3>
-          <p>Sottoscritto con l’Agenzia del Demanio il contratto attuativo per la progettazione, in raggruppamento, della riqualificazione del padiglione Q da destinare ad archivio sanitario: progetto di fattibilità tecnico-economica, progetto esecutivo e coordinamento della sicurezza in fase di progettazione, per lavori stimati in 266.894 euro.</p>
-          <a class="nw-link" href="#incarichi">Scheda dell’incarico →</a>
-        </article>
-        <article class="nw" data-cat="nuovi-incarichi"><div class="nw-more" hidden><div class="nwr"><span>Oggetto</span><b>villa in frazione Champoluc, Ayas (AO)</b></div><div class="nwr"><span>Prestazioni VEE</span><b>progettazione e direzione dei lavori degli impianti meccanici, idrico-sanitari, elettrici e speciali</b></div><div class="nwr"><span>Adempimenti</span><b>relazione ex Legge 10, pratica CIVA e collaudo funzionale</b></div></div>
-          <div class="nw-top"><span class="nw-date">maggio 2026</span><span class="nw-tag">Nuovi incarichi</span></div>
-          <h3>Villa Dufour, Champoluc (AO)</h3>
-          <p>Nuovo incarico per la progettazione e la direzione dei lavori degli impianti meccanici, idrico-sanitari, elettrici e speciali della villa in frazione Champoluc, ad Ayas, con relazione ex Legge 10, pratica CIVA e collaudo funzionale.</p>
-          <a class="nw-link" href="#incarichi">Scheda dell’incarico →</a>
-        </article>
-        <article class="nw" data-cat="nuovi-incarichi"><div class="nw-more" hidden><div class="nwr"><span>Oggetto</span><b>ristrutturazione di un edificio residenziale</b></div><div class="nwr"><span>Interventi</span><b>nuova distribuzione interna, riqualificazione delle facciate, adeguamento strutturale, ascensore e pompa di calore</b></div><div class="nwr"><span>Prestazioni VEE</span><b>progettazione impiantistica ed energetica</b></div></div>
-          <div class="nw-top"><span class="nw-date">febbraio 2026</span><span class="nw-tag">Nuovi incarichi</span></div>
-          <h3>Edificio residenziale di via Monginevro, Torino (TO)</h3>
-          <p>Affidata la progettazione impiantistica ed energetica della ristrutturazione dell’edificio: nuova distribuzione interna, riqualificazione delle facciate, adeguamento strutturale, ascensore e pompa di calore.</p>
-          <a class="nw-link" href="#incarichi">Scheda dell’incarico →</a>
-        </article>
-        <article class="nw" data-cat="nuovi-incarichi"><div class="nw-more" hidden><div class="nwr"><span>Oggetto</span><b>recupero di una villa d’epoca</b></div><div class="nwr"><span>Interventi</span><b>pompa di calore, riscaldamento radiante, impianti idrico-sanitari ed elettrici</b></div><div class="nwr"><span>Adempimenti</span><b>verifiche ex Legge 10 e APE</b></div></div>
-          <div class="nw-top"><span class="nw-date">aprile 2025</span><span class="nw-tag">Nuovi incarichi</span></div>
-          <h3>Villa storica in collina, Torino (TO)</h3>
-          <p>Nuovo incarico per la progettazione impiantistica ed energetica del recupero di una villa d’epoca: pompa di calore, riscaldamento radiante, impianti idrico-sanitari ed elettrici, verifiche ex Legge 10 e APE.</p>
-          <a class="nw-link" href="#incarichi">Scheda dell’incarico →</a>
-        </article>
+      </div>
+      <p class="sec-cta"><a class="btn" href="/news/">Tutte le news (24) →</a></p>
       </div>
     </div>
   </section>
@@ -867,9 +761,9 @@ document.addEventListener('keydown',function(e){if(!ov||!ov.classList.contains('
 var x0=null;ov.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
 ov.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)go(dx<0?1:-1);x0=null;},{passive:true});}
 for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){if(!ov)build();last=this;list=this.getAttribute('data-gal').split('|');tt=this.getAttribute('data-title');idx=parseInt(this.getAttribute('data-start')||'0',10)||0;show();ov.classList.add('is-open');document.documentElement.style.overflow='hidden';ov.querySelector('.lb-x').focus();try{history.pushState({vee:'lb'},'');pushed=true;}catch(e){}});})();
-(function(){var wrap=document.querySelector('.news-list');if(!wrap)return;
+(function(){var wrap=document.querySelector('.news-list');if(!wrap||!document.querySelector('.news-count'))return;
 var items=[].slice.call(wrap.querySelectorAll('.nw')),chips=[].slice.call(document.querySelectorAll('.chip')),
-cnt=document.querySelector('.news-count'),pgs=[].slice.call(document.querySelectorAll('.pg')),per=3,page=0,cat='';
+cnt=document.querySelector('.news-count'),pgs=[].slice.call(document.querySelectorAll('.pg')),per=parseInt(wrap.getAttribute('data-per')||'3',10),page=0,cat='';
 function vis(){return items.filter(function(it){return !cat||it.getAttribute('data-cat')===cat;});}
 function render(){var v=vis(),np=Math.max(1,Math.ceil(v.length/per));if(page>=np)page=np-1;if(page<0)page=0;
 items.forEach(function(it){it.hidden=true;});v.slice(page*per,page*per+per).forEach(function(it){it.hidden=false;});
