@@ -483,9 +483,8 @@
       </div>
       <div class="news-bar">
         <div class="chips"><button type="button" class="chip is-on" data-cat="">Tutte</button><button type="button" class="chip" data-cat="ultimi-incentivi-ottenuti">Ultimi incentivi ottenuti</button><button type="button" class="chip" data-cat="lavori-conclusi">Lavori conclusi</button><button type="button" class="chip" data-cat="energia-e-normativa">Energia e normativa</button><button type="button" class="chip" data-cat="nuovi-incarichi">Nuovi incarichi</button></div>
-        <div class="pager"><button type="button" class="pg" data-pg="prev" aria-label="Notizie più recenti">‹</button><span class="news-count" aria-live="polite"></span><button type="button" class="pg" data-pg="next" aria-label="Notizie meno recenti">›</button></div>
       </div>
-      <div class="news-list" data-per="9">
+      <div class="news-list">
         <article class="nw" data-cat="ultimi-incentivi-ottenuti"><div class="nw-more" hidden><div class="nwr"><span>Comuni</span><b>Brandizzo, Buriasco, Cavour, Cumiana, Roletto</b></div><div class="nwr"><span>Edifici</span><b>dieci: scuole, asilo nido, palestra e biblioteca, palazzetto dello sport, bocciofila, teatro</b></div><div class="nwr"><span>Incentivo complessivo</span><b>5.640.877 € · 100% del costo degli interventi</b></div><div class="nwr"><span>Riferimento</span><b>Conto Termico 3.0 — DM 7 agosto 2025</b></div><div class="nwr"><span>Attività VEE</span><b>diagnosi energetiche, consulenza e presentazione delle dieci richieste al GSE</b></div></div>
           <div class="nw-top"><span class="nw-date">settembre 2026</span><span class="nw-tag">Ultimi incentivi ottenuti</span></div>
           <h3>Il bilancio: 5,64 milioni di euro di incentivi</h3>
@@ -644,16 +643,15 @@
     var btn = document.querySelector('.toggle'), nav = document.getElementById('nav');
     if (btn && nav) { btn.addEventListener('click', function () { var o = nav.classList.toggle('is-open'); btn.setAttribute('aria-expanded', o ? 'true' : 'false'); }); }
   })();
-(function(){var wrap=document.querySelector('.news-list');if(!wrap||!document.querySelector('.news-count'))return;
+(function(){var wrap=document.querySelector('.news-list');if(!wrap||!document.querySelector('.chip'))return;
 var items=[].slice.call(wrap.querySelectorAll('.nw')),chips=[].slice.call(document.querySelectorAll('.chip')),
-cnt=document.querySelector('.news-count'),pgs=[].slice.call(document.querySelectorAll('.pg')),per=parseInt(wrap.getAttribute('data-per')||'3',10),page=0,cat='';
+cnt=document.querySelector('.news-count'),pgs=[].slice.call(document.querySelectorAll('.pg')),per=parseInt(wrap.getAttribute('data-per')||'999',10),page=0,cat='';
 function vis(){return items.filter(function(it){return !cat||it.getAttribute('data-cat')===cat;});}
 function render(){var v=vis(),np=Math.max(1,Math.ceil(v.length/per));if(page>=np)page=np-1;if(page<0)page=0;
 items.forEach(function(it){it.hidden=true;});v.slice(page*per,page*per+per).forEach(function(it){it.hidden=false;});
-cnt.textContent=(page+1)+' / '+np;pgs[0].disabled=page===0;pgs[1].disabled=page>=np-1;}
+if(cnt)cnt.textContent=(page+1)+' / '+np;if(pgs.length){pgs[0].disabled=page===0;pgs[1].disabled=page>=np-1;}}
 chips.forEach(function(c){c.addEventListener('click',function(){cat=this.getAttribute('data-cat');page=0;chips.forEach(function(x){x.classList.remove('is-on');});this.classList.add('is-on');render();});});
-pgs[0].addEventListener('click',function(){page--;render();});
-pgs[1].addEventListener('click',function(){page++;render();});
+if(pgs.length){pgs[0].addEventListener('click',function(){page--;render();});pgs[1].addEventListener('click',function(){page++;render();});}
 render();})();
 (function(){var wrap=document.querySelector('.news-list');if(!wrap)return;
 var all=[].slice.call(wrap.querySelectorAll('.nw')),ov,pn,list=[],idx=0,last=null;
