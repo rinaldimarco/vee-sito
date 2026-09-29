@@ -259,7 +259,7 @@
   .lb { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; background: rgba(11, 58, 63, .96); padding: 28px; }
   .lb.is-open { display: flex; }
   .lb-fig { margin: 0; max-width: 900px; width: 100%; }
-  .lb-fig img { display: block; width: 100%; height: auto; }
+  .lb-fig img { display: block; width: auto; max-width: 100%; height: auto; max-height: calc(100vh - 120px); margin: 0 auto; }
   .lb-fig figcaption { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; color: var(--paper, #F5F2EA); opacity: .85; margin-top: 14px; text-align: center; }
   .lb button { position: absolute; background: none; border: 0; color: #F5F2EA; cursor: pointer; line-height: 1; padding: 14px; font-size: 2.2rem; }
   .lb button:hover { color: var(--nebbia); }
@@ -390,21 +390,23 @@
   .pg { width: 34px; height: 34px; border: 1px solid var(--line-strong); background: none; color: var(--ink); font-size: 1.15rem; line-height: 1; cursor: pointer; transition: background .2s ease, color .2s ease; }
   .pg:hover:not(:disabled) { background: var(--ink); color: #fff; }
   .pg:disabled { opacity: .3; cursor: default; }
-  .nw-feat { margin-bottom: clamp(32px, 4vw, 48px); }
-  .nw-feat-in { display: grid; grid-template-columns: 4fr 8fr; gap: 0; background: var(--bg-alt); }
-  .nw-feat-img { display: block; overflow: hidden; }
-  .nw-feat-img img { display: block; width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1; transition: transform .9s cubic-bezier(.2, .8, .2, 1); }
+  .nw-feats { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 2.4vw, 32px); margin-bottom: clamp(32px, 4vw, 48px); }
+  .nw-feat { display: flex; flex-direction: column; background: var(--bg-alt); }
+  .nw-feat-img { margin: 0; position: relative; overflow: hidden; }
+  .nw-feat-img .galbtn { overflow: hidden; }
+  .nw-feat-img img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; transition: transform .9s cubic-bezier(.2, .8, .2, 1); }
   .nw-feat:hover .nw-feat-img img { transform: scale(1.04); }
+  .nw-feat-img figcaption { position: absolute; right: 0; bottom: 0; font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; background: rgba(11, 58, 63, .72); padding: 5px 9px; pointer-events: none; }
   .nw-feat-txt { display: grid; gap: 10px; align-content: start; padding: clamp(18px, 2.4vw, 28px); }
   .nw-feat .nw-tag { color: var(--nebbia); }
-  .nw-feat h3 { font-family: var(--display); font-weight: 500; font-size: clamp(1.15rem, 1.8vw, 1.4rem); line-height: 1.2; color: var(--ink); margin: 0; }
+  .nw-feat h3 { font-family: var(--display); font-weight: 500; font-size: clamp(1.1rem, 1.6vw, 1.3rem); line-height: 1.2; color: var(--ink); margin: 0; }
   .nw-feat p { margin: 0; font-size: 0.9rem; color: var(--text); max-width: 70ch; }
   .nw-facts { display: grid; grid-template-columns: repeat(2, auto); justify-content: start; gap: 10px 32px; margin: 2px 0 0; padding-top: 10px; border-top: 1px solid var(--line); }
   .nw-facts div { display: flex; flex-direction: column; gap: 3px; }
   .nw-facts dt { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
   .nw-facts dd { margin: 0; font-family: var(--display); font-weight: 500; font-size: 1rem; color: var(--ink); }
   .nw-feat .nw-link { margin-top: 0; }
-  @media (max-width: 800px) { .nw-feat-in { grid-template-columns: 1fr; } .nw-feat-img img { aspect-ratio: 3 / 2; } }
+  @media (max-width: 800px) { .nw-feats { grid-template-columns: 1fr; } }
   .news-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 32px; }
   .nw[hidden] { display: none; }
   .nw { display: grid; gap: 10px; align-content: start; border-top: 1px solid var(--line-strong); padding-top: 18px; }
@@ -636,19 +638,28 @@
         <div><span class="eyebrow">News</span><h2>Ultime notizie.</h2></div>
         <p>Incentivi ottenuti, nuovi incarichi, avanzamento dei lavori e aggiornamenti normativi del settore dell'energia e dell'edilizia.</p>
       </div>
-      <article class="nw-feat"><div class="nw-feat-in">
-        <a class="nw-feat-img" href="news/via-arsenale-14/" aria-label="Via Arsenale 14, Torino: leggi la notizia"><picture><source media="(max-width: 800px)" srcset="img/consiglio-regionale-via-arsenale-14-torino-2.jpg"><img src="img/consiglio-regionale-via-arsenale-14-torino-1.jpg" alt="Render della sede del Consiglio regionale del Piemonte di via Arsenale 14 a Torino dopo l'intervento" width="900" height="900" loading="lazy"></picture></a>
-        <div class="nw-feat-txt">
-          <div class="nw-top"><span class="nw-date">22 settembre 2026</span><span class="nw-tag">In evidenza · Nuovi incarichi</span></div>
-          <h3>Sede del Consiglio regionale del Piemonte, via Arsenale 14 a Torino: VEE, in raggruppamento con Mediapolis e Box Architetti, è prima in graduatoria</h3>
-          <p>Procedura aperta del Consiglio Regionale del Piemonte (CIG B7A131AB33) per l’aggiornamento del PFTE, il progetto esecutivo e il coordinamento della sicurezza del rifacimento e adeguamento normativo, tecnologico e funzionale della sede di via Arsenale 14. Nella seduta del 21 settembre 2026 il raggruppamento è risultato primo in graduatoria grazie al punteggio dell’offerta tecnica, che valeva 80 punti su 100.</p>
-          <dl class="nw-facts">
-            <div><dt>Importo dei lavori</dt><dd>10,89 M€</dd></div>
-            <div><dt>Servizi a base di gara</dt><dd>664.856 €</dd></div>
-          </dl>
-          <a class="nw-link" href="news/via-arsenale-14/">Leggi la notizia completa →</a>
-        </div>
-      </div></article>
+      <div class="nw-feats">
+        <article class="nw-feat">
+          <figure class="nw-feat-img"><button class="galbtn" type="button" data-gal="img/consiglio-regionale-via-arsenale-14-torino-2.jpg::Via Arsenale 14, Torino: l’edificio dopo l’intervento · render di progetto del raggruppamento|img/consiglio-regionale-via-arsenale-14-torino-3.jpg::La terrazza attrezzata a verde · render di progetto del raggruppamento|img/consiglio-regionale-via-arsenale-14-torino-4.jpg::Il fronte su strada in notturna · render di progetto del raggruppamento" data-title="Via Arsenale 14, Torino" aria-label="Apri le 3 immagini: Via Arsenale 14, Torino"><img src="img/consiglio-regionale-via-arsenale-14-torino-2.jpg" alt="Render della sede del Consiglio regionale del Piemonte di via Arsenale 14 a Torino dopo l’intervento" width="1200" height="800" loading="lazy" style="object-position:50% 50%"><span class="gal-n">3 immagini</span></button><figcaption>Render di progetto</figcaption></figure>
+          <div class="nw-feat-txt">
+            <div class="nw-top"><span class="nw-date">22 settembre 2026</span><span class="nw-tag">In evidenza · Nuovi incarichi</span></div>
+            <h3>Sede del Consiglio regionale del Piemonte, via Arsenale 14 a Torino: VEE, in raggruppamento con Mediapolis e Box Architetti, è prima in graduatoria</h3>
+            <p>Procedura aperta del Consiglio Regionale del Piemonte (CIG B7A131AB33) per l’aggiornamento del PFTE, il progetto esecutivo e il coordinamento della sicurezza del rifacimento e adeguamento normativo, tecnologico e funzionale della sede di via Arsenale 14. Nella seduta del 21 settembre 2026 il raggruppamento è risultato primo in graduatoria grazie al punteggio dell’offerta tecnica, che valeva 80 punti su 100.</p>
+            <dl class="nw-facts"><div><dt>Importo dei lavori</dt><dd>10,89 M€</dd></div><div><dt>Servizi a base di gara</dt><dd>664.856 €</dd></div></dl>
+            <a class="nw-link" href="news/via-arsenale-14/">Leggi la notizia completa →</a>
+          </div>
+        </article>
+        <article class="nw-feat">
+          <figure class="nw-feat-img"><button class="galbtn" type="button" data-gal="img/palazzo-senato-milano-inaugurazione-1.jpg::Il taglio del nastro nel cortile di Palazzo del Senato · Foto: Ministero della Cultura, post Instagram del 27 maggio 2026|img/palazzo-senato-milano-inaugurazione-2.jpg::Il cortile di Palazzo del Senato, sede dell’Archivio di Stato di Milano · Foto: Ministero della Cultura|img/palazzo-senato-milano-inaugurazione-3.jpg::Il portico con la mostra sulla storia del palazzo · Foto: Ministero della Cultura" data-title="Palazzo del Senato, Milano: inaugurazione" aria-label="Apri le 3 foto: Palazzo del Senato, Milano: inaugurazione"><img src="img/palazzo-senato-milano-inaugurazione-1.jpg" alt="Inaugurazione degli spazi riqualificati di Palazzo del Senato a Milano" width="1200" height="800" loading="lazy" style="object-position:50% 38%"><span class="gal-n">3 foto</span></button><figcaption>Foto: Ministero della Cultura</figcaption></figure>
+          <div class="nw-feat-txt">
+            <div class="nw-top"><span class="nw-date">27 maggio 2026</span><span class="nw-tag">In evidenza · Lavori conclusi</span></div>
+            <h3>Palazzo del Senato, Milano (MI): inaugurazione con il Ministro della Cultura</h3>
+            <p>Il Ministro della Cultura ha inaugurato gli spazi riqualificati di Palazzo del Senato, sede dell’Archivio di Stato di Milano, insieme ai vertici della Direzione generale Archivi, dell’Agenzia del Demanio e dell’Archivio e al Sindaco di Milano; è stato presentato anche il progetto di abbattimento delle barriere architettoniche e di valorizzazione dell’Archivio. Per il Ministero l’intervento è «un modello di riferimento anche per le altre Direzioni del Ministero della Cultura». VEE S.r.l. ha curato, in raggruppamento, la progettazione definitiva ed esecutiva e il coordinamento della sicurezza in fase di progettazione.</p>
+            <dl class="nw-facts"><div><dt>Importo dei lavori</dt><dd>950.000 €</dd></div><div><dt>Committente</dt><dd>Agenzia del Demanio</dd></div></dl>
+            <a class="nw-link" href="https://www.instagram.com/p/DY2Fm-UEZjg/" target="_blank" rel="noopener">Il post del Ministero della Cultura ↗</a>
+          </div>
+        </article>
+      </div>
       <div class="news-bar">
         <div class="chips"><button type="button" class="chip is-on" data-cat="">Tutte</button><button type="button" class="chip" data-cat="ultimi-incentivi-ottenuti">Ultimi incentivi ottenuti</button><button type="button" class="chip" data-cat="lavori-conclusi">Lavori conclusi</button><button type="button" class="chip" data-cat="energia-e-normativa">Energia e normativa</button><button type="button" class="chip" data-cat="nuovi-incarichi">Nuovi incarichi</button></div>
         <div class="pager"><button type="button" class="pg" data-pg="prev" aria-label="Notizie più recenti">‹</button><span class="news-count" aria-live="polite"></span><button type="button" class="pg" data-pg="next" aria-label="Notizie meno recenti">›</button></div>
@@ -719,12 +730,6 @@
           <h3>Buriasco: Teatro Blu</h3>
           <p>Il Comune ha ottenuto l&#x27;incentivo del Conto Termico 3.0 grazie all&#x27;attività di consulenza e alla diagnosi energetica sviluppate da VEE S.r.l., che ha curato anche la presentazione della richiesta al GSE: riqualificazione del teatro comunale di piazza Roma 3.</p>
           <div class="nw-foot"><img src="img/stemmi/buriasco.png" alt="" loading="lazy"><span class="nw-amt">133.603 €<small>incentivo riconosciuto · 100% del costo</small></span></div>
-        </article>
-        <article class="nw" data-cat="lavori-conclusi"><figure class="nw-ph"><img src="img/palazzo-senato-milano-inaugurazione.jpg" alt="Inaugurazione degli spazi riqualificati di Palazzo del Senato a Milano" loading="lazy"><figcaption>Foto: Ministero della Cultura</figcaption></figure>
-          <div class="nw-top"><span class="nw-date">27 maggio 2026</span><span class="nw-tag">Lavori conclusi</span></div>
-          <h3>Palazzo del Senato, Milano (MI): inaugurazione con il Ministro della Cultura</h3>
-          <p>Il Ministro della Cultura ha inaugurato gli spazi riqualificati di Palazzo del Senato, sede dell’Archivio di Stato di Milano, insieme ai vertici della Direzione generale Archivi, dell’Agenzia del Demanio e dell’Archivio e al Sindaco di Milano; è stato presentato anche il progetto di abbattimento delle barriere architettoniche e di valorizzazione dell’Archivio. Per il Ministero l’intervento è «un modello di riferimento anche per le altre Direzioni del Ministero della Cultura». VEE S.r.l. ha curato, in raggruppamento, la progettazione definitiva ed esecutiva e il coordinamento della sicurezza in fase di progettazione.</p>
-          <a class="nw-link" href="https://www.instagram.com/p/DY2Fm-UEZjg/" target="_blank" rel="noopener">Il post del Ministero della Cultura ↗</a>
         </article>
         <article class="nw" data-cat="lavori-conclusi"><div class="nw-more" hidden><div class="nwr"><span>Committente</span><b>Agenzia del Demanio — accordo quadro per servizi di ingegneria e architettura</b></div><div class="nwr"><span>Finanziamento</span><b>PNRR, 1,4 milioni di euro</b></div><div class="nwr"><span>Interventi</span><b>nuova pavimentazione, ascensori, rampe, pannelli tattili, servizi accessibili e illuminazione dei cortili</b></div><div class="nwr"><span>Prestazioni VEE</span><b>progettazione definitiva ed esecutiva e coordinamento della sicurezza in fase di progettazione, in raggruppamento</b></div></div>
           <div class="nw-top"><span class="nw-date">26 maggio 2026</span><span class="nw-tag">Lavori conclusi</span></div>

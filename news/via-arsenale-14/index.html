@@ -259,7 +259,7 @@
   .lb { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; background: rgba(11, 58, 63, .96); padding: 28px; }
   .lb.is-open { display: flex; }
   .lb-fig { margin: 0; max-width: 900px; width: 100%; }
-  .lb-fig img { display: block; width: 100%; height: auto; }
+  .lb-fig img { display: block; width: auto; max-width: 100%; height: auto; max-height: calc(100vh - 120px); margin: 0 auto; }
   .lb-fig figcaption { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; color: var(--paper, #F5F2EA); opacity: .85; margin-top: 14px; text-align: center; }
   .lb button { position: absolute; background: none; border: 0; color: #F5F2EA; cursor: pointer; line-height: 1; padding: 14px; font-size: 2.2rem; }
   .lb button:hover { color: var(--nebbia); }
@@ -390,21 +390,23 @@
   .pg { width: 34px; height: 34px; border: 1px solid var(--line-strong); background: none; color: var(--ink); font-size: 1.15rem; line-height: 1; cursor: pointer; transition: background .2s ease, color .2s ease; }
   .pg:hover:not(:disabled) { background: var(--ink); color: #fff; }
   .pg:disabled { opacity: .3; cursor: default; }
-  .nw-feat { margin-bottom: clamp(32px, 4vw, 48px); }
-  .nw-feat-in { display: grid; grid-template-columns: 4fr 8fr; gap: 0; background: var(--bg-alt); }
-  .nw-feat-img { display: block; overflow: hidden; }
-  .nw-feat-img img { display: block; width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1; transition: transform .9s cubic-bezier(.2, .8, .2, 1); }
+  .nw-feats { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 2.4vw, 32px); margin-bottom: clamp(32px, 4vw, 48px); }
+  .nw-feat { display: flex; flex-direction: column; background: var(--bg-alt); }
+  .nw-feat-img { margin: 0; position: relative; overflow: hidden; }
+  .nw-feat-img .galbtn { overflow: hidden; }
+  .nw-feat-img img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; transition: transform .9s cubic-bezier(.2, .8, .2, 1); }
   .nw-feat:hover .nw-feat-img img { transform: scale(1.04); }
+  .nw-feat-img figcaption { position: absolute; right: 0; bottom: 0; font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; background: rgba(11, 58, 63, .72); padding: 5px 9px; pointer-events: none; }
   .nw-feat-txt { display: grid; gap: 10px; align-content: start; padding: clamp(18px, 2.4vw, 28px); }
   .nw-feat .nw-tag { color: var(--nebbia); }
-  .nw-feat h3 { font-family: var(--display); font-weight: 500; font-size: clamp(1.15rem, 1.8vw, 1.4rem); line-height: 1.2; color: var(--ink); margin: 0; }
+  .nw-feat h3 { font-family: var(--display); font-weight: 500; font-size: clamp(1.1rem, 1.6vw, 1.3rem); line-height: 1.2; color: var(--ink); margin: 0; }
   .nw-feat p { margin: 0; font-size: 0.9rem; color: var(--text); max-width: 70ch; }
   .nw-facts { display: grid; grid-template-columns: repeat(2, auto); justify-content: start; gap: 10px 32px; margin: 2px 0 0; padding-top: 10px; border-top: 1px solid var(--line); }
   .nw-facts div { display: flex; flex-direction: column; gap: 3px; }
   .nw-facts dt { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
   .nw-facts dd { margin: 0; font-family: var(--display); font-weight: 500; font-size: 1rem; color: var(--ink); }
   .nw-feat .nw-link { margin-top: 0; }
-  @media (max-width: 800px) { .nw-feat-in { grid-template-columns: 1fr; } .nw-feat-img img { aspect-ratio: 3 / 2; } }
+  @media (max-width: 800px) { .nw-feats { grid-template-columns: 1fr; } }
   .news-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 32px; }
   .nw[hidden] { display: none; }
   .nw { display: grid; gap: 10px; align-content: start; border-top: 1px solid var(--line-strong); padding-top: 18px; }
@@ -459,6 +461,11 @@
   .art-fig { margin: 0 0 clamp(28px, 4vw, 44px); }
   .art-fig img { display: block; width: 100%; height: auto; }
   .art-fig figcaption { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 10px; }
+  .art-gal { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: clamp(24px, 3vw, 36px) 0 0; }
+  .art-gal figure { margin: 0; }
+  .art-gal img { display: block; width: 100%; height: auto; }
+  .art-gal figcaption { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+  @media (max-width: 620px) { .art-gal { grid-template-columns: 1fr; } }
   .art .lead { font-size: clamp(1.05rem, 1.5vw, 1.2rem); color: var(--ink); max-width: 60ch; margin: 0 0 1.2em; }
   .art .prose p { font-size: 0.9875rem; }
   .art .nb-rows { margin-top: clamp(28px, 4vw, 44px); }
@@ -490,6 +497,7 @@
         <figure class="art-fig"><img src="/img/consiglio-regionale-via-arsenale-14-torino-2.jpg" alt="Render della sede del Consiglio regionale del Piemonte di via Arsenale 14 a Torino dopo l'intervento di rifacimento" width="1200" height="800"><figcaption>Via Arsenale 14, Torino · immagine di progetto del raggruppamento</figcaption></figure>
         <p class="lead">Nella seduta pubblica del 21 settembre 2026, con l’apertura delle offerte economiche, VEE S.r.l., in raggruppamento temporaneo con Mediapolis Engineering S.r.l. (mandataria) e Box Architetti S.r.l., è risultata prima nella graduatoria della procedura aperta indetta dal Consiglio Regionale del Piemonte per il “rifacimento e l’adeguamento normativo, tecnologico e funzionale dell’immobile di via Arsenale n. 14”, sede dell’assemblea regionale a Torino.</p>
         <div class="prose"><p>L’appalto riguarda il servizio di aggiornamento del progetto di fattibilità tecnico-economica (PFTE), la redazione del progetto esecutivo e il coordinamento della sicurezza in fase di progettazione (CSP) ai sensi del D.Lgs 36/2023, con metodologia BIM obbligatoria e una durata di 240 giorni. L’importo dei servizi a base di gara è di 664.856,17 euro; il costo stimato delle opere, che comprende edilizia, strutture e impianti meccanici ed elettrici, è di 10,89 milioni di euro.</p><p>La gara è stata aggiudicata con il criterio dell’offerta economicamente più vantaggiosa: 80 punti per l’offerta tecnica e 20 per quella economica. Il primo posto è dovuto al punteggio tecnico, ottenuto con proposte di semplificazione degli impianti rispetto al PFTE approvato, con il riuso delle parti esistenti ancora idonee e il rifacimento di colonne montanti e distribuzioni; con soluzioni per la produzione di energia da fonti rinnovabili integrate nell’involucro; con accorgimenti per ridurre l’impatto dei lavori sugli uffici in attività; con un’organizzazione del servizio fondata sui processi informativi BIM e sugli studi LCA e LCC (UNI EN 15643, UNI EN 15978, UNI EN 16627).</p><p>All’interno del raggruppamento VEE cura la progettazione degli impianti meccanici ed elettrici, la prevenzione incendi e gli aspetti energetici dell’intervento. L’aggiudicazione definitiva seguirà alle verifiche di legge sui requisiti dichiarati.</p></div>
+        <div class="art-gal"><figure><img src="/img/consiglio-regionale-via-arsenale-14-torino-3.jpg" alt="Render della terrazza attrezzata a verde della sede di via Arsenale 14" width="1200" height="800" loading="lazy"><figcaption>La terrazza attrezzata a verde · render di progetto</figcaption></figure><figure><img src="/img/consiglio-regionale-via-arsenale-14-torino-4.jpg" alt="Render notturno del fronte su strada della sede di via Arsenale 14" width="1200" height="800" loading="lazy"><figcaption>Il fronte su strada in notturna · render di progetto</figcaption></figure></div>
         <div class="nb-rows"><div class="nwr"><span>Stazione appaltante</span><b>Consiglio Regionale del Piemonte — Settore Tecnico e Sicurezza</b></div><div class="nwr"><span>Procedura</span><b>aperta (art. 71 D.Lgs 36/2023), offerta economicamente più vantaggiosa: 80 punti tecnica, 20 economica; piattaforma SINTEL</b></div><div class="nwr"><span>CIG</span><b>B7A131AB33</b></div><div class="nwr"><span>Oggetto</span><b>rifacimento e adeguamento normativo, tecnologico e funzionale dell’immobile di via Arsenale n. 14, Torino</b></div><div class="nwr"><span>Prestazioni</span><b>aggiornamento del PFTE, progetto esecutivo, coordinamento della sicurezza in fase di progettazione, metodologia BIM; 240 giorni</b></div><div class="nwr"><span>Importo dei lavori</span><b>10.890.000 € (costo stimato delle opere: edilizia E.20, strutture S.03, impianti IA.01, IA.02, IA.03)</b></div><div class="nwr"><span>Servizi a base di gara</span><b>664.856,17 € oltre IVA</b></div><div class="nwr"><span>Raggruppamento</span><b>VEE S.r.l. con Mediapolis Engineering S.r.l. (mandataria) e Box Architetti S.r.l.</b></div><div class="nwr"><span>Attività VEE</span><b>impianti meccanici ed elettrici, prevenzione incendi, esperto energetico</b></div><div class="nwr"><span>Esito</span><b>prima in graduatoria nella seduta del 21 settembre 2026; aggiudicazione subordinata alle verifiche di legge</b></div></div>
         <p class="art-src">Fonte: <a href="https://bandi.cr.piemonte.it/web/content/rifacimento-e-l%E2%80%99adeguamento-normativo-tecnologico-e-funzionale-dell%E2%80%99immobile-di-arsenale-n" target="_blank" rel="noopener">Pagina della procedura sul sito del Consiglio regionale ↗</a></p>
         <p class="art-back"><a class="btn btn-primary" href="/#news">Tutte le notizie</a></p>
