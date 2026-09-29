@@ -235,8 +235,8 @@
   .hero-draw { right: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter))); width: min(38vw, 500px); }
   @media (max-width: 1100px) { .hero-draw { width: min(40vw, 470px); } }
   /* scheda incarico: categorie con importi, attività VEE, importo complessivo */
-  .card { scroll-margin-top: 110px; }
-  .card:target { background: var(--bg-alt); box-shadow: 0 0 0 14px var(--bg-alt); }
+  .card { scroll-margin-top: 125px; }
+  .card:target { background: var(--bg-alt); box-shadow: 0 0 0 14px var(--bg-alt); outline: 2px solid var(--teal-ink); outline-offset: 14px; }
   .card .amount { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 6px; }
   .card .amt { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 2px 0; }
   .card .amt span { color: var(--muted); font-size: 0.7rem; }
@@ -710,6 +710,7 @@ document.addEventListener('keydown',function(e){if(!ov||!ov.classList.contains('
 var x0=null;ov.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
 ov.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)go(dx<0?1:-1);x0=null;},{passive:true});}
 for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){if(!ov)build();last=this;list=this.getAttribute('data-gal').split('|');tt=this.getAttribute('data-title');idx=parseInt(this.getAttribute('data-start')||'0',10)||0;show();ov.classList.add('is-open');document.documentElement.style.overflow='hidden';ov.querySelector('.lb-x').focus();try{history.pushState({vee:'lb'},'');pushed=true;}catch(e){}});})();
+(function(){function go(){var h=location.hash;if(!/^#incarico-/.test(h))return;var el=document.getElementById(h.slice(1));if(!el)return;var y=el.getBoundingClientRect().top+window.pageYOffset-125;window.scrollTo({top:Math.max(0,y),behavior:'instant'});}go();window.addEventListener('load',go);window.addEventListener('hashchange',go);})();
 
 </script>
 
