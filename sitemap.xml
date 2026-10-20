@@ -8,4 +8,36 @@
   <url><loc>https://www.vee.it/gare-pubbliche/</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://www.vee.it/incentivi-comuni/</loc><lastmod>2026-09-29</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://www.vee.it/privacy.html</loc><lastmod>2026-09-29</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://www.vee.it/en/</loc><lastmod>2026-10-19</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://www.vee.it/fr/</loc><lastmod>2026-10-19</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://www.vee.it/zh/</loc><lastmod>2026-10-19</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://www.vee.it/ru/</loc><lastmod>2026-10-19</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://www.vee.it/en/news/</loc><lastmod>2026-10-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.vee.it/fr/news/</loc><lastmod>2026-10-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.vee.it/zh/news/</loc><lastmod>2026-10-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.vee.it/ru/news/</loc><lastmod>2026-10-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.vee.it/en/news/via-arsenale-14/</loc><lastmod>2026-10-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.vee.it/fr/news/via-arsenale-14/</loc><lastmod>2026-10-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.vee.it/zh/news/via-arsenale-14/</loc><lastmod>2026-10-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.vee.it/ru/news/via-arsenale-14/</loc><lastmod>2026-10-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.vee.it/en/incarichi/</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.vee.it/fr/incarichi/</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.vee.it/zh/incarichi/</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.vee.it/ru/incarichi/</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.vee.it/en/gare-imprese/</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.vee.it/fr/gare-imprese/</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.vee.it/zh/gare-imprese/</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.vee.it/ru/gare-imprese/</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.vee.it/en/gare-pubbliche/</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.vee.it/fr/gare-pubbliche/</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.vee.it/zh/gare-pubbliche/</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.vee.it/ru/gare-pubbliche/</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.vee.it/en/incentivi-comuni/</loc><lastmod>2026-09-29</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.vee.it/fr/incentivi-comuni/</loc><lastmod>2026-09-29</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.vee.it/zh/incentivi-comuni/</loc><lastmod>2026-09-29</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.vee.it/ru/incentivi-comuni/</loc><lastmod>2026-09-29</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.vee.it/en/privacy.html</loc><lastmod>2026-09-29</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://www.vee.it/fr/privacy.html</loc><lastmod>2026-09-29</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://www.vee.it/zh/privacy.html</loc><lastmod>2026-09-29</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://www.vee.it/ru/privacy.html</loc><lastmod>2026-09-29</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
 </urlset>
