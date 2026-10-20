@@ -496,6 +496,8 @@
   .langbar a { color: var(--muted); text-decoration: none; }
   .langbar a:hover, .langbar a:focus { color: var(--teal-ink); text-decoration: none; }
   .langbar a[aria-current="true"] { color: var(--teal-ink); font-weight: 600; }
+  /* su mobile barra lingue sempre visibile, sopra l'header fisso */
+  @media (max-width: 760px) { .langbar { position: sticky; top: 0; z-index: 21; } header { top: 30px; } html { scroll-padding-top: 106px; } }
   nav a { white-space: nowrap; }
   /* menu compatto quando le voci non stanno su una riga */
   @media (min-width: 761px) and (max-width: 900px) {
