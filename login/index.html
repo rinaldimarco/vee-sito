@@ -69,6 +69,11 @@ tr.pz td { color: var(--muted); font-style: italic; }
   .grid3 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .grid3 > :first-child { grid-column: 1 / -1; }
 }
+.rip-row { display: grid; grid-template-columns: minmax(0, 1fr) 76px 28px; gap: 8px; align-items: center; margin-bottom: 8px; }
+.rip-row input { padding: 10px 10px; }
+.rip-x { border: 0; background: none; font-size: 1.3rem; color: var(--muted); cursor: pointer; }
+.rip-tot { font-family: var(--mono); font-size: 0.8rem; margin: 6px 0 10px; }
+.rip-tot.ok { color: var(--ok); } .rip-tot.ko { color: var(--warn); }
 .man { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
 .msg { padding: 12px 14px; margin-top: 14px; border-left: 3px solid var(--teal-ink); background: var(--bg-alt); font-size: 0.95rem; }
 .msg.err { border-left-color: var(--warn); color: #6b2a0b; }
@@ -223,6 +228,18 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
       <button class="btn btn-primary" type="button" id="b-fascia" style="margin-top:12px">Aggiungi fascia</button>
       <div id="m-fascia"></div>
     </details>
+
+    <details id="d-rip" style="margin-top:10px">
+      <summary>Dividi le ore del giorno tra più commesse</summary>
+      <p class="small" style="margin:8px 0 12px">Indica quante ore hai dedicato a ciascuna commessa: gli orari di presenza restano quelli registrati.</p>
+      <div style="max-width:220px"><label class="f" for="r-giorno">Giorno</label><input type="date" id="r-giorno"></div>
+      <p class="small" id="r-info" style="margin:10px 0"></p>
+      <div id="r-righe"></div>
+      <button class="link" type="button" id="b-rip-add">+ Aggiungi commessa</button>
+      <p class="rip-tot" id="r-tot"></p>
+      <button class="btn btn-primary" type="button" id="b-rip">Salva la ripartizione</button>
+      <div id="m-rip"></div>
+    </details>
   </div>
 
   <div class="card" id="c-prog">
@@ -281,7 +298,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
   var STATI = [['U', 'Ufficio'], ['R', 'Remoto'], ['A', 'Assente']];
   var MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
   var $ = function (id) { return document.getElementById(id); };
-  var pin = '', uid = '', ricorda = false, st = null, adm = null, wk = 0, awk = 0, prog = [null, null], oraToccata = false, timer = null, skew = 0, noPrefill = false, vista = '', daRipristinare = '';
+  var pin = '', uid = '', ricorda = false, ripGiorno = '', ripFasce = [], ripRighe = null, st = null, adm = null, wk = 0, awk = 0, prog = [null, null], oraToccata = false, timer = null, skew = 0, noPrefill = false, vista = '', daRipristinare = '';
 
   function store(get, k, v) { try { if (get) return localStorage.getItem(k); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) { return null; } }
   function show(id) { var cambia = vista !== id; vista = id; ['v-config', 'v-login', 'v-pin', 'v-privacy', 'v-main', 'v-admin'].forEach(function (x) { $(x).classList.toggle('hidden', x !== id); }); if (cambia) window.scrollTo(0, 0); }
@@ -316,7 +333,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     // niente dati della persona precedente sullo stesso dispositivo
     ['commessa', 'f-commessa', 'f-giorno', 'f-da', 'f-a', 'ora-dim'].forEach(function (id) { $(id).value = ''; });
     ['m-ore', 'm-fascia', 'm-prog'].forEach(function (id) { msg(id, ''); });
-    $('d-fascia').open = false;
+    $('d-fascia').open = false; $('d-rip').open = false; ripGiorno = ''; ripFasce = []; msg('m-rip', '');
     show('v-login');
   }
   function render(r) {
@@ -334,7 +351,11 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     $('f-giorno').max = oggi; $('f-giorno').min = isoGiorno(-7);
     if (!$('f-giorno').value) $('f-giorno').value = oggi;
     if (!$('f-commessa').value) $('f-commessa').value = r.ultimaCommessa || '';
-    renderOre(); renderOggi();
+    $('r-giorno').max = oggi; $('r-giorno').min = isoGiorno(-7);
+    if (r.giornata) { ripGiorno = r.giornata.giorno; ripFasce = r.giornata.fasce; }
+    else if (!ripGiorno || ripGiorno === oggi) { ripGiorno = oggi; ripFasce = r.oggi; }
+    $('r-giorno').value = ripGiorno; ripRighe = null;
+    renderOre(); renderOggi(); renderRip();
     prog = [r.settimane[0].giorni.slice(), r.settimane[1].giorni.slice()];
     for (var i = 0; i < 2; i++) if (!r.settimane[i].salvato) prog[i] = (r.settimane[1 - i].salvato ? r.settimane[1 - i].giorni : ['U', 'U', 'U', 'U', 'U']).slice();
     wk = (!r.settimane[0].salvato || d.getDay() < 4 && d.getDay() > 0) ? 0 : 1;
@@ -384,7 +405,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
       // l'intervallo tra due fasce è una pausa (non conteggiata)
       var g = i ? min(x.da) - min(rows[i - 1].a) : 0;
       return (g > 0 ? '<tr class="pz"><td>' + esc(rows[i - 1].a + '–' + x.da) + '</td><td>Pausa</td><td class="n">' + hh(g / 60) + '</td></tr>' : '')
-        + '<tr><td>' + esc(x.da + '–' + x.a) + (x.manuale ? ' <span class="man">a mano</span>' : '') + '</td><td>' + esc(x.commessa) + '</td><td class="n">' + hh(x.ore) + '</td></tr>';
+        + '<tr><td>' + esc(x.da + '–' + x.a) + (x.nota ? ' <span class="man">' + esc(x.nota) + '</span>' : '') + '</td><td>' + esc(x.commessa) + '</td><td class="n">' + hh(x.ore) + '</td></tr>';
     }).join('')
       + (rows.length > 1 ? '<tr class="tot"><td>Totale</td><td></td><td class="n">' + hh(tot) + '</td></tr>' : '');
   }
@@ -476,6 +497,84 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
   $('b-oraora').addEventListener('click', function () { oraToccata = false; aggiornaOra(); });
   setInterval(function () { if (st) aggiornaOra(); }, 20000);
 
+  /* ---------- ripartizione delle ore tra commesse ---------- */
+  // "3", "3:30", "3,5", "3.5" → minuti
+  function minuti(s) {
+    s = String(s || '').trim().replace(',', '.');
+    var m = /^(\d{1,2}):(\d{1,2})$/.exec(s);
+    if (m) return Number(m[1]) * 60 + Number(m[2]);
+    if (/^\d{1,2}(\.\d+)?$/.test(s)) return Math.round(Number(s) * 60);
+    return NaN;
+  }
+  function hm(min) { return Math.floor(min / 60) + ':' + String(min % 60).padStart(2, '0'); }
+  function totFasce() { return Math.round(ripFasce.reduce(function (t, x) { return t + x.ore * 60; }, 0)); }
+  function renderRip() {
+    var tot = totFasce();
+    if (!ripFasce.length) {
+      $('r-info').textContent = 'Nessuna fascia chiusa in questo giorno.';
+      $('r-righe').innerHTML = ''; $('b-rip-add').classList.add('hidden'); $('b-rip').classList.add('hidden'); $('r-tot').textContent = '';
+      return;
+    }
+    $('b-rip-add').classList.remove('hidden'); $('b-rip').classList.remove('hidden');
+    var inCorso = ripGiorno === isoGiorno(0) && st && st.aperto && st.aperto.oggi;
+    $('r-info').textContent = 'Ore registrate: ' + hh(tot / 60) + ' (' + ripFasce.map(function (x) { return x.da + '–' + x.a; }).join(', ') + ')'
+      + (inCorso ? '. La fascia in corso non è compresa: dividila dopo la pausa o la fine lavoro.' : '');
+    if (!ripRighe) {
+      // proposta: le commesse già registrate nel giorno con le loro ore
+      var per = {}, ord = [];
+      ripFasce.forEach(function (x) { if (!(x.commessa in per)) { per[x.commessa] = 0; ord.push(x.commessa); } per[x.commessa] += x.ore * 60; });
+      ripRighe = ord.map(function (c) { return { c: c, o: hm(Math.round(per[c])) }; });
+      // gli arrotondamenti ai minuti vanno sull'ultima riga
+      var somma = ripRighe.reduce(function (t, r) { return t + minuti(r.o); }, 0);
+      if (somma !== tot) { var u = ripRighe[ripRighe.length - 1]; u.o = hm(minuti(u.o) + tot - somma); }
+      if (ripRighe.length === 1) ripRighe.push({ c: '', o: '' });
+    }
+    $('r-righe').innerHTML = ripRighe.map(function (r, i) {
+      return '<div class="rip-row"><input type="text" list="l-commesse" placeholder="Commessa" data-i="' + i + '" data-k="c" value="' + esc(r.c) + '" autocomplete="off">'
+        + '<input type="text" inputmode="decimal" placeholder="ore, es. 2:30" data-i="' + i + '" data-k="o" value="' + esc(r.o) + '">'
+        + '<button class="rip-x" type="button" data-del="' + i + '" aria-label="Togli riga">×</button></div>';
+    }).join('');
+    totRip();
+  }
+  function totRip() {
+    var tot = totFasce(), ass = 0, err = false;
+    ripRighe.forEach(function (r) { if (!r.c && !r.o) return; var m = minuti(r.o); if (isNaN(m) || !r.c) err = true; else ass += m; });
+    var resto = tot - ass, el = $('r-tot');
+    el.className = 'rip-tot ' + (!err && resto === 0 ? 'ok' : 'ko');
+    el.textContent = err ? 'Completa commessa e ore di ogni riga (ore come 2:30 oppure 2,5)'
+      : resto === 0 ? 'Assegnate tutte le ore: ' + hh(tot / 60)
+      : resto > 0 ? 'Restano da assegnare ' + hh(resto / 60) : 'Hai assegnato ' + hh(-resto / 60) + ' in più';
+    $('b-rip').disabled = err || resto !== 0;
+  }
+  $('r-righe').addEventListener('input', function (e) {
+    var t = e.target; if (!t.dataset.k) return;
+    ripRighe[Number(t.dataset.i)][t.dataset.k] = t.value; totRip();
+  });
+  $('r-righe').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-del]'); if (!b) return;
+    ripRighe.splice(Number(b.dataset.del), 1); if (!ripRighe.length) ripRighe.push({ c: '', o: '' }); renderRip();
+  });
+  $('b-rip-add').addEventListener('click', function () {
+    var tot = totFasce(), ass = ripRighe.reduce(function (t, r) { var m = minuti(r.o); return t + (isNaN(m) ? 0 : m); }, 0);
+    ripRighe.push({ c: '', o: tot - ass > 0 ? hm(tot - ass) : '' }); renderRip();
+    var ins = $('r-righe').querySelectorAll('input[data-k="c"]'); ins[ins.length - 1].focus();
+  });
+  $('r-giorno').addEventListener('change', function () {
+    var g = this.value; if (!g) return;
+    msg('m-rip', '');
+    call({ azione: 'giorno', pin: pin, giorno: g }).then(function (r) {
+      if (!r.ok) return msg('m-rip', r.errore, 'err');
+      render(r);
+    });
+  });
+  $('b-rip').addEventListener('click', function () {
+    var righe = ripRighe.filter(function (r) { return r.c || r.o; }).map(function (r) { return { commessa: r.c, minuti: minuti(r.o) }; });
+    call({ azione: 'ripartisci', pin: pin, giorno: ripGiorno, righe: righe }, this).then(function (r) {
+      if (!r.ok) return msg('m-rip', r.errore, 'err');
+      render(r); msg('m-rip', 'Ripartizione salvata: ' + righe.map(function (x) { return x.commessa + ' ' + hh(x.minuti / 60); }).join(', '));
+    });
+  });
+
   /* ---------- fascia inserita a mano ---------- */
   $('b-fascia').addEventListener('click', function () {
     var g = $('f-giorno').value, da = $('f-da').value, a = $('f-a').value, c = $('f-commessa').value;
@@ -548,7 +647,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
       + r.commesseTotali.map(function (c) { return '<tr><td>' + esc(c.commessa) + '</td><td class="n">' + hh(c.ore) + '</td></tr>'; }).join('') + '</tbody>'
       : '<tbody><tr><td class="small">Nessuna registrazione nel mese</td></tr></tbody>';
     $('a-righe').innerHTML = '<thead><tr><th>Data</th><th>Collaboratore</th><th>Orario</th><th>Commessa</th><th class="n">Ore</th></tr></thead><tbody>'
-      + r.righe.map(function (x) { return '<tr><td>' + esc(x.giorno.split('-').reverse().join('/')) + '</td><td>' + esc(x.persona) + '</td><td>' + esc(x.da + '–' + x.a) + (x.manuale ? ' <span class="man">a mano</span>' : '') + '</td><td>' + esc(x.commessa) + '</td><td class="n">' + (x.ore ? hh(x.ore) : '') + '</td></tr>'; }).join('') + '</tbody>';
+      + r.righe.map(function (x) { return '<tr><td>' + esc(x.giorno.split('-').reverse().join('/')) + '</td><td>' + esc(x.persona) + '</td><td>' + esc(x.da + '–' + x.a) + (x.nota ? ' <span class="man">' + esc(x.nota) + '</span>' : '') + '</td><td>' + esc(x.commessa) + '</td><td class="n">' + (x.ore ? hh(x.ore) : '') + '</td></tr>'; }).join('') + '</tbody>';
     $('a-lista').value = r.commesse.join('\n');
     renderApin();
     renderAprog();
@@ -585,7 +684,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
   $('a-csv').addEventListener('click', function () {
     if (!adm) return;
     var q = function (v) { return '"' + String(v).replace(/"/g, '""') + '"'; };
-    var rows = [['Data', 'Collaboratore', 'Commessa', 'Inizio', 'Fine', 'Ore', 'Note']].concat(adm.righe.map(function (x) { return [x.giorno, x.persona, x.commessa, x.da, x.a, x.ore.toFixed(2).replace('.', ','), x.manuale ? 'inserita a mano' : '']; }));
+    var rows = [['Data', 'Collaboratore', 'Commessa', 'Inizio', 'Fine', 'Ore', 'Note']].concat(adm.righe.map(function (x) { return [x.giorno, x.persona, x.commessa, x.da, x.a, x.ore.toFixed(2).replace('.', ','), String(x.nota || '').replace('a mano', 'inserita a mano').replace('ripartita', 'ripartita a mano')]; }));
     var blob = new Blob(['﻿' + rows.map(function (r) { return r.map(q).join(';'); }).join('\r\n')], { type: 'text/csv' });
     var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'registro-ore-' + adm.mese + '.csv';
     document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
