@@ -75,6 +75,8 @@ input:focus, textarea:focus, button:focus-visible { outline: 2px solid var(--tea
 .pk-item input { width: 18px; height: 18px; flex: 0 0 auto; }
 .pk-item.rec { background: var(--bg-alt); }
 .pk-scelte { margin-top: 14px; }
+.pk-agg { margin-top: 8px; }
+.pk-agg .small { margin-left: 6px; }
 .pk-row { display: grid; grid-template-columns: minmax(0, 1fr) 86px 28px; gap: 8px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--line); }
 .pk-row span { font-size: 0.95rem; color: var(--ink); overflow-wrap: anywhere; }
 .pk-row input { padding: 9px 8px; text-align: right; }
@@ -267,7 +269,10 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
   <div class="card"><h2>Elenco commesse</h2>
     <p class="small">Una commessa per riga: è l'elenco proposto ai collaboratori.</p>
     <textarea id="a-lista" rows="10"></textarea>
-    <button class="btn btn-primary" type="button" id="a-salva" style="margin-top:12px">Salva elenco</button>
+    <div class="row" style="margin-top:12px">
+      <button class="btn btn-primary" type="button" id="a-salva">Salva elenco</button>
+      <button class="link hidden" type="button" id="a-dbx">Aggiorna dalle cartelle Dropbox</button>
+    </div>
   </div>
   <div class="card"><h2>PIN dei collaboratori</h2>
     <p class="small">Se qualcuno dimentica il PIN che ha scelto, «Ripristina» lo riporta al PIN iniziale.</p>
@@ -325,9 +330,12 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
   function Picker(root, totale, onChange) {
     root.innerHTML = '<label class="f">Commesse su cui hai lavorato</label>'
       + '<input type="text" class="pk-cerca" placeholder="Scrivi il numero o il nome per cercare" autocomplete="off">'
-      + '<div class="pk-lista"></div><div class="pk-scelte"></div><p class="rip-tot"></p>';
+      + '<div class="pk-lista"></div>'
+      + '<div class="pk-agg hidden"><button class="link" type="button">Aggiorna elenco commesse</button><span class="small"></span></div>'
+      + '<div class="pk-scelte"></div><p class="rip-tot"></p>';
     var cerca = root.querySelector('.pk-cerca'), lista = root.querySelector('.pk-lista'), scelte = root.querySelector('.pk-scelte'), info = root.querySelector('.rip-tot');
-    var tutte = [], ultime = [], sel = [];
+    var agg = root.querySelector('.pk-agg');
+    var tutte = [], ultime = [], sel = [], conAgg = false;
     function scelta(c) { return sel.some(function (s) { return s.c === c; }); }
     function drawLista() {
       var q = cerca.value.trim().toLowerCase();
@@ -335,7 +343,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
       var el = rec.concat(tutte.filter(function (c) { return rec.indexOf(c) < 0; })).filter(function (c) { return !q || c.toLowerCase().indexOf(q) >= 0; });
       lista.innerHTML = el.length ? el.map(function (c) {
         return '<label class="pk-item' + (!q && rec.indexOf(c) >= 0 ? ' rec' : '') + '"><input type="checkbox" value="' + esc(c) + '"' + (scelta(c) ? ' checked' : '') + '><span>' + esc(c) + '</span></label>';
-      }).join('') : '<p class="small" style="padding:9px 12px; margin:0">Nessuna commessa trovata: chiedi a Marco di aggiungerla all\'elenco.</p>';
+      }).join('') : '<p class="small" style="padding:9px 12px; margin:0">Nessuna commessa trovata: ' + (conAgg ? 'premi «Aggiorna elenco commesse» qui sotto; se non compare, chiedi a Marco.' : 'chiedi a Marco di aggiungerla all\'elenco.') + '</p>';
     }
     function resto() {
       var T = totale(); if (isNaN(T)) return NaN;
@@ -377,6 +385,8 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     scelte.addEventListener('click', function (e) { var b = e.target.closest('button[data-x]'); if (!b) return; sel.splice(Number(b.getAttribute('data-x')), 1); drawScelte(); drawLista(); });
     return {
       elenco: function (c, u) { tutte = c || []; ultime = u || []; drawLista(); },
+      aggiornabile: function (si) { conAgg = !!si; agg.classList.toggle('hidden', !conAgg); drawLista(); },
+      avviso: function (t, occupato) { agg.querySelector('.small').textContent = t || ''; agg.querySelector('button').disabled = !!occupato; },
       aggiorna: aggiorna,
       reset: function () { sel = []; cerca.value = ''; drawLista(); drawScelte(); },
       imposta: function (righe) {
@@ -397,6 +407,16 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
   ['o-da', 'o-a', 'o-pausa'].forEach(function (id) { $(id).addEventListener('input', function () { oggiToccato = true; pkOggi.aggiorna(); }); });
   $('pk-oggi').addEventListener('change', function () { oggiToccato = true; });
   ['m-da', 'm-a', 'm-pausa'].forEach(function (id) { $(id).addEventListener('input', pkMan.aggiorna); });
+  // «Aggiorna elenco commesse»: lo script legge le cartelle numerate nuove su Dropbox
+  function aggiornaElenco() {
+    [pkOggi, pkMan].forEach(function (k) { k.avviso('aggiornamento…', true); });
+    call({ azione: 'aggiorna_commesse', pin: pin }).then(function (r) {
+      var t = !r.ok ? r.errore : r.nuove && r.nuove.length ? 'aggiunte: ' + r.nuove.join(', ') : 'elenco aggiornato, nessuna commessa nuova';
+      if (r.ok) { st.commesse = r.commesse; st.ultime = r.ultime; pkOggi.elenco(r.commesse, r.ultime); pkMan.elenco(r.commesse, r.ultime); }
+      [pkOggi, pkMan].forEach(function (k) { k.avviso(t, false); });
+    });
+  }
+  ['pk-oggi', 'pk-man'].forEach(function (id) { $(id).querySelector('.pk-agg button').addEventListener('click', aggiornaElenco); });
 
   /* ---------- collaboratori ---------- */
   function login(u, p, remember) {
@@ -414,7 +434,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     // niente dati della persona precedente sullo stesso dispositivo
     ['o-da', 'o-a', 'o-pausa', 'm-giorno', 'm-da', 'm-a', 'm-pausa'].forEach(function (id) { $(id).value = ''; });
     ['m-ore', 'm-man', 'm-prog'].forEach(function (id) { msg(id, ''); });
-    pkOggi.reset(); pkMan.reset(); pkOggi.elenco([], []); pkMan.elenco([], []);
+    pkOggi.reset(); pkMan.reset(); pkOggi.elenco([], []); pkMan.elenco([], []); pkOggi.avviso(''); pkMan.avviso('');
     $('d-man').open = false; mieDaCaricare = true; progModificato = [false, false]; inCorso = false; oggiToccato = false; daEliminare = ''; $('mio-mese').value = '';
     ['mie-tot', 'mie-commesse', 'mie-giornate'].forEach(function (id) { $(id).innerHTML = ''; }); $('d-mie').classList.add('hidden'); msg('m-mie', '');
     show('v-login');
@@ -429,6 +449,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     var d = new Date(r.adessoMs);
     $('oggi-data').textContent = ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'][d.getDay()] + ' ' + d.getDate() + ' ' + MESI[d.getMonth()] + ' ' + d.getFullYear();
     pkOggi.elenco(r.commesse, r.ultime); pkMan.elenco(r.commesse, r.ultime);
+    pkOggi.aggiornabile(r.dropbox); pkMan.aggiornabile(r.dropbox);
     // giorni precedenti: dagli ultimi 7 a ieri
     $('m-giorno').max = isoGiorno(-1); $('m-giorno').min = isoGiorno(-7);
     if (!$('m-giorno').value || $('m-giorno').value > isoGiorno(-1)) $('m-giorno').value = isoGiorno(-1);
@@ -704,6 +725,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
           + esc(x.commessa) + '</td><td class="n">' + (x.ore ? hh(x.ore) : '') + '</td></tr>';
       }).join('') + '</tbody>';
     $('a-lista').value = r.commesse.join('\n');
+    $('a-dbx').classList.toggle('hidden', !r.dropbox);
     renderApin();
     renderAprog();
   }
@@ -740,6 +762,11 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
   $('a-salva').addEventListener('click', function () {
     var lista = $('a-lista').value.split('\n').map(function (x) { return x.trim(); }).filter(Boolean);
     adminCall({ azione: 'admin_commesse', commesse: lista }, this, 'Elenco commesse salvato');
+  });
+  $('a-dbx').addEventListener('click', function () {
+    adminCall({ azione: 'admin_aggiorna_commesse' }, this).then(function () {
+      if (adm && adm.esitoCommesse) msg('m-admin', adm.esitoCommesse.nuove.length ? 'Aggiunte all\'elenco: ' + adm.esitoCommesse.nuove.join(', ') : 'Nessuna cartella nuova: elenco invariato');
+    });
   });
   $('a-csv').addEventListener('click', function () {
     if (!adm) return;
