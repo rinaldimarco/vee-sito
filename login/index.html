@@ -199,7 +199,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
 <section id="v-main" class="hidden">
   <div class="top-actions">
     <h1 id="ciao">Ciao</h1>
-    <span class="row"><button class="link" type="button" data-cambiapin>Cambia PIN</button><button class="link" type="button" id="esci">Esci</button></span>
+    <span class="row"><button class="btn hidden" type="button" id="b-riepilogo">Riepilogo completo</button><button class="link" type="button" data-cambiapin>Cambia PIN</button><button class="link" type="button" id="esci">Esci</button></span>
   </div>
   <p class="sub" id="oggi-data"></p>
 
@@ -261,14 +261,15 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
 <section id="v-admin" class="hidden">
   <div class="top-actions">
     <h1>Riepilogo mensile</h1>
-    <span class="row"><button class="link" type="button" data-cambiapin>Cambia PIN</button><button class="link" type="button" id="a-esci">Esci</button></span>
+    <span class="row"><button class="btn" type="button" id="b-mie">Le mie ore</button><button class="link" type="button" data-cambiapin>Cambia PIN</button><button class="link" type="button" id="a-esci">Esci</button></span>
   </div>
   <div class="row" style="margin:10px 0 4px">
     <div style="max-width:220px; flex:1"><label class="f" for="mese">Mese</label><input type="month" id="mese"></div>
-    <button class="btn" type="button" id="a-csv" style="align-self:flex-end">Scarica CSV</button>
+    <button class="btn" type="button" id="a-xls-mese" style="align-self:flex-end">Excel del mese</button>
+    <button class="btn" type="button" id="a-xls-tutto" style="align-self:flex-end">Excel completo</button>
   </div>
   <div id="m-admin"></div>
-  <div class="card"><h2>Ore per collaboratore</h2><table id="a-persone"></table></div>
+  <div class="card"><h2>Ore per persona</h2><table id="a-persone"></table></div>
   <div class="card"><h2>Ore per commessa</h2><table id="a-commesse"></table></div>
   <div class="card"><h2>Programma settimanale</h2>
     <div class="tabs" role="tablist">
@@ -532,6 +533,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     if (!r.privacy) { show('v-privacy'); return; }
     show('v-main');
     $('hint-pin').classList.toggle('hidden', !!r.pinPersonale);
+    $('b-riepilogo').classList.toggle('hidden', !r.admin);
     $('ciao').textContent = 'Ciao, ' + r.nome.split(' ')[0];
     var d = new Date(r.adessoMs);
     $('oggi-data').textContent = ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'][d.getDay()] + ' ' + d.getDate() + ' ' + MESI[d.getMonth()] + ' ' + d.getFullYear();
@@ -794,7 +796,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     adm = r; daRipristinare = '';
     $('who').textContent = r.nome;
     msg('m-admin', '');
-    $('a-persone').innerHTML = '<thead><tr><th>Collaboratore</th><th class="n">Giorni</th><th class="n">Ore</th></tr></thead><tbody>'
+    $('a-persone').innerHTML = '<thead><tr><th>Persona</th><th class="n">Giorni</th><th class="n">Ore</th></tr></thead><tbody>'
       + r.persone.map(function (p) {
         tot += p.ore;
         return '<tr><td>' + esc(p.nome) + (p.privacy ? '' : ' <span class="badge warn">informativa da accettare</span>')
@@ -816,7 +818,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     renderAprog();
   }
   function renderApin() {
-    $('a-pin').innerHTML = '<tbody>' + adm.persone.map(function (p) {
+    $('a-pin').innerHTML = '<tbody>' + adm.persone.filter(function (p) { return !p.admin; }).map(function (p) {
       var conf = daRipristinare === p.id;
       return '<tr><td>' + esc(p.nome) + '</td><td>' + (p.pinPersonale ? 'scelto dal collaboratore' : 'iniziale') + '</td><td class="n">'
         + (p.pinPersonale ? '<button class="link" type="button" data-reset="' + esc(p.id) + '">' + (conf ? 'Conferma il ripristino' : 'Ripristina') + '</button>' : '')
@@ -854,15 +856,93 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
       if (adm && adm.esitoCommesse) msg('m-admin', adm.esitoCommesse.nuove.length ? 'Aggiunte all\'elenco: ' + adm.esitoCommesse.nuove.join(', ') : 'Nessuna cartella nuova: elenco invariato');
     });
   });
-  $('a-csv').addEventListener('click', function () {
-    if (!adm) return;
-    var q = function (v) { return '"' + String(v).replace(/"/g, '""') + '"'; };
-    var rows = [['Data', 'Collaboratore', 'Fasce orarie', 'Commessa', 'Ore', 'Note']].concat(adm.righe.map(function (x) {
-      return [x.giorno, x.persona, x.primo ? (x.fasce || x.da + '–' + x.a) : '', x.commessa, x.ore.toFixed(2).replace('.', ','), x.nota ? 'inserita in un giorno successivo' : ''];
+  /* ---------- Excel: libreria SheetJS caricata solo quando serve ---------- */
+  var XLSX_URL = 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';
+  var XLSX_SRI = 'sha384-vtjasyidUo0kW94K5MXDXntzOJpQgBKXmE7e2Ga4LG0skTTLeBi97eFAXsqewJjw';
+  function libreriaExcel() {
+    if (window.XLSX) return Promise.resolve(window.XLSX);
+    return new Promise(function (ok, ko) {
+      var sc = document.createElement('script');
+      sc.src = XLSX_URL; sc.integrity = XLSX_SRI; sc.crossOrigin = 'anonymous';
+      sc.onload = function () { window.XLSX ? ok(window.XLSX) : ko(); }; sc.onerror = ko;
+      document.head.appendChild(sc);
+    });
+  }
+  function dataExcel(g) { var p = g.split('-'); return new Date(Date.UTC(Number(p[0]), Number(p[1]) - 1, Number(p[2]))); }
+  function nomeMese(m) { var p = m.split('-'); return MESI[Number(p[1]) - 1] + ' ' + p[0]; }
+  /** fogli: Registrazioni, Ore per commessa (commesse × persone), Ore per persona (con i mesi se il periodo è tutto) */
+  function scaricaExcel(X, righe, persone, titolo, conMesi, nomeFile) {
+    var wb = X.utils.book_new();
+    var h = function (v) { return Math.round(v * 100) / 100; };
+    // 1. registrazioni
+    var reg = [['Data', 'Persona', 'Fasce orarie', 'Inizio', 'Fine', 'Ore giornata', 'Commessa', 'Ore', 'Inserita dopo']].concat(righe.map(function (x) {
+      return [dataExcel(x.giorno), x.persona, x.fasce || (x.da + '–' + x.a), x.da, x.a, x.primo ? h(x.oreGiornata || 0) : null, x.commessa, h(x.ore), x.nota ? 'sì' : ''];
     }));
-    var blob = new Blob(['﻿' + rows.map(function (r) { return r.map(q).join(';'); }).join('\r\n')], { type: 'text/csv' });
-    var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'registro-ore-' + adm.mese + '.csv';
-    document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+    var ws = X.utils.aoa_to_sheet(reg, { cellDates: true });
+    for (var i = 1; i < reg.length; i++) {
+      var c = ws[X.utils.encode_cell({ r: i, c: 0 })]; if (c) c.z = 'dd/mm/yyyy';
+      [5, 7].forEach(function (k) { var d = ws[X.utils.encode_cell({ r: i, c: k })]; if (d && d.t === 'n') d.z = '0.00'; });
+    }
+    ws['!cols'] = [{ wch: 11 }, { wch: 20 }, { wch: 26 }, { wch: 7 }, { wch: 7 }, { wch: 12 }, { wch: 38 }, { wch: 8 }, { wch: 12 }];
+    ws['!autofilter'] = { ref: X.utils.encode_range({ s: { r: 0, c: 0 }, e: { r: reg.length - 1, c: 8 } }) };
+    X.utils.book_append_sheet(wb, ws, 'Registrazioni');
+    // 2. ore per commessa: una riga per commessa, una colonna per persona
+    var nomi = persone.map(function (p) { return p.nome; }), commesse = {}, mat = {};
+    righe.forEach(function (x) { commesse[x.commessa] = true; var k = x.commessa + '|' + x.persona; mat[k] = (mat[k] || 0) + x.ore; });
+    var lista = Object.keys(commesse).sort();
+    var pc = [['Commessa'].concat(nomi, ['Totale'])].concat(lista.map(function (c) {
+      var riga = nomi.map(function (n) { return mat[c + '|' + n] ? h(mat[c + '|' + n]) : null; });
+      return [c].concat(riga, [h(riga.reduce(function (t, v) { return t + (v || 0); }, 0))]);
+    }));
+    var totC = nomi.map(function (n, j) { return h(lista.reduce(function (t, c) { return t + (mat[c + '|' + n] || 0); }, 0)); });
+    pc.push(['Totale'].concat(totC, [h(totC.reduce(function (t, v) { return t + v; }, 0))]));
+    var ws2 = X.utils.aoa_to_sheet(pc);
+    ws2['!cols'] = [{ wch: 38 }].concat(nomi.map(function () { return { wch: 16 }; }), [{ wch: 10 }]);
+    X.utils.book_append_sheet(wb, ws2, 'Ore per commessa');
+    // 3. ore per persona: giorni lavorati e ore, e se il periodo è tutto le ore di ogni mese
+    var mesi = {};
+    righe.forEach(function (x) { mesi[x.giorno.slice(0, 7)] = true; });
+    var listaMesi = conMesi ? Object.keys(mesi).sort() : [];
+    var pp = [['Persona', 'Giorni lavorati', 'Ore totali'].concat(listaMesi.map(nomeMese))].concat(persone.map(function (p) {
+      var r = righe.filter(function (x) { return x.persona === p.nome; }), giorni = {};
+      r.forEach(function (x) { giorni[x.giorno] = true; });
+      return [p.nome, Object.keys(giorni).length, h(r.reduce(function (t, x) { return t + x.ore; }, 0))].concat(listaMesi.map(function (m) {
+        var v = r.filter(function (x) { return x.giorno.slice(0, 7) === m; }).reduce(function (t, x) { return t + x.ore; }, 0);
+        return v ? h(v) : null;
+      }));
+    }));
+    var ws3 = X.utils.aoa_to_sheet(pp);
+    ws3['!cols'] = [{ wch: 20 }, { wch: 14 }, { wch: 11 }].concat(listaMesi.map(function () { return { wch: 14 }; }));
+    X.utils.book_append_sheet(wb, ws3, 'Ore per persona');
+    wb.Props = { Title: titolo, Author: 'VEE S.r.l.', Company: 'VEE S.r.l.' };
+    X.writeFile(wb, nomeFile, { compression: true });
+  }
+  function excel(btn, tutto) {
+    if (!adm) return;
+    msg('m-admin', 'Preparazione del file Excel…');
+    btn.disabled = true;
+    var dati = tutto ? call({ azione: 'admin_tutto', pin: pin, mese: $('mese').value }) : Promise.resolve({ ok: true, tutto: adm.righe });
+    Promise.all([libreriaExcel(), dati]).then(function (x) {
+      btn.disabled = false;
+      var r = x[1];
+      if (!r.ok) return msg('m-admin', r.errore, 'err');
+      scaricaExcel(x[0], r.tutto, adm.persone, tutto ? 'Registro ore VEE' : 'Registro ore VEE ' + nomeMese(adm.mese), tutto, tutto ? 'registro-ore-completo.xlsx' : 'registro-ore-' + adm.mese + '.xlsx');
+      msg('m-admin', tutto ? 'Excel completo scaricato (' + r.tutto.length + ' righe)' : 'Excel di ' + nomeMese(adm.mese) + ' scaricato');
+    }, function () { btn.disabled = false; msg('m-admin', 'File Excel non disponibile: controlla la connessione e riprova', 'err'); });
+  }
+  $('a-xls-mese').addEventListener('click', function () { excel(this, false); });
+  $('a-xls-tutto').addEventListener('click', function () { excel(this, true); });
+  // Marco: passaggio tra le sue ore e il riepilogo di tutti
+  $('b-riepilogo').addEventListener('click', function () {
+    if (!$('mese').value) $('mese').value = meseIniziale();
+    var b = this;
+    call({ azione: 'admin_mese', pin: pin, mese: $('mese').value }, b).then(function (r) {
+      if (!r.ok) return msg('m-ore', r.errore, 'err');
+      renderAdmin(r); show('v-admin');
+    });
+  });
+  $('b-mie').addEventListener('click', function () {
+    call({ azione: 'stato', pin: pin }, this).then(function (r) { if (!r.ok) return msg('m-admin', r.errore, 'err'); render(r); });
   });
   $('a-esci').addEventListener('click', esci);
 

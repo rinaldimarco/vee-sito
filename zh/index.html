@@ -491,6 +491,17 @@
   /* titoli in cinese: niente a capo dentro le parole */
   .hero h1, .head h2, .art h1 { word-break: keep-all; overflow-wrap: anywhere; }
   /* ml:end */
+  /* pulsante Login (area riservata) */
+  nav a.nav-login { border: 1px solid var(--ink); padding: 6px 16px; margin: -7px 0 -7px 4px; }
+  nav a.nav-login:hover, nav a.nav-login:focus { background: var(--ink); color: #fff; text-decoration: none; }
+  @media (min-width: 761px) and (max-width: 1020px) {
+    .toggle { display: block; }
+    nav { display: none; position: absolute; left: 0; right: 0; top: 88px; background: var(--bg); border-bottom: 1px solid var(--line); flex-direction: column; padding: 8px var(--gutter) 14px; gap: 0; }
+    nav.is-open { display: flex; }
+    nav a { padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 1.05rem; }
+    nav a:last-child { border-bottom: 0; }
+  }
+  @media (max-width: 1020px) { nav a.nav-login { border: 0; margin: 0; padding: 12px 0; color: var(--teal-ink); } nav a.nav-login:hover, nav a.nav-login:focus { background: none; color: var(--teal-ink); } }
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://www.vee.it/#organizzazione","name":"VEE S.r.l.","legalName":"VEE S.r.l. — Società di Ingegneria","alternateName":["VEE","VEE Studio","VEE Torino","VEE — Società di ingegneria e architettura"],"url":"https://www.vee.it/zh/","logo":{"@type":"ImageObject","url":"https://www.vee.it/logo-vee.png","width":1016,"height":331},"image":"https://www.vee.it/img/sede-vee-torino-1.jpg","description":"都灵工程与建筑设计公司：能源审计、面向市镇及公共建筑的Conto Termico 3.0、能源改造、BIM设计、工程监理。","foundingDate":"2023-06-20","telephone":"+39 344 649 3193","vatID":"IT12904260010","taxID":"12904260010","address":{"@type":"PostalAddress","streetAddress":"Piazza C.L.N. 255","postalCode":"10123","addressLocality":"Torino","addressRegion":"TO","addressCountry":"IT"},"geo":{"@type":"GeoCoordinates","latitude":45.0662659,"longitude":7.6819196},"hasMap":"https://www.openstreetmap.org/?mlat=45.0662659&mlon=7.6819196#map=18/45.06627/7.68192","areaServed":[{"@type":"AdministrativeArea","name":"皮埃蒙特"},{"@type":"Country","name":"意大利"}],"knowsAbout":["能源审计 UNI CEI EN 16247","Conto Termico 3.0","公共建筑及公寓楼能源改造","PREPAC","白色证书","BIM设计 UNI 11337","工程监理","安全协调 D.Lgs 81/08","消防"],"hasOfferCatalog":{"@type":"OfferCatalog","name":"服务","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"能源审计"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"能效提升与Conto Termico 3.0"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"基于BIM的建筑与机电设计"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"消防"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"工程监理"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"安全协调"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"为施工企业提供投标支持：设计施工一体化合同设计及技术标","url":"https://www.vee.it/zh/gare-imprese/"}}]},"sameAs":[]},{"@type":"WebSite","@id":"https://www.vee.it/#sito","url":"https://www.vee.it/zh/","name":"VEE","alternateName":["VEE S.r.l.","VEE Studio","VEE Torino","VEE ingegneria e architettura"],"inLanguage":"zh-Hans","publisher":{"@id":"https://www.vee.it/#organizzazione"}}]}</script>
 </head>
@@ -502,7 +513,7 @@
   <div class="container">
     <a class="brand" href="#top" aria-label="VEE — 工程与建筑设计公司，都灵"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 478 210" aria-hidden="true"><g fill="none" stroke="var(--lg-red)" stroke-width="1.8" stroke-dasharray="7 5"><circle cx="239" cy="105" r="65"/><circle cx="397" cy="105" r="65"/><line x1="0" y1="40" x2="478" y2="40"/><line x1="0" y1="105" x2="478" y2="105"/><line x1="0" y1="170" x2="478" y2="170"/></g><polygon points="10,40 150,40 80,170" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M239 40 A65 65 0 0 0 239 170 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M245 105 L245 40.28 A65 65 0 0 1 304 105 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M397 40 A65 65 0 0 0 397 170 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M403 105 L403 40.28 A65 65 0 0 1 462 105 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/></svg><span class="payoff">工程与建筑<br>设计公司<br>都灵</span></a>
     <button class="toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="打开菜单"><svg width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M0 1h22M0 7h22M0 13h22"/></svg></button>
-    <nav id="nav" aria-label="栏目"><a href="#societa">公司</a><a href="#servizi">服务</a><a href="#incarichi">项目业绩</a><a href="#competenze">专业资质</a><a href="#gare">招投标</a><a href="#incentivi">激励政策</a><a href="#news">新闻</a><a href="#contatti">联系我们</a></nav>
+    <nav id="nav" aria-label="栏目"><a href="#societa">公司</a><a href="#servizi">服务</a><a href="#incarichi">项目业绩</a><a href="#competenze">专业资质</a><a href="#gare">招投标</a><a href="#incentivi">激励政策</a><a href="#news">新闻</a><a href="#contatti">联系我们</a><a class="nav-login" href="/login/">Login</a></nav>
   </div>
 </header>
 
