@@ -69,14 +69,28 @@ input:focus, textarea:focus, button:focus-visible { outline: 2px solid var(--tea
   .grid3 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
 }
 .pk { margin-top: 14px; }
+.fx-row { display: grid; grid-template-columns: minmax(0, 1fr) 12px minmax(0, 1fr) 28px; column-gap: 6px; row-gap: 3px; align-items: center; margin-bottom: 10px; max-width: 420px; }
+.fx-row input { padding: 11px 8px; min-width: 0; width: 100%; }
+.fx-lab { grid-column: 1 / -1; font-family: var(--mono); font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.fx-sep { text-align: center; color: var(--muted); }
+.fx-err { color: #a2401f; font-size: 0.85rem; margin: 2px 0 0; }
 .pk-lista { max-height: 260px; overflow-y: auto; border: 1px solid var(--line); border-top: 0; }
 .pk-item { display: flex; gap: 10px; align-items: center; padding: 9px 12px; border-top: 1px solid var(--line); cursor: pointer; font-size: 0.95rem; }
 .pk-item:first-child { border-top: 0; }
 .pk-item input { width: 18px; height: 18px; flex: 0 0 auto; }
 .pk-item.rec { background: var(--bg-alt); }
 .pk-scelte { margin-top: 14px; }
-.pk-agg { margin-top: 8px; }
-.pk-agg .small { margin-left: 6px; }
+.pk-agg { margin-top: 10px; }
+.pk-agg .btn { width: 100%; }
+.pk-agg .small { display: block; margin-top: 6px; }
+.pk-row input.dif::placeholder { color: var(--ink); opacity: .75; }
+.pk-dif { color: var(--muted); font-size: 0.8rem; }
+body.largo .wrap { max-width: 1120px; }
+@media (min-width: 900px) {
+  .cols { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); column-gap: 18px; grid-template-areas: "ore mie" "prog mie"; align-items: start; }
+  #c-ore { grid-area: ore; } #c-prog { grid-area: prog; }
+  #c-mie { grid-area: mie; position: sticky; top: 18px; }
+}
 .pk-row { display: grid; grid-template-columns: minmax(0, 1fr) 86px 28px; gap: 8px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--line); }
 .pk-row span { font-size: 0.95rem; color: var(--ink); overflow-wrap: anywhere; }
 .pk-row input { padding: 9px 8px; text-align: right; }
@@ -169,7 +183,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
   <h1>Informativa sul trattamento dei dati</h1>
   <div class="card legal">
     <p><b>Titolare del trattamento</b>: VEE S.r.l., Piazza C.L.N. 255, 10123 Torino (TO), P.IVA 12904260010.</p>
-    <p><b>Dati trattati</b>: nome, ora di inizio e di fine della giornata di lavoro, durata della pausa, ore dedicate a ciascuna commessa, programma settimanale (ufficio, da remoto, assente).</p>
+    <p><b>Dati trattati</b>: nome, fasce orarie di lavoro (ora di inizio e di fine), ore dedicate a ciascuna commessa, programma settimanale (ufficio, da remoto, assente).</p>
     <p><b>Finalità</b>: rendicontazione delle ore ai fini dei compensi e della fatturazione, ripartizione delle ore per commessa, organizzazione delle postazioni in studio.</p>
     <p><b>Base giuridica</b>: esecuzione del contratto di collaborazione (art. 6, par. 1, lett. b, del Regolamento UE 2016/679) e adempimento degli obblighi contabili e fiscali (art. 6, par. 1, lett. c).</p>
     <p><b>Modalità e strumenti</b>: i dati sono registrati tramite questa pagina e conservati nei calendari Google dell'account dello studio; vi accede solo il titolare. Non sono rilevate posizione né altri dati del dispositivo.</p>
@@ -189,18 +203,16 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
   </div>
   <p class="sub" id="oggi-data"></p>
 
+  <div class="cols">
   <div class="card" id="c-ore">
     <h2>Ore di oggi</h2>
     <p class="stato" id="stato"></p>
     <p class="msg warn hidden" id="t-mancanti"></p>
 
-    <!-- giornata di oggi: inizio, fine, pausa e commesse -->
+    <!-- giornata di oggi: fasce orarie e commesse -->
     <div id="blk-oggi">
-      <div class="grid3">
-        <div><label class="f" for="o-da">Inizio</label><input type="time" id="o-da"></div>
-        <div><label class="f" for="o-a">Fine</label><input type="time" id="o-a"></div>
-        <div><label class="f" for="o-pausa">Pausa</label><input type="text" id="o-pausa" inputmode="decimal" placeholder="es. 1:00" autocomplete="off"></div>
-      </div>
+      <label class="f">Fasce orarie</label>
+      <div id="fx-oggi"></div>
       <div class="pk" id="pk-oggi"></div>
       <button class="btn btn-primary btn-big" type="button" id="b-oggi" style="margin-top:14px">Registra la giornata</button>
     </div>
@@ -211,24 +223,23 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     <details id="d-man" style="margin-top:18px">
       <summary>Aggiungi un giorno precedente</summary>
       <p class="small" style="margin:8px 0 12px">Per un giorno non registrato degli ultimi 7.</p>
-      <div class="grid4">
-        <div><label class="f" for="m-giorno">Giorno</label><input type="date" id="m-giorno"></div>
-        <div><label class="f" for="m-da">Inizio</label><input type="time" id="m-da"></div>
-        <div><label class="f" for="m-a">Fine</label><input type="time" id="m-a"></div>
-        <div><label class="f" for="m-pausa">Pausa</label><input type="text" id="m-pausa" inputmode="decimal" placeholder="1:00" autocomplete="off"></div>
-      </div>
+      <div style="max-width:220px; margin-bottom:12px"><label class="f" for="m-giorno">Giorno</label><input type="date" id="m-giorno"></div>
+      <label class="f">Fasce orarie</label>
+      <div id="fx-man"></div>
       <div class="pk" id="pk-man"></div>
       <button class="btn btn-primary" type="button" id="b-man" style="margin-top:14px">Aggiungi il giorno</button>
       <div id="m-man"></div>
+      <div id="blk-recenti" class="hidden" style="margin-top:18px">
+        <label class="f">Giorni precedenti registrati</label>
+        <table id="t-recenti"><tbody></tbody></table>
+      </div>
     </details>
   </div>
 
   <div class="card" id="c-mie">
     <h2>Le mie ore</h2>
-    <div style="max-width:220px"><label class="f" for="mio-mese">Mese</label><input type="month" id="mio-mese"></div>
-    <p class="stato" id="mie-tot" style="margin:14px 0 6px"></p>
+    <p class="small" id="mie-tot" style="margin:0 0 6px"></p>
     <table id="mie-commesse"></table>
-    <details id="d-mie" class="hidden"><summary>Mostra le giornate</summary><div style="overflow-x:auto"><table id="mie-giornate" style="margin-top:10px"></table></div></details>
     <div id="m-mie"></div>
   </div>
 
@@ -241,6 +252,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     <table class="week"><tbody id="t-prog"></tbody></table>
     <button class="btn btn-primary" type="button" id="b-prog" style="margin-top:14px">Conferma il programma</button>
     <div id="m-prog"></div>
+  </div>
   </div>
   <p class="small hidden" id="hint-pin" style="margin-top:18px">Stai usando il PIN iniziale: se vuoi, sostituiscilo con uno a tua scelta da «Cambia PIN».</p>
 </section>
@@ -294,7 +306,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
   var pin = '', uid = '', ricorda = false, mieDaCaricare = true, st = null, adm = null, wk = 0, awk = 0, prog = [null, null], skew = 0, vista = '', daRipristinare = '', inCorso = false, progModificato = [false, false], oggiToccato = false, daEliminare = '', tEliminare = null;
 
   function store(get, k, v) { try { if (get) return localStorage.getItem(k); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) { return null; } }
-  function show(id) { var cambia = vista !== id; vista = id; ['v-config', 'v-login', 'v-pin', 'v-privacy', 'v-main', 'v-admin'].forEach(function (x) { $(x).classList.toggle('hidden', x !== id); }); if (cambia) window.scrollTo(0, 0); }
+  function show(id) { var cambia = vista !== id; vista = id; document.body.classList.toggle('largo', id === 'v-main'); ['v-config', 'v-login', 'v-pin', 'v-privacy', 'v-main', 'v-admin'].forEach(function (x) { $(x).classList.toggle('hidden', x !== id); }); if (cambia) window.scrollTo(0, 0); }
   function msg(id, text, cls) { $(id).innerHTML = text ? '<p class="msg ' + (cls || '') + '">' + esc(text) + '</p>' : ''; }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function hh(h) { var m = Math.round(h * 60); return Math.floor(m / 60) + ' h ' + String(m % 60).padStart(2, '0'); }
@@ -315,7 +327,6 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     if (/^\d{1,2}(\.\d+)?$/.test(s)) return Math.round(Number(s) * 60);
     return NaN;
   }
-  function pausaMin(id) { var v = $(id).value.trim(); return v ? minuti(v) : 0; }
 
   function call(payload, busy) {
     if (busy) busy.disabled = true;
@@ -331,7 +342,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     root.innerHTML = '<label class="f">Commesse su cui hai lavorato</label>'
       + '<input type="text" class="pk-cerca" placeholder="Scrivi il numero o il nome per cercare" autocomplete="off">'
       + '<div class="pk-lista"></div>'
-      + '<div class="pk-agg hidden"><button class="link" type="button">Aggiorna elenco commesse</button><span class="small"></span></div>'
+      + '<div class="pk-agg hidden"><button class="btn" type="button">Aggiorna elenco commesse</button><span class="small"></span></div>'
       + '<div class="pk-scelte"></div><p class="rip-tot"></p>';
     var cerca = root.querySelector('.pk-cerca'), lista = root.querySelector('.pk-lista'), scelte = root.querySelector('.pk-scelte'), info = root.querySelector('.rip-tot');
     var agg = root.querySelector('.pk-agg');
@@ -345,31 +356,42 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
         return '<label class="pk-item' + (!q && rec.indexOf(c) >= 0 ? ' rec' : '') + '"><input type="checkbox" value="' + esc(c) + '"' + (scelta(c) ? ' checked' : '') + '><span>' + esc(c) + '</span></label>';
       }).join('') : '<p class="small" style="padding:9px 12px; margin:0">Nessuna commessa trovata: ' + (conAgg ? 'premi «Aggiorna elenco commesse» qui sotto; se non compare, chiedi a Marco.' : 'chiedi a Marco di aggiungerla all\'elenco.') + '</p>';
     }
-    function resto() {
-      var T = totale(); if (isNaN(T)) return NaN;
-      var s = 0;
-      for (var i = 0; i < sel.length - 1; i++) { var m = minuti(sel[i].o); if (isNaN(m) || m <= 0) return NaN; s += m; }
-      return T - s;
+    // la commessa lasciata vuota (una sola) prende la differenza con il totale
+    function calcolo() {
+      var T = totale(), vuote = [], s = 0, err = -1;
+      sel.forEach(function (x, i) {
+        if (!String(x.o).trim()) return vuote.push(i);
+        var m = minuti(x.o);
+        if (isNaN(m) || m <= 0) { if (err < 0) err = i; } else s += m;
+      });
+      return { T: T, vuote: vuote, somma: s, err: err, dif: vuote.length === 1 ? vuote[0] : -1, resto: T - s };
     }
     function drawScelte() {
-      scelte.innerHTML = sel.length ? '<label class="f" style="margin-top:4px">Ore per commessa</label>' + sel.map(function (s, i) {
-        var last = i === sel.length - 1;
-        return '<div class="pk-row"><span>' + esc(s.c) + (last && sel.length > 1 ? ' <span class="small">· per differenza</span>' : '') + '</span>'
-          + (last ? '<input type="text" readonly tabindex="-1" class="pk-ultima" aria-label="Ore ' + esc(s.c) + '">'
-            : '<input type="text" inputmode="decimal" placeholder="es. 2:30" data-i="' + i + '" value="' + esc(s.o) + '" aria-label="Ore ' + esc(s.c) + '">')
-          + '<button class="pk-x" type="button" data-x="' + i + '" aria-label="Togli ' + esc(s.c) + '">×</button></div>';
+      scelte.innerHTML = sel.length ? '<label class="f" style="margin-top:4px">Ore per commessa</label>' + sel.map(function (x, i) {
+        return '<div class="pk-row"><span>' + esc(x.c) + ' <span class="pk-dif" data-d="' + i + '"></span></span>'
+          + '<input type="text" inputmode="decimal" placeholder="es. 2:30" data-i="' + i + '" value="' + esc(x.o) + '" aria-label="Ore ' + esc(x.c) + '">'
+          + '<button class="pk-x" type="button" data-x="' + i + '" aria-label="Togli ' + esc(x.c) + '">×</button></div>';
       }).join('') : '';
       aggiorna();
     }
     function aggiorna() {
-      var T = totale(), r = resto(), last = scelte.querySelector('.pk-ultima'), ok = false, t;
-      if (last) last.value = isNaN(r) || r <= 0 ? '' : hm(r);
-      if (isNaN(T)) t = 'Indica l\'orario e la pausa';
-      else if (T <= 0) t = 'Controlla orario e pausa: il totale non è positivo';
+      var k = calcolo(), T = k.T, ok = false, t;
+      var mostra = k.dif >= 0 && !isNaN(T) && k.resto > 0;
+      Array.prototype.forEach.call(scelte.querySelectorAll('input[data-i]'), function (inp) {
+        var i = Number(inp.getAttribute('data-i')), d = mostra && i === k.dif;
+        inp.placeholder = d ? hm(k.resto) : 'es. 2:30'; inp.classList.toggle('dif', d);
+      });
+      Array.prototype.forEach.call(scelte.querySelectorAll('.pk-dif'), function (sp) {
+        sp.textContent = mostra && sel.length > 1 && Number(sp.getAttribute('data-d')) === k.dif ? '· per differenza' : '';
+      });
+      if (isNaN(T)) t = 'Completa le fasce orarie';
+      else if (T <= 0) t = 'Controlla le fasce orarie: il totale non è positivo';
       else if (!sel.length) t = 'Totale ' + hh(T / 60) + ': spunta le commesse su cui hai lavorato';
-      else if (isNaN(r)) t = 'Totale ' + hh(T / 60) + ': indica le ore di ogni commessa tranne l\'ultima';
-      else if (r <= 0) t = 'Le ore indicate superano il totale della giornata (' + hh(T / 60) + ')';
-      else { ok = true; t = 'Totale ' + hh(T / 60) + (sel.length > 1 ? ' · all\'ultima commessa ' + hh(r / 60) : ''); }
+      else if (k.err >= 0) t = 'Ore non valide per ' + sel[k.err].c + ' (es. 2:30 oppure 2,5)';
+      else if (k.vuote.length > 1) t = 'Totale ' + hh(T / 60) + ': indica le ore di ogni commessa tranne una, che prende la differenza';
+      else if (k.dif >= 0 && k.resto <= 0) t = 'Le ore indicate superano il totale della giornata (' + hh(T / 60) + ')';
+      else if (k.dif < 0 && k.somma !== T) t = 'Le ore indicate (' + hh(k.somma / 60) + ') non danno il totale (' + hh(T / 60) + '): lascia vuota una commessa per il calcolo per differenza';
+      else { ok = true; t = 'Totale ' + hh(T / 60) + (k.dif >= 0 && sel.length > 1 ? ' · a ' + sel[k.dif].c + ' ' + hh(k.resto / 60) + ' per differenza' : ''); }
       info.className = 'rip-tot ' + (ok ? 'ok' : 'ko'); info.textContent = t;
       if (onChange) onChange(ok);
       return ok;
@@ -394,19 +416,84 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
         cerca.value = ''; drawLista(); drawScelte();
       },
       focus: function () { cerca.focus(); },
-      righe: function () { var r = resto(); return sel.map(function (s, i) { return { commessa: s.c, minuti: i === sel.length - 1 ? r : minuti(s.o) }; }); },
+      righe: function () { var k = calcolo(); return sel.map(function (x, i) { return i === k.dif ? { commessa: x.c, minuti: k.resto, diff: true } : { commessa: x.c, minuti: minuti(x.o) }; }); },
     };
   }
-  function totale(da, a, pausa) {
-    var x = minOra($(da).value), y = minOra($(a).value), p = pausaMin(pausa);
-    if (isNaN(x) || isNaN(y) || isNaN(p)) return NaN;
-    return y - x - p;
+  /* ---------- fasce orarie: mattina, pomeriggio e altre aggiunte ---------- */
+  function Fasce(root, onChange) {
+    var righe = [];
+    function nome(i) { return i === 0 ? 'Mattina' : i === 1 ? 'Pomeriggio' : 'Fascia ' + (i + 1); }
+    function draw() {
+      root.innerHTML = righe.map(function (f, i) {
+        return '<div class="fx-row"><span class="fx-lab">' + nome(i) + '</span>'
+          + '<input type="time" data-i="' + i + '" data-k="da" value="' + esc(f.da) + '" aria-label="' + nome(i) + ' dalle">'
+          + '<span class="fx-sep">–</span>'
+          + '<input type="time" data-i="' + i + '" data-k="a" value="' + esc(f.a) + '" aria-label="' + nome(i) + ' alle">'
+          + '<button class="pk-x" type="button" data-x="' + i + '" aria-label="Togli ' + nome(i).toLowerCase() + '">×</button></div>';
+      }).join('') + '<button class="link" type="button" data-add="1">+ Aggiungi una fascia</button><p class="fx-err"></p>';
+      controlla();
+    }
+    // minuti totali, NaN se una fascia è incompleta, rovesciata o sovrapposta
+    function totale() {
+      var x = righe.filter(function (f) { return f.da || f.a; }).map(function (f) { return [minOra(f.da), minOra(f.a)]; });
+      if (!x.length || x.some(function (f) { return isNaN(f[0]) || isNaN(f[1]) || f[1] <= f[0]; })) return NaN;
+      x.sort(function (p, q) { return p[0] - q[0]; });
+      for (var i = 1; i < x.length; i++) if (x[i][0] < x[i - 1][1]) return NaN;
+      return x.reduce(function (t, f) { return t + f[1] - f[0]; }, 0);
+    }
+    function controlla() {
+      var e = '', usate = righe.filter(function (f) { return f.da || f.a; });
+      righe.forEach(function (f, i) {
+        if (e || !(f.da || f.a)) return;
+        if (!f.da || !f.a) e = nome(i) + ': indica inizio e fine';
+        else if (minOra(f.a) <= minOra(f.da)) e = nome(i) + ': la fine deve essere dopo l\'inizio';
+      });
+      if (!e && !usate.length) e = 'Indica almeno una fascia';
+      if (!e && isNaN(totale())) e = 'Le fasce si sovrappongono';
+      var p = root.querySelector('.fx-err'); if (p) p.textContent = e;
+    }
+    root.addEventListener('input', function (ev) {
+      var t = ev.target, i = t.getAttribute('data-i'); if (i === null) return;
+      righe[Number(i)][t.getAttribute('data-k')] = t.value; controlla(); onChange();
+    });
+    root.addEventListener('click', function (ev) {
+      var x = ev.target.closest('button[data-x]'), add = ev.target.closest('button[data-add]');
+      if (x) { righe.splice(Number(x.getAttribute('data-x')), 1); draw(); onChange(); }
+      if (add) {
+        var u = righe.length ? righe[righe.length - 1].a : '';
+        righe.push({ da: u, a: '' }); draw(); onChange();
+        var inp = root.querySelectorAll('input[data-k="a"]'); if (inp.length) inp[inp.length - 1].focus();
+      }
+    });
+    return {
+      imposta: function (lista) { righe = lista.map(function (f) { return { da: f[0] || f.da || '', a: f[1] || f.a || '' }; }); draw(); },
+      valori: function () { return righe.filter(function (f) { return f.da || f.a; }).map(function (f) { return { da: f.da, a: f.a }; }).sort(function (p, q) { return minOra(p.da) - minOra(q.da); }); },
+      totale: totale,
+    };
   }
-  var pkOggi = Picker($('pk-oggi'), function () { return totale('o-da', 'o-a', 'o-pausa'); }, function (ok) { $('b-oggi').disabled = !ok; });
-  var pkMan = Picker($('pk-man'), function () { return totale('m-da', 'm-a', 'm-pausa'); }, function (ok) { $('b-man').disabled = !ok; });
-  ['o-da', 'o-a', 'o-pausa'].forEach(function (id) { $(id).addEventListener('input', function () { oggiToccato = true; pkOggi.aggiorna(); }); });
+  /** fasce proposte dall'orario previsto: mattina fino alle 13:00, pomeriggio dalle 14:00 */
+  function fasceDa(da, a) {
+    da = da || '09:00'; a = a || '18:00';
+    var f = [];
+    if (minOra(da) < 13 * 60) f.push([da, minOra(a) < 13 * 60 ? a : '13:00']);
+    if (minOra(a) > 14 * 60) f.push([minOra(da) > 14 * 60 ? da : '14:00', a]);
+    return f.length ? f : [[da, a]];
+  }
+  var fxOggi = Fasce($('fx-oggi'), function () { oggiToccato = true; pkOggi.aggiorna(); });
+  var fxMan = Fasce($('fx-man'), function () { manToccato = true; pkMan.aggiorna(); }), manToccato = false;
+  /** fasce proposte per un giorno precedente: dall'orario previsto quel giorno nel programma, altrimenti 9–13 e 14–18 */
+  function proponiGiorno() {
+    var g = $('m-giorno').value, x = null;
+    (st && st.settimane || []).forEach(function (w) {
+      var i = Math.round((new Date(g + 'T12:00') - new Date(w.settimana + 'T12:00')) / 864e5);
+      if (i >= 0 && i <= 4 && w.giorni[i].s && w.giorni[i].s !== 'A') x = w.giorni[i];
+    });
+    fxMan.imposta(fasceDa(x && x.da, x && x.a)); manToccato = false; pkMan.aggiorna();
+  }
+  $('m-giorno').addEventListener('change', function () { if (!manToccato) proponiGiorno(); });
+  var pkOggi = Picker($('pk-oggi'), function () { return fxOggi.totale(); }, function (ok) { $('b-oggi').disabled = !ok; });
+  var pkMan = Picker($('pk-man'), function () { return fxMan.totale(); }, function (ok) { $('b-man').disabled = !ok; });
   $('pk-oggi').addEventListener('change', function () { oggiToccato = true; });
-  ['m-da', 'm-a', 'm-pausa'].forEach(function (id) { $(id).addEventListener('input', pkMan.aggiorna); });
   // «Aggiorna elenco commesse»: lo script legge le cartelle numerate nuove su Dropbox
   function aggiornaElenco() {
     [pkOggi, pkMan].forEach(function (k) { k.avviso('aggiornamento…', true); });
@@ -432,11 +519,11 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     store(false, K_LOGIN, null); pin = ''; uid = ''; st = null; adm = null;
     $('who').textContent = ''; $('pin').value = ''; msg('m-login', '');
     // niente dati della persona precedente sullo stesso dispositivo
-    ['o-da', 'o-a', 'o-pausa', 'm-giorno', 'm-da', 'm-a', 'm-pausa'].forEach(function (id) { $(id).value = ''; });
+    $('m-giorno').value = ''; fxOggi.imposta([]); fxMan.imposta([]); manToccato = false;
     ['m-ore', 'm-man', 'm-prog'].forEach(function (id) { msg(id, ''); });
     pkOggi.reset(); pkMan.reset(); pkOggi.elenco([], []); pkMan.elenco([], []); pkOggi.avviso(''); pkMan.avviso('');
-    $('d-man').open = false; mieDaCaricare = true; progModificato = [false, false]; inCorso = false; oggiToccato = false; daEliminare = ''; $('mio-mese').value = '';
-    ['mie-tot', 'mie-commesse', 'mie-giornate'].forEach(function (id) { $(id).innerHTML = ''; }); $('d-mie').classList.add('hidden'); msg('m-mie', '');
+    $('d-man').open = false; mieDaCaricare = true; progModificato = [false, false]; inCorso = false; oggiToccato = false; daEliminare = '';
+    ['mie-tot', 'mie-commesse'].forEach(function (id) { $(id).innerHTML = ''; }); $('t-recenti').querySelector('tbody').innerHTML = ''; msg('m-mie', '');
     show('v-login');
   }
   function render(r) {
@@ -453,10 +540,10 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     // giorni precedenti: dagli ultimi 7 a ieri
     $('m-giorno').max = isoGiorno(-1); $('m-giorno').min = isoGiorno(-7);
     if (!$('m-giorno').value || $('m-giorno').value > isoGiorno(-1)) $('m-giorno').value = isoGiorno(-1);
+    if (!manToccato) proponiGiorno();
     if (!oggiToccato) proponiOggi();
     renderOggi(); renderMancanti();
-    if (!$('mio-mese').value) $('mio-mese').value = isoGiorno(0).slice(0, 7);
-    $('mio-mese').max = isoGiorno(0).slice(0, 7);
+    renderRecenti();
     if (mieDaCaricare) { mieDaCaricare = false; caricaMieOre(); }
     // programma: [settimana scorsa, questa, prossima]; le settimane non confermate si propongono
     // come l'ultima confermata, altrimenti ufficio 9:00–18:00
@@ -465,14 +552,17 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     riproponi(-1);
     renderProg();
   }
-  /** orario proposto: quello previsto oggi nel programma (altrimenti 9:00–18:00), fine non oltre l'ora attuale */
+  /** fasce proposte: dall'orario previsto oggi nel programma (altrimenti 9:00–18:00), non oltre l'ora attuale */
   function proponiOggi() {
     var d = new Date(st.adessoMs).getDay(), g = d >= 1 && d <= 5 ? st.settimane[1].giorni[d - 1] : null;
-    var da = g && g.s !== 'A' && g.da ? g.da : '09:00', a = g && g.s !== 'A' && g.a ? g.a : '18:00', ora = oraAdesso();
-    $('o-da').value = da;
-    $('o-a').value = minOra(ora) < minOra(a) ? ora : a;
-    $('o-pausa').value = st.pausaAbituale ? hm(st.pausaAbituale) : '';
+    var f = fasceDa(g && g.s !== 'A' ? g.da : '', g && g.s !== 'A' ? g.a : ''), ora = minOra(oraAdesso());
+    var ok = f.filter(function (x) { return minOra(x[0]) < ora; }).map(function (x) { return [x[0], minOra(x[1]) > ora ? oraAdesso() : x[1]]; });
+    fxOggi.imposta(ok.length ? ok : f);
     pkOggi.reset();
+  }
+  function testoFasce(x) {
+    var f = x.fasce && x.fasce.length ? x.fasce : [[x.da, x.a]];
+    return f.map(function (y) { return y[0] + '–' + y[1]; }).join(' · ') + (f.length === 1 && x.pausa ? ' · pausa ' + hm(x.pausa) : '');
   }
   function renderOggi() {
     var g = st.oggi, tot = 0;
@@ -483,7 +573,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     $('blk-oggi').classList.toggle('hidden', !!g.length);
     $('t-oggi').classList.toggle('hidden', !g.length);
     $('t-oggi').querySelector('tbody').innerHTML = g.map(function (x) {
-      return '<tr class="g-head"><td>' + esc(x.da + '–' + x.a) + (x.pausa ? ' · pausa ' + hm(x.pausa) : '') + ' ' + bElimina(x) + '</td><td class="n">' + hh(x.ore) + '</td></tr>'
+      return '<tr class="g-head"><td>' + esc(testoFasce(x)) + ' ' + bElimina(x) + '</td><td class="n">' + hh(x.ore) + '</td></tr>'
         + x.commesse.map(function (c) { return '<tr><td>' + esc(c.commessa) + '</td><td class="n">' + hh(c.ore) + '</td></tr>'; }).join('');
     }).join('') + (g.length > 1 ? '<tr class="tot"><td>Totale di oggi</td><td class="n">' + hh(tot) + '</td></tr>' : '');
   }
@@ -494,46 +584,44 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
       return '<button class="link" type="button" data-g="' + esc(x.giorno) + '" data-da="' + esc(x.da) + '" data-a="' + esc(x.a) + '">' + esc(giornoIt(x.giorno)) + '</button>';
     }).join(', ') + ': tocca il giorno per inserirlo.' : '';
   }
-  function apriGiorno(g, da, a, pausa, commesse) {
-    $('m-giorno').value = g; $('m-da').value = da; $('m-a').value = a;
-    $('m-pausa').value = pausa ? hm(pausa) : '';
+  function apriGiorno(g, fasce, commesse) {
+    $('m-giorno').value = g; fxMan.imposta(fasce); manToccato = true;
     if (commesse) pkMan.imposta(commesse); else pkMan.reset();
     $('d-man').open = true; msg('m-man', '');
     $('d-man').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
   $('t-mancanti').addEventListener('click', function (e) {
     var b = e.target.closest('button[data-g]'); if (!b) return;
-    apriGiorno(b.getAttribute('data-g'), b.getAttribute('data-da'), b.getAttribute('data-a'), st.pausaAbituale, null);
+    apriGiorno(b.getAttribute('data-g'), fasceDa(b.getAttribute('data-da'), b.getAttribute('data-a')), null);
   });
   function attendi(id) { msg(id, 'Attendi qualche secondo: la registrazione precedente è ancora in corso'); }
 
   $('b-oggi').addEventListener('click', function () {
     if (inCorso) return attendi('m-ore');
-    var da = $('o-da').value, a = $('o-a').value, pausa = pausaMin('o-pausa'), righe = pkOggi.righe(), tot = totale('o-da', 'o-a', 'o-pausa');
+    var fasce = fxOggi.valori(), righe = pkOggi.righe(), tot = fxOggi.totale(), a = fasce[fasce.length - 1].a;
     if (minOra(a) > minOra(oraAdesso()) + 2) return msg('m-ore', 'L\'ora di fine non può essere nel futuro: registra la giornata quando hai finito', 'err');
     var testo = hh(tot / 60) + (righe.length > 1 ? ' su ' + righe.length + ' commesse' : ' su ' + righe[0].commessa);
     // risposta immediata: la giornata compare subito; se lo script dà errore si torna al modulo com'era
     var prima = st.oggi;
-    st.oggi = st.oggi.concat([{ da: da, a: a, pausa: pausa, ore: tot / 60, provvisoria: true,
+    st.oggi = st.oggi.concat([{ da: fasce[0].da, a: a, fasce: fasce.map(function (f) { return [f.da, f.a]; }), pausa: 0, ore: tot / 60, provvisoria: true,
       commesse: righe.map(function (x) { return { commessa: x.commessa, ore: x.minuti / 60 }; }) }]);
     renderOggi(); msg('m-ore', 'Giornata di ' + testo + ' · registrazione in corso…');
     inCorso = true;
-    call({ azione: 'giornata', pin: pin, giorno: isoGiorno(0), da: da, a: a, pausa: pausa, righe: righe }).then(function (r) {
+    call({ azione: 'giornata', pin: pin, giorno: isoGiorno(0), fasce: fasce, righe: righe }).then(function (r) {
       inCorso = false;
       if (!r.ok) { st.oggi = prima; renderOggi(); return msg('m-ore', r.errore, 'err'); }
       oggiToccato = false; pkOggi.reset(); mieDaCaricare = true; render(r); msg('m-ore', 'Giornata registrata: ' + testo);
     });
   });
   $('b-man').addEventListener('click', function () {
-    var g = $('m-giorno').value, da = $('m-da').value, a = $('m-a').value, righe = pkMan.righe(), tot = totale('m-da', 'm-a', 'm-pausa');
+    var g = $('m-giorno').value, fasce = fxMan.valori(), righe = pkMan.righe(), tot = fxMan.totale();
     msg('m-man', '');
-    if (!g || !da || !a) return msg('m-man', 'Indica giorno, inizio e fine', 'err');
+    if (!g) return msg('m-man', 'Indica il giorno', 'err');
     msg('m-man', 'Registrazione in corso…');
-    call({ azione: 'giornata', pin: pin, giorno: g, da: da, a: a, pausa: pausaMin('m-pausa'), righe: righe }, this).then(function (r) {
+    call({ azione: 'giornata', pin: pin, giorno: g, fasce: fasce, righe: righe }, this).then(function (r) {
       if (!r.ok) return msg('m-man', r.errore, 'err');
-      ['m-da', 'm-a'].forEach(function (id) { $(id).value = ''; });
-      pkMan.reset(); mieDaCaricare = true; render(r);
-      msg('m-man', 'Giorno aggiunto: ' + giornoIt(g) + ' ' + da + '–' + a + ' · ' + hh(tot / 60));
+      manToccato = false; pkMan.reset(); mieDaCaricare = true; render(r);
+      msg('m-man', 'Giorno aggiunto: ' + giornoIt(g) + ' ' + fasce.map(function (f) { return f.da + '–' + f.a; }).join(', ') + ' · ' + hh(tot / 60));
     });
   });
 
@@ -543,8 +631,14 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     return '<button class="link" type="button" data-del="' + esc(x.id) + '">' + (daEliminare === x.id ? 'Conferma eliminazione' : 'Elimina') + '</button>';
   }
   function trovaGiornata(id) {
-    var mie = (st.mieOre && st.mieOre.giornate) || [];
-    return st.oggi.concat(mie).filter(function (x) { return x.id === id; })[0];
+    return st.oggi.concat(st.recenti || []).filter(function (x) { return x.id === id; })[0];
+  }
+  function renderRecenti() {
+    var g = st.recenti || [];
+    $('blk-recenti').classList.toggle('hidden', !g.length);
+    $('t-recenti').querySelector('tbody').innerHTML = g.map(function (x) {
+      return '<tr><td>' + esc(giornoIt(x.giorno)) + '<div class="small">' + esc(testoFasce(x)) + '</div></td><td class="n">' + hh(x.ore) + '<div>' + bElimina(x) + '</div></td></tr>';
+    }).join('');
   }
   function clicElimina(e) {
     var b = e.target.closest('button[data-del]'); if (!b) return;
@@ -554,56 +648,48 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     clearTimeout(tEliminare);
     if (daEliminare !== id) {
       // primo tocco: chiede conferma per 6 secondi
-      daEliminare = id; renderOggi(); if (st.mieOre) renderMie(st.mieOre);
-      tEliminare = setTimeout(function () { daEliminare = ''; renderOggi(); if (st.mieOre) renderMie(st.mieOre); }, 6000);
+      daEliminare = id; renderOggi(); renderRecenti();
+      tEliminare = setTimeout(function () { daEliminare = ''; renderOggi(); renderRecenti(); }, 6000);
       return;
     }
     daEliminare = ''; inCorso = true;
-    msg('m-ore', 'Eliminazione in corso…');
+    msg(x.giorno === isoGiorno(0) ? 'm-ore' : 'm-man', 'Eliminazione in corso…');
     call({ azione: 'elimina', pin: pin, id: id }).then(function (r) {
       inCorso = false;
-      if (!r.ok) { renderOggi(); if (st.mieOre) renderMie(st.mieOre); return msg('m-ore', r.errore, 'err'); }
+      if (!r.ok) { renderOggi(); renderRecenti(); return msg(x.giorno === isoGiorno(0) ? 'm-ore' : 'm-man', r.errore, 'err'); }
       mieDaCaricare = true;
       if (x.giorno === isoGiorno(0)) {
         // oggi: il modulo riparte con i dati della giornata eliminata, da correggere
         oggiToccato = true; render(r);
-        $('o-da').value = x.da; $('o-a').value = x.a; $('o-pausa').value = x.pausa ? hm(x.pausa) : '';
+        fxOggi.imposta(x.fasce && x.fasce.length ? x.fasce : [[x.da, x.a]]);
         pkOggi.imposta(x.commesse);
         msg('m-ore', 'Giornata eliminata: correggi e registra di nuovo');
         $('c-ore').scrollIntoView({ behavior: 'smooth', block: 'start' });
       } else {
         render(r);
-        msg('m-ore', 'Giornata del ' + giornoIt(x.giorno) + ' eliminata: correggi e aggiungila di nuovo');
-        apriGiorno(x.giorno, x.da, x.a, x.pausa, x.commesse);
+        apriGiorno(x.giorno, x.fasce && x.fasce.length ? x.fasce : [[x.da, x.a]], x.commesse);
+        msg('m-man', 'Giornata del ' + giornoIt(x.giorno) + ' eliminata: correggi e aggiungila di nuovo');
       }
     });
   }
   $('t-oggi').addEventListener('click', clicElimina);
-  $('mie-giornate').addEventListener('click', clicElimina);
+  $('t-recenti').addEventListener('click', clicElimina);
 
   /* ---------- riepilogo personale ---------- */
   function caricaMieOre() {
-    var mese = $('mio-mese').value || isoGiorno(0).slice(0, 7);
     $('mie-tot').textContent = 'Caricamento…'; msg('m-mie', '');
-    call({ azione: 'mie_ore', pin: pin, mese: mese }).then(function (r) {
+    call({ azione: 'mie_ore', pin: pin }).then(function (r) {
       if (!r.ok) { $('mie-tot').textContent = ''; return msg('m-mie', r.errore, 'err'); }
-      st.mieOre = r.mieOre; renderMie(r.mieOre);
+      renderMie(r.mieOre);
     });
   }
+  /** ore totali per commessa, da sempre; in alto le commesse lavorate più di recente */
   function renderMie(x) {
-    if (!x) { $('mie-tot').textContent = ''; return msg('m-mie', 'Riepilogo non disponibile: ricarica la pagina', 'err'); }
-    var p = x.mese.split('-'), nome = MESI[Number(p[1]) - 1] + ' ' + p[0];
-    $('mie-tot').innerHTML = x.giornate.length ? '<b>' + hh(x.ore) + '</b> a ' + esc(nome) + ' · ' + x.giorni + (x.giorni === 1 ? ' giorno' : ' giorni') : 'Nessuna ora registrata a ' + esc(nome);
+    if (!x || !x.perCommessa) { $('mie-tot').textContent = ''; return msg('m-mie', 'Riepilogo non disponibile: ricarica la pagina', 'err'); }
+    $('mie-tot').textContent = x.perCommessa.length ? '' : 'Nessuna ora registrata';
     $('mie-commesse').innerHTML = x.perCommessa.length ? '<thead><tr><th>Commessa</th><th class="n">Ore</th></tr></thead><tbody>'
       + x.perCommessa.map(function (c) { return '<tr><td>' + esc(c.commessa) + '</td><td class="n">' + hh(c.ore) + '</td></tr>'; }).join('') + '</tbody>' : '';
-    $('d-mie').classList.toggle('hidden', !x.giornate.length);
-    $('mie-giornate').innerHTML = '<thead><tr><th>Giorno</th><th>Orario</th><th>Commesse</th><th class="n">Ore</th></tr></thead><tbody>'
-      + x.giornate.map(function (g) {
-        return '<tr><td>' + esc(giornoIt(g.giorno)) + '</td><td>' + esc(g.da + '–' + g.a) + (g.pausa ? '<div class="small">pausa ' + hm(g.pausa) + '</div>' : '') + (g.manuale ? ' <span class="man">inserita dopo</span>' : '') + '<div>' + bElimina(g) + '</div></td><td>'
-          + g.commesse.map(function (c) { return esc(c.commessa) + ' <span class="small">' + hh(c.ore) + '</span>'; }).join('<br>') + '</td><td class="n">' + hh(g.ore) + '</td></tr>';
-      }).join('') + '</tbody>';
   }
-  $('mio-mese').addEventListener('change', caricaMieOre);
 
   /* ---------- programma settimanale ---------- */
   function proposta(w) {
@@ -718,10 +804,10 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     $('a-commesse').innerHTML = r.commesseTotali.length ? '<thead><tr><th>Commessa</th><th class="n">Ore</th></tr></thead><tbody>'
       + r.commesseTotali.map(function (c) { return '<tr><td>' + esc(c.commessa) + '</td><td class="n">' + hh(c.ore) + '</td></tr>'; }).join('') + '</tbody>'
       : '<tbody><tr><td class="small">Nessuna registrazione nel mese</td></tr></tbody>';
-    $('a-righe').innerHTML = '<thead><tr><th>Data</th><th>Collaboratore</th><th>Orario</th><th>Pausa</th><th>Commessa</th><th class="n">Ore</th></tr></thead><tbody>'
+    $('a-righe').innerHTML = '<thead><tr><th>Data</th><th>Collaboratore</th><th>Fasce orarie</th><th>Commessa</th><th class="n">Ore</th></tr></thead><tbody>'
       + r.righe.map(function (x) {
         return '<tr' + (x.primo ? '' : ' class="cont"') + '><td>' + (x.primo ? esc(x.giorno.split('-').reverse().join('/')) : '') + '</td><td>' + (x.primo ? esc(x.persona) : '') + '</td><td>'
-          + (x.primo ? esc(x.da + '–' + x.a) + (x.nota ? ' <span class="man">' + esc(x.nota) + '</span>' : '') : '') + '</td><td>' + (x.primo && x.pausa ? hm(x.pausa) : '') + '</td><td>'
+          + (x.primo ? esc(x.fasce || (x.da + '–' + x.a)) + (x.nota ? ' <span class="man">' + esc(x.nota) + '</span>' : '') : '') + '</td><td>'
           + esc(x.commessa) + '</td><td class="n">' + (x.ore ? hh(x.ore) : '') + '</td></tr>';
       }).join('') + '</tbody>';
     $('a-lista').value = r.commesse.join('\n');
@@ -771,8 +857,8 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
   $('a-csv').addEventListener('click', function () {
     if (!adm) return;
     var q = function (v) { return '"' + String(v).replace(/"/g, '""') + '"'; };
-    var rows = [['Data', 'Collaboratore', 'Inizio', 'Fine', 'Pausa', 'Commessa', 'Ore', 'Note']].concat(adm.righe.map(function (x) {
-      return [x.giorno, x.persona, x.primo ? x.da : '', x.primo ? x.a : '', x.primo && x.pausa ? hm(x.pausa) : '', x.commessa, x.ore.toFixed(2).replace('.', ','), x.nota ? 'inserita in un giorno successivo' : ''];
+    var rows = [['Data', 'Collaboratore', 'Fasce orarie', 'Commessa', 'Ore', 'Note']].concat(adm.righe.map(function (x) {
+      return [x.giorno, x.persona, x.primo ? (x.fasce || x.da + '–' + x.a) : '', x.commessa, x.ore.toFixed(2).replace('.', ','), x.nota ? 'inserita in un giorno successivo' : ''];
     }));
     var blob = new Blob(['﻿' + rows.map(function (r) { return r.map(q).join(';'); }).join('\r\n')], { type: 'text/csv' });
     var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'registro-ore-' + adm.mese + '.csv';
