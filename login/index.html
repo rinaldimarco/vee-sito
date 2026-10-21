@@ -201,8 +201,8 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
         </div>
         <p class="small" style="margin:6px 0 0">Se registri in ritardo, correggi l'ora prima di premere il pulsante.</p>
       </div>
-      <button class="btn btn-primary btn-big" type="button" id="b-azione">Inizio lavoro</button>
-      <div class="row" style="margin-top:12px"><button class="link hidden" type="button" id="b-annulla">Annulla l'inizio lavoro</button></div>
+      <button class="btn btn-primary btn-big" type="button" id="b-azione">Inizio</button>
+      <div class="row" style="margin-top:12px"><button class="link hidden" type="button" id="b-annulla">Annulla l'inizio</button></div>
     </div>
 
     <!-- chiusura della giornata -->
@@ -450,17 +450,17 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     var a = st.aperto, dim = a && !a.oggi;
     clearInterval(timer);
     $('t-dimenticata').classList.toggle('hidden', !dim);
-    var recente = a && a.oggi && (Date.now() + skew - a.inizioMs) < 15 * 60000;
+    var recente = a && a.oggi && !a.provvisorio && (Date.now() + skew - a.inizioMs) < 15 * 60000;
     $('b-annulla').classList.toggle('hidden', !recente || fineAperta);
     $('blk-avvio').classList.toggle('hidden', fineAperta || !!dim);
     $('blk-fine').classList.toggle('hidden', !(fineAperta || dim));
     if (!a) {
       var ult = st.oggi.length ? st.oggi[st.oggi.length - 1].a : '', tot = st.oggi.reduce(function (s, x) { return s + x.ore; }, 0);
       $('stato').innerHTML = ult ? '<span class="dot"></span>Fine lavoro alle <b>' + esc(ult) + '</b> · oggi ' + hh(tot) : '<span class="dot"></span>Lavoro non iniziato';
-      $('b-azione').textContent = 'Inizio lavoro';
+      $('b-azione').textContent = 'Inizio';
     } else if (dim) {
       $('stato').innerHTML = '<span class="dot on"></span>Inizio del <b>' + esc(dataIt(a.giorno)) + '</b> alle <b>' + esc(a.da) + '</b> senza fine lavoro';
-      $('t-dimenticata').textContent = 'Manca la fine lavoro del ' + giornoIt(a.giorno) + ': indica a che ora hai finito, la pausa e le commesse, poi potrai iniziare la giornata di oggi.';
+      $('t-dimenticata').textContent = 'Manca la fine lavoro del ' + giornoIt(a.giorno) + ': indica a che ora hai finito, la pausa e le commesse; poi potrai premere Inizio per oggi.';
       if (!fineAperta) apriFine(true);
     } else {
       var tick = function () { var ms = Date.now() + skew - a.inizioMs; $('stato').innerHTML = '<span class="dot on"></span>Al lavoro dalle <b>' + esc(a.da) + '</b> · ' + hh(ms / 36e5); };
@@ -507,10 +507,14 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
   $('b-azione').addEventListener('click', function () {
     var a = st.aperto;
     if (a) return apriFine(false);
-    var o = oraScelta();
-    call({ azione: 'entrata', pin: pin, ora: o }, this).then(function (r) {
-      if (!r.ok) return msg('m-ore', r.errore, 'err');
-      render(r); msg('m-ore', 'Inizio lavoro registrato' + (o ? ' alle ' + o : ''));
+    // risposta immediata: la pagina passa subito a «al lavoro» e conferma quando risponde lo script
+    var o = oraScelta(), ora = o || oraAdesso(), adesso = Date.now() + skew;
+    st.aperto = { da: ora, giorno: isoGiorno(0), oggi: true, inizioMs: adesso - (minOra(oraAdesso()) - minOra(ora)) * 60000, provvisorio: true };
+    fineAperta = false; renderOre(); msg('m-ore', 'Inizio alle ' + ora + ' · registrazione in corso…');
+    call({ azione: 'entrata', pin: pin, ora: o }).then(function (r) {
+      if (!r.ok) { st.aperto = null; fineAperta = false; renderOre(); return msg('m-ore', r.errore, 'err'); }
+      if (r.settimane) render(r); else { st.aperto = r.aperto; oraToccata = false; aggiornaOra(); renderOre(); }
+      msg('m-ore', 'Inizio registrato alle ' + (r.aperto ? r.aperto.da : ora));
     });
   });
   $('b-fine-no').addEventListener('click', function () { fineAperta = false; msg('m-ore', ''); renderOre(); });
@@ -522,7 +526,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     });
   });
   $('b-annulla').addEventListener('click', function () {
-    call({ azione: 'annulla', pin: pin }, this).then(function (r) { if (!r.ok) return msg('m-ore', r.errore, 'err'); render(r); msg('m-ore', 'Inizio lavoro annullato'); });
+    call({ azione: 'annulla', pin: pin }, this).then(function (r) { if (!r.ok) return msg('m-ore', r.errore, 'err'); render(r); msg('m-ore', 'Inizio annullato'); });
   });
   $('b-man').addEventListener('click', function () {
     var g = $('m-giorno').value, da = $('m-da').value, a = $('m-a').value, righe = pkMan.righe(), tot = totaleMan();
