@@ -361,7 +361,8 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     function drawLista() {
       var q = cerca.value.trim().toLowerCase();
       var rec = ultime.filter(function (c) { return tutte.indexOf(c) >= 0; });
-      var el = rec.concat(tutte.filter(function (c) { return rec.indexOf(c) < 0; })).filter(function (c) { return !q || c.toLowerCase().indexOf(q) >= 0; });
+      // ordine dell'elenco (dall'ultima alla prima); quelle usate di recente restano al loro posto, evidenziate
+      var el = tutte.filter(function (c) { return !q || c.toLowerCase().indexOf(q) >= 0; });
       lista.innerHTML = el.length ? el.map(function (c) {
         return '<label class="pk-item' + (!q && rec.indexOf(c) >= 0 ? ' rec' : '') + '"><input type="checkbox" value="' + esc(c) + '"' + (scelta(c) ? ' checked' : '') + '><span>' + esc(c) + '</span></label>';
       }).join('') : '<p class="small" style="padding:9px 12px; margin:0">Nessuna commessa trovata: ' + (conAgg ? 'premi «Aggiorna elenco commesse» qui sotto; se non compare, chiedi a Marco.' : 'chiedi a Marco di aggiungerla all\'elenco.') + '</p>';
