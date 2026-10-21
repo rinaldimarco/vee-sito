@@ -339,6 +339,15 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
   }
 
   /* ---------- scelta delle commesse e ore per commessa ---------- */
+  /** prima le voci senza numero (es. Attività interna VEE), poi le commesse dall'ultima alla prima */
+  function numCommessa(c) { var m = /^(\d+)/.exec(String(c).trim()); return m ? Number(m[1]) : 0; }
+  function ordinaCommesse(lista) {
+    return lista.map(function (c, i) { return [c, i]; }).sort(function (x, y) {
+      var a = numCommessa(x[0]), b = numCommessa(y[0]);
+      if (!a || !b) return ((a ? 1 : 0) - (b ? 1 : 0)) || x[1] - y[1];
+      return (b - a) || x[1] - y[1];
+    }).map(function (x) { return x[0]; });
+  }
   function Picker(root, totale, onChange) {
     root.innerHTML = '<label class="f">Commesse su cui hai lavorato</label>'
       + '<input type="text" class="pk-cerca" placeholder="Scrivi il numero o il nome per cercare" autocomplete="off">'
@@ -407,7 +416,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     scelte.addEventListener('input', function (e) { var i = e.target.getAttribute('data-i'); if (i === null) return; sel[Number(i)].o = e.target.value; aggiorna(); });
     scelte.addEventListener('click', function (e) { var b = e.target.closest('button[data-x]'); if (!b) return; sel.splice(Number(b.getAttribute('data-x')), 1); drawScelte(); drawLista(); });
     return {
-      elenco: function (c, u) { tutte = c || []; ultime = u || []; drawLista(); },
+      elenco: function (c, u) { tutte = ordinaCommesse(c || []); ultime = u || []; drawLista(); },
       aggiornabile: function (si) { conAgg = !!si; agg.classList.toggle('hidden', !conAgg); drawLista(); },
       avviso: function (t, occupato) { agg.querySelector('.small').textContent = t || ''; agg.querySelector('button').disabled = !!occupato; },
       aggiorna: aggiorna,
@@ -813,7 +822,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
           + (x.primo ? esc(x.fasce || (x.da + '–' + x.a)) + (x.nota ? ' <span class="man">' + esc(x.nota) + '</span>' : '') : '') + '</td><td>'
           + esc(x.commessa) + '</td><td class="n">' + (x.ore ? hh(x.ore) : '') + '</td></tr>';
       }).join('') + '</tbody>';
-    $('a-lista').value = r.commesse.join('\n');
+    $('a-lista').value = ordinaCommesse(r.commesse).join('\n');
     $('a-dbx').classList.toggle('hidden', !r.dropbox);
     renderApin();
     renderAprog();
