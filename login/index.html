@@ -594,7 +594,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
 
   /* ---------- avvio ---------- */
   if (!/^https?:\/\//.test(ENDPOINT)) { show('v-config'); return; }
-  store(false, 'vee_registro_pin', null); // PIN salvato dalla vecchia pagina /registro/
+  store(false, 'vee_registro_pin', null); // PIN salvato dalla pagina precedente
   var saved = null;
   try { saved = JSON.parse(store(true, K_LOGIN) || 'null'); } catch (e) { saved = null; }
   show('v-login');
