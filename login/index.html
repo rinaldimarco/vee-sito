@@ -149,10 +149,10 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
 <!-- accesso -->
 <section id="v-login" class="hidden">
   <h1>Area riservata</h1>
-  <p class="sub">Scegli il tuo nome e inserisci il PIN.</p>
+  <p class="sub">Inserisci il tuo nome utente e il PIN.</p>
   <form id="f-login" class="card" autocomplete="off">
     <label class="f" for="utente">Utente</label>
-    <select id="utente" required style="max-width:360px; margin-bottom:16px"><option value="">Caricamento…</option></select>
+    <input type="text" id="utente" required style="max-width:360px; margin-bottom:16px" placeholder="il tuo nome, es. nicola" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false">
     <label class="f" for="pin">PIN</label>
     <input class="pin" id="pin" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="off" required>
     <label class="check"><input type="checkbox" id="ricorda" checked> Ricorda su questo dispositivo</label>
@@ -510,14 +510,15 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
   function login(u, p, remember) {
     return call({ azione: 'stato', utente: u, pin: p, mese: meseIniziale() }).then(function (r) {
       if (!r.ok) { if (r.auth === false) store(false, K_LOGIN, null); show('v-login'); msg('m-login', r.errore, 'err'); return; }
-      pin = p; uid = u; ricorda = remember; store(false, K_U, u);
-      if (remember) store(false, K_LOGIN, JSON.stringify({ u: u, p: p }));
+      pin = p; uid = u; ricorda = remember;
+      // con «Ricorda» il dispositivo tiene utente e PIN; senza, si riscrivono ogni volta
+      if (remember) { store(false, K_U, u); store(false, K_LOGIN, JSON.stringify({ u: u, p: p })); } else { store(false, K_U, null); store(false, K_LOGIN, null); }
       if (r.ruolo === 'admin') { $('mese').value = r.mese; renderAdmin(r); show('v-admin'); }
       else render(r);
     });
   }
   function esci() {
-    store(false, K_LOGIN, null); pin = ''; uid = ''; st = null; adm = null;
+    store(false, K_LOGIN, null); store(false, K_U, null); pin = ''; uid = ''; st = null; adm = null; $('utente').value = '';
     $('who').textContent = ''; $('pin').value = ''; msg('m-login', '');
     // niente dati della persona precedente sullo stesso dispositivo
     $('m-giorno').value = ''; fxOggi.imposta([]); fxMan.imposta([]); manToccato = false;
@@ -774,7 +775,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
   });
   $('f-login').addEventListener('submit', function (e) {
     e.preventDefault(); msg('m-login', '');
-    var u = $('utente').value; if (!u) return msg('m-login', 'Scegli il tuo nome', 'err');
+    var u = $('utente').value.trim().toLowerCase(); if (!u) return msg('m-login', 'Inserisci il tuo nome utente', 'err');
     var p = $('pin').value.trim(); if (!/^\d{6}$/.test(p)) return msg('m-login', 'Il PIN ha 6 cifre', 'err');
     var btn = this.querySelector('button'); btn.disabled = true;
     login(u, p, $('ricorda').checked).then(function () { btn.disabled = false; });
@@ -952,17 +953,10 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
   var saved = null;
   try { saved = JSON.parse(store(true, K_LOGIN) || 'null'); } catch (e) { saved = null; }
   show('v-login');
-  if (saved && saved.u && saved.p) msg('m-login', 'Accesso in corso…');
-  // elenco dei nomi dallo script (non è scritto nel codice della pagina)
-  fetch(ENDPOINT, { redirect: 'follow' }).then(function (r) { return r.json(); }).then(function (r) {
-    var sel = $('utente'), ult = store(true, K_U) || '';
-    sel.innerHTML = '<option value="">Scegli…</option>' + (r.utenti || []).map(function (u) {
-      return '<option value="' + esc(u.id) + '"' + (u.id === ult ? ' selected' : '') + '>' + esc(u.nome) + '</option>';
-    }).join('');
-    if (saved && saved.u && saved.p) login(saved.u, saved.p, true);
-    else if (sel.value) $('pin').focus();
-  }).catch(function () { msg('m-login', 'Connessione non riuscita: ricarica la pagina', 'err'); });
-  $('utente').addEventListener('change', function () { if (this.value) $('pin').focus(); });
+  var ult = store(true, K_U) || '';
+  if (ult) $('utente').value = ult;
+  if (saved && saved.u && saved.p) { msg('m-login', 'Accesso in corso…'); login(saved.u, saved.p, true); }
+  else if (ult) $('pin').focus(); else $('utente').focus();
 })();
 </script>
 </body>
