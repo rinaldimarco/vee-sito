@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<title>Area riservata · VEE S.r.l.</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#FCFBF8">
+<style>
+@font-face { font-family: 'Jost'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/jost-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Jost'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/jost-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Jost'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/jost-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/ibm-plex-mono-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/ibm-plex-mono-latin-500-normal.woff2') format('woff2'); }
+:root {
+  color-scheme: light;
+  --ink: #0B3A3F; --text: #2F4F53; --muted: #5C7A7E; --teal-ink: #0B6E76; --teal: #2FA6AE; --nebbia: #D08A54; --verde: #C9B48A;
+  --bg: #FCFBF8; --bg-alt: #F6F4EF; --line: rgba(11,58,63,.2); --line-strong: rgba(11,58,63,.6);
+  --ok: #1F7A4D; --warn: #B4531F;
+  --lg-red: #D08A54; --lg-ink: #0B3A3F; --lg-grid: #7FC4C9;
+  --display: "Jost", "Futura", sans-serif; --mono: "IBM Plex Mono", Consolas, monospace;
+  --gutter: clamp(16px, 4vw, 32px);
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--display); font-size: 1.0625rem; line-height: 1.55; }
+a { color: var(--teal-ink); }
+button, input, select, textarea { font: inherit; color: inherit; }
+header { border-bottom: 1px solid var(--line); background: var(--bg); }
+header .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+.brand { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--ink); }
+.brand svg { height: 40px; width: auto; display: block; }
+.brand .payoff { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); border-left: 1px solid var(--line-strong); padding-left: 14px; }
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 var(--gutter); }
+main { padding: 28px 0 64px; }
+h1 { font-size: clamp(1.7rem, 5vw, 2.2rem); color: var(--ink); margin: 0 0 6px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; }
+h2 { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal-ink); font-weight: 500; margin: 0 0 12px; }
+.sub { color: var(--muted); margin: 0 0 22px; }
+.card { background: #fff; border: 1px solid var(--line); padding: 20px; margin-top: 18px; }
+.row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+label.f { display: block; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; }
+input[type=text], input[type=password], input[type=time], input[type=month], input[type=date], select, textarea { width: 100%; border: 1px solid var(--line-strong); background: #fff; padding: 12px 14px; border-radius: 0; font-size: 1.05rem; }
+input:focus, textarea:focus, button:focus-visible { outline: 2px solid var(--teal); outline-offset: 1px; }
+.pin { font-family: var(--mono); font-size: 1.6rem; letter-spacing: 0.4em; text-align: center; max-width: 260px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--ink); background: transparent; color: var(--ink); padding: 12px 20px; cursor: pointer; font-weight: 500; text-decoration: none; }
+.btn:hover { border-color: var(--nebbia); color: var(--nebbia); }
+.btn-primary { background: var(--ink); color: #fff; }
+.btn-primary:hover { background: var(--nebbia); border-color: var(--nebbia); color: #fff; }
+.btn-big { width: 100%; padding: 22px 20px; font-size: 1.35rem; }
+.btn[disabled] { opacity: .5; cursor: wait; }
+.link { background: none; border: 0; padding: 0; color: var(--teal-ink); text-decoration: underline; cursor: pointer; font-size: 0.95rem; }
+.check { display: flex; gap: 10px; align-items: flex-start; margin: 12px 0; font-size: 0.95rem; }
+.check input { width: 20px; height: 20px; margin-top: 2px; flex: 0 0 auto; }
+.stato { font-size: 1.15rem; color: var(--ink); margin: 0 0 16px; }
+.stato b { font-weight: 600; }
+.dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--muted); margin-right: 8px; vertical-align: 1px; }
+.dot.on { background: var(--ok); }
+.dot.pz { background: var(--nebbia); }
+.duo { display: flex; gap: 10px; }
+.duo > .btn { flex: 1 1 0; min-width: 0; }
+tr.pz td { color: var(--muted); font-style: italic; }
+.grid3 { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr); gap: 10px; }
+.grid3 input { padding: 12px 8px; min-width: 0; width: 100%; }
+@media (max-width: 560px) {
+  .grid3 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .grid3 > :first-child { grid-column: 1 / -1; }
+}
+.man { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.msg { padding: 12px 14px; margin-top: 14px; border-left: 3px solid var(--teal-ink); background: var(--bg-alt); font-size: 0.95rem; }
+.msg.err { border-left-color: var(--warn); color: #6b2a0b; }
+.msg.warn { border-left-color: var(--nebbia); }
+table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+td.n, th.n { text-align: right; white-space: nowrap; }
+.tot td { font-weight: 600; color: var(--ink); border-bottom: 0; }
+.week { width: 100%; }
+.week td { padding: 6px 4px; }
+.seg { display: inline-flex; border: 1px solid var(--line-strong); }
+.seg button { border: 0; background: #fff; padding: 9px 10px; min-width: 74px; cursor: pointer; font-size: 0.9rem; }
+.seg button + button { border-left: 1px solid var(--line-strong); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+.tabs { display: flex; gap: 0; margin-bottom: 12px; border-bottom: 1px solid var(--line); }
+.tabs button { border: 0; background: none; padding: 8px 12px; cursor: pointer; border-bottom: 2px solid transparent; font-size: 0.95rem; color: var(--muted); }
+.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--ink); font-weight: 500; }
+.badge { display: inline-block; font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 7px; border: 1px solid currentColor; margin-left: 8px; vertical-align: 2px; }
+.badge.warn { color: var(--warn); }
+.badge.ok { color: var(--ok); }
+.small { font-size: 0.85rem; color: var(--muted); }
+.legal { font-size: 0.92rem; }
+.legal p { margin: 0 0 10px; }
+.top-actions { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.hidden { display: none !important; }
+details { margin-top: 8px; }
+summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
+@media (max-width: 560px) {
+  .seg button { min-width: 0; padding: 9px 8px; font-size: 0.85rem; }
+  .brand .payoff { display: none; }
+  .card { padding: 16px; }
+}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a class="brand" href="/" aria-label="VEE — Società di ingegneria e architettura, Torino"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 478 210" aria-hidden="true"><g fill="none" stroke="var(--lg-red)" stroke-width="1.8" stroke-dasharray="7 5"><circle cx="239" cy="105" r="65"/><circle cx="397" cy="105" r="65"/><line x1="0" y1="40" x2="478" y2="40"/><line x1="0" y1="105" x2="478" y2="105"/><line x1="0" y1="170" x2="478" y2="170"/></g><polygon points="10,40 150,40 80,170" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M239 40 A65 65 0 0 0 239 170 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M245 105 L245 40.28 A65 65 0 0 1 304 105 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M397 40 A65 65 0 0 0 397 170 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M403 105 L403 40.28 A65 65 0 0 1 462 105 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/></svg><span class="payoff">Area riservata</span></a><span class="small" id="who"></span></div></header>
+<main><div class="wrap">
+
+<div id="v-config" class="hidden">
+  <h1>Area riservata</h1>
+  <p class="msg warn">Il servizio non è ancora attivo: manca l'indirizzo dello script Google.</p>
+</div>
+
+<!-- accesso -->
+<section id="v-login" class="hidden">
+  <h1>Area riservata</h1>
+  <p class="sub">Scegli il tuo nome e inserisci il PIN.</p>
+  <form id="f-login" class="card" autocomplete="off">
+    <label class="f" for="utente">Utente</label>
+    <select id="utente" required style="max-width:360px; margin-bottom:16px"><option value="">Caricamento…</option></select>
+    <label class="f" for="pin">PIN</label>
+    <input class="pin" id="pin" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="off" required>
+    <label class="check"><input type="checkbox" id="ricorda" checked> Ricorda su questo dispositivo</label>
+    <button class="btn btn-primary" type="submit">Entra</button>
+    <div id="m-login"></div>
+  </form>
+</section>
+
+<!-- cambio PIN -->
+<section id="v-pin" class="hidden">
+  <h1>Cambia PIN</h1>
+  <p class="sub">Scegli 6 cifre che ricordi solo tu. Il nuovo PIN vale da subito su tutti i dispositivi.</p>
+  <form id="f-pin" class="card" autocomplete="off">
+    <label class="f" for="pin1">Nuovo PIN</label>
+    <input class="pin" id="pin1" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="new-password" required>
+    <label class="f" for="pin2" style="margin-top:14px">Ripeti il nuovo PIN</label>
+    <input class="pin" id="pin2" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="new-password" required>
+    <div class="row" style="margin-top:16px">
+      <button class="btn btn-primary" type="submit" id="b-pin">Salva il nuovo PIN</button>
+      <button class="link" type="button" id="b-pin-annulla">Annulla</button>
+    </div>
+    <div id="m-pin"></div>
+  </form>
+</section>
+
+<!-- informativa -->
+<section id="v-privacy" class="hidden">
+  <h1>Informativa sul trattamento dei dati</h1>
+  <div class="card legal">
+    <p><b>Titolare del trattamento</b>: VEE S.r.l., Piazza C.L.N. 255, 10123 Torino (TO), P.IVA 12904260010.</p>
+    <p><b>Dati trattati</b>: nome, orari di inizio e fine delle attività svolte per VEE, commessa di riferimento, programma settimanale (ufficio, da remoto, assente).</p>
+    <p><b>Finalità</b>: rendicontazione delle ore ai fini dei compensi e della fatturazione, ripartizione delle ore per commessa, organizzazione delle postazioni in studio.</p>
+    <p><b>Base giuridica</b>: esecuzione del contratto di collaborazione (art. 6, par. 1, lett. b, del Regolamento UE 2016/679) e adempimento degli obblighi contabili e fiscali (art. 6, par. 1, lett. c).</p>
+    <p><b>Modalità e strumenti</b>: i dati sono registrati tramite questa pagina e conservati nei calendari Google dell'account dello studio; vi accede solo il titolare. Non sono rilevate posizione né altri dati del dispositivo.</p>
+    <p><b>Conservazione</b>: per la durata del rapporto e, successivamente, per il periodo previsto dagli obblighi contabili e fiscali (10 anni).</p>
+    <p><b>Diritti</b>: accesso, rettifica, cancellazione, limitazione, opposizione e portabilità (artt. 15–22 GDPR), scrivendo al titolare; reclamo al Garante per la protezione dei dati personali.</p>
+  </div>
+  <label class="check"><input type="checkbox" id="ok-privacy"> Ho letto l'informativa</label>
+  <button class="btn btn-primary" type="button" id="b-privacy" disabled>Continua</button>
+  <div id="m-privacy"></div>
+</section>
+
+<!-- collaboratore -->
+<section id="v-main" class="hidden">
+  <div class="top-actions">
+    <h1 id="ciao">Ciao</h1>
+    <span class="row"><button class="link" type="button" data-cambiapin>Cambia PIN</button><button class="link" type="button" id="esci">Esci</button></span>
+  </div>
+  <p class="sub" id="oggi-data"></p>
+
+  <div class="card" id="c-ore">
+    <h2>Ore di oggi</h2>
+    <p class="stato" id="stato"></p>
+
+    <div id="blk-dimenticata" class="hidden">
+      <p class="msg warn" id="t-dimenticata"></p>
+      <label class="f" for="ora-dim">Ora di fine lavoro di quel giorno</label>
+      <input type="time" id="ora-dim" style="max-width:180px">
+    </div>
+
+    <div id="blk-commessa" class="hidden" style="margin-bottom:14px">
+      <label class="f" for="commessa">Commessa su cui stai lavorando</label>
+      <input type="text" id="commessa" list="l-commesse" placeholder="Scrivi numero o nome" autocomplete="off">
+      <datalist id="l-commesse"></datalist>
+    </div>
+
+    <div id="blk-ora" style="margin-bottom:14px">
+      <label class="f" for="ora">Ora</label>
+      <div class="row">
+        <input type="time" id="ora" style="max-width:180px">
+        <button class="link hidden" type="button" id="b-oraora">Usa l'ora attuale</button>
+      </div>
+      <p class="small" style="margin:6px 0 0">Se registri in ritardo, correggi l'ora prima di premere il pulsante.</p>
+    </div>
+
+    <div class="duo">
+      <button class="btn btn-big hidden" type="button" id="b-pausa">Pausa</button>
+      <button class="btn btn-primary btn-big" type="button" id="b-azione">Inizio lavoro</button>
+    </div>
+    <div class="row" style="margin-top:12px; justify-content:space-between">
+      <button class="link hidden" type="button" id="b-cambio">Passo a un'altra commessa</button>
+      <button class="link hidden" type="button" id="b-annulla">Annulla</button>
+    </div>
+    <div id="m-ore"></div>
+
+    <table id="t-oggi" class="hidden" style="margin-top:18px">
+      <thead><tr><th>Orario</th><th>Commessa</th><th class="n">Ore</th></tr></thead>
+      <tbody></tbody>
+    </table>
+
+    <details id="d-fascia" style="margin-top:18px">
+      <summary>Aggiungi una fascia a mano</summary>
+      <p class="small" style="margin:8px 0 12px">Per un periodo non registrato, oggi o negli ultimi 7 giorni.</p>
+      <div class="grid3">
+        <div><label class="f" for="f-giorno">Giorno</label><input type="date" id="f-giorno"></div>
+        <div><label class="f" for="f-da">Dalle</label><input type="time" id="f-da"></div>
+        <div><label class="f" for="f-a">Alle</label><input type="time" id="f-a"></div>
+      </div>
+      <label class="f" for="f-commessa" style="margin-top:12px">Commessa</label>
+      <input type="text" id="f-commessa" list="l-commesse" placeholder="Scrivi numero o nome" autocomplete="off">
+      <button class="btn btn-primary" type="button" id="b-fascia" style="margin-top:12px">Aggiungi fascia</button>
+      <div id="m-fascia"></div>
+    </details>
+  </div>
+
+  <div class="card" id="c-prog">
+    <h2>Programma della settimana <span id="badge-prog"></span></h2>
+    <div class="tabs" role="tablist">
+      <button type="button" role="tab" id="tab0" aria-selected="true">Questa settimana</button>
+      <button type="button" role="tab" id="tab1" aria-selected="false">Prossima settimana</button>
+    </div>
+    <table class="week"><tbody id="t-prog"></tbody></table>
+    <button class="btn btn-primary" type="button" id="b-prog" style="margin-top:14px">Conferma il programma</button>
+    <div id="m-prog"></div>
+  </div>
+  <p class="small hidden" id="hint-pin" style="margin-top:18px">Stai usando il PIN iniziale: se vuoi, sostituiscilo con uno a tua scelta da «Cambia PIN».</p>
+</section>
+
+<!-- amministrazione -->
+<section id="v-admin" class="hidden">
+  <div class="top-actions">
+    <h1>Riepilogo mensile</h1>
+    <span class="row"><button class="link" type="button" data-cambiapin>Cambia PIN</button><button class="link" type="button" id="a-esci">Esci</button></span>
+  </div>
+  <div class="row" style="margin:10px 0 4px">
+    <div style="max-width:220px; flex:1"><label class="f" for="mese">Mese</label><input type="month" id="mese"></div>
+    <button class="btn" type="button" id="a-csv" style="align-self:flex-end">Scarica CSV</button>
+  </div>
+  <div id="m-admin"></div>
+  <div class="card"><h2>Ore per collaboratore</h2><table id="a-persone"></table></div>
+  <div class="card"><h2>Ore per commessa</h2><table id="a-commesse"></table></div>
+  <div class="card"><h2>Programma settimanale</h2>
+    <div class="tabs" role="tablist">
+      <button type="button" role="tab" id="atab0" aria-selected="true">Questa settimana</button>
+      <button type="button" role="tab" id="atab1" aria-selected="false">Prossima settimana</button>
+    </div>
+    <div style="overflow-x:auto"><table id="a-prog"></table></div>
+  </div>
+  <div class="card"><h2>Registrazioni del mese</h2><details><summary>Mostra il dettaglio</summary><div style="overflow-x:auto"><table id="a-righe" style="margin-top:10px"></table></div></details></div>
+  <div class="card"><h2>Elenco commesse</h2>
+    <p class="small">Una commessa per riga: è l'elenco proposto ai collaboratori.</p>
+    <textarea id="a-lista" rows="10"></textarea>
+    <button class="btn btn-primary" type="button" id="a-salva" style="margin-top:12px">Salva elenco</button>
+  </div>
+  <div class="card"><h2>PIN dei collaboratori</h2>
+    <p class="small">Se qualcuno dimentica il PIN che ha scelto, «Ripristina» lo riporta al PIN iniziale.</p>
+    <div style="overflow-x:auto"><table id="a-pin"></table></div>
+  </div>
+</section>
+
+</div></main>
+
+<script>
+(function () {
+  'use strict';
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbwlDJYkPqNRupAzUfRKd8b7_0Ug34gOMk3jqsVH6mY_8FI70ZcO_8hFOXnLiBNhfdWZIw/exec';
+  var K_LOGIN = 'vee_login', K_U = 'vee_login_u';
+  var GIORNI = ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì'];
+  var STATI = [['U', 'Ufficio'], ['R', 'Remoto'], ['A', 'Assente']];
+  var MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
+  var $ = function (id) { return document.getElementById(id); };
+  var pin = '', uid = '', ricorda = false, st = null, adm = null, wk = 0, awk = 0, prog = [null, null], oraToccata = false, timer = null, skew = 0, noPrefill = false, vista = '', daRipristinare = '';
+
+  function store(get, k, v) { try { if (get) return localStorage.getItem(k); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) { return null; } }
+  function show(id) { var cambia = vista !== id; vista = id; ['v-config', 'v-login', 'v-pin', 'v-privacy', 'v-main', 'v-admin'].forEach(function (x) { $(x).classList.toggle('hidden', x !== id); }); if (cambia) window.scrollTo(0, 0); }
+  function msg(id, text, cls) { $(id).innerHTML = text ? '<p class="msg ' + (cls || '') + '">' + esc(text) + '</p>' : ''; }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function hh(h) { var m = Math.round(h * 60); return Math.floor(m / 60) + ' h ' + String(m % 60).padStart(2, '0'); }
+  function dataIt(s) { var p = s.split('-'); return Number(p[2]) + ' ' + MESI[Number(p[1]) - 1]; }
+  function addDays(s, n) { var p = s.split('-'); var d = new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]) + n); return d.getDate() + '/' + (d.getMonth() + 1); }
+
+  function call(payload, busy) {
+    if (busy) busy.disabled = true;
+    if (uid && !payload.utente) payload.utente = uid;
+    return fetch(ENDPOINT, { method: 'POST', body: JSON.stringify(payload), redirect: 'follow' })
+      .then(function (r) { return r.json(); })
+      .catch(function () { return { ok: false, errore: 'Connessione non riuscita: riprova' }; })
+      .then(function (r) { if (busy) busy.disabled = false; return r; });
+  }
+
+  /* ---------- collaboratori ---------- */
+  function login(u, p, remember) {
+    return call({ azione: 'stato', utente: u, pin: p, mese: meseIniziale() }).then(function (r) {
+      if (!r.ok) { if (r.auth === false) store(false, K_LOGIN, null); show('v-login'); msg('m-login', r.errore, 'err'); return; }
+      pin = p; uid = u; ricorda = remember; store(false, K_U, u);
+      if (remember) store(false, K_LOGIN, JSON.stringify({ u: u, p: p }));
+      if (r.ruolo === 'admin') { $('mese').value = r.mese; renderAdmin(r); show('v-admin'); }
+      else render(r);
+    });
+  }
+  function esci() {
+    store(false, K_LOGIN, null); pin = ''; uid = ''; st = null; adm = null; clearInterval(timer);
+    $('who').textContent = ''; $('pin').value = ''; msg('m-login', '');
+    // niente dati della persona precedente sullo stesso dispositivo
+    ['commessa', 'f-commessa', 'f-giorno', 'f-da', 'f-a', 'ora-dim'].forEach(function (id) { $(id).value = ''; });
+    ['m-ore', 'm-fascia', 'm-prog'].forEach(function (id) { msg(id, ''); });
+    $('d-fascia').open = false;
+    show('v-login');
+  }
+  function render(r) {
+    st = r; skew = r.adessoMs - Date.now();
+    $('who').textContent = r.nome;
+    if (!r.privacy) { show('v-privacy'); return; }
+    show('v-main');
+    $('hint-pin').classList.toggle('hidden', !!r.pinPersonale);
+    $('ciao').textContent = 'Ciao, ' + r.nome.split(' ')[0];
+    var d = new Date(r.adessoMs);
+    $('oggi-data').textContent = ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'][d.getDay()] + ' ' + d.getDate() + ' ' + MESI[d.getMonth()] + ' ' + d.getFullYear();
+    $('l-commesse').innerHTML = r.commesse.map(function (c) { return '<option value="' + esc(c) + '">'; }).join('');
+    oraToccata = false; aggiornaOra();
+    var oggi = isoGiorno(0);
+    $('f-giorno').max = oggi; $('f-giorno').min = isoGiorno(-7);
+    if (!$('f-giorno').value) $('f-giorno').value = oggi;
+    if (!$('f-commessa').value) $('f-commessa').value = r.ultimaCommessa || '';
+    renderOre(); renderOggi();
+    prog = [r.settimane[0].giorni.slice(), r.settimane[1].giorni.slice()];
+    for (var i = 0; i < 2; i++) if (!r.settimane[i].salvato) prog[i] = (r.settimane[1 - i].salvato ? r.settimane[1 - i].giorni : ['U', 'U', 'U', 'U', 'U']).slice();
+    wk = (!r.settimane[0].salvato || d.getDay() < 4 && d.getDay() > 0) ? 0 : 1;
+    renderProg();
+  }
+  function renderOre() {
+    var a = st.aperto, dim = a && !a.oggi, pz = !a && st.pausa;
+    clearInterval(timer);
+    $('blk-dimenticata').classList.toggle('hidden', !dim);
+    $('blk-commessa').classList.toggle('hidden', !a);
+    $('blk-ora').classList.toggle('hidden', !!dim);
+    $('b-cambio').classList.toggle('hidden', !a || dim);
+    // al lavoro: [Pausa][Fine lavoro]; in pausa: [Ripresa][Fine lavoro]
+    $('b-pausa').classList.toggle('hidden', !(a && !dim) && !pz);
+    $('b-pausa').textContent = pz ? 'Ripresa' : 'Pausa';
+    $('b-pausa').classList.toggle('btn-primary', !!pz);
+    $('b-azione').classList.toggle('btn-primary', !pz);
+    var recente = a && a.oggi && (Date.now() + skew - a.inizioMs) < 15 * 60000;
+    $('b-annulla').classList.toggle('hidden', !recente);
+    if (a && !$('commessa').value && !noPrefill) $('commessa').value = st.ultimaCommessa || '';
+    noPrefill = false;
+    if (pz) {
+      var tickp = function () { var ms = Date.now() + skew - pz.inizioMs; $('stato').innerHTML = '<span class="dot pz"></span>In pausa dalle <b>' + esc(pz.da) + '</b> · ' + hh(ms / 36e5); };
+      tickp(); timer = setInterval(tickp, 30000);
+      $('b-azione').textContent = 'Fine lavoro';
+    } else if (!a) {
+      var ult = st.oggi.length ? st.oggi[st.oggi.length - 1].a : '', totOggi = st.oggi.reduce(function (s, x) { return s + x.ore; }, 0);
+      $('stato').innerHTML = ult ? '<span class="dot"></span>Fine lavoro alle <b>' + esc(ult) + '</b> · oggi ' + hh(totOggi) : '<span class="dot"></span>Lavoro non iniziato';
+      $('b-azione').textContent = 'Inizio lavoro';
+    } else if (dim) {
+      $('stato').innerHTML = '<span class="dot on"></span>Inizio del <b>' + esc(dataIt(a.giorno)) + '</b> alle <b>' + esc(a.da) + '</b> senza fine lavoro';
+      $('t-dimenticata').textContent = 'Manca la fine lavoro del ' + dataIt(a.giorno) + ": indica a che ora hai finito e la commessa, poi registra l'inizio lavoro di oggi.";
+      $('b-azione').textContent = 'Registra fine lavoro';
+    } else {
+      var tick = function () { var ms = Date.now() + skew - a.inizioMs; $('stato').innerHTML = '<span class="dot on"></span>Al lavoro dalle <b>' + esc(a.da) + '</b> · ' + hh(ms / 36e5); };
+      tick(); timer = setInterval(tick, 30000);
+      $('b-azione').textContent = 'Fine lavoro';
+    }
+  }
+  function renderOggi() {
+    var rows = st.oggi;
+    $('t-oggi').classList.toggle('hidden', !rows.length);
+    var tot = 0;
+    var min = function (s) { var p = s.split(':'); return Number(p[0]) * 60 + Number(p[1]); };
+    $('t-oggi').querySelector('tbody').innerHTML = rows.map(function (x, i) {
+      tot += x.ore;
+      // l'intervallo tra due fasce è una pausa (non conteggiata)
+      var g = i ? min(x.da) - min(rows[i - 1].a) : 0;
+      return (g > 0 ? '<tr class="pz"><td>' + esc(rows[i - 1].a + '–' + x.da) + '</td><td>Pausa</td><td class="n">' + hh(g / 60) + '</td></tr>' : '')
+        + '<tr><td>' + esc(x.da + '–' + x.a) + (x.manuale ? ' <span class="man">a mano</span>' : '') + '</td><td>' + esc(x.commessa) + '</td><td class="n">' + hh(x.ore) + '</td></tr>';
+    }).join('')
+      + (rows.length > 1 ? '<tr class="tot"><td>Totale</td><td></td><td class="n">' + hh(tot) + '</td></tr>' : '');
+  }
+  function renderProg() {
+    var s = st.settimane[wk];
+    $('tab0').setAttribute('aria-selected', wk === 0); $('tab1').setAttribute('aria-selected', wk === 1);
+    $('tab0').textContent = 'Questa settimana (' + addDays(st.settimane[0].settimana, 0) + ')';
+    $('tab1').textContent = 'Prossima (' + addDays(st.settimane[1].settimana, 0) + ')';
+    $('badge-prog').innerHTML = s.salvato ? '<span class="badge ok">confermato</span>' : '<span class="badge warn">da confermare</span>';
+    $('t-prog').innerHTML = GIORNI.map(function (g, i) {
+      return '<tr><td>' + g + ' <span class="small">' + addDays(s.settimana, i) + '</span></td><td class="n"><span class="seg">'
+        + STATI.map(function (x) { return '<button type="button" data-i="' + i + '" data-v="' + x[0] + '" aria-pressed="' + (prog[wk][i] === x[0]) + '">' + x[1] + '</button>'; }).join('')
+        + '</span></td></tr>';
+    }).join('');
+    $('b-prog').textContent = s.salvato ? 'Aggiorna il programma' : 'Conferma il programma';
+    msg('m-prog', '');
+  }
+  $('t-prog').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-i]'); if (!b) return;
+    prog[wk][Number(b.getAttribute('data-i'))] = b.getAttribute('data-v'); renderProg();
+  });
+  $('tab0').addEventListener('click', function () { wk = 0; renderProg(); });
+  $('tab1').addEventListener('click', function () { wk = 1; renderProg(); });
+  $('b-prog').addEventListener('click', function () {
+    var b = this;
+    call({ azione: 'programma', pin: pin, settimana: st.settimane[wk].settimana, giorni: prog[wk] }, b).then(function (r) {
+      if (!r.ok) return msg('m-prog', r.errore, 'err');
+      var w = wk; render(r); wk = w; renderProg(); msg('m-prog', 'Programma salvato');
+    });
+  });
+
+  $('b-azione').addEventListener('click', function () {
+    var b = this, a = st.aperto, p;
+    if (!a && st.pausa) {
+      // in pausa: la giornata finisce all'inizio della pausa
+      var fine = st.pausa.da;
+      return call({ azione: 'fine_pausa', pin: pin }, b).then(function (r) {
+        if (!r.ok) return msg('m-ore', r.errore, 'err');
+        render(r); msg('m-ore', 'Fine lavoro registrata alle ' + fine);
+      });
+    }
+    if (!a) p = { azione: 'entrata', ora: oraScelta() };
+    else if (!a.oggi) p = { azione: 'uscita', commessa: $('commessa').value, ora: $('ora-dim').value };
+    else p = { azione: 'uscita', commessa: $('commessa').value, ora: oraScelta() };
+    if (p.azione === 'uscita' && !String(p.commessa).trim()) return msg('m-ore', 'Indica la commessa', 'err');
+    if (a && !a.oggi && !p.ora) return msg('m-ore', "Indica l'ora", 'err');
+    p.pin = pin;
+    call(p, b).then(function (r) {
+      if (!r.ok) return msg('m-ore', r.errore, 'err');
+      var testo = { entrata: 'Inizio lavoro registrato', uscita: 'Fine lavoro registrata' }[p.azione];
+      if (p.azione === 'uscita') $('commessa').value = '';
+      $('ora-dim').value = '';
+      render(r); msg('m-ore', testo + (p.ora ? ' alle ' + p.ora : ''));
+    });
+  });
+  $('b-cambio').addEventListener('click', function () {
+    var c = $('commessa').value;
+    if (!String(c).trim()) return msg('m-ore', 'Indica la commessa su cui hai lavorato finora', 'err');
+    call({ azione: 'cambio', pin: pin, commessa: c }, this).then(function (r) {
+      if (!r.ok) return msg('m-ore', r.errore, 'err');
+      $('commessa').value = ''; noPrefill = true; render(r); $('commessa').focus(); msg('m-ore', 'Ore registrate su ' + c + '. Ora indica la nuova commessa: la confermi alla pausa o alla fine lavoro.');
+    });
+  });
+  $('b-annulla').addEventListener('click', function () {
+    call({ azione: 'annulla', pin: pin }, this).then(function (r) { if (!r.ok) return msg('m-ore', r.errore, 'err'); render(r); msg('m-ore', r.pausa ? 'Ripresa annullata: sei di nuovo in pausa' : 'Inizio lavoro annullato'); });
+  });
+  $('b-pausa').addEventListener('click', function () {
+    var c = $('commessa').value, o = oraScelta();
+    if (st.pausa && !st.aperto) {
+      return call({ azione: 'riprendi', pin: pin, ora: o }, this).then(function (r) {
+        if (!r.ok) return msg('m-ore', r.errore, 'err');
+        render(r); msg('m-ore', 'Ripresa registrata' + (o ? ' alle ' + o : ''));
+      });
+    }
+    if (!String(c).trim()) return msg('m-ore', 'Indica la commessa su cui hai lavorato finora', 'err');
+    call({ azione: 'pausa', pin: pin, commessa: c, ora: o }, this).then(function (r) {
+      if (!r.ok) return msg('m-ore', r.errore, 'err');
+      $('commessa').value = ''; render(r); msg('m-ore', 'Pausa registrata' + (o ? ' alle ' + o : '') + ': al rientro premi Ripresa');
+    });
+  });
+  /* ---------- ora: proposta quella attuale, inviata solo se corretta a mano ---------- */
+  function p2(n) { return String(n).padStart(2, '0'); }
+  // sempre ora italiana, anche se il dispositivo ha un altro fuso
+  function oraAdesso() { return new Date(Date.now() + skew).toLocaleTimeString('it-IT', { timeZone: 'Europe/Rome', hour: '2-digit', minute: '2-digit', hour12: false }); }
+  function isoGiorno(n) { return new Date(Date.now() + skew + n * 864e5).toLocaleDateString('sv-SE', { timeZone: 'Europe/Rome' }); }
+  function aggiornaOra() { if (!oraToccata) $('ora').value = oraAdesso(); $('b-oraora').classList.toggle('hidden', !oraToccata); }
+  function oraScelta() { var v = $('ora').value; return (!oraToccata || !v || v === oraAdesso()) ? '' : v; }
+  $('ora').addEventListener('input', function () { oraToccata = true; aggiornaOra(); });
+  $('b-oraora').addEventListener('click', function () { oraToccata = false; aggiornaOra(); });
+  setInterval(function () { if (st) aggiornaOra(); }, 20000);
+
+  /* ---------- fascia inserita a mano ---------- */
+  $('b-fascia').addEventListener('click', function () {
+    var g = $('f-giorno').value, da = $('f-da').value, a = $('f-a').value, c = $('f-commessa').value;
+    msg('m-fascia', '');
+    if (!g || !da || !a) return msg('m-fascia', 'Indica giorno, ora di inizio e ora di fine', 'err');
+    if (!String(c).trim()) return msg('m-fascia', 'Indica la commessa', 'err');
+    call({ azione: 'fascia', pin: pin, giorno: g, da: da, a: a, commessa: c }, this).then(function (r) {
+      if (!r.ok) return msg('m-fascia', r.errore, 'err');
+      $('f-da').value = ''; $('f-a').value = '';
+      render(r); msg('m-fascia', 'Fascia aggiunta: ' + g.split('-').reverse().slice(0, 2).join('/') + ' ' + da + '–' + a + ' · ' + c);
+    });
+  });
+  $('esci').addEventListener('click', esci);
+
+  /* ---------- cambio PIN (collaboratori e Marco) ---------- */
+  var tornaA = '';
+  Array.prototype.forEach.call(document.querySelectorAll('[data-cambiapin]'), function (b) {
+    b.addEventListener('click', function () { tornaA = vista; $('pin1').value = ''; $('pin2').value = ''; msg('m-pin', ''); show('v-pin'); $('pin1').focus(); });
+  });
+  $('b-pin-annulla').addEventListener('click', function () { show(tornaA); });
+  $('f-pin').addEventListener('submit', function (e) {
+    e.preventDefault(); msg('m-pin', '');
+    var n = $('pin1').value.trim();
+    if (!/^\d{6}$/.test(n)) return msg('m-pin', 'Il PIN ha 6 cifre', 'err');
+    if (n !== $('pin2').value.trim()) return msg('m-pin', 'I due PIN non coincidono', 'err');
+    call({ azione: 'cambia_pin', pin: pin, nuovo: n, mese: $('mese').value || meseIniziale() }, $('b-pin')).then(function (r) {
+      if (!r.ok) return msg('m-pin', r.errore, 'err');
+      pin = n; if (ricorda) store(false, K_LOGIN, JSON.stringify({ u: uid, p: n }));
+      if (r.ruolo === 'admin') { renderAdmin(r); show('v-admin'); msg('m-admin', 'PIN cambiato'); }
+      else { render(r); msg('m-ore', 'PIN cambiato'); }
+    });
+  });
+
+  $('ok-privacy').addEventListener('change', function () { $('b-privacy').disabled = !this.checked; });
+  $('b-privacy').addEventListener('click', function () {
+    call({ azione: 'privacy', pin: pin }, this).then(function (r) { if (!r.ok) return msg('m-privacy', r.errore, 'err'); render(r); });
+  });
+  $('f-login').addEventListener('submit', function (e) {
+    e.preventDefault(); msg('m-login', '');
+    var u = $('utente').value; if (!u) return msg('m-login', 'Scegli il tuo nome', 'err');
+    var p = $('pin').value.trim(); if (!/^\d{6}$/.test(p)) return msg('m-login', 'Il PIN ha 6 cifre', 'err');
+    var btn = this.querySelector('button'); btn.disabled = true;
+    login(u, p, $('ricorda').checked).then(function () { btn.disabled = false; });
+  });
+
+  /* ---------- amministrazione ---------- */
+  function mesiPrima(n) { var d = new Date(); d.setDate(1); d.setMonth(d.getMonth() - n); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0'); }
+  // nei primi 5 giorni del mese il riepilogo si apre sul mese precedente
+  function meseIniziale() { return new Date().getDate() <= 5 ? mesiPrima(1) : mesiPrima(0); }
+  function adminCall(payload, btn, ok) {
+    payload.pin = pin; payload.mese = $('mese').value;
+    return call(payload, btn).then(function (r) {
+      if (!r.ok) { if (r.auth === false) { esci(); return msg('m-login', r.errore, 'err'); } return msg('m-admin', r.errore, 'err'); }
+      renderAdmin(r); if (ok) msg('m-admin', ok);
+    });
+  }
+  function renderAdmin(r) {
+    var tot = 0;
+    adm = r; daRipristinare = '';
+    $('who').textContent = r.nome;
+    msg('m-admin', '');
+    $('a-persone').innerHTML = '<thead><tr><th>Collaboratore</th><th class="n">Giorni</th><th class="n">Ore</th></tr></thead><tbody>'
+      + r.persone.map(function (p) {
+        tot += p.ore;
+        return '<tr><td>' + esc(p.nome) + (p.privacy ? '' : ' <span class="badge warn">informativa da accettare</span>')
+          + (p.perCommessa.length ? '<div class="small">' + p.perCommessa.map(function (c) { return esc(c.commessa) + ': ' + hh(c.ore); }).join(' · ') + '</div>' : '')
+          + '</td><td class="n">' + p.giorni + '</td><td class="n">' + hh(p.ore) + '</td></tr>';
+      }).join('') + '<tr class="tot"><td>Totale</td><td></td><td class="n">' + hh(tot) + '</td></tr></tbody>';
+    $('a-commesse').innerHTML = r.commesseTotali.length ? '<thead><tr><th>Commessa</th><th class="n">Ore</th></tr></thead><tbody>'
+      + r.commesseTotali.map(function (c) { return '<tr><td>' + esc(c.commessa) + '</td><td class="n">' + hh(c.ore) + '</td></tr>'; }).join('') + '</tbody>'
+      : '<tbody><tr><td class="small">Nessuna registrazione nel mese</td></tr></tbody>';
+    $('a-righe').innerHTML = '<thead><tr><th>Data</th><th>Collaboratore</th><th>Orario</th><th>Commessa</th><th class="n">Ore</th></tr></thead><tbody>'
+      + r.righe.map(function (x) { return '<tr><td>' + esc(x.giorno.split('-').reverse().join('/')) + '</td><td>' + esc(x.persona) + '</td><td>' + esc(x.da + '–' + x.a) + (x.manuale ? ' <span class="man">a mano</span>' : '') + '</td><td>' + esc(x.commessa) + '</td><td class="n">' + (x.ore ? hh(x.ore) : '') + '</td></tr>'; }).join('') + '</tbody>';
+    $('a-lista').value = r.commesse.join('\n');
+    renderApin();
+    renderAprog();
+  }
+  function renderApin() {
+    $('a-pin').innerHTML = '<tbody>' + adm.persone.map(function (p) {
+      var conf = daRipristinare === p.id;
+      return '<tr><td>' + esc(p.nome) + '</td><td>' + (p.pinPersonale ? 'scelto dal collaboratore' : 'iniziale') + '</td><td class="n">'
+        + (p.pinPersonale ? '<button class="link" type="button" data-reset="' + esc(p.id) + '">' + (conf ? 'Conferma il ripristino' : 'Ripristina') + '</button>' : '')
+        + '</td></tr>';
+    }).join('') + '</tbody>';
+  }
+  $('a-pin').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-reset]'); if (!b) return;
+    var id = b.getAttribute('data-reset');
+    if (daRipristinare !== id) { daRipristinare = id; return renderApin(); }
+    var nome = adm.persone.filter(function (p) { return p.id === id; })[0].nome;
+    adminCall({ azione: 'admin_ripristina_pin', id: id }, b, 'PIN di ' + nome + ' riportato a quello iniziale');
+  });
+  function renderAprog() {
+    var lab = { U: 'Ufficio', R: 'Remoto', A: 'Assente', '': '—' };
+    $('atab0').setAttribute('aria-selected', awk === 0); $('atab1').setAttribute('aria-selected', awk === 1);
+    var s0 = adm.programma[0].settimane[awk].settimana;
+    $('a-prog').innerHTML = '<thead><tr><th></th>' + GIORNI.map(function (g, i) { return '<th>' + g.slice(0, 3) + ' ' + addDays(s0, i) + '</th>'; }).join('') + '</tr></thead><tbody>'
+      + adm.programma.map(function (p) { var w = p.settimane[awk]; return '<tr><td>' + esc(p.nome.split(' ')[0]) + '</td>' + w.giorni.map(function (g) { return '<td>' + lab[g] + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody>';
+  }
+  $('atab0').addEventListener('click', function () { awk = 0; renderAprog(); });
+  $('atab1').addEventListener('click', function () { awk = 1; renderAprog(); });
+  $('mese').addEventListener('change', function () { adminCall({ azione: 'admin_mese' }); });
+  $('a-salva').addEventListener('click', function () {
+    var lista = $('a-lista').value.split('\n').map(function (x) { return x.trim(); }).filter(Boolean);
+    adminCall({ azione: 'admin_commesse', commesse: lista }, this, 'Elenco commesse salvato');
+  });
+  $('a-csv').addEventListener('click', function () {
+    if (!adm) return;
+    var q = function (v) { return '"' + String(v).replace(/"/g, '""') + '"'; };
+    var rows = [['Data', 'Collaboratore', 'Commessa', 'Inizio', 'Fine', 'Ore', 'Note']].concat(adm.righe.map(function (x) { return [x.giorno, x.persona, x.commessa, x.da, x.a, x.ore.toFixed(2).replace('.', ','), x.manuale ? 'inserita a mano' : '']; }));
+    var blob = new Blob(['﻿' + rows.map(function (r) { return r.map(q).join(';'); }).join('\r\n')], { type: 'text/csv' });
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'registro-ore-' + adm.mese + '.csv';
+    document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  });
+  $('a-esci').addEventListener('click', esci);
+
+  /* ---------- avvio ---------- */
+  if (!/^https?:\/\//.test(ENDPOINT)) { show('v-config'); return; }
+  store(false, 'vee_registro_pin', null); // PIN salvato dalla vecchia pagina /registro/
+  var saved = null;
+  try { saved = JSON.parse(store(true, K_LOGIN) || 'null'); } catch (e) { saved = null; }
+  show('v-login');
+  if (saved && saved.u && saved.p) msg('m-login', 'Accesso in corso…');
+  // elenco dei nomi dallo script (non è scritto nel codice della pagina)
+  fetch(ENDPOINT, { redirect: 'follow' }).then(function (r) { return r.json(); }).then(function (r) {
+    var sel = $('utente'), ult = store(true, K_U) || '';
+    sel.innerHTML = '<option value="">Scegli…</option>' + (r.utenti || []).map(function (u) {
+      return '<option value="' + esc(u.id) + '"' + (u.id === ult ? ' selected' : '') + '>' + esc(u.nome) + '</option>';
+    }).join('');
+    if (saved && saved.u && saved.p) login(saved.u, saved.p, true);
+    else if (sel.value) $('pin').focus();
+  }).catch(function () { msg('m-login', 'Connessione non riuscita: ricarica la pagina', 'err'); });
+  $('utente').addEventListener('change', function () { if (this.value) $('pin').focus(); });
+})();
+</script>
+</body>
+</html>

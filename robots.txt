@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /aggiorna/
 Disallow: /registro/
+Disallow: /login/
 
 Sitemap: https://www.vee.it/sitemap.xml
