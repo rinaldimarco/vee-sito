@@ -87,8 +87,8 @@ input:focus, textarea:focus, button:focus-visible { outline: 2px solid var(--tea
 .pk-dif { color: var(--muted); font-size: 0.8rem; }
 body.largo .wrap { max-width: 1120px; }
 @media (min-width: 900px) {
-  .cols { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); column-gap: 18px; grid-template-areas: "ore mie" "prog mie"; align-items: start; }
-  #c-ore { grid-area: ore; } #c-prog { grid-area: prog; }
+  .cols { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); column-gap: 18px; grid-template-areas: "ore mie" "prog mie" "pres mie"; align-items: start; }
+  #c-ore { grid-area: ore; } #c-prog { grid-area: prog; } #c-pres { grid-area: pres; }
   #c-mie { grid-area: mie; position: sticky; top: 18px; }
 }
 .pk-row { display: grid; grid-template-columns: minmax(0, 1fr) 86px 28px; gap: 8px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--line); }
@@ -102,6 +102,20 @@ body.largo .wrap { max-width: 1120px; }
 tr.cont td { border-top: 0; }
 .orario { display: flex; gap: 6px; justify-content: flex-end; align-items: center; margin-top: 6px; }
 .orario input { width: 112px; padding: 7px 6px; font-size: 0.95rem; }
+table.pres td, table.pres th { padding: 6px 6px; }
+table.pres tr.we td { background: var(--bg-alt); color: var(--muted); }
+table.pres td.gg { white-space: nowrap; font-family: var(--mono); font-size: 0.8rem; color: var(--ink); }
+table.pres tr.we td.gg { color: var(--muted); }
+table.pres .fx { font-size: 0.85rem; line-height: 1.35; }
+table.pres .oo { font-weight: 600; color: var(--ink); white-space: nowrap; }
+table.pres tfoot td { border-top: 2px solid var(--ink); border-bottom: 0; font-weight: 600; color: var(--ink); }
+.pres-wrap { overflow-x: auto; margin-top: 6px; }
+table.pres-grid { min-width: 560px; }
+table.pres-grid th:first-child, table.pres-grid td:first-child { position: sticky; left: 0; background: #fff; z-index: 1; box-shadow: 1px 0 0 var(--line); }
+table.pres-grid tr.we td:first-child { background: var(--bg-alt); }
+table.pres-grid td { min-width: 96px; }
+table.pres-grid td:first-child { min-width: 0; }
+.pres-tot { font-family: var(--mono); font-size: 0.85rem; color: var(--ink); margin: 12px 0 0; }
 .man { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
 .msg { padding: 12px 14px; margin-top: 14px; border-left: 3px solid var(--teal-ink); background: var(--bg-alt); font-size: 0.95rem; }
 .msg.err { border-left-color: var(--warn); color: #6b2a0b; }
@@ -253,6 +267,13 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     <button class="btn btn-primary" type="button" id="b-prog" style="margin-top:14px">Conferma il programma</button>
     <div id="m-prog"></div>
   </div>
+
+  <div class="card" id="c-pres">
+    <h2>Presenze del mese</h2>
+    <div style="max-width:220px; margin-bottom:6px"><label class="f" for="pm-mese">Mese</label><input type="month" id="pm-mese"></div>
+    <div class="pres-wrap"><table id="pm-tab" class="pres"></table></div>
+    <div id="m-pres"></div>
+  </div>
   </div>
   <p class="small hidden" id="hint-pin" style="margin-top:18px">Stai usando il PIN iniziale: se vuoi, sostituiscilo con uno a tua scelta da «Cambia PIN».</p>
 </section>
@@ -269,6 +290,11 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     <button class="btn" type="button" id="a-xls-tutto" style="align-self:flex-end">Excel completo</button>
   </div>
   <div id="m-admin"></div>
+  <div class="card"><h2>Presenze del mese</h2>
+    <p class="small" style="margin:0 0 6px">Orari registrati giorno per giorno e ore della giornata.</p>
+    <div class="pres-wrap"><table id="a-pres" class="pres pres-grid"></table></div>
+    <p class="pres-tot" id="a-pres-tot"></p>
+  </div>
   <div class="card"><h2>Ore per persona</h2><table id="a-persone"></table></div>
   <div class="card"><h2>Ore per commessa</h2><table id="a-commesse"></table></div>
   <div class="card"><h2>Programma settimanale</h2>
@@ -535,7 +561,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     ['m-ore', 'm-man', 'm-prog'].forEach(function (id) { msg(id, ''); });
     pkOggi.reset(); pkMan.reset(); pkOggi.elenco([], []); pkMan.elenco([], []); pkOggi.avviso(''); pkMan.avviso('');
     $('d-man').open = false; mieDaCaricare = true; progModificato = [false, false]; inCorso = false; oggiToccato = false; daEliminare = '';
-    ['mie-tot', 'mie-commesse'].forEach(function (id) { $(id).innerHTML = ''; }); $('t-recenti').querySelector('tbody').innerHTML = ''; msg('m-mie', '');
+    ['mie-tot', 'mie-commesse', 'pm-tab', 'a-pres', 'a-pres-tot'].forEach(function (id) { $(id).innerHTML = ''; }); $('pm-mese').value = ''; msg('m-pres', ''); $('t-recenti').querySelector('tbody').innerHTML = ''; msg('m-mie', '');
     show('v-login');
   }
   function render(r) {
@@ -690,11 +716,68 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
 
   /* ---------- riepilogo personale ---------- */
   function caricaMieOre() {
-    $('mie-tot').textContent = 'Caricamento…'; msg('m-mie', '');
-    call({ azione: 'mie_ore', pin: pin }).then(function (r) {
+    $('mie-tot').textContent = 'Caricamento…'; msg('m-mie', ''); msg('m-pres', '');
+    if (!$('pm-mese').value) $('pm-mese').value = mesiPrima(0);
+    var mese = $('pm-mese').value;
+    call({ azione: 'mie_ore', pin: pin, mese: mese }).then(function (r) {
       if (!r.ok) { $('mie-tot').textContent = ''; return msg('m-mie', r.errore, 'err'); }
       renderMie(r.mieOre);
+      if (r.presenze && r.presenze.mese === $('pm-mese').value) renderPres(r.presenze);
     });
+  }
+  /* ---------- presenze del mese ---------- */
+  var GSETT = ['dom', 'lun', 'mar', 'mer', 'gio', 'ven', 'sab'];
+  /** giorni del mese 'yyyy-mm': [{iso, etichetta, festivo}] */
+  function giorniMese(mese) {
+    var y = Number(mese.slice(0, 4)), m = Number(mese.slice(5, 7)) - 1, n = new Date(y, m + 1, 0).getDate(), out = [];
+    for (var d = 1; d <= n; d++) {
+      var dt = new Date(y, m, d);
+      out.push({ iso: mese + '-' + String(d).padStart(2, '0'), etichetta: GSETT[dt.getDay()] + ' ' + d, festivo: dt.getDay() === 0 || dt.getDay() === 6 });
+    }
+    return out;
+  }
+  function fasceTesto(g) { return testoFasce(g).split(' · ').map(esc).join('<br>'); }
+  function renderPres(x) {
+    var per = {};
+    x.giorni.forEach(function (g) { (per[g.giorno] = per[g.giorno] || []).push(g); });
+    var n = 0;
+    $('pm-tab').innerHTML = '<thead><tr><th>Giorno</th><th>Orari</th><th class="n">Ore</th></tr></thead><tbody>'
+      + giorniMese(x.mese).map(function (d) {
+        var gg = per[d.iso] || [], ore = gg.reduce(function (t, g) { return t + g.ore; }, 0);
+        if (gg.length) n++;
+        return '<tr' + (d.festivo ? ' class="we"' : '') + '><td class="gg">' + d.etichetta + '</td><td class="fx">'
+          + gg.map(fasceTesto).join('<br>') + '</td><td class="n">' + (gg.length ? '<span class="oo">' + hh(ore) + '</span>' : '') + '</td></tr>';
+      }).join('') + '</tbody><tfoot><tr><td>Totale</td><td>' + n + (n === 1 ? ' giorno' : ' giorni') + '</td><td class="n">' + hh(x.ore) + '</td></tr></tfoot>';
+  }
+  $('pm-mese').addEventListener('change', function () {
+    var mese = this.value; if (!mese) return;
+    msg('m-pres', ''); $('pm-tab').innerHTML = '<tbody><tr><td class="small">Caricamento…</td></tr></tbody>';
+    call({ azione: 'mie_presenze', pin: pin, mese: mese }).then(function (r) {
+      if (!r.ok) return msg('m-pres', r.errore, 'err');
+      if (r.presenze.mese === $('pm-mese').value) renderPres(r.presenze);
+    });
+  });
+  /** Marco: griglia giorni × persone del mese scelto, dalle righe del riepilogo */
+  function renderApres(r) {
+    var cella = {}, tot = {}, totale = 0;
+    r.righe.forEach(function (x) {
+      if (!x.primo) return;
+      var k = x.giorno + '|' + x.id;
+      (cella[k] = cella[k] || []).push(x);
+      tot[x.id] = (tot[x.id] || 0) + x.oreGiornata; totale += x.oreGiornata;
+    });
+    var pp = r.persone;
+    $('a-pres').innerHTML = '<thead><tr><th>Giorno</th>' + pp.map(function (p) { return '<th>' + esc(p.nome.split(' ')[0]) + '</th>'; }).join('') + '</tr></thead><tbody>'
+      + giorniMese(r.mese).map(function (d) {
+        return '<tr' + (d.festivo ? ' class="we"' : '') + '><td class="gg">' + d.etichetta + '</td>' + pp.map(function (p) {
+          var gg = cella[d.iso + '|' + p.id] || [];
+          if (!gg.length) return '<td></td>';
+          var ore = gg.reduce(function (t, x) { return t + x.oreGiornata; }, 0);
+          return '<td><div class="fx">' + gg.map(function (x) { return esc(x.fasce || (x.da + '–' + x.a)).split(', ').join('<br>'); }).join('<br>')
+            + '</div><span class="oo">' + hh(ore) + '</span></td>';
+        }).join('') + '</tr>';
+      }).join('') + '</tbody><tfoot><tr><td>Totale ore</td>' + pp.map(function (p) { return '<td class="oo">' + hh(tot[p.id] || 0) + '</td>'; }).join('') + '</tr></tfoot>';
+    $('a-pres-tot').textContent = 'Totale generale del mese: ' + hh(totale);
   }
   /** ore totali per commessa, da sempre; in alto le commesse lavorate più di recente */
   function renderMie(x) {
@@ -823,6 +906,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
           + (x.primo ? esc(x.fasce || (x.da + '–' + x.a)) + (x.nota ? ' <span class="man">' + esc(x.nota) + '</span>' : '') : '') + '</td><td>'
           + esc(x.commessa) + '</td><td class="n">' + (x.ore ? hh(x.ore) : '') + '</td></tr>';
       }).join('') + '</tbody>';
+    renderApres(r);
     $('a-lista').value = ordinaCommesse(r.commesse).join('\n');
     $('a-dbx').classList.toggle('hidden', !r.dropbox);
     renderApin();
