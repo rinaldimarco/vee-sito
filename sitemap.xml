@@ -7,7 +7,7 @@
   <url><loc>https://www.vee.it/gare-imprese/</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://www.vee.it/gare-pubbliche/</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://www.vee.it/incentivi-comuni/</loc><lastmod>2026-09-29</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.vee.it/privacy.html</loc><lastmod>2026-09-29</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://www.vee.it/privacy.html</loc><lastmod>2026-10-26</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
   <url><loc>https://www.vee.it/en/</loc><lastmod>2026-10-19</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
   <url><loc>https://www.vee.it/fr/</loc><lastmod>2026-10-19</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
   <url><loc>https://www.vee.it/zh/</loc><lastmod>2026-10-19</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
@@ -36,8 +36,8 @@
   <url><loc>https://www.vee.it/fr/incentivi-comuni/</loc><lastmod>2026-09-29</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://www.vee.it/zh/incentivi-comuni/</loc><lastmod>2026-09-29</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://www.vee.it/ru/incentivi-comuni/</loc><lastmod>2026-09-29</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.vee.it/en/privacy.html</loc><lastmod>2026-09-29</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
-  <url><loc>https://www.vee.it/fr/privacy.html</loc><lastmod>2026-09-29</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
-  <url><loc>https://www.vee.it/zh/privacy.html</loc><lastmod>2026-09-29</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
-  <url><loc>https://www.vee.it/ru/privacy.html</loc><lastmod>2026-09-29</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://www.vee.it/en/privacy.html</loc><lastmod>2026-10-26</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://www.vee.it/fr/privacy.html</loc><lastmod>2026-10-26</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://www.vee.it/zh/privacy.html</loc><lastmod>2026-10-26</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://www.vee.it/ru/privacy.html</loc><lastmod>2026-10-26</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
 </urlset>
