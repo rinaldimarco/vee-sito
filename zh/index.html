@@ -502,6 +502,27 @@
     nav a:last-child { border-bottom: 0; }
   }
   @media (max-width: 1020px) { nav a.nav-login { border: 0; margin: 0; padding: 12px 0; color: var(--teal-ink); } nav a.nav-login:hover, nav a.nav-login:focus { background: none; color: var(--teal-ink); } }
+
+  /* in evidenza: correttivo CT 3.0 */
+  .nw-alert { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(22px, 3vw, 48px); background: var(--ink); color: #fff; padding: clamp(24px, 3.6vw, 48px); margin: 0 0 clamp(32px, 4vw, 48px); border-top: 8px solid var(--nebbia); }
+  .nwa-top { display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--nebbia); }
+  .nwa-top span + span { color: rgba(255,255,255,.72); }
+  .nw-alert h3 { font-family: var(--display); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.3rem); line-height: 1.1; letter-spacing: -0.01em; color: #fff; margin: 14px 0 16px; max-width: 24ch; text-transform: none; }
+  .nw-alert p { margin: 0; color: rgba(255,255,255,.9); max-width: 64ch; }
+  .nwa-figs { margin: 0; display: grid; align-content: start; border-top: 1px solid rgba(255,255,255,.28); }
+  .nwa-figs div { padding: 12px 0 13px; border-bottom: 1px solid rgba(255,255,255,.28); }
+  .nwa-figs dt { font-family: var(--display); font-weight: 700; font-size: clamp(1.35rem, 2.2vw, 1.8rem); line-height: 1.05; color: #fff; }
+  .nwa-figs dd { margin: 4px 0 0; font-size: 0.88rem; line-height: 1.4; color: rgba(255,255,255,.84); }
+  .nwa-ch { grid-column: 1 / -1; }
+  .nwa-ch > p { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,.78); margin: 0 0 12px; }
+  .nwa-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .nwa-btns a { display: flex; align-items: center; justify-content: space-between; gap: 16px; background: #fff; color: var(--ink); padding: 18px 22px; text-decoration: none; transition: background .2s, color .2s; }
+  .nwa-btns b { display: block; font-family: var(--display); font-weight: 600; font-size: 1.12rem; line-height: 1.2; }
+  .nwa-btns small { display: block; margin-top: 3px; font-size: 0.84rem; line-height: 1.35; color: var(--muted); }
+  .nwa-btns i { font-style: normal; font-size: 1.5rem; line-height: 1; }
+  .nwa-btns a:hover, .nwa-btns a:focus-visible { background: var(--nebbia); color: #fff; text-decoration: none; }
+  .nwa-btns a:hover small, .nwa-btns a:focus-visible small { color: #fff; }
+  @media (max-width: 860px) { .nw-alert { grid-template-columns: 1fr; } .nwa-btns { grid-template-columns: 1fr; } }
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://www.vee.it/#organizzazione","name":"VEE S.r.l.","legalName":"VEE S.r.l. — Società di Ingegneria","alternateName":["VEE","VEE Studio","VEE Torino","VEE — Società di ingegneria e architettura"],"url":"https://www.vee.it/zh/","logo":{"@type":"ImageObject","url":"https://www.vee.it/logo-vee.png","width":1016,"height":331},"image":"https://www.vee.it/img/sede-vee-torino-1.jpg","description":"都灵工程与建筑设计公司：能源审计、面向市镇及公共建筑的Conto Termico 3.0、能源改造、BIM设计、工程监理。","foundingDate":"2023-06-20","telephone":"+39 344 649 3193","vatID":"IT12904260010","taxID":"12904260010","address":{"@type":"PostalAddress","streetAddress":"Piazza C.L.N. 255","postalCode":"10123","addressLocality":"Torino","addressRegion":"TO","addressCountry":"IT"},"geo":{"@type":"GeoCoordinates","latitude":45.0662659,"longitude":7.6819196},"hasMap":"https://www.openstreetmap.org/?mlat=45.0662659&mlon=7.6819196#map=18/45.06627/7.68192","areaServed":[{"@type":"AdministrativeArea","name":"皮埃蒙特"},{"@type":"Country","name":"意大利"}],"knowsAbout":["能源审计 UNI CEI EN 16247","Conto Termico 3.0","公共建筑及公寓楼能源改造","PREPAC","白色证书","BIM设计 UNI 11337","工程监理","安全协调 D.Lgs 81/08","消防"],"hasOfferCatalog":{"@type":"OfferCatalog","name":"服务","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"能源审计"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"能效提升与Conto Termico 3.0"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"基于BIM的建筑与机电设计"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"消防"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"工程监理"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"安全协调"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"为施工企业提供投标支持：设计施工一体化合同设计及技术标","url":"https://www.vee.it/zh/gare-imprese/"}}]},"sameAs":[]},{"@type":"WebSite","@id":"https://www.vee.it/#sito","url":"https://www.vee.it/zh/","name":"VEE","alternateName":["VEE S.r.l.","VEE Studio","VEE Torino","VEE ingegneria e architettura"],"inLanguage":"zh-Hans","publisher":{"@id":"https://www.vee.it/#organizzazione"}}]}</script>
 </head>
@@ -697,6 +718,11 @@
         <div><span class="eyebrow">新闻</span><h2>最新动态。</h2></div>
         <p>已获激励、新增项目、工程进展以及能源与建筑领域的法规更新。</p>
       </div>
+      <div class="nw-alert" id="correttivo-conto-termico">
+        <div class="nwa-txt"><div class="nwa-top"><span>要闻 · 能源与法规</span><span>2026年10月26日</span></div><h3>Conto Termico 3.0：公共管理部门的预约制度得到确认</h3><p>10月22日，Conto Termico 3.0修正法令获得国家—地方统一会议的一致同意。公共管理部门仍可在开工前预约激励：用于公共管理部门的年度资金中，最多50%可通过预约方式承诺。目前Portaltermico仅受理直接申请；随着法令的通过，预约预计将很快重新开放。</p></div>
+        <dl class="nwa-figs"><div><dt>50%</dt><dd>公共管理部门资金中可用于预约的比例上限</dd></div><div><dt>100%</dt><dd>适用于学校、公立医疗机构及小型市镇（首个项目）</dd></div><div><dt>22.10.2026</dt><dd>国家—地方统一会议达成一致</dd></div></dl>
+        <div class="nwa-ch"><p>查看与您相关的变化</p><div class="nwa-btns"><a href="/zh/news/correttivo-ct-pa/"><span><b>公共管理部门</b><small>预约、资金、100%资助及其他变化</small></span><i aria-hidden="true">→</i></a><a href="/zh/news/correttivo-ct-ets/"><span><b>第三部门组织</b><small>谁可以申请，何时可获100%资助</small></span><i aria-hidden="true">→</i></a></div></div>
+      </div>
       <div class="nw-feats">
         <article class="nw-feat">
           <figure class="nw-feat-img"><button class="galbtn" type="button" data-gal="/img/consiglio-regionale-via-arsenale-14-torino-2.jpg::Via Arsenale 14，都灵：改造后的建筑 · 联合体项目效果图|/img/consiglio-regionale-via-arsenale-14-torino-3.jpg::绿化露台 · 联合体项目效果图|/img/consiglio-regionale-via-arsenale-14-torino-4.jpg::临街立面夜景 · 联合体项目效果图" data-title="Via Arsenale 14，都灵" aria-label="打开3张图片：Via Arsenale 14，都灵"><img src="/img/consiglio-regionale-via-arsenale-14-torino-2.jpg" alt="都灵via Arsenale 14皮埃蒙特大区议会办公楼改造后效果图" width="1200" height="800" loading="lazy" style="object-position:50% 50%"><span class="gal-n">3张图片</span></button><figcaption>项目效果图</figcaption></figure>
@@ -739,7 +765,7 @@
           <a class="nw-link" href="/zh/incarichi/#incarico-specola">项目详情 →</a>
         </article>
       </div>
-      <p class="sec-cta"><a class="btn" href="/zh/news/">全部新闻（23） →</a></p>
+      <p class="sec-cta"><a class="btn" href="/zh/news/">全部新闻（24） →</a></p>
       </div>
     </div>
   </section>

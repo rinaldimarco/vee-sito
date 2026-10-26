@@ -500,6 +500,27 @@
     nav a:last-child { border-bottom: 0; }
   }
   @media (max-width: 1020px) { nav a.nav-login { border: 0; margin: 0; padding: 12px 0; color: var(--teal-ink); } nav a.nav-login:hover, nav a.nav-login:focus { background: none; color: var(--teal-ink); } }
+
+  /* in evidenza: correttivo CT 3.0 */
+  .nw-alert { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(22px, 3vw, 48px); background: var(--ink); color: #fff; padding: clamp(24px, 3.6vw, 48px); margin: 0 0 clamp(32px, 4vw, 48px); border-top: 8px solid var(--nebbia); }
+  .nwa-top { display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--nebbia); }
+  .nwa-top span + span { color: rgba(255,255,255,.72); }
+  .nw-alert h3 { font-family: var(--display); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.3rem); line-height: 1.1; letter-spacing: -0.01em; color: #fff; margin: 14px 0 16px; max-width: 24ch; text-transform: none; }
+  .nw-alert p { margin: 0; color: rgba(255,255,255,.9); max-width: 64ch; }
+  .nwa-figs { margin: 0; display: grid; align-content: start; border-top: 1px solid rgba(255,255,255,.28); }
+  .nwa-figs div { padding: 12px 0 13px; border-bottom: 1px solid rgba(255,255,255,.28); }
+  .nwa-figs dt { font-family: var(--display); font-weight: 700; font-size: clamp(1.35rem, 2.2vw, 1.8rem); line-height: 1.05; color: #fff; }
+  .nwa-figs dd { margin: 4px 0 0; font-size: 0.88rem; line-height: 1.4; color: rgba(255,255,255,.84); }
+  .nwa-ch { grid-column: 1 / -1; }
+  .nwa-ch > p { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,.78); margin: 0 0 12px; }
+  .nwa-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .nwa-btns a { display: flex; align-items: center; justify-content: space-between; gap: 16px; background: #fff; color: var(--ink); padding: 18px 22px; text-decoration: none; transition: background .2s, color .2s; }
+  .nwa-btns b { display: block; font-family: var(--display); font-weight: 600; font-size: 1.12rem; line-height: 1.2; }
+  .nwa-btns small { display: block; margin-top: 3px; font-size: 0.84rem; line-height: 1.35; color: var(--muted); }
+  .nwa-btns i { font-style: normal; font-size: 1.5rem; line-height: 1; }
+  .nwa-btns a:hover, .nwa-btns a:focus-visible { background: var(--nebbia); color: #fff; text-decoration: none; }
+  .nwa-btns a:hover small, .nwa-btns a:focus-visible small { color: #fff; }
+  @media (max-width: 860px) { .nw-alert { grid-template-columns: 1fr; } .nwa-btns { grid-template-columns: 1fr; } }
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://www.vee.it/#organizzazione","name":"VEE S.r.l.","legalName":"VEE S.r.l. — Società di Ingegneria","alternateName":["VEE","VEE Studio","VEE Torino","VEE — Società di ingegneria e architettura"],"url":"https://www.vee.it/en/","logo":{"@type":"ImageObject","url":"https://www.vee.it/logo-vee.png","width":1016,"height":331},"image":"https://www.vee.it/img/sede-vee-torino-1.jpg","description":"Engineering and architecture firm in Turin: energy audits, Conto Termico 3.0 for Municipalities and public buildings, energy retrofit, BIM design, works supervision.","foundingDate":"2023-06-20","telephone":"+39 344 649 3193","vatID":"IT12904260010","taxID":"12904260010","address":{"@type":"PostalAddress","streetAddress":"Piazza C.L.N. 255","postalCode":"10123","addressLocality":"Torino","addressRegion":"TO","addressCountry":"IT"},"geo":{"@type":"GeoCoordinates","latitude":45.0662659,"longitude":7.6819196},"hasMap":"https://www.openstreetmap.org/?mlat=45.0662659&mlon=7.6819196#map=18/45.06627/7.68192","areaServed":[{"@type":"AdministrativeArea","name":"Piedmont"},{"@type":"Country","name":"Italy"}],"knowsAbout":["Energy audit UNI CEI EN 16247","Conto Termico 3.0","Energy retrofit of public buildings and condominiums","PREPAC","White Certificates","BIM design UNI 11337","Works supervision","Safety coordination D.Lgs 81/08","Fire prevention"],"hasOfferCatalog":{"@type":"OfferCatalog","name":"Services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Energy audits"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Energy efficiency upgrades and Conto Termico 3.0"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Architectural and building services design in BIM"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Fire prevention"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Works supervision"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Safety coordination"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Support for contractors in public tenders: design for design-and-build contracts and technical bids","url":"https://www.vee.it/en/gare-imprese/"}}]},"sameAs":[]},{"@type":"WebSite","@id":"https://www.vee.it/#sito","url":"https://www.vee.it/en/","name":"VEE","alternateName":["VEE S.r.l.","VEE Studio","VEE Torino","VEE ingegneria e architettura"],"inLanguage":"en-GB","publisher":{"@id":"https://www.vee.it/#organizzazione"}}]}</script>
 </head>
@@ -695,6 +716,11 @@
         <div><span class="eyebrow">News</span><h2>Latest news.</h2></div>
         <p>Incentives obtained, new commissions, progress of works and regulatory updates in the energy and construction sector.</p>
       </div>
+      <div class="nw-alert" id="correttivo-conto-termico">
+        <div class="nwa-txt"><div class="nwa-top"><span>Featured · Energy and regulations</span><span>26 October 2026</span></div><h3>Conto Termico 3.0: booking system confirmed for public administrations</h3><p>On 22 October the corrective decree of the Conto Termico 3.0 obtained the agreement of the Unified Conference. Booking the incentive before the works remains available to public administrations: up to 50% of the annual resources earmarked for public bodies may be committed this way. Today the Portaltermico accepts only direct-access applications; with the adoption of the decree, bookings are expected to reopen shortly.</p></div>
+        <dl class="nwa-figs"><div><dt>50%</dt><dd>of public-sector resources available for booking</dd></div><div><dt>100%</dt><dd>for schools, public healthcare facilities and small Municipalities (first intervention)</dd></div><div><dt>22.10.2026</dt><dd>agreement in the Unified Conference</dd></div></dl>
+        <div class="nwa-ch"><p>Read the changes that concern you</p><div class="nwa-btns"><a href="/en/news/correttivo-ct-pa/"><span><b>Public administrations</b><small>booking, resources, 100%, other changes</small></span><i aria-hidden="true">→</i></a><a href="/en/news/correttivo-ct-ets/"><span><b>Third-sector entities</b><small>who can apply and when coverage reaches 100%</small></span><i aria-hidden="true">→</i></a></div></div>
+      </div>
       <div class="nw-feats">
         <article class="nw-feat">
           <figure class="nw-feat-img"><button class="galbtn" type="button" data-gal="/img/consiglio-regionale-via-arsenale-14-torino-2.jpg::Via Arsenale 14, Turin: the building after the works · project render by the grouping|/img/consiglio-regionale-via-arsenale-14-torino-3.jpg::The landscaped terrace · project render by the grouping|/img/consiglio-regionale-via-arsenale-14-torino-4.jpg::The street front at night · project render by the grouping" data-title="Via Arsenale 14, Turin" aria-label="Open the 3 images: Via Arsenale 14, Turin"><img src="/img/consiglio-regionale-via-arsenale-14-torino-2.jpg" alt="Render of the headquarters of the Regional Council of Piedmont at via Arsenale 14, Turin, after the works" width="1200" height="800" loading="lazy" style="object-position:50% 50%"><span class="gal-n">3 images</span></button><figcaption>Project render</figcaption></figure>
@@ -737,7 +763,7 @@
           <a class="nw-link" href="/en/incarichi/#incarico-specola">Project details →</a>
         </article>
       </div>
-      <p class="sec-cta"><a class="btn" href="/en/news/">All news (23) →</a></p>
+      <p class="sec-cta"><a class="btn" href="/en/news/">All news (24) →</a></p>
       </div>
     </div>
   </section>

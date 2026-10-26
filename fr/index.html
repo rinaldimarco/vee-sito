@@ -500,6 +500,27 @@
     nav a:last-child { border-bottom: 0; }
   }
   @media (max-width: 1020px) { nav a.nav-login { border: 0; margin: 0; padding: 12px 0; color: var(--teal-ink); } nav a.nav-login:hover, nav a.nav-login:focus { background: none; color: var(--teal-ink); } }
+
+  /* in evidenza: correttivo CT 3.0 */
+  .nw-alert { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(22px, 3vw, 48px); background: var(--ink); color: #fff; padding: clamp(24px, 3.6vw, 48px); margin: 0 0 clamp(32px, 4vw, 48px); border-top: 8px solid var(--nebbia); }
+  .nwa-top { display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--nebbia); }
+  .nwa-top span + span { color: rgba(255,255,255,.72); }
+  .nw-alert h3 { font-family: var(--display); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.3rem); line-height: 1.1; letter-spacing: -0.01em; color: #fff; margin: 14px 0 16px; max-width: 24ch; text-transform: none; }
+  .nw-alert p { margin: 0; color: rgba(255,255,255,.9); max-width: 64ch; }
+  .nwa-figs { margin: 0; display: grid; align-content: start; border-top: 1px solid rgba(255,255,255,.28); }
+  .nwa-figs div { padding: 12px 0 13px; border-bottom: 1px solid rgba(255,255,255,.28); }
+  .nwa-figs dt { font-family: var(--display); font-weight: 700; font-size: clamp(1.35rem, 2.2vw, 1.8rem); line-height: 1.05; color: #fff; }
+  .nwa-figs dd { margin: 4px 0 0; font-size: 0.88rem; line-height: 1.4; color: rgba(255,255,255,.84); }
+  .nwa-ch { grid-column: 1 / -1; }
+  .nwa-ch > p { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,.78); margin: 0 0 12px; }
+  .nwa-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .nwa-btns a { display: flex; align-items: center; justify-content: space-between; gap: 16px; background: #fff; color: var(--ink); padding: 18px 22px; text-decoration: none; transition: background .2s, color .2s; }
+  .nwa-btns b { display: block; font-family: var(--display); font-weight: 600; font-size: 1.12rem; line-height: 1.2; }
+  .nwa-btns small { display: block; margin-top: 3px; font-size: 0.84rem; line-height: 1.35; color: var(--muted); }
+  .nwa-btns i { font-style: normal; font-size: 1.5rem; line-height: 1; }
+  .nwa-btns a:hover, .nwa-btns a:focus-visible { background: var(--nebbia); color: #fff; text-decoration: none; }
+  .nwa-btns a:hover small, .nwa-btns a:focus-visible small { color: #fff; }
+  @media (max-width: 860px) { .nw-alert { grid-template-columns: 1fr; } .nwa-btns { grid-template-columns: 1fr; } }
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://www.vee.it/#organizzazione","name":"VEE S.r.l.","legalName":"VEE S.r.l. — Società di Ingegneria","alternateName":["VEE","VEE Studio","VEE Torino","VEE — Società di ingegneria e architettura"],"url":"https://www.vee.it/fr/","logo":{"@type":"ImageObject","url":"https://www.vee.it/logo-vee.png","width":1016,"height":331},"image":"https://www.vee.it/img/sede-vee-torino-1.jpg","description":"Société d'ingénierie et d'architecture à Turin : audits énergétiques, Conto Termico 3.0 pour les Communes et les bâtiments publics, rénovation énergétique, conception en BIM, direction des travaux.","foundingDate":"2023-06-20","telephone":"+39 344 649 3193","vatID":"IT12904260010","taxID":"12904260010","address":{"@type":"PostalAddress","streetAddress":"Piazza C.L.N. 255","postalCode":"10123","addressLocality":"Torino","addressRegion":"TO","addressCountry":"IT"},"geo":{"@type":"GeoCoordinates","latitude":45.0662659,"longitude":7.6819196},"hasMap":"https://www.openstreetmap.org/?mlat=45.0662659&mlon=7.6819196#map=18/45.06627/7.68192","areaServed":[{"@type":"AdministrativeArea","name":"Piémont"},{"@type":"Country","name":"Italie"}],"knowsAbout":["Audit énergétique UNI CEI EN 16247","Conto Termico 3.0","Rénovation énergétique de bâtiments publics et de copropriétés","PREPAC","Certificats blancs","Conception BIM UNI 11337","Direction des travaux","Coordination de la sécurité D.Lgs 81/08","Prévention incendie"],"hasOfferCatalog":{"@type":"OfferCatalog","name":"Services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Audits énergétiques"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Efficacité énergétique et Conto Termico 3.0"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Conception architecturale et des installations techniques en BIM"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Prévention incendie"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Direction des travaux"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Coordination de la sécurité"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Accompagnement des entreprises dans les appels d'offres : conception pour les marchés de conception-réalisation et offre technique","url":"https://www.vee.it/fr/gare-imprese/"}}]},"sameAs":[]},{"@type":"WebSite","@id":"https://www.vee.it/#sito","url":"https://www.vee.it/fr/","name":"VEE","alternateName":["VEE S.r.l.","VEE Studio","VEE Torino","VEE ingegneria e architettura"],"inLanguage":"fr-FR","publisher":{"@id":"https://www.vee.it/#organizzazione"}}]}</script>
 </head>
@@ -695,6 +716,11 @@
         <div><span class="eyebrow">Actualités</span><h2>Dernières nouvelles.</h2></div>
         <p>Incitations obtenues, nouvelles missions, avancement des travaux et actualités réglementaires du secteur de l'énergie et du bâtiment.</p>
       </div>
+      <div class="nw-alert" id="correttivo-conto-termico">
+        <div class="nwa-txt"><div class="nwa-top"><span>À la une · Énergie et réglementation</span><span>26 octobre 2026</span></div><h3>Conto Termico 3.0 : le système de réservation confirmé pour les administrations publiques</h3><p>Le 22 octobre, le décret correctif du Conto Termico 3.0 a obtenu l’accord de la Conférence unifiée. La réservation de l’incitation avant les travaux reste ouverte aux administrations publiques : jusqu’à 50% des ressources annuelles destinées aux administrations pourront être engagées de cette manière. Aujourd’hui, le Portaltermico n’accepte que les demandes en accès direct ; avec l’adoption du décret, la réouverture des réservations est attendue prochainement.</p></div>
+        <dl class="nwa-figs"><div><dt>50%</dt><dd>des ressources publiques réservables</dd></div><div><dt>100%</dt><dd>pour les écoles, les établissements de santé publics et les petites Communes (première intervention)</dd></div><div><dt>22.10.2026</dt><dd>accord en Conférence unifiée</dd></div></dl>
+        <div class="nwa-ch"><p>Lisez les nouveautés qui vous concernent</p><div class="nwa-btns"><a href="/fr/news/correttivo-ct-pa/"><span><b>Administrations publiques</b><small>réservation, ressources, 100%, autres nouveautés</small></span><i aria-hidden="true">→</i></a><a href="/fr/news/correttivo-ct-ets/"><span><b>Entités du tiers secteur</b><small>qui peut accéder et quand on atteint 100%</small></span><i aria-hidden="true">→</i></a></div></div>
+      </div>
       <div class="nw-feats">
         <article class="nw-feat">
           <figure class="nw-feat-img"><button class="galbtn" type="button" data-gal="/img/consiglio-regionale-via-arsenale-14-torino-2.jpg::Via Arsenale 14, Turin : le bâtiment après l'intervention · rendu de projet du groupement|/img/consiglio-regionale-via-arsenale-14-torino-3.jpg::La terrasse végétalisée · rendu de projet du groupement|/img/consiglio-regionale-via-arsenale-14-torino-4.jpg::La façade sur rue de nuit · rendu de projet du groupement" data-title="Via Arsenale 14, Turin" aria-label="Ouvrir les 3 images : Via Arsenale 14, Turin"><img src="/img/consiglio-regionale-via-arsenale-14-torino-2.jpg" alt="Rendu du siège du Conseil régional du Piémont de via Arsenale 14 à Turin après l'intervention" width="1200" height="800" loading="lazy" style="object-position:50% 50%"><span class="gal-n">3 images</span></button><figcaption>Rendu du projet</figcaption></figure>
@@ -737,7 +763,7 @@
           <a class="nw-link" href="/fr/incarichi/#incarico-specola">Fiche de la mission →</a>
         </article>
       </div>
-      <p class="sec-cta"><a class="btn" href="/fr/news/">Toutes les actualités (23) →</a></p>
+      <p class="sec-cta"><a class="btn" href="/fr/news/">Toutes les actualités (24) →</a></p>
       </div>
     </div>
   </section>

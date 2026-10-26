@@ -501,6 +501,27 @@
     nav a:last-child { border-bottom: 0; }
   }
   @media (max-width: 1020px) { nav a.nav-login { border: 0; margin: 0; padding: 12px 0; color: var(--teal-ink); } nav a.nav-login:hover, nav a.nav-login:focus { background: none; color: var(--teal-ink); } }
+
+  /* in evidenza: correttivo CT 3.0 */
+  .nw-alert { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(22px, 3vw, 48px); background: var(--ink); color: #fff; padding: clamp(24px, 3.6vw, 48px); margin: 0 0 clamp(32px, 4vw, 48px); border-top: 8px solid var(--nebbia); }
+  .nwa-top { display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--nebbia); }
+  .nwa-top span + span { color: rgba(255,255,255,.72); }
+  .nw-alert h3 { font-family: var(--display); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.3rem); line-height: 1.1; letter-spacing: -0.01em; color: #fff; margin: 14px 0 16px; max-width: 24ch; text-transform: none; }
+  .nw-alert p { margin: 0; color: rgba(255,255,255,.9); max-width: 64ch; }
+  .nwa-figs { margin: 0; display: grid; align-content: start; border-top: 1px solid rgba(255,255,255,.28); }
+  .nwa-figs div { padding: 12px 0 13px; border-bottom: 1px solid rgba(255,255,255,.28); }
+  .nwa-figs dt { font-family: var(--display); font-weight: 700; font-size: clamp(1.35rem, 2.2vw, 1.8rem); line-height: 1.05; color: #fff; }
+  .nwa-figs dd { margin: 4px 0 0; font-size: 0.88rem; line-height: 1.4; color: rgba(255,255,255,.84); }
+  .nwa-ch { grid-column: 1 / -1; }
+  .nwa-ch > p { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,.78); margin: 0 0 12px; }
+  .nwa-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .nwa-btns a { display: flex; align-items: center; justify-content: space-between; gap: 16px; background: #fff; color: var(--ink); padding: 18px 22px; text-decoration: none; transition: background .2s, color .2s; }
+  .nwa-btns b { display: block; font-family: var(--display); font-weight: 600; font-size: 1.12rem; line-height: 1.2; }
+  .nwa-btns small { display: block; margin-top: 3px; font-size: 0.84rem; line-height: 1.35; color: var(--muted); }
+  .nwa-btns i { font-style: normal; font-size: 1.5rem; line-height: 1; }
+  .nwa-btns a:hover, .nwa-btns a:focus-visible { background: var(--nebbia); color: #fff; text-decoration: none; }
+  .nwa-btns a:hover small, .nwa-btns a:focus-visible small { color: #fff; }
+  @media (max-width: 860px) { .nw-alert { grid-template-columns: 1fr; } .nwa-btns { grid-template-columns: 1fr; } }
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://www.vee.it/zh/news/#pagina","url":"https://www.vee.it/zh/news/","name":"全部新闻","description":"都灵工程与建筑设计公司VEE S.r.l.全部新闻：为市镇获得的Conto Termico激励、新增项目、已完成项目以及能源与建筑领域法规更新。","inLanguage":"zh-Hans","isPartOf":{"@id":"https://www.vee.it/#sito"},"about":{"@id":"https://www.vee.it/#organizzazione"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"VEE","item":"https://www.vee.it/zh/"},{"@type":"ListItem","position":2,"name":"新闻","item":"https://www.vee.it/zh/news/"}]}]}</script>
 </head>
@@ -523,10 +544,21 @@
         <div><span class="eyebrow">新闻</span><h1>全部新闻</h1></div>
         <p>已获激励、新增项目、工程进展以及能源与建筑领域的法规更新。</p>
       </div>
+      <div class="nw-alert" id="correttivo-conto-termico">
+        <div class="nwa-txt"><div class="nwa-top"><span>要闻 · 能源与法规</span><span>2026年10月26日</span></div><h3>Conto Termico 3.0：公共管理部门的预约制度得到确认</h3><p>10月22日，Conto Termico 3.0修正法令获得国家—地方统一会议的一致同意。公共管理部门仍可在开工前预约激励：用于公共管理部门的年度资金中，最多50%可通过预约方式承诺。目前Portaltermico仅受理直接申请；随着法令的通过，预约预计将很快重新开放。</p></div>
+        <dl class="nwa-figs"><div><dt>50%</dt><dd>公共管理部门资金中可用于预约的比例上限</dd></div><div><dt>100%</dt><dd>适用于学校、公立医疗机构及小型市镇（首个项目）</dd></div><div><dt>22.10.2026</dt><dd>国家—地方统一会议达成一致</dd></div></dl>
+        <div class="nwa-ch"><p>查看与您相关的变化</p><div class="nwa-btns"><a href="/zh/news/correttivo-ct-pa/"><span><b>公共管理部门</b><small>预约、资金、100%资助及其他变化</small></span><i aria-hidden="true">→</i></a><a href="/zh/news/correttivo-ct-ets/"><span><b>第三部门组织</b><small>谁可以申请，何时可获100%资助</small></span><i aria-hidden="true">→</i></a></div></div>
+      </div>
       <div class="news-bar">
         <div class="chips"><button type="button" class="chip is-on" data-cat="">全部</button><button type="button" class="chip" data-cat="ultimi-incentivi-ottenuti">最新获得的激励</button><button type="button" class="chip" data-cat="lavori-conclusi">已完成项目</button><button type="button" class="chip" data-cat="energia-e-normativa">能源与法规</button><button type="button" class="chip" data-cat="nuovi-incarichi">新增项目</button></div>
       </div>
       <div class="news-list">
+        <article class="nw" data-ord="-1" data-cat="energia-e-normativa"><div class="nw-more" hidden><div class="nwr"><span>法令</span><b>2025年8月7日DM修正法令草案，2026年10月22日国家—地方统一会议达成一致</b></div><div class="nwr"><span>公共部门预约</span><b>得到确认，上限为该类别年度资金的50%</b></div><div class="nwr"><span>100%资助</span><b>学校和公立医疗机构；人口不超过15.000人的市镇限首个项目</b></div></div>
+          <div class="nw-top"><span class="nw-date">2026年10月26日</span><span class="nw-tag">能源与法规</span></div>
+          <h3>Conto Termico 3.0：公共管理部门的预约制度得到确认</h3>
+          <p>10月22日，国家—地方统一会议就Conto Termico 3.0修正法令达成一致：公共管理部门仍可预约激励，上限为该类别年度资金的50%。学校和公立医疗机构的100%资助得到确认；人口不超过15.000人的市镇，100%资助将仅适用于首个项目。相关变化同样涉及第三部门组织。</p>
+          <a class="nw-link" href="/zh/news/correttivo-ct-pa/">阅读全文 →</a>
+        </article>
         <article class="nw" data-ord="17" data-cat="nuovi-incarichi"><div class="nw-more" hidden><div class="nwr"><span>工程金额</span><b>10,89 M€</b></div><div class="nwr"><span>招标服务金额</span><b>664.856 €</b></div></div>
           <div class="nw-top"><span class="nw-date">2026年9月22日</span><span class="nw-tag">新增项目</span></div>
           <h3>皮埃蒙特大区议会办公楼，都灵via Arsenale 14：Mediapolis、VEE与Box Architetti联合体排名第一</h3>

@@ -499,6 +499,27 @@
     nav a:last-child { border-bottom: 0; }
   }
   @media (max-width: 1020px) { nav a.nav-login { border: 0; margin: 0; padding: 12px 0; color: var(--teal-ink); } nav a.nav-login:hover, nav a.nav-login:focus { background: none; color: var(--teal-ink); } }
+
+  /* in evidenza: correttivo CT 3.0 */
+  .nw-alert { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(22px, 3vw, 48px); background: var(--ink); color: #fff; padding: clamp(24px, 3.6vw, 48px); margin: 0 0 clamp(32px, 4vw, 48px); border-top: 8px solid var(--nebbia); }
+  .nwa-top { display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--nebbia); }
+  .nwa-top span + span { color: rgba(255,255,255,.72); }
+  .nw-alert h3 { font-family: var(--display); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.3rem); line-height: 1.1; letter-spacing: -0.01em; color: #fff; margin: 14px 0 16px; max-width: 24ch; text-transform: none; }
+  .nw-alert p { margin: 0; color: rgba(255,255,255,.9); max-width: 64ch; }
+  .nwa-figs { margin: 0; display: grid; align-content: start; border-top: 1px solid rgba(255,255,255,.28); }
+  .nwa-figs div { padding: 12px 0 13px; border-bottom: 1px solid rgba(255,255,255,.28); }
+  .nwa-figs dt { font-family: var(--display); font-weight: 700; font-size: clamp(1.35rem, 2.2vw, 1.8rem); line-height: 1.05; color: #fff; }
+  .nwa-figs dd { margin: 4px 0 0; font-size: 0.88rem; line-height: 1.4; color: rgba(255,255,255,.84); }
+  .nwa-ch { grid-column: 1 / -1; }
+  .nwa-ch > p { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,.78); margin: 0 0 12px; }
+  .nwa-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .nwa-btns a { display: flex; align-items: center; justify-content: space-between; gap: 16px; background: #fff; color: var(--ink); padding: 18px 22px; text-decoration: none; transition: background .2s, color .2s; }
+  .nwa-btns b { display: block; font-family: var(--display); font-weight: 600; font-size: 1.12rem; line-height: 1.2; }
+  .nwa-btns small { display: block; margin-top: 3px; font-size: 0.84rem; line-height: 1.35; color: var(--muted); }
+  .nwa-btns i { font-style: normal; font-size: 1.5rem; line-height: 1; }
+  .nwa-btns a:hover, .nwa-btns a:focus-visible { background: var(--nebbia); color: #fff; text-decoration: none; }
+  .nwa-btns a:hover small, .nwa-btns a:focus-visible small { color: #fff; }
+  @media (max-width: 860px) { .nw-alert { grid-template-columns: 1fr; } .nwa-btns { grid-template-columns: 1fr; } }
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://www.vee.it/fr/news/#pagina","url":"https://www.vee.it/fr/news/","name":"Toutes les actualités","description":"Toutes les actualités de VEE S.r.l., société d'ingénierie et d'architecture de Turin : incitations du Conto Termico obtenues pour les Communes, nouvelles missions, travaux achevés et actualités réglementaires sur l'énergie et le bâtiment.","inLanguage":"fr-FR","isPartOf":{"@id":"https://www.vee.it/#sito"},"about":{"@id":"https://www.vee.it/#organizzazione"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"VEE","item":"https://www.vee.it/fr/"},{"@type":"ListItem","position":2,"name":"Actualités","item":"https://www.vee.it/fr/news/"}]}]}</script>
 </head>
@@ -521,10 +542,21 @@
         <div><span class="eyebrow">Actualités</span><h1>Toutes les actualités</h1></div>
         <p>Incitations obtenues, nouvelles missions, avancement des travaux et actualités réglementaires du secteur de l'énergie et du bâtiment.</p>
       </div>
+      <div class="nw-alert" id="correttivo-conto-termico">
+        <div class="nwa-txt"><div class="nwa-top"><span>À la une · Énergie et réglementation</span><span>26 octobre 2026</span></div><h3>Conto Termico 3.0 : le système de réservation confirmé pour les administrations publiques</h3><p>Le 22 octobre, le décret correctif du Conto Termico 3.0 a obtenu l’accord de la Conférence unifiée. La réservation de l’incitation avant les travaux reste ouverte aux administrations publiques : jusqu’à 50% des ressources annuelles destinées aux administrations pourront être engagées de cette manière. Aujourd’hui, le Portaltermico n’accepte que les demandes en accès direct ; avec l’adoption du décret, la réouverture des réservations est attendue prochainement.</p></div>
+        <dl class="nwa-figs"><div><dt>50%</dt><dd>des ressources publiques réservables</dd></div><div><dt>100%</dt><dd>pour les écoles, les établissements de santé publics et les petites Communes (première intervention)</dd></div><div><dt>22.10.2026</dt><dd>accord en Conférence unifiée</dd></div></dl>
+        <div class="nwa-ch"><p>Lisez les nouveautés qui vous concernent</p><div class="nwa-btns"><a href="/fr/news/correttivo-ct-pa/"><span><b>Administrations publiques</b><small>réservation, ressources, 100%, autres nouveautés</small></span><i aria-hidden="true">→</i></a><a href="/fr/news/correttivo-ct-ets/"><span><b>Entités du tiers secteur</b><small>qui peut accéder et quand on atteint 100%</small></span><i aria-hidden="true">→</i></a></div></div>
+      </div>
       <div class="news-bar">
         <div class="chips"><button type="button" class="chip is-on" data-cat="">Toutes</button><button type="button" class="chip" data-cat="ultimi-incentivi-ottenuti">Dernières incitations obtenues</button><button type="button" class="chip" data-cat="lavori-conclusi">Travaux achevés</button><button type="button" class="chip" data-cat="energia-e-normativa">Énergie et réglementation</button><button type="button" class="chip" data-cat="nuovi-incarichi">Nouvelles missions</button></div>
       </div>
       <div class="news-list">
+        <article class="nw" data-ord="-1" data-cat="energia-e-normativa"><div class="nw-more" hidden><div class="nwr"><span>Décret</span><b>projet de décret correctif du DM du 7 août 2025, accord en Conférence unifiée le 22 octobre 2026</b></div><div class="nwr"><span>Réservation publique</span><b>confirmée, jusqu’à 50% des ressources annuelles de la catégorie</b></div><div class="nwr"><span>Incitation à 100%</span><b>écoles et établissements de santé publics ; Communes jusqu’à 15.000 habitants pour la première intervention</b></div></div>
+          <div class="nw-top"><span class="nw-date">26 octobre 2026</span><span class="nw-tag">Énergie et réglementation</span></div>
+          <h3>Conto Termico 3.0 : le système de réservation confirmé pour les administrations publiques</h3>
+          <p>Le 22 octobre, la Conférence unifiée a donné son accord sur le décret correctif du Conto Termico 3.0 : la réservation reste ouverte aux administrations publiques, dans la limite de 50% des ressources annuelles de la catégorie. L’incitation à 100% est confirmée pour les écoles et les établissements de santé publics ; pour les Communes jusqu’à 15.000 habitants, elle vaudra pour la première intervention. Les nouveautés concernent aussi les entités du tiers secteur.</p>
+          <a class="nw-link" href="/fr/news/correttivo-ct-pa/">Lire l’article complet →</a>
+        </article>
         <article class="nw" data-ord="17" data-cat="nuovi-incarichi"><div class="nw-more" hidden><div class="nwr"><span>Montant des travaux</span><b>10,89 M€</b></div><div class="nwr"><span>Services mis en concurrence</span><b>664.856 €</b></div></div>
           <div class="nw-top"><span class="nw-date">22 septembre 2026</span><span class="nw-tag">Nouvelles missions</span></div>
           <h3>Siège du Conseil régional du Piémont, via Arsenale 14 à Turin : le groupement Mediapolis, VEE et Box Architetti classé premier</h3>
