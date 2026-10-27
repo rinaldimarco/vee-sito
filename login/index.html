@@ -131,6 +131,26 @@ td.n, th.n { text-align: right; white-space: nowrap; }
 .seg button { border: 0; background: #fff; padding: 9px 10px; min-width: 74px; cursor: pointer; font-size: 0.9rem; }
 .seg button + button { border-left: 1px solid var(--line-strong); }
 .seg button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+:root { --st-u: #1F7A63; --st-u-bg: #DDF0E9; --st-u-ink: #0B4F3E; --st-r: #2F6DA6; --st-r-bg: #E2EDF8; --st-r-ink: #173F66; --st-a: #8A877E; --st-a-bg: #EFEDE7; --st-a-ink: #5E5C55; }
+.seg button[data-v="U"][aria-pressed="true"] { background: var(--st-u); color: #fff; }
+.seg button[data-v="R"][aria-pressed="true"] { background: var(--st-r); color: #fff; }
+.seg button[data-v="A"][aria-pressed="true"] { background: var(--st-a); color: #fff; }
+table.aprog { min-width: 640px; table-layout: fixed; }
+table.aprog th, table.aprog td { padding: 3px; border-bottom: 0; vertical-align: top; }
+table.aprog th:first-child, table.aprog td:first-child { width: 70px; position: sticky; left: 0; background: #fff; z-index: 1; padding: 8px 6px; }
+table.aprog td.nm { font-weight: 500; color: var(--ink); }
+table.aprog .cnt { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.02em; text-transform: none; color: var(--muted); line-height: 1.5; padding: 0 6px 6px; }
+.st { display: block; padding: 7px 8px; min-height: 48px; font-size: 0.85rem; line-height: 1.35; }
+.st b { font-weight: 500; }
+.st small { display: block; font-size: 0.78rem; margin-top: 2px; }
+.st-U { background: var(--st-u-bg); color: var(--st-u-ink); }
+.st-R { background: var(--st-r-bg); color: var(--st-r-ink); }
+.st-A { background: var(--st-a-bg); color: var(--st-a-ink); }
+.st-N { border: 1px dashed var(--line-strong); color: var(--muted); }
+.st .ok { color: var(--st-u); font-weight: 500; }
+.st-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 12px; font-size: 0.8rem; color: var(--muted); }
+.st-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.st-legend i { display: inline-block; width: 14px; height: 14px; }
 .tabs { display: flex; gap: 0; margin-bottom: 12px; border-bottom: 1px solid var(--line); }
 .tabs button { border: 0; background: none; padding: 8px 12px; cursor: pointer; border-bottom: 2px solid transparent; font-size: 0.95rem; color: var(--muted); }
 .tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--ink); font-weight: 500; }
@@ -302,7 +322,8 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
       <button type="button" role="tab" id="atab0" aria-selected="true">Questa settimana</button>
       <button type="button" role="tab" id="atab1" aria-selected="false">Prossima settimana</button>
     </div>
-    <div style="overflow-x:auto"><table id="a-prog"></table></div>
+    <div style="overflow-x:auto"><table id="a-prog" class="aprog"></table></div>
+    <div class="st-legend"><span><i class="st-U"></i>In ufficio</span><span><i class="st-R"></i>Da remoto</span><span><i class="st-A"></i>Assente</span><span><i class="st-N"></i>Non indicato</span><span><b class="ok" style="color:var(--st-u)">✓</b>orario svolto</span></div>
   </div>
   <div class="card"><h2>Registrazioni del mese</h2><details><summary>Mostra il dettaglio</summary><div style="overflow-x:auto"><table id="a-righe" style="margin-top:10px"></table></div></details></div>
   <div class="card"><h2>Elenco commesse</h2>
@@ -928,16 +949,28 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     adminCall({ azione: 'admin_ripristina_pin', id: id }, b, 'PIN di ' + nome + ' riportato a quello iniziale');
   });
   function renderAprog() {
-    var lab = { U: 'Ufficio', R: 'Remoto', A: 'Assente', '': '—' };
+    var lab = { U: 'Ufficio', R: 'Remoto', A: 'Assente', N: 'Non indicato' };
     $('atab0').setAttribute('aria-selected', awk === 0); $('atab1').setAttribute('aria-selected', awk === 1);
     var s0 = adm.programma[0].settimane[awk].settimana;
-    $('a-prog').innerHTML = '<thead><tr><th></th>' + GIORNI.map(function (g, i) { return '<th>' + g.slice(0, 3) + ' ' + addDays(s0, i) + '</th>'; }).join('') + '</tr></thead><tbody>'
-      + adm.programma.map(function (p) {
-        var w = p.settimane[awk];
-        return '<tr><td>' + esc(p.nome.split(' ')[0]) + '</td>' + w.giorni.map(function (g) {
-          return '<td>' + (lab[g.s] || '—') + (g.s && g.s !== 'A' && g.da ? '<div class="small">' + esc(g.da + '–' + g.a) + '</div>' : '') + (g.eff ? '<div class="small">svolto ' + esc(g.eff) + '</div>' : '') + '</td>';
-        }).join('') + '</tr>';
-      }).join('') + '</tbody>';
+    var conta = [0, 1, 2, 3, 4].map(function () { return { U: 0, R: 0, A: 0, N: 0 }; });
+    var righe = adm.programma.map(function (p) {
+      var w = p.settimane[awk];
+      return '<tr><td class="nm">' + esc(p.nome.split(' ')[0]) + '</td>' + w.giorni.map(function (g, i) {
+        var k = lab[g.s] ? g.s : 'N';
+        conta[i][k]++;
+        return '<td><span class="st st-' + k + '"><b>' + lab[k] + '</b>'
+          + (k !== 'A' && k !== 'N' && g.da ? '<small>' + esc(g.da + '–' + g.a) + '</small>' : '')
+          + (g.eff ? '<small class="ok">✓ ' + esc(g.eff) + '</small>' : '') + '</span></td>';
+      }).join('') + '</tr>';
+    }).join('');
+    var cnt = conta.map(function (c) {
+      var t = [];
+      if (c.U) t.push(c.U + ' in ufficio'); if (c.R) t.push(c.R + ' remoto');
+      if (c.A) t.push(c.A + (c.A === 1 ? ' assente' : ' assenti')); if (c.N) t.push(c.N + ' da indicare');
+      return '<th class="cnt">' + t.join('<br>') + '</th>';
+    }).join('');
+    $('a-prog').innerHTML = '<thead><tr><th></th>' + GIORNI.map(function (g, i) { return '<th>' + g.slice(0, 3) + ' ' + addDays(s0, i) + '</th>'; }).join('') + '</tr>'
+      + '<tr><th></th>' + cnt + '</tr></thead><tbody>' + righe + '</tbody>';
   }
   $('atab0').addEventListener('click', function () { awk = 0; renderAprog(); });
   $('atab1').addEventListener('click', function () { awk = 1; renderAprog(); });
