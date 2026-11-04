@@ -360,6 +360,11 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
 
   function store(get, k, v) { try { if (get) return localStorage.getItem(k); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) { return null; } }
   function show(id) { var cambia = vista !== id; vista = id; document.body.classList.toggle('largo', id === 'v-main'); ['v-config', 'v-login', 'v-pin', 'v-privacy', 'v-main', 'v-admin'].forEach(function (x) { $(x).classList.toggle('hidden', x !== id); }); if (cambia) window.scrollTo(0, 0); }
+  // mesi già caricati (riepilogo di Marco e presenze dei collaboratori): si mostrano subito e si aggiornano in background
+  var cacheA = {}, cacheP = {}, inVolo = {};
+  var SOLO_LETTURA = ['stato', 'mie_ore', 'mie_presenze', 'admin_mese', 'admin_tutto'];
+  function svuotaCache() { cacheA = {}; cacheP = {}; }
+  function meseVicino(m, d) { var x = new Date(Number(m.slice(0, 4)), Number(m.slice(5, 7)) - 1 + d, 1); return x.getFullYear() + '-' + String(x.getMonth() + 1).padStart(2, '0'); }
   function msg(id, text, cls) { $(id).innerHTML = text ? '<p class="msg ' + (cls || '') + '">' + esc(text) + '</p>' : ''; }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function hh(h) { var m = Math.round(h * 60); return Math.floor(m / 60) + ' h ' + String(m % 60).padStart(2, '0'); }
@@ -384,6 +389,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
   function call(payload, busy) {
     if (busy) busy.disabled = true;
     if (uid && !payload.utente) payload.utente = uid;
+    if (SOLO_LETTURA.indexOf(payload.azione) < 0) svuotaCache();
     return fetch(ENDPOINT, { method: 'POST', body: JSON.stringify(payload), redirect: 'follow' })
       .then(function (r) { return r.json(); })
       .catch(function () { return { ok: false, errore: 'Connessione non riuscita: riprova' }; })
@@ -575,12 +581,12 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
       pin = p; uid = u; ricorda = remember;
       // con «Ricorda» il dispositivo tiene utente e PIN; senza, si riscrivono ogni volta
       if (remember) { store(false, K_U, u); store(false, K_LOGIN, JSON.stringify({ u: u, p: p })); } else { store(false, K_U, null); store(false, K_LOGIN, null); }
-      if (r.ruolo === 'admin') { $('mese').value = r.mese; renderAdmin(r); show('v-admin'); }
+      if (r.ruolo === 'admin') { $('mese').value = r.mese; cacheA[r.mese] = r; renderAdmin(r); show('v-admin'); caricaMeseAdmin(meseVicino(r.mese, -1)); }
       else render(r);
     });
   }
   function esci() {
-    store(false, K_LOGIN, null); store(false, K_U, null); pin = ''; uid = ''; st = null; adm = null; $('utente').value = '';
+    store(false, K_LOGIN, null); store(false, K_U, null); pin = ''; uid = ''; st = null; adm = null; $('utente').value = ''; svuotaCache();
     $('who').textContent = ''; $('pin').value = ''; msg('m-login', '');
     // niente dati della persona precedente sullo stesso dispositivo
     $('m-giorno').value = ''; fxOggi.imposta([]); fxMan.imposta([]); manToccato = false;
@@ -747,7 +753,8 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     call({ azione: 'mie_ore', pin: pin, mese: mese }).then(function (r) {
       if (!r.ok) { $('mie-tot').textContent = ''; return msg('m-mie', r.errore, 'err'); }
       renderMie(r.mieOre);
-      if (r.presenze && r.presenze.mese === $('pm-mese').value) renderPres(r.presenze);
+      if (r.presenze) cacheP[r.presenze.mese] = r.presenze;
+      if (r.presenze && r.presenze.mese === $('pm-mese').value) { renderPres(r.presenze); caricaPres(meseVicino(r.presenze.mese, -1)); }
     });
   }
   /* ---------- presenze del mese ---------- */
@@ -775,12 +782,24 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
           + gg.map(fasceTesto).join('<br>') + '</td><td class="n">' + (gg.length ? '<span class="oo">' + hh(ore) + '</span>' : '') + '</td></tr>';
       }).join('') + '</tbody><tfoot><tr><td>Totale</td><td>' + n + (n === 1 ? ' giorno' : ' giorni') + '</td><td class="n">' + hh(x.ore) + '</td></tr></tfoot>';
   }
+  function caricaPres(mese) {
+    if (inVolo['p' + mese]) return inVolo['p' + mese];
+    return (inVolo['p' + mese] = call({ azione: 'mie_presenze', pin: pin, mese: mese }).then(function (r) {
+      delete inVolo['p' + mese];
+      if (r.ok) cacheP[mese] = r.presenze;
+      return r;
+    }));
+  }
   $('pm-mese').addEventListener('change', function () {
     var mese = this.value; if (!mese) return;
-    msg('m-pres', ''); $('pm-tab').innerHTML = '<tbody><tr><td class="small">Caricamento…</td></tr></tbody>';
-    call({ azione: 'mie_presenze', pin: pin, mese: mese }).then(function (r) {
+    var c = cacheP[mese];
+    msg('m-pres', '');
+    if (c) renderPres(c); else $('pm-tab').innerHTML = '<tbody><tr><td class="small">Caricamento…</td></tr></tbody>';
+    caricaPres(mese).then(function (r) {
+      if ($('pm-mese').value !== mese) return;
       if (!r.ok) return msg('m-pres', r.errore, 'err');
-      if (r.presenze.mese === $('pm-mese').value) renderPres(r.presenze);
+      if (!c || JSON.stringify(c) !== JSON.stringify(r.presenze)) renderPres(r.presenze);
+      var prec = meseVicino(mese, -1); if (!cacheP[prec]) caricaPres(prec);
     });
   });
   /** Marco: griglia giorni × persone del mese scelto, dalle righe del riepilogo */
@@ -925,11 +944,13 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     payload.pin = pin; payload.mese = $('mese').value;
     return call(payload, btn).then(function (r) {
       if (!r.ok) { if (r.auth === false) { esci(); return msg('m-login', r.errore, 'err'); } return msg('m-admin', r.errore, 'err'); }
+      if (r.mese) cacheA[r.mese] = r;
       renderAdmin(r); if (ok) msg('m-admin', ok);
     });
   }
   function renderAdmin(r) {
     var tot = 0;
+    if (!r.programma && adm) r = Object.assign({}, r, { programma: adm.programma, commesse: adm.commesse, dropbox: adm.dropbox });
     adm = r; daRipristinare = '';
     $('who').textContent = r.nome;
     aggiornaNav();
@@ -997,7 +1018,26 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
   }
   $('atab0').addEventListener('click', function () { awk = 0; renderAprog(); });
   $('atab1').addEventListener('click', function () { awk = 1; renderAprog(); });
-  $('mese').addEventListener('change', function () { adminCall({ azione: 'admin_mese' }); });
+  function firma(r) { return JSON.stringify([r.persone, r.righe, r.commesseTotali]); }
+  function caricaMeseAdmin(mese) {
+    if (inVolo['a' + mese]) return inVolo['a' + mese];
+    return (inVolo['a' + mese] = call({ azione: 'admin_mese', solo: 'mese', pin: pin, mese: mese }).then(function (r) {
+      delete inVolo['a' + mese];
+      if (r.ok) cacheA[mese] = r;
+      return r;
+    }));
+  }
+  $('mese').addEventListener('change', function () {
+    var mese = this.value; if (!mese || !adm) return;
+    var c = cacheA[mese];
+    if (c) renderAdmin(c); else msg('m-admin', 'Caricamento…');
+    caricaMeseAdmin(mese).then(function (r) {
+      if ($('mese').value !== mese || !adm) return;
+      if (!r.ok) { if (r.auth === false) { esci(); return msg('m-login', r.errore, 'err'); } return msg('m-admin', r.errore, 'err'); }
+      if (!c || firma(c) !== firma(r)) renderAdmin(r);
+      var prec = meseVicino(mese, -1); if (!cacheA[prec]) caricaMeseAdmin(prec);
+    });
+  });
   $('a-salva').addEventListener('click', function () {
     var lista = $('a-lista').value.split('\n').map(function (x) { return x.trim(); }).filter(Boolean);
     adminCall({ azione: 'admin_commesse', commesse: lista }, this, 'Elenco commesse salvato');
