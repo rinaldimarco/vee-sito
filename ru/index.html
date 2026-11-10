@@ -417,7 +417,13 @@
   .nw-facts dt { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
   .nw-facts dd { margin: 0; font-family: var(--display); font-weight: 500; font-size: 1rem; color: var(--ink); }
   .nw-feat .nw-link { margin-top: 0; }
-  @media (max-width: 800px) { .nw-feats { grid-template-columns: 1fr; } }
+  .nw-feat-wide { grid-column: 1 / -1; flex-direction: row; }
+  .nw-feat-wide .nw-feat-img { flex: 0 0 50%; }
+  .nw-feat-wide .nw-feat-img .galbtn { height: 100%; }
+  .nw-feat-wide .nw-feat-img img { height: 100%; min-height: 100%; }
+  .nw-feat-wide .nw-feat-txt { flex: 1; align-content: center; }
+  .nw-feat-wide h3 { font-size: clamp(1.25rem, 2vw, 1.6rem); }
+  @media (max-width: 800px) { .nw-feats { grid-template-columns: 1fr; } .nw-feat-wide { flex-direction: column; } .nw-feat-wide .nw-feat-img { flex: none; } .nw-feat-wide .nw-feat-img .galbtn, .nw-feat-wide .nw-feat-img img { height: auto; min-height: 0; } }
   .news-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 32px; }
   .nw[hidden] { display: none; }
   .nw { display: grid; gap: 10px; align-content: start; border-top: 1px solid var(--line-strong); padding-top: 18px; }
@@ -732,6 +738,16 @@
         <div class="nwa-ch"><p>Изменения, которые касаются вас</p><div class="nwa-btns"><a href="/ru/news/correttivo-ct-pa/"><span><b>Органы государственного управления</b><small>резервирование, средства, 100%, другие изменения</small></span><i aria-hidden="true">→</i></a><a href="/ru/news/correttivo-ct-ets/"><span><b>Организации третьего сектора</b><small>кто может подать заявку и когда покрытие достигает 100%</small></span><i aria-hidden="true">→</i></a></div><p class="nwa-dl"><a href="/docs/correttivo-ct3-bozza.pdf" download="correttivo-ct3-bozza.pdf" type="application/pdf">↓ Проект декрета (PDF, на итальянском языке)</a></p></div>
       </div>
       <div class="nw-feats">
+        <article class="nw-feat nw-feat-wide">
+          <figure class="nw-feat-img"><button class="galbtn" type="button" data-gal="/img/scuola-infanzia-cumiana-1.jpg::Кумиана, детский сад · фото обследования|/img/teatro-blu-buriasco-1.jpg::Буриаско, Teatro Blu · фото обследования|/img/scuola-don-milani-brandizzo-1.jpg::Брандиццо, школа «Don Milani» · фото обследования|/img/palazzetto-sport-cavour-2.jpg::Кавур, спортивный комплекс · фото обследования" data-title="Десять общественных зданий, пять муниципалитетов" aria-label="Открыть 4 изображения: Десять общественных зданий, пять муниципалитетов"><img src="/img/scuola-infanzia-cumiana-1.jpg" alt="Детский сад в Кумиане" width="1200" height="800" loading="lazy" style="object-position:50% 50%"><span class="gal-n">4 изображения</span></button><figcaption>Фото обследования</figcaption></figure>
+          <div class="nw-feat-txt">
+            <div class="nw-top"><span class="nw-date">сентябрь 2026</span><span class="nw-tag">Важное · Последние полученные субсидии</span></div>
+            <h3>Итог: 5,64 млн евро субсидий Conto Termico 3.0 для десяти общественных зданий</h3>
+            <p>Десять заявок, поданных VEE S.r.l. от имени пяти муниципалитетов Пьемонта и одобренных GSE в полном объёме, в общей сложности составляют 5.640.877 евро: десять общественных зданий — школы, детские сады, спортивные сооружения и театр — модернизированы с покрытием 100% стоимости работ по ограждающим конструкциям, освещению и автоматизации зданий; для четырёх гибридных систем с тепловым насосом субсидия покрывает часть расходов.</p>
+            <dl class="nw-facts"><div><dt>Общая сумма субсидии</dt><dd>5.640.877 €</dd></div><div><dt>Одобренные заявки</dt><dd>10 из 10</dd></div></dl>
+            <a class="nw-link" href="/ru/news/conto-termico-bilancio/">Читать новость полностью →</a>
+          </div>
+        </article>
         <article class="nw-feat">
           <figure class="nw-feat-img"><img src="/img/corso-matteotti-16-torino-1.jpg" alt="Графика с адресом corso Matteotti 16, Турин" width="1200" height="800" loading="lazy" style="object-position:50% 50%"></figure>
           <div class="nw-feat-txt">

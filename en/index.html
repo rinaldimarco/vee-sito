@@ -417,7 +417,13 @@
   .nw-facts dt { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
   .nw-facts dd { margin: 0; font-family: var(--display); font-weight: 500; font-size: 1rem; color: var(--ink); }
   .nw-feat .nw-link { margin-top: 0; }
-  @media (max-width: 800px) { .nw-feats { grid-template-columns: 1fr; } }
+  .nw-feat-wide { grid-column: 1 / -1; flex-direction: row; }
+  .nw-feat-wide .nw-feat-img { flex: 0 0 50%; }
+  .nw-feat-wide .nw-feat-img .galbtn { height: 100%; }
+  .nw-feat-wide .nw-feat-img img { height: 100%; min-height: 100%; }
+  .nw-feat-wide .nw-feat-txt { flex: 1; align-content: center; }
+  .nw-feat-wide h3 { font-size: clamp(1.25rem, 2vw, 1.6rem); }
+  @media (max-width: 800px) { .nw-feats { grid-template-columns: 1fr; } .nw-feat-wide { flex-direction: column; } .nw-feat-wide .nw-feat-img { flex: none; } .nw-feat-wide .nw-feat-img .galbtn, .nw-feat-wide .nw-feat-img img { height: auto; min-height: 0; } }
   .news-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 32px; }
   .nw[hidden] { display: none; }
   .nw { display: grid; gap: 10px; align-content: start; border-top: 1px solid var(--line-strong); padding-top: 18px; }
@@ -725,6 +731,16 @@
         <div class="nwa-ch"><p>Read the changes that concern you</p><div class="nwa-btns"><a href="/en/news/correttivo-ct-pa/"><span><b>Public administrations</b><small>booking, resources, 100%, other changes</small></span><i aria-hidden="true">→</i></a><a href="/en/news/correttivo-ct-ets/"><span><b>Third-sector entities</b><small>who can apply and when coverage reaches 100%</small></span><i aria-hidden="true">→</i></a></div><p class="nwa-dl"><a href="/docs/correttivo-ct3-bozza.pdf" download="correttivo-ct3-bozza.pdf" type="application/pdf">↓ Draft decree (PDF, in Italian)</a></p></div>
       </div>
       <div class="nw-feats">
+        <article class="nw-feat nw-feat-wide">
+          <figure class="nw-feat-img"><button class="galbtn" type="button" data-gal="/img/scuola-infanzia-cumiana-1.jpg::Cumiana, pre-school · site survey photo|/img/teatro-blu-buriasco-1.jpg::Buriasco, Teatro Blu · site survey photo|/img/scuola-don-milani-brandizzo-1.jpg::Brandizzo, “Don Milani” school · site survey photo|/img/palazzetto-sport-cavour-2.jpg::Cavour, sports hall · site survey photo" data-title="Ten public buildings, five Municipalities" aria-label="Open the 4 images: Ten public buildings, five Municipalities"><img src="/img/scuola-infanzia-cumiana-1.jpg" alt="The pre-school in Cumiana" width="1200" height="800" loading="lazy" style="object-position:50% 50%"><span class="gal-n">4 images</span></button><figcaption>Site survey photo</figcaption></figure>
+          <div class="nw-feat-txt">
+            <div class="nw-top"><span class="nw-date">September 2026</span><span class="nw-tag">Featured · Latest incentives obtained</span></div>
+            <h3>The results: 5,64 million euros in Conto Termico 3.0 incentives for ten public buildings</h3>
+            <p>The ten applications submitted by VEE S.r.l. on behalf of five Piedmontese Municipalities, all approved by the GSE, are worth a total of 5.640.877 euros: ten public buildings — schools, nurseries, sports facilities and a theatre — upgraded with coverage equal to 100% of the cost of the works on the envelope, lighting and building automation; for the four hybrid heat pump systems the incentive covers part of the expenditure.</p>
+            <dl class="nw-facts"><div><dt>Total incentive</dt><dd>5.640.877 €</dd></div><div><dt>Applications approved</dt><dd>10 of 10</dd></div></dl>
+            <a class="nw-link" href="/en/news/conto-termico-bilancio/">Read the full story →</a>
+          </div>
+        </article>
         <article class="nw-feat">
           <figure class="nw-feat-img"><img src="/img/corso-matteotti-16-torino-1.jpg" alt="Graphic showing the address corso Matteotti 16, Turin" width="1200" height="800" loading="lazy" style="object-position:50% 50%"></figure>
           <div class="nw-feat-txt">

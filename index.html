@@ -417,7 +417,13 @@
   .nw-facts dt { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
   .nw-facts dd { margin: 0; font-family: var(--display); font-weight: 500; font-size: 1rem; color: var(--ink); }
   .nw-feat .nw-link { margin-top: 0; }
-  @media (max-width: 800px) { .nw-feats { grid-template-columns: 1fr; } }
+  .nw-feat-wide { grid-column: 1 / -1; flex-direction: row; }
+  .nw-feat-wide .nw-feat-img { flex: 0 0 50%; }
+  .nw-feat-wide .nw-feat-img .galbtn { height: 100%; }
+  .nw-feat-wide .nw-feat-img img { height: 100%; min-height: 100%; }
+  .nw-feat-wide .nw-feat-txt { flex: 1; align-content: center; }
+  .nw-feat-wide h3 { font-size: clamp(1.25rem, 2vw, 1.6rem); }
+  @media (max-width: 800px) { .nw-feats { grid-template-columns: 1fr; } .nw-feat-wide { flex-direction: column; } .nw-feat-wide .nw-feat-img { flex: none; } .nw-feat-wide .nw-feat-img .galbtn, .nw-feat-wide .nw-feat-img img { height: auto; min-height: 0; } }
   .news-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 32px; }
   .nw[hidden] { display: none; }
   .nw { display: grid; gap: 10px; align-content: start; border-top: 1px solid var(--line-strong); padding-top: 18px; }
@@ -726,6 +732,16 @@
         <div class="nwa-ch"><p>Leggi le novità che ti riguardano</p><div class="nwa-btns"><a href="/news/correttivo-ct-pa/"><span><b>Pubbliche amministrazioni</b><small>prenotazione, risorse, 100%, altre novità</small></span><i aria-hidden="true">→</i></a><a href="/news/correttivo-ct-ets/"><span><b>Enti del Terzo settore</b><small>chi può accedere e quando si arriva al 100%</small></span><i aria-hidden="true">→</i></a></div><p class="nwa-dl"><a href="/docs/correttivo-ct3-bozza.pdf" download="correttivo-ct3-bozza.pdf" type="application/pdf">↓ Bozza del decreto (PDF)</a></p></div>
       </div>
       <div class="nw-feats">
+        <article class="nw-feat nw-feat-wide">
+          <figure class="nw-feat-img"><button class="galbtn" type="button" data-gal="img/scuola-infanzia-cumiana-1.jpg::Cumiana, scuola dell’infanzia · foto di sopralluogo|img/teatro-blu-buriasco-1.jpg::Buriasco, Teatro Blu · foto di sopralluogo|img/scuola-don-milani-brandizzo-1.jpg::Brandizzo, scuola “Don Milani” · foto di sopralluogo|img/palazzetto-sport-cavour-2.jpg::Cavour, palazzetto dello sport · foto di sopralluogo" data-title="Dieci edifici pubblici, cinque Comuni" aria-label="Apri le 4 immagini: Dieci edifici pubblici, cinque Comuni"><img src="img/scuola-infanzia-cumiana-1.jpg" alt="La scuola dell’infanzia di Cumiana" width="1200" height="800" loading="lazy" style="object-position:50% 50%"><span class="gal-n">4 immagini</span></button><figcaption>Foto di sopralluogo</figcaption></figure>
+          <div class="nw-feat-txt">
+            <div class="nw-top"><span class="nw-date">settembre 2026</span><span class="nw-tag">In evidenza · Ultimi incentivi ottenuti</span></div>
+            <h3>Il bilancio: 5,64 milioni di euro di incentivi del Conto Termico 3.0 per dieci edifici pubblici</h3>
+            <p>Le dieci richieste presentate da VEE S.r.l. per conto di cinque Comuni piemontesi, tutte accolte dal GSE, valgono complessivamente 5.640.877 euro: dieci edifici pubblici — scuole, asili, impianti sportivi e un teatro — riqualificati con una copertura pari al 100% del costo degli interventi su involucro, illuminazione e building automation; per i quattro sistemi ibridi con pompa di calore l’incentivo copre una parte della spesa.</p>
+            <dl class="nw-facts"><div><dt>Incentivo complessivo</dt><dd>5.640.877 €</dd></div><div><dt>Richieste accolte</dt><dd>10 su 10</dd></div></dl>
+            <a class="nw-link" href="news/conto-termico-bilancio/">Leggi la notizia completa →</a>
+          </div>
+        </article>
         <article class="nw-feat">
           <figure class="nw-feat-img"><img src="img/corso-matteotti-16-torino-1.jpg" alt="Grafica con l’indirizzo corso Matteotti 16, Torino" width="1200" height="800" loading="lazy" style="object-position:50% 50%"></figure>
           <div class="nw-feat-txt">

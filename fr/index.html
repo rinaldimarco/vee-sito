@@ -417,7 +417,13 @@
   .nw-facts dt { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
   .nw-facts dd { margin: 0; font-family: var(--display); font-weight: 500; font-size: 1rem; color: var(--ink); }
   .nw-feat .nw-link { margin-top: 0; }
-  @media (max-width: 800px) { .nw-feats { grid-template-columns: 1fr; } }
+  .nw-feat-wide { grid-column: 1 / -1; flex-direction: row; }
+  .nw-feat-wide .nw-feat-img { flex: 0 0 50%; }
+  .nw-feat-wide .nw-feat-img .galbtn { height: 100%; }
+  .nw-feat-wide .nw-feat-img img { height: 100%; min-height: 100%; }
+  .nw-feat-wide .nw-feat-txt { flex: 1; align-content: center; }
+  .nw-feat-wide h3 { font-size: clamp(1.25rem, 2vw, 1.6rem); }
+  @media (max-width: 800px) { .nw-feats { grid-template-columns: 1fr; } .nw-feat-wide { flex-direction: column; } .nw-feat-wide .nw-feat-img { flex: none; } .nw-feat-wide .nw-feat-img .galbtn, .nw-feat-wide .nw-feat-img img { height: auto; min-height: 0; } }
   .news-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 32px; }
   .nw[hidden] { display: none; }
   .nw { display: grid; gap: 10px; align-content: start; border-top: 1px solid var(--line-strong); padding-top: 18px; }
@@ -725,6 +731,16 @@
         <div class="nwa-ch"><p>Lisez les nouveautés qui vous concernent</p><div class="nwa-btns"><a href="/fr/news/correttivo-ct-pa/"><span><b>Administrations publiques</b><small>réservation, ressources, 100%, autres nouveautés</small></span><i aria-hidden="true">→</i></a><a href="/fr/news/correttivo-ct-ets/"><span><b>Entités du tiers secteur</b><small>qui peut accéder et quand on atteint 100%</small></span><i aria-hidden="true">→</i></a></div><p class="nwa-dl"><a href="/docs/correttivo-ct3-bozza.pdf" download="correttivo-ct3-bozza.pdf" type="application/pdf">↓ Projet de décret (PDF, en italien)</a></p></div>
       </div>
       <div class="nw-feats">
+        <article class="nw-feat nw-feat-wide">
+          <figure class="nw-feat-img"><button class="galbtn" type="button" data-gal="/img/scuola-infanzia-cumiana-1.jpg::Cumiana, école maternelle · photo de relevé|/img/teatro-blu-buriasco-1.jpg::Buriasco, Teatro Blu · photo de relevé|/img/scuola-don-milani-brandizzo-1.jpg::Brandizzo, école « Don Milani » · photo de relevé|/img/palazzetto-sport-cavour-2.jpg::Cavour, palais des sports · photo de relevé" data-title="Dix bâtiments publics, cinq communes" aria-label="Ouvrir les 4 images : Dix bâtiments publics, cinq communes"><img src="/img/scuola-infanzia-cumiana-1.jpg" alt="L’école maternelle de Cumiana" width="1200" height="800" loading="lazy" style="object-position:50% 50%"><span class="gal-n">4 images</span></button><figcaption>Photo de relevé</figcaption></figure>
+          <div class="nw-feat-txt">
+            <div class="nw-top"><span class="nw-date">septembre 2026</span><span class="nw-tag">À la une · Dernières incitations obtenues</span></div>
+            <h3>Le bilan : 5,64 millions d’euros d’incitations du Conto Termico 3.0 pour dix bâtiments publics</h3>
+            <p>Les dix demandes déposées par VEE S.r.l. pour le compte de cinq Communes piémontaises, toutes acceptées par le GSE, représentent au total 5.640.877 euros : dix bâtiments publics — écoles, crèches, équipements sportifs et un théâtre — rénovés avec une prise en charge égale à 100% du coût des interventions sur l’enveloppe, l’éclairage et la gestion technique du bâtiment ; pour les quatre systèmes hybrides avec pompe à chaleur, l’incitation couvre une partie de la dépense.</p>
+            <dl class="nw-facts"><div><dt>Incitation totale</dt><dd>5.640.877 €</dd></div><div><dt>Demandes acceptées</dt><dd>10 sur 10</dd></div></dl>
+            <a class="nw-link" href="/fr/news/conto-termico-bilancio/">Lire l’article complet →</a>
+          </div>
+        </article>
         <article class="nw-feat">
           <figure class="nw-feat-img"><img src="/img/corso-matteotti-16-torino-1.jpg" alt="Visuel avec l'adresse corso Matteotti 16, Turin" width="1200" height="800" loading="lazy" style="object-position:50% 50%"></figure>
           <div class="nw-feat-txt">

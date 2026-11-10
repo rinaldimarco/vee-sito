@@ -417,7 +417,13 @@
   .nw-facts dt { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
   .nw-facts dd { margin: 0; font-family: var(--display); font-weight: 500; font-size: 1rem; color: var(--ink); }
   .nw-feat .nw-link { margin-top: 0; }
-  @media (max-width: 800px) { .nw-feats { grid-template-columns: 1fr; } }
+  .nw-feat-wide { grid-column: 1 / -1; flex-direction: row; }
+  .nw-feat-wide .nw-feat-img { flex: 0 0 50%; }
+  .nw-feat-wide .nw-feat-img .galbtn { height: 100%; }
+  .nw-feat-wide .nw-feat-img img { height: 100%; min-height: 100%; }
+  .nw-feat-wide .nw-feat-txt { flex: 1; align-content: center; }
+  .nw-feat-wide h3 { font-size: clamp(1.25rem, 2vw, 1.6rem); }
+  @media (max-width: 800px) { .nw-feats { grid-template-columns: 1fr; } .nw-feat-wide { flex-direction: column; } .nw-feat-wide .nw-feat-img { flex: none; } .nw-feat-wide .nw-feat-img .galbtn, .nw-feat-wide .nw-feat-img img { height: auto; min-height: 0; } }
   .news-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 32px; }
   .nw[hidden] { display: none; }
   .nw { display: grid; gap: 10px; align-content: start; border-top: 1px solid var(--line-strong); padding-top: 18px; }
@@ -727,6 +733,16 @@
         <div class="nwa-ch"><p>查看与您相关的变化</p><div class="nwa-btns"><a href="/zh/news/correttivo-ct-pa/"><span><b>公共管理部门</b><small>预约、资金、100%资助及其他变化</small></span><i aria-hidden="true">→</i></a><a href="/zh/news/correttivo-ct-ets/"><span><b>第三部门组织</b><small>谁可以申请，何时可获100%资助</small></span><i aria-hidden="true">→</i></a></div><p class="nwa-dl"><a href="/docs/correttivo-ct3-bozza.pdf" download="correttivo-ct3-bozza.pdf" type="application/pdf">↓ 法令草案（PDF，意大利语）</a></p></div>
       </div>
       <div class="nw-feats">
+        <article class="nw-feat nw-feat-wide">
+          <figure class="nw-feat-img"><button class="galbtn" type="button" data-gal="/img/scuola-infanzia-cumiana-1.jpg::Cumiana，幼儿园 · 现场勘察照片|/img/teatro-blu-buriasco-1.jpg::Buriasco，Teatro Blu · 现场勘察照片|/img/scuola-don-milani-brandizzo-1.jpg::布兰迪佐，“Don Milani”学校 · 现场勘察照片|/img/palazzetto-sport-cavour-2.jpg::Cavour，室内体育馆 · 现场勘察照片" data-title="五个市镇的十栋公共建筑" aria-label="打开4张图片：五个市镇的十栋公共建筑"><img src="/img/scuola-infanzia-cumiana-1.jpg" alt="Cumiana幼儿园" width="1200" height="800" loading="lazy" style="object-position:50% 50%"><span class="gal-n">4张图片</span></button><figcaption>现场勘察照片</figcaption></figure>
+          <div class="nw-feat-txt">
+            <div class="nw-top"><span class="nw-date">2026年9月</span><span class="nw-tag">要闻 · 最新获得的激励</span></div>
+            <h3>成果总结：十栋公共建筑获5,64百万欧元Conto Termico 3.0激励</h3>
+            <p>VEE S.r.l.代表皮埃蒙特大区五个市镇提交的十份申请全部获GSE批准，总金额达5.640.877欧元：十栋公共建筑——学校、幼儿园、体育设施及一座剧院——获得资助完成改造，其中围护结构、照明及楼宇自控项目的资助相当于项目成本的100%；四套热泵混合系统的激励覆盖部分支出。</p>
+            <dl class="nw-facts"><div><dt>激励总额</dt><dd>5.640.877 €</dd></div><div><dt>获批申请</dt><dd>10 / 10</dd></div></dl>
+            <a class="nw-link" href="/zh/news/conto-termico-bilancio/">阅读全文 →</a>
+          </div>
+        </article>
         <article class="nw-feat">
           <figure class="nw-feat-img"><img src="/img/corso-matteotti-16-torino-1.jpg" alt="都灵corso Matteotti 16地址图示" width="1200" height="800" loading="lazy" style="object-position:50% 50%"></figure>
           <div class="nw-feat-txt">
