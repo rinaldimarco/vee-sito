@@ -532,6 +532,16 @@
   .nwa-dl a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
   .nwa-dl a:hover { color: var(--nebbia); }
   @media (max-width: 860px) { .nw-alert { grid-template-columns: 1fr; } .nwa-btns { grid-template-columns: 1fr; } }
+
+  /* home compatta: servizi e competenze su pagine dedicate */
+  .hero { padding-bottom: clamp(18px, 2.4vw, 32px); }
+  #societa { padding-top: clamp(30px, 3.8vw, 52px); }
+  #societa .facts-row { grid-template-columns: repeat(4, 1fr); border-left: 0; padding-left: 0; gap: 18px 32px; margin: 0; }
+  #societa .facts-row div { border-left: 3px solid var(--ink); padding-left: 16px; }
+  #societa .photos { margin-top: clamp(28px, 3.6vw, 44px); }
+  #societa .sec-cta { display: flex; flex-wrap: wrap; gap: 12px 14px; }
+  @media (max-width: 760px) { #societa .photos { grid-template-columns: 1fr 1fr; gap: 10px; } #societa .photos figure:first-child { grid-column: 1 / -1; } }
+  @media (max-width: 600px) { #societa .facts-row { grid-template-columns: 1fr 1fr; } }
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://www.vee.it/#organizzazione","name":"VEE S.r.l.","legalName":"VEE S.r.l. — Società di Ingegneria","alternateName":["VEE","VEE Studio","VEE Torino","VEE — Società di ingegneria e architettura"],"url":"https://www.vee.it/zh/","logo":{"@type":"ImageObject","url":"https://www.vee.it/logo-vee.png","width":1016,"height":331},"image":"https://www.vee.it/img/sede-vee-torino-1.jpg","description":"都灵工程与建筑设计公司：能源审计、面向市镇及公共建筑的Conto Termico 3.0、能源改造、BIM设计、工程监理。","foundingDate":"2023-06-20","telephone":"+39 344 649 3193","vatID":"IT12904260010","taxID":"12904260010","address":{"@type":"PostalAddress","streetAddress":"Piazza C.L.N. 255","postalCode":"10123","addressLocality":"Torino","addressRegion":"TO","addressCountry":"IT"},"geo":{"@type":"GeoCoordinates","latitude":45.0662659,"longitude":7.6819196},"hasMap":"https://www.openstreetmap.org/?mlat=45.0662659&mlon=7.6819196#map=18/45.06627/7.68192","areaServed":[{"@type":"AdministrativeArea","name":"皮埃蒙特"},{"@type":"Country","name":"意大利"}],"knowsAbout":["能源审计 UNI CEI EN 16247","Conto Termico 3.0","公共建筑及公寓楼能源改造","PREPAC","白色证书","BIM设计 UNI 11337","工程监理","安全协调 D.Lgs 81/08","消防"],"hasOfferCatalog":{"@type":"OfferCatalog","name":"服务","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"能源审计"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"能效提升与Conto Termico 3.0"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"基于BIM的建筑与机电设计"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"消防"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"工程监理"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"安全协调"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"为施工企业提供投标支持：设计施工一体化合同设计及技术标","url":"https://www.vee.it/zh/gare-imprese/"}}]},"sameAs":[]},{"@type":"WebSite","@id":"https://www.vee.it/#sito","url":"https://www.vee.it/zh/","name":"VEE","alternateName":["VEE S.r.l.","VEE Studio","VEE Torino","VEE ingegneria e architettura"],"inLanguage":"zh-Hans","publisher":{"@id":"https://www.vee.it/#organizzazione"}}]}</script>
 </head>
@@ -543,7 +553,7 @@
   <div class="container">
     <a class="brand" href="#top" aria-label="VEE — 工程与建筑设计公司，都灵"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 478 210" aria-hidden="true"><g fill="none" stroke="var(--lg-red)" stroke-width="1.8" stroke-dasharray="7 5"><circle cx="239" cy="105" r="65"/><circle cx="397" cy="105" r="65"/><line x1="0" y1="40" x2="478" y2="40"/><line x1="0" y1="105" x2="478" y2="105"/><line x1="0" y1="170" x2="478" y2="170"/></g><polygon points="10,40 150,40 80,170" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M239 40 A65 65 0 0 0 239 170 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M245 105 L245 40.28 A65 65 0 0 1 304 105 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M397 40 A65 65 0 0 0 397 170 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M403 105 L403 40.28 A65 65 0 0 1 462 105 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/></svg><span class="payoff">工程与建筑<br>设计公司<br>都灵</span></a>
     <button class="toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="打开菜单"><svg width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M0 1h22M0 7h22M0 13h22"/></svg></button>
-    <nav id="nav" aria-label="栏目"><a href="#societa">公司</a><a href="#servizi">服务</a><a href="#incarichi">项目业绩</a><a href="#competenze">专业资质</a><a href="#gare">招投标</a><a href="#incentivi">激励政策</a><a href="#news">新闻</a><a href="#contatti">联系我们</a><a class="nav-login" href="/login/">Login</a></nav>
+    <nav id="nav" aria-label="栏目"><a href="#societa">公司</a><a href="/zh/servizi/">服务</a><a href="#incarichi">项目业绩</a><a href="/zh/competenze/">专业资质</a><a href="#gare">招投标</a><a href="#incentivi">激励政策</a><a href="#news">新闻</a><a href="#contatti">联系我们</a><a class="nav-login" href="/login/">Login</a></nav>
   </div>
 </header>
 
@@ -562,10 +572,7 @@
     <div class="container">
       <span class="eyebrow">VEE S.r.l. · 工程与建筑设计公司 · 都灵</span>
       <h1>能源、机电、建筑。</h1>
-      <p class="lead">总部位于都灵的工程与建筑设计公司，专注于既有建筑的能源与机电改造：能源审计、基于BIM的建筑与机电设计、工程监理及安全协调。自2016年起以个人独资企业形式执业（2023年起为VEE S.r.l.），服务于意大利全国的公共管理部门、公寓楼和企业。</p>
-      <div class="actions">
-        <a class="btn btn-primary" href="#servizi">服务</a> <a class="btn btn-ghost" href="#contatti">联系我们</a>
-      </div>
+      <p class="lead">建筑与工程融为一体的项目：建筑师与工程师协同工作，从可行性研究直至竣工验收，服务于公共及私人委托方。</p>
     </div>
   </div>
 
@@ -573,48 +580,26 @@
     <div class="container">
       <div class="head">
         <div><span class="eyebrow">公司简介</span><h2>总部位于都灵的工程与建筑设计公司。</h2></div>
-        <p>既有建筑的能源与机电改造：国有房产与军营、学校、市政办公楼、科研建筑及公寓楼。</p>
+        <p>项目涵盖国有房产与军营、学校、市政办公楼、科研建筑及公寓楼，服务于中央及地方公共管理部门（包括框架协议项目）以及私人委托方，遍及意大利全国。</p>
       </div>
-      <div class="studio">
-        <div class="prose">
-          <p>VEE S.r.l.<strong>负责项目的全部阶段</strong>——能源审计、技术经济可行性研究、基于BIM的建筑与机电设计、工程监理及安全协调——始终关注经济合理性以及激励政策和公共资助计划的申请：PREPAC、Conto Termico、白色证书（TEE）、PNRR。</p>
-          <p>服务于中央及地方公共管理部门（包括在工程与建筑服务框架协议范围内）以及私人委托方。</p>
-        </div>
-        <dl class="facts">
+      <dl class="facts facts-row">
           <div><dt>执业</dt><dd>2016年起<small>（2023年起为VEE S.r.l.）</small></dd></div>
           <div><dt>项目</dt><dd>37</dd></div>
           <div><dt>工程金额</dt><dd>超过100 M€</dd></div>
           <div><dt>大区</dt><dd>7</dd></div>
         </dl>
-      </div>
       <div class="photos">
         <figure><button class="galbtn" type="button" data-gal="/img/sede-vee-torino-1.jpg::从办公室眺望piazza C.L.N.与via Roma|/img/sede-vee-torino-2.jpg::会议室|/img/sede-vee-torino-3.jpg::工位|/img/sede-vee-torino-4.jpg::面向广场的露台" data-title="位于都灵piazza C.L.N. 255的公司办公室" data-start="0" aria-label="放大：从办公室眺望piazza C.L.N.与via Roma"><img src="/img/sede-vee-torino-1.jpg" alt="从办公室眺望piazza C.L.N.与via Roma" loading="lazy"><span class="gal-n">放大<svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 4V1h3M6 1h3v3M9 6v3H6M4 9H1V6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span></button></figure>
         <figure><button class="galbtn" type="button" data-gal="/img/sede-vee-torino-1.jpg::从办公室眺望piazza C.L.N.与via Roma|/img/sede-vee-torino-2.jpg::会议室|/img/sede-vee-torino-3.jpg::工位|/img/sede-vee-torino-4.jpg::面向广场的露台" data-title="位于都灵piazza C.L.N. 255的公司办公室" data-start="1" aria-label="放大：会议室"><img src="/img/sede-vee-torino-2.jpg" alt="会议室" loading="lazy"><span class="gal-n">放大<svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 4V1h3M6 1h3v3M9 6v3H6M4 9H1V6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span></button></figure>
         <figure><button class="galbtn" type="button" data-gal="/img/sede-vee-torino-1.jpg::从办公室眺望piazza C.L.N.与via Roma|/img/sede-vee-torino-2.jpg::会议室|/img/sede-vee-torino-3.jpg::工位|/img/sede-vee-torino-4.jpg::面向广场的露台" data-title="位于都灵piazza C.L.N. 255的公司办公室" data-start="2" aria-label="放大：工位"><img src="/img/sede-vee-torino-3.jpg" alt="工位" loading="lazy"><span class="gal-n">放大<svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 4V1h3M6 1h3v3M9 6v3H6M4 9H1V6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span></button></figure>
       </div>
       <p class="photos-cap">位于都灵piazza C.L.N. 255的公司办公室。</p>
+      <p class="sec-cta"><a class="btn btn-primary" href="/zh/servizi/">服务 →</a><a class="btn btn-ghost" href="/zh/competenze/">认证资质 →</a></p>
     </div>
   </section>
 
-  <section class="alt" id="servizi">
-    <div class="container">
-      <div class="head">
-        <div><span class="eyebrow">服务</span><h2>从能源审计到施工现场。</h2></div>
-        <p>业务领域覆盖项目全周期，由持证专业人员依据行业技术标准开展。</p>
-      </div>
-      <div class="services">
-        <div class="service"><span class="q tl"></span><h3>能源审计</h3><p>建筑、工艺流程及交通运输；大型企业及高耗能企业的强制性能源审计。</p><div class="ref">UNI CEI EN 16247 · D.Lgs 102/14 art. 8</div></div>
-        <div class="service"><span class="q tr verde"></span><h3>能效提升</h3><p>公共建筑及公寓楼的围护结构与设备系统；二级重大改造。</p><div class="ref">PREPAC · DM 26/06/2015</div></div>
-        <div class="service"><span class="q br teal"></span><h3>基于BIM的建筑与机电设计</h3><p>基于BIM开展的可行性设计、扩初设计及施工图设计：建筑、暖通、电气及弱电系统、供热机房、光伏、楼宇自控；测绘与点云。</p><div class="ref">UNI 11337 · D.Lgs 36/2023 art. 43</div></div>
-        <div class="service"><span class="q bl nebbia"></span><h3>消防</h3><p>消防设计审查、SCIA及CPI续期、建筑及供热机房的消防合规改造。</p><div class="ref">D.Lgs 139/2006 · DPR 151/2011 · DM 3/8/2015</div></div>
-        <div class="service"><span class="q tl teal"></span><h3>工程监理</h3><p>工程及专项工程监理、计量与结算、施工过程检查、设备系统技术功能验收。</p><div class="ref">D.Lgs 36/2023 art. 114 · 附件II.14</div></div><div class="service"><span class="q bl verde"></span><h3>安全协调</h3><p>设计阶段及施工阶段安全协调、安全与协调计划、运营中建筑内施工现场的交叉作业管理。</p><div class="ref">D.Lgs 81/08 第IV编</div></div>
-        <div class="service service-wide"><span class="q tr teal"></span><div><h3>面向施工企业的招投标</h3><p>在设计施工一体化合同中担任指定设计方，企业无需承担投标费用；在纯施工招标中编制技术标，收取固定费用并在中标后获得奖励。</p><div class="ref">D.Lgs 36/2023 art. 44 · art. 108</div><p class="svc-more"><a href="/zh/gare-imprese/">设计施工一体化合同与技术标 →</a></p></div></div>
-        
-      </div>
-    </div>
-  </section>
 
-  <section id="incarichi">
+  <section class="alt" id="incarichi">
     <div class="container">
       <div class="head">
         <div><span class="eyebrow">项目业绩</span><h2>近十年主要项目。</h2></div>
@@ -668,24 +653,6 @@
     </div>
   </section>
 
-  <section class="alt" id="competenze">
-    <div class="container">
-      <div class="head">
-        <div><span class="eyebrow">专业资质</span><h2>认证资质。</h2></div>
-        <p>公司业务由在职业协会注册、并持有能源、BIM设计、安全、消防及项目管理领域认可认证的专业人员承担，并根据项目需要配备专业协作人员。</p>
-      </div>
-      <ul class="quallist">
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M3 11 12 4l9 7"/><path pathLength="1" d="M5.5 9.5V20h13V9.5"/><path pathLength="1" d="M13 11l-2.6 4h3.2L11 19"/></svg><span>能源管理专家（EGE），UNI CEI 11339，民用领域——AJA Europe证书编号XPERT-EGE/15/2567，有效期至02/08/2030</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M3 20V9l5 3V9l5 3V9l5 3V4h3v16H3z"/><path pathLength="1" d="M9.5 13.5 7.5 17h3l-2 3.5"/></svg><span>能源管理专家（EGE），UNI CEI 11339，工业领域——AJA Europe证书编号XPERT-EGE/15/2567，有效期至02/08/2030</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M5 3h14v18H5z"/><path pathLength="1" d="M8 7.5h4M8 11h6M8 14.5h8M8 18h5"/></svg><span>建筑能效认证技术人员，DPR 75/2013（2023）</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M12 2l9 5v10l-9 5-9-5V7z"/><path pathLength="1" d="M3 7l9 5 9-5M12 12v10"/></svg><span>BIM Manager，UNI 11337-7及UNI/PdR 78:2020——ICMQ证书编号20-08937，有效期至18/11/2030</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M12 4l7.5 4.2v8.6L12 21l-7.5-4.2V8.2z"/><path pathLength="1" d="M4.5 8.2 12 12.4l7.5-4.2M12 12.4V21"/><circle cx="12" cy="4" r="1.6" fill="currentColor" stroke="none"/><circle cx="19.5" cy="16.8" r="1.6" fill="currentColor" stroke="none"/><circle cx="4.5" cy="16.8" r="1.6" fill="currentColor" stroke="none"/></svg><span>BIM Coordinator，UNI 11337-7及UNI/PdR 78:2020——ICMQ证书编号25-02214，有效期至28/07/2030</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M5 15a7 7 0 0 1 14 0"/><path pathLength="1" d="M3 15h18v2.5H3z"/><path pathLength="1" d="M12 8v7M9.5 9v6M14.5 9v6"/></svg><span>设计及施工阶段安全协调员，D.Lgs 81/08——2017年第9092号证书，2025年完成40学时五年期更新培训</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M12 2.5c1 4 6 6 6 12a6 6 0 0 1-12 0c0-3 2-5 3-6.5 0 2 1 3.5 2.5 3.5 1-3 .5-6 .5-9z"/><path pathLength="1" d="M12 21a2.5 2.5 0 0 1-2.5-2.5c0-1.5 1.5-2.5 2.5-4 1 1.5 2.5 2.5 2.5 4A2.5 2.5 0 0 1 12 21z"/></svg><span>消防专业人员，依据D.Lgs 139/2006 art. 16列入内政部名录——编号TO11401A01462</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M3 5h9v3.5H3zM7 10.5h10V14H7zM11 16h10v3.5H11z"/></svg><span>项目经理（Project Manager），UNI 11648:2022——ICMQ证书编号24-01860，有效期至26/09/2029</span></li>
-      </ul>
-    </div>
-  </section>
 
   <section id="gare">
     <div class="container">

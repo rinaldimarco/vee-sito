@@ -537,6 +537,16 @@
   .nwa-dl a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
   .nwa-dl a:hover { color: var(--nebbia); }
   @media (max-width: 860px) { .nw-alert { grid-template-columns: 1fr; } .nwa-btns { grid-template-columns: 1fr; } }
+
+  /* home compatta: servizi e competenze su pagine dedicate */
+  .hero { padding-bottom: clamp(18px, 2.4vw, 32px); }
+  #societa { padding-top: clamp(30px, 3.8vw, 52px); }
+  #societa .facts-row { grid-template-columns: repeat(4, 1fr); border-left: 0; padding-left: 0; gap: 18px 32px; margin: 0; }
+  #societa .facts-row div { border-left: 3px solid var(--ink); padding-left: 16px; }
+  #societa .photos { margin-top: clamp(28px, 3.6vw, 44px); }
+  #societa .sec-cta { display: flex; flex-wrap: wrap; gap: 12px 14px; }
+  @media (max-width: 760px) { #societa .photos { grid-template-columns: 1fr 1fr; gap: 10px; } #societa .photos figure:first-child { grid-column: 1 / -1; } }
+  @media (max-width: 600px) { #societa .facts-row { grid-template-columns: 1fr 1fr; } }
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://www.vee.it/#organizzazione","name":"VEE S.r.l.","legalName":"VEE S.r.l. — Società di Ingegneria","alternateName":["VEE","VEE Studio","VEE Torino","VEE — Società di ingegneria e architettura"],"url":"https://www.vee.it/ru/","logo":{"@type":"ImageObject","url":"https://www.vee.it/logo-vee.png","width":1016,"height":331},"image":"https://www.vee.it/img/sede-vee-torino-1.jpg","description":"Инжиниринговая и архитектурная компания в Турине: энергоаудит, Conto Termico 3.0 для муниципалитетов и общественных зданий, энергетическая модернизация, BIM-проектирование, технический надзор.","foundingDate":"2023-06-20","telephone":"+39 344 649 3193","vatID":"IT12904260010","taxID":"12904260010","address":{"@type":"PostalAddress","streetAddress":"Piazza C.L.N. 255","postalCode":"10123","addressLocality":"Torino","addressRegion":"TO","addressCountry":"IT"},"geo":{"@type":"GeoCoordinates","latitude":45.0662659,"longitude":7.6819196},"hasMap":"https://www.openstreetmap.org/?mlat=45.0662659&mlon=7.6819196#map=18/45.06627/7.68192","areaServed":[{"@type":"AdministrativeArea","name":"Пьемонт"},{"@type":"Country","name":"Италия"}],"knowsAbout":["Энергоаудит UNI CEI EN 16247","Conto Termico 3.0","Энергетическая модернизация общественных зданий и многоквартирных домов","PREPAC","Белые сертификаты","BIM-проектирование UNI 11337","Руководство строительными работами","Координация безопасности D.Lgs 81/08","Пожарная безопасность"],"hasOfferCatalog":{"@type":"OfferCatalog","name":"Услуги","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Энергоаудит"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Повышение энергоэффективности и Conto Termico 3.0"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Архитектурное проектирование и проектирование инженерных систем в BIM"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Пожарная безопасность"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Руководство строительными работами"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Координация безопасности"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Поддержка подрядчиков в тендерах: проектирование для контрактов «проектирование и строительство» и техническое предложение","url":"https://www.vee.it/ru/gare-imprese/"}}]},"sameAs":[]},{"@type":"WebSite","@id":"https://www.vee.it/#sito","url":"https://www.vee.it/ru/","name":"VEE","alternateName":["VEE S.r.l.","VEE Studio","VEE Torino","VEE ingegneria e architettura"],"inLanguage":"ru-RU","publisher":{"@id":"https://www.vee.it/#organizzazione"}}]}</script>
 </head>
@@ -548,7 +558,7 @@
   <div class="container">
     <a class="brand" href="#top" aria-label="VEE — Инжиниринговая и архитектурная компания, Турин"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 478 210" aria-hidden="true"><g fill="none" stroke="var(--lg-red)" stroke-width="1.8" stroke-dasharray="7 5"><circle cx="239" cy="105" r="65"/><circle cx="397" cy="105" r="65"/><line x1="0" y1="40" x2="478" y2="40"/><line x1="0" y1="105" x2="478" y2="105"/><line x1="0" y1="170" x2="478" y2="170"/></g><polygon points="10,40 150,40 80,170" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M239 40 A65 65 0 0 0 239 170 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M245 105 L245 40.28 A65 65 0 0 1 304 105 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M397 40 A65 65 0 0 0 397 170 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M403 105 L403 40.28 A65 65 0 0 1 462 105 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/></svg><span class="payoff">инжиниринг<br>и архитектура<br>турин</span></a>
     <button class="toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Открыть меню"><svg width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M0 1h22M0 7h22M0 13h22"/></svg></button>
-    <nav id="nav" aria-label="Разделы"><a href="#societa">Компания</a><a href="#servizi">Услуги</a><a href="#incarichi">Проекты</a><a href="#competenze">Компетенции</a><a href="#gare">Тендеры</a><a href="#incentivi">Субсидии</a><a href="#news">Новости</a><a href="#contatti">Контакты</a><a class="nav-login" href="/login/">Login</a></nav>
+    <nav id="nav" aria-label="Разделы"><a href="#societa">Компания</a><a href="/ru/servizi/">Услуги</a><a href="#incarichi">Проекты</a><a href="/ru/competenze/">Компетенции</a><a href="#gare">Тендеры</a><a href="#incentivi">Субсидии</a><a href="#news">Новости</a><a href="#contatti">Контакты</a><a class="nav-login" href="/login/">Login</a></nav>
   </div>
 </header>
 
@@ -567,10 +577,7 @@
     <div class="container">
       <span class="eyebrow">VEE S.r.l. · Инжиниринговая и архитектурная компания · Турин</span>
       <h1>Энергетика, инженерные системы, архитектура.</h1>
-      <p class="lead">Инжиниринговая и архитектурная компания с офисом в Турине, специализирующаяся на энергетической модернизации и реконструкции инженерных систем существующего фонда зданий: энергоаудит, архитектурное проектирование и проектирование инженерных систем в BIM, руководство строительными работами (технический надзор) и координация безопасности. Работает с 2016 года как индивидуальное предприятие (VEE S.r.l. — с 2023 года) для органов государственной власти, многоквартирных домов и предприятий по всей Италии.</p>
-      <div class="actions">
-        <a class="btn btn-primary" href="#servizi">Услуги</a> <a class="btn btn-ghost" href="#contatti">Контакты</a>
-      </div>
+      <p class="lead">Архитектура и инжиниринг как единый проект: архитекторы и инженеры работают вместе — от технико-экономического обоснования до приёмочных испытаний — для государственных и частных заказчиков.</p>
     </div>
   </div>
 
@@ -578,48 +585,26 @@
     <div class="container">
       <div class="head">
         <div><span class="eyebrow">Компания</span><h2>Инжиниринговая и архитектурная компания с офисом в Турине.</h2></div>
-        <p>Энергетическая модернизация и реконструкция инженерных систем существующего фонда зданий: объекты государственной собственности и казармы, школы, муниципальные здания, научно-исследовательские здания и многоквартирные дома.</p>
+        <p>Объекты государственной собственности и казармы, школы, муниципальные здания, научно-исследовательские здания и многоквартирные дома — для центральных и местных органов власти, в том числе в рамках рамочных соглашений, и для частных заказчиков по всей Италии.</p>
       </div>
-      <div class="studio">
-        <div class="prose">
-          <p>VEE S.r.l. <strong>сопровождает проект на всех этапах</strong> — энергоаудит, технико-экономическое обоснование, архитектурное проектирование и проектирование инженерных систем в BIM, руководство строительными работами (технический надзор) и координация безопасности — с неизменным вниманием к экономической эффективности и к доступу к субсидиям и программам государственного финансирования: PREPAC, Conto Termico, Белые сертификаты (TEE), PNRR.</p>
-          <p>Работает для центральных и местных органов власти, в том числе в рамках рамочных соглашений на инжиниринговые и архитектурные услуги, а также для частных заказчиков.</p>
-        </div>
-        <dl class="facts">
+      <dl class="facts facts-row">
           <div><dt>Деятельность</dt><dd>с 2016 года<small>(VEE S.r.l. — с 2023 года)</small></dd></div>
           <div><dt>Проекты</dt><dd>37</dd></div>
           <div><dt>Работы</dt><dd>более 100 M€</dd></div>
           <div><dt>Регионы</dt><dd>7</dd></div>
         </dl>
-      </div>
       <div class="photos">
         <figure><button class="galbtn" type="button" data-gal="/img/sede-vee-torino-1.jpg::Вид из офиса на piazza C.L.N. и via Roma|/img/sede-vee-torino-2.jpg::Переговорная|/img/sede-vee-torino-3.jpg::Рабочие места|/img/sede-vee-torino-4.jpg::Терраса с видом на площадь" data-title="Офис на piazza C.L.N. 255, Турин" data-start="0" aria-label="Увеличить: Вид из офиса на piazza C.L.N. и via Roma"><img src="/img/sede-vee-torino-1.jpg" alt="Вид из офиса на piazza C.L.N. и via Roma" loading="lazy"><span class="gal-n">Увеличить<svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 4V1h3M6 1h3v3M9 6v3H6M4 9H1V6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span></button></figure>
         <figure><button class="galbtn" type="button" data-gal="/img/sede-vee-torino-1.jpg::Вид из офиса на piazza C.L.N. и via Roma|/img/sede-vee-torino-2.jpg::Переговорная|/img/sede-vee-torino-3.jpg::Рабочие места|/img/sede-vee-torino-4.jpg::Терраса с видом на площадь" data-title="Офис на piazza C.L.N. 255, Турин" data-start="1" aria-label="Увеличить: Переговорная"><img src="/img/sede-vee-torino-2.jpg" alt="Переговорная" loading="lazy"><span class="gal-n">Увеличить<svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 4V1h3M6 1h3v3M9 6v3H6M4 9H1V6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span></button></figure>
         <figure><button class="galbtn" type="button" data-gal="/img/sede-vee-torino-1.jpg::Вид из офиса на piazza C.L.N. и via Roma|/img/sede-vee-torino-2.jpg::Переговорная|/img/sede-vee-torino-3.jpg::Рабочие места|/img/sede-vee-torino-4.jpg::Терраса с видом на площадь" data-title="Офис на piazza C.L.N. 255, Турин" data-start="2" aria-label="Увеличить: Рабочие места"><img src="/img/sede-vee-torino-3.jpg" alt="Рабочие места" loading="lazy"><span class="gal-n">Увеличить<svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 4V1h3M6 1h3v3M9 6v3H6M4 9H1V6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span></button></figure>
       </div>
       <p class="photos-cap">Офис на piazza C.L.N. 255, Турин.</p>
+      <p class="sec-cta"><a class="btn btn-primary" href="/ru/servizi/">Услуги →</a><a class="btn btn-ghost" href="/ru/competenze/">Сертифицированная квалификация →</a></p>
     </div>
   </section>
 
-  <section class="alt" id="servizi">
-    <div class="container">
-      <div class="head">
-        <div><span class="eyebrow">Услуги</span><h2>От энергоаудита до стройплощадки.</h2></div>
-        <p>Направления деятельности, охватывающие весь цикл реализации объекта; работы выполняются сертифицированными специалистами в соответствии с отраслевыми техническими нормами.</p>
-      </div>
-      <div class="services">
-        <div class="service"><span class="q tl"></span><h3>Энергоаудит</h3><p>Здания, производственные процессы и транспорт; обязательный энергоаудит для крупных и энергоёмких предприятий.</p><div class="ref">UNI CEI EN 16247 · D.Lgs 102/14 art. 8</div></div>
-        <div class="service"><span class="q tr verde"></span><h3>Повышение энергоэффективности</h3><p>Ограждающие конструкции и инженерные системы общественных зданий и многоквартирных домов; капитальная реконструкция второго уровня.</p><div class="ref">PREPAC · DM 26/06/2015</div></div>
-        <div class="service"><span class="q br teal"></span><h3>Архитектурное проектирование и проектирование инженерных систем в BIM</h3><p>Технико-экономические обоснования, окончательные и рабочие проекты в BIM: архитектура, теплотехнические, электрические и слаботочные системы, котельные, фотоэлектрические системы, автоматизация зданий; обмерные работы и облака точек.</p><div class="ref">UNI 11337 · D.Lgs 36/2023 art. 43</div></div>
-        <div class="service"><span class="q bl nebbia"></span><h3>Пожарная безопасность</h3><p>Согласование проектов, SCIA и продление CPI, приведение зданий и котельных в соответствие с требованиями пожарной безопасности.</p><div class="ref">D.Lgs 139/2006 · DPR 151/2011 · DM 3/8/2015</div></div>
-        <div class="service"><span class="q tl teal"></span><h3>Руководство строительными работами</h3><p>Руководство строительными и специализированными работами (технический надзор), учёт выполненных работ и расчёты, контроль в ходе строительства, функциональные испытания и приёмка инженерных систем.</p><div class="ref">D.Lgs 36/2023 art. 114 · Приложение II.14</div></div><div class="service"><span class="q bl verde"></span><h3>Координация безопасности</h3><p>Координация безопасности на этапах проектирования и строительства, планы безопасности и координации, управление рисками совмещённых работ на стройплощадках в эксплуатируемых зданиях.</p><div class="ref">D.Lgs 81/08 Titolo IV</div></div>
-        <div class="service service-wide"><span class="q tr teal"></span><div><h3>Тендеры для подрядчиков</h3><p>Указанные в заявке проектировщики в контрактах «проектирование и строительство», без тендерных расходов для подрядчика; подготовка технического предложения в тендерах только на выполнение работ, с фиксированной суммой и премией в случае присуждения контракта.</p><div class="ref">D.Lgs 36/2023 art. 44 · art. 108</div><p class="svc-more"><a href="/ru/gare-imprese/">Контракт «проектирование и строительство» и техническое предложение →</a></p></div></div>
-        
-      </div>
-    </div>
-  </section>
 
-  <section id="incarichi">
+  <section class="alt" id="incarichi">
     <div class="container">
       <div class="head">
         <div><span class="eyebrow">Проекты</span><h2>Основные проекты за последние десять лет.</h2></div>
@@ -673,24 +658,6 @@
     </div>
   </section>
 
-  <section class="alt" id="competenze">
-    <div class="container">
-      <div class="head">
-        <div><span class="eyebrow">Компетенции</span><h2>Сертифицированная квалификация.</h2></div>
-        <p>Деятельность компании осуществляют специалисты, состоящие в профессиональных палатах (Ordini) и имеющие аккредитованные сертификаты в области энергетики, BIM-проектирования, безопасности, пожарной безопасности и управления проектами, при участии профильных специалистов в зависимости от проекта.</p>
-      </div>
-      <ul class="quallist">
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M3 11 12 4l9 7"/><path pathLength="1" d="M5.5 9.5V20h13V9.5"/><path pathLength="1" d="M13 11l-2.6 4h3.2L11 19"/></svg><span>Эксперт по управлению энергией (EGE), UNI CEI 11339, гражданский сектор — сертификат AJA Europe № XPERT-EGE/15/2567, действителен до 02/08/2030</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M3 20V9l5 3V9l5 3V9l5 3V4h3v16H3z"/><path pathLength="1" d="M9.5 13.5 7.5 17h3l-2 3.5"/></svg><span>Эксперт по управлению энергией (EGE), UNI CEI 11339, промышленный сектор — сертификат AJA Europe № XPERT-EGE/15/2567, действителен до 02/08/2030</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M5 3h14v18H5z"/><path pathLength="1" d="M8 7.5h4M8 11h6M8 14.5h8M8 18h5"/></svg><span>Специалист по энергетической сертификации, DPR 75/2013 (2023)</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M12 2l9 5v10l-9 5-9-5V7z"/><path pathLength="1" d="M3 7l9 5 9-5M12 12v10"/></svg><span>BIM Manager, UNI 11337-7 и UNI/PdR 78:2020 — сертификат ICMQ № 20-08937, действителен до 18/11/2030</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M12 4l7.5 4.2v8.6L12 21l-7.5-4.2V8.2z"/><path pathLength="1" d="M4.5 8.2 12 12.4l7.5-4.2M12 12.4V21"/><circle cx="12" cy="4" r="1.6" fill="currentColor" stroke="none"/><circle cx="19.5" cy="16.8" r="1.6" fill="currentColor" stroke="none"/><circle cx="4.5" cy="16.8" r="1.6" fill="currentColor" stroke="none"/></svg><span>BIM Coordinator, UNI 11337-7 и UNI/PdR 78:2020 — сертификат ICMQ № 25-02214, действителен до 28/07/2030</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M5 15a7 7 0 0 1 14 0"/><path pathLength="1" d="M3 15h18v2.5H3z"/><path pathLength="1" d="M12 8v7M9.5 9v6M14.5 9v6"/></svg><span>Координатор по безопасности на этапах проектирования и строительства, D.Lgs 81/08 — свидетельство № 9092 от 2017 года, пятилетнее 40-часовое повышение квалификации в 2025 году</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M12 2.5c1 4 6 6 6 12a6 6 0 0 1-12 0c0-3 2-5 3-6.5 0 2 1 3.5 2.5 3.5 1-3 .5-6 .5-9z"/><path pathLength="1" d="M12 21a2.5 2.5 0 0 1-2.5-2.5c0-1.5 1.5-2.5 2.5-4 1 1.5 2.5 2.5 2.5 4A2.5 2.5 0 0 1 12 21z"/></svg><span>Специалист по пожарной безопасности, реестры Министерства внутренних дел согласно art. 16 D.Lgs 139/2006 — № TO11401A01462</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M3 5h9v3.5H3zM7 10.5h10V14H7zM11 16h10v3.5H11z"/></svg><span>Project Manager, UNI 11648:2022 — сертификат ICMQ № 24-01860, действителен до 26/09/2029</span></li>
-      </ul>
-    </div>
-  </section>
 
   <section id="gare">
     <div class="container">

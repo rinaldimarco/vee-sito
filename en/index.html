@@ -530,6 +530,16 @@
   .nwa-dl a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
   .nwa-dl a:hover { color: var(--nebbia); }
   @media (max-width: 860px) { .nw-alert { grid-template-columns: 1fr; } .nwa-btns { grid-template-columns: 1fr; } }
+
+  /* home compatta: servizi e competenze su pagine dedicate */
+  .hero { padding-bottom: clamp(18px, 2.4vw, 32px); }
+  #societa { padding-top: clamp(30px, 3.8vw, 52px); }
+  #societa .facts-row { grid-template-columns: repeat(4, 1fr); border-left: 0; padding-left: 0; gap: 18px 32px; margin: 0; }
+  #societa .facts-row div { border-left: 3px solid var(--ink); padding-left: 16px; }
+  #societa .photos { margin-top: clamp(28px, 3.6vw, 44px); }
+  #societa .sec-cta { display: flex; flex-wrap: wrap; gap: 12px 14px; }
+  @media (max-width: 760px) { #societa .photos { grid-template-columns: 1fr 1fr; gap: 10px; } #societa .photos figure:first-child { grid-column: 1 / -1; } }
+  @media (max-width: 600px) { #societa .facts-row { grid-template-columns: 1fr 1fr; } }
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://www.vee.it/#organizzazione","name":"VEE S.r.l.","legalName":"VEE S.r.l. — Società di Ingegneria","alternateName":["VEE","VEE Studio","VEE Torino","VEE — Società di ingegneria e architettura"],"url":"https://www.vee.it/en/","logo":{"@type":"ImageObject","url":"https://www.vee.it/logo-vee.png","width":1016,"height":331},"image":"https://www.vee.it/img/sede-vee-torino-1.jpg","description":"Engineering and architecture firm in Turin: energy audits, Conto Termico 3.0 for Municipalities and public buildings, energy retrofit, BIM design, works supervision.","foundingDate":"2023-06-20","telephone":"+39 344 649 3193","vatID":"IT12904260010","taxID":"12904260010","address":{"@type":"PostalAddress","streetAddress":"Piazza C.L.N. 255","postalCode":"10123","addressLocality":"Torino","addressRegion":"TO","addressCountry":"IT"},"geo":{"@type":"GeoCoordinates","latitude":45.0662659,"longitude":7.6819196},"hasMap":"https://www.openstreetmap.org/?mlat=45.0662659&mlon=7.6819196#map=18/45.06627/7.68192","areaServed":[{"@type":"AdministrativeArea","name":"Piedmont"},{"@type":"Country","name":"Italy"}],"knowsAbout":["Energy audit UNI CEI EN 16247","Conto Termico 3.0","Energy retrofit of public buildings and condominiums","PREPAC","White Certificates","BIM design UNI 11337","Works supervision","Safety coordination D.Lgs 81/08","Fire prevention"],"hasOfferCatalog":{"@type":"OfferCatalog","name":"Services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Energy audits"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Energy efficiency upgrades and Conto Termico 3.0"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Architectural and building services design in BIM"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Fire prevention"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Works supervision"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Safety coordination"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Support for contractors in public tenders: design for design-and-build contracts and technical bids","url":"https://www.vee.it/en/gare-imprese/"}}]},"sameAs":[]},{"@type":"WebSite","@id":"https://www.vee.it/#sito","url":"https://www.vee.it/en/","name":"VEE","alternateName":["VEE S.r.l.","VEE Studio","VEE Torino","VEE ingegneria e architettura"],"inLanguage":"en-GB","publisher":{"@id":"https://www.vee.it/#organizzazione"}}]}</script>
 </head>
@@ -541,7 +551,7 @@
   <div class="container">
     <a class="brand" href="#top" aria-label="VEE — Engineering and architecture firm, Turin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 478 210" aria-hidden="true"><g fill="none" stroke="var(--lg-red)" stroke-width="1.8" stroke-dasharray="7 5"><circle cx="239" cy="105" r="65"/><circle cx="397" cy="105" r="65"/><line x1="0" y1="40" x2="478" y2="40"/><line x1="0" y1="105" x2="478" y2="105"/><line x1="0" y1="170" x2="478" y2="170"/></g><polygon points="10,40 150,40 80,170" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M239 40 A65 65 0 0 0 239 170 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M245 105 L245 40.28 A65 65 0 0 1 304 105 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M397 40 A65 65 0 0 0 397 170 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M403 105 L403 40.28 A65 65 0 0 1 462 105 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/></svg><span class="payoff">engineering and<br>architecture firm<br>turin</span></a>
     <button class="toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open the menu"><svg width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M0 1h22M0 7h22M0 13h22"/></svg></button>
-    <nav id="nav" aria-label="Sections"><a href="#societa">Company</a><a href="#servizi">Services</a><a href="#incarichi">Projects</a><a href="#competenze">Expertise</a><a href="#gare">Tenders</a><a href="#incentivi">Incentives</a><a href="#news">News</a><a href="#contatti">Contact</a><a class="nav-login" href="/login/">Login</a></nav>
+    <nav id="nav" aria-label="Sections"><a href="#societa">Company</a><a href="/en/servizi/">Services</a><a href="#incarichi">Projects</a><a href="/en/competenze/">Expertise</a><a href="#gare">Tenders</a><a href="#incentivi">Incentives</a><a href="#news">News</a><a href="#contatti">Contact</a><a class="nav-login" href="/login/">Login</a></nav>
   </div>
 </header>
 
@@ -560,10 +570,7 @@
     <div class="container">
       <span class="eyebrow">VEE S.r.l. · Engineering and architecture firm · Turin</span>
       <h1>Energy, building services, architecture.</h1>
-      <p class="lead">Engineering and architecture firm based in Turin, specialising in the energy and building services retrofit of the existing building stock: audits, architectural and building services design in BIM, works supervision and safety. Active since 2016 as a sole proprietorship (VEE S.r.l. since 2023), serving public administrations, condominiums and businesses throughout Italy.</p>
-      <div class="actions">
-        <a class="btn btn-primary" href="#servizi">Services</a> <a class="btn btn-ghost" href="#contatti">Contact</a>
-      </div>
+      <p class="lead">Architecture and engineering as a single project: architects and engineers work together from feasibility to final testing, for public and private clients.</p>
     </div>
   </div>
 
@@ -571,48 +578,26 @@
     <div class="container">
       <div class="head">
         <div><span class="eyebrow">The company</span><h2>An engineering and architecture firm based in Turin.</h2></div>
-        <p>Energy and building services retrofit of the existing building stock: state-owned properties and barracks, schools, municipal offices, research buildings and condominiums.</p>
+        <p>Projects on state-owned properties and barracks, schools, municipal offices, research buildings and condominiums, for central and local government — including under framework agreements — and for private clients, throughout Italy.</p>
       </div>
-      <div class="studio">
-        <div class="prose">
-          <p>VEE S.r.l. <strong>follows each project through all its stages</strong> — energy audit, technical and economic feasibility study, architectural and building services design in BIM, works supervision and safety coordination — with constant attention to cost-effectiveness and to access to incentives and public funding programmes: PREPAC, Conto Termico, White Certificates, PNRR.</p>
-          <p>It works for central and local government, including under framework agreements for engineering and architecture services, and for private clients.</p>
-        </div>
-        <dl class="facts">
+      <dl class="facts facts-row">
           <div><dt>Active</dt><dd>since 2016<small>(VEE S.r.l. since 2023)</small></dd></div>
           <div><dt>Projects</dt><dd>37</dd></div>
           <div><dt>Works</dt><dd>over 100 M€</dd></div>
           <div><dt>Regions</dt><dd>7</dd></div>
         </dl>
-      </div>
       <div class="photos">
         <figure><button class="galbtn" type="button" data-gal="/img/sede-vee-torino-1.jpg::View from the office over piazza C.L.N. and via Roma|/img/sede-vee-torino-2.jpg::The meeting room|/img/sede-vee-torino-3.jpg::The workstations|/img/sede-vee-torino-4.jpg::The terrace overlooking the square" data-title="The office at piazza C.L.N. 255, Turin" data-start="0" aria-label="Enlarge: View from the office over piazza C.L.N. and via Roma"><img src="/img/sede-vee-torino-1.jpg" alt="View from the office over piazza C.L.N. and via Roma" loading="lazy"><span class="gal-n">Enlarge<svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 4V1h3M6 1h3v3M9 6v3H6M4 9H1V6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span></button></figure>
         <figure><button class="galbtn" type="button" data-gal="/img/sede-vee-torino-1.jpg::View from the office over piazza C.L.N. and via Roma|/img/sede-vee-torino-2.jpg::The meeting room|/img/sede-vee-torino-3.jpg::The workstations|/img/sede-vee-torino-4.jpg::The terrace overlooking the square" data-title="The office at piazza C.L.N. 255, Turin" data-start="1" aria-label="Enlarge: The meeting room"><img src="/img/sede-vee-torino-2.jpg" alt="The meeting room" loading="lazy"><span class="gal-n">Enlarge<svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 4V1h3M6 1h3v3M9 6v3H6M4 9H1V6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span></button></figure>
         <figure><button class="galbtn" type="button" data-gal="/img/sede-vee-torino-1.jpg::View from the office over piazza C.L.N. and via Roma|/img/sede-vee-torino-2.jpg::The meeting room|/img/sede-vee-torino-3.jpg::The workstations|/img/sede-vee-torino-4.jpg::The terrace overlooking the square" data-title="The office at piazza C.L.N. 255, Turin" data-start="2" aria-label="Enlarge: The workstations"><img src="/img/sede-vee-torino-3.jpg" alt="The workstations" loading="lazy"><span class="gal-n">Enlarge<svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 4V1h3M6 1h3v3M9 6v3H6M4 9H1V6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span></button></figure>
       </div>
       <p class="photos-cap">The office at piazza C.L.N. 255, Turin.</p>
+      <p class="sec-cta"><a class="btn btn-primary" href="/en/servizi/">Services →</a><a class="btn btn-ghost" href="/en/competenze/">Certified qualifications →</a></p>
     </div>
   </section>
 
-  <section class="alt" id="servizi">
-    <div class="container">
-      <div class="head">
-        <div><span class="eyebrow">Services</span><h2>From audit to construction site.</h2></div>
-        <p>Areas of activity covering the entire project cycle, carried out by certified professionals with reference to the sector's technical standards.</p>
-      </div>
-      <div class="services">
-        <div class="service"><span class="q tl"></span><h3>Energy audits</h3><p>Buildings, processes and transport; mandatory audits for large enterprises and energy-intensive companies.</p><div class="ref">UNI CEI EN 16247 · D.Lgs 102/14 art. 8</div></div>
-        <div class="service"><span class="q tr verde"></span><h3>Energy efficiency upgrades</h3><p>Envelope and systems of public buildings and condominiums; second-level major renovations.</p><div class="ref">PREPAC · DM 26/06/2015</div></div>
-        <div class="service"><span class="q br teal"></span><h3>Architectural and building services design in BIM</h3><p>Feasibility, final and detailed designs developed in BIM: architecture, heating, electrical and special systems, heating plants, photovoltaics, building automation; surveys and point clouds.</p><div class="ref">UNI 11337 · D.Lgs 36/2023 art. 43</div></div>
-        <div class="service"><span class="q bl nebbia"></span><h3>Fire prevention</h3><p>Project assessments, SCIA and CPI renewals, fire safety upgrading of buildings and heating plants.</p><div class="ref">D.Lgs 139/2006 · DPR 151/2011 · DM 3/8/2015</div></div>
-        <div class="service"><span class="q tl teal"></span><h3>Works supervision</h3><p>Supervision of works and specialist works, accounting and final payment, inspections during construction, technical and functional testing of systems.</p><div class="ref">D.Lgs 36/2023 art. 114 · Annex II.14</div></div><div class="service"><span class="q bl verde"></span><h3>Safety coordination</h3><p>Safety coordination during design and construction, safety and coordination plans, management of interferences on sites in buildings in use.</p><div class="ref">D.Lgs 81/08 Title IV</div></div>
-        <div class="service service-wide"><span class="q tr teal"></span><div><h3>Tenders for contractors</h3><p>Named designers in design-and-build contracts, with no tender costs for the contractor; drafting of the technical bid in works-only tenders, with a fixed fee and a bonus in the event of award.</p><div class="ref">D.Lgs 36/2023 art. 44 · art. 108</div><p class="svc-more"><a href="/en/gare-imprese/">Design-and-build and technical bid →</a></p></div></div>
-        
-      </div>
-    </div>
-  </section>
 
-  <section id="incarichi">
+  <section class="alt" id="incarichi">
     <div class="container">
       <div class="head">
         <div><span class="eyebrow">Projects</span><h2>Main projects of the last ten years.</h2></div>
@@ -666,24 +651,6 @@
     </div>
   </section>
 
-  <section class="alt" id="competenze">
-    <div class="container">
-      <div class="head">
-        <div><span class="eyebrow">Expertise</span><h2>Certified qualifications.</h2></div>
-        <p>The firm's activities are carried out by professionals registered with the professional bodies (Ordini) and holding accredited certifications in the fields of energy, BIM design, safety, fire prevention and project management, supplemented by specialist collaborators depending on the assignment.</p>
-      </div>
-      <ul class="quallist">
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M3 11 12 4l9 7"/><path pathLength="1" d="M5.5 9.5V20h13V9.5"/><path pathLength="1" d="M13 11l-2.6 4h3.2L11 19"/></svg><span>Energy Management Expert, UNI CEI 11339, civil sector — AJA Europe certificate no. XPERT-EGE/15/2567, expiry 02/08/2030</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M3 20V9l5 3V9l5 3V9l5 3V4h3v16H3z"/><path pathLength="1" d="M9.5 13.5 7.5 17h3l-2 3.5"/></svg><span>Energy Management Expert, UNI CEI 11339, industrial sector — AJA Europe certificate no. XPERT-EGE/15/2567, expiry 02/08/2030</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M5 3h14v18H5z"/><path pathLength="1" d="M8 7.5h4M8 11h6M8 14.5h8M8 18h5"/></svg><span>Energy performance certifier, DPR 75/2013 (2023)</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M12 2l9 5v10l-9 5-9-5V7z"/><path pathLength="1" d="M3 7l9 5 9-5M12 12v10"/></svg><span>BIM Manager, UNI 11337-7 and UNI/PdR 78:2020 — ICMQ certificate no. 20-08937, expiry 18/11/2030</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M12 4l7.5 4.2v8.6L12 21l-7.5-4.2V8.2z"/><path pathLength="1" d="M4.5 8.2 12 12.4l7.5-4.2M12 12.4V21"/><circle cx="12" cy="4" r="1.6" fill="currentColor" stroke="none"/><circle cx="19.5" cy="16.8" r="1.6" fill="currentColor" stroke="none"/><circle cx="4.5" cy="16.8" r="1.6" fill="currentColor" stroke="none"/></svg><span>BIM Coordinator, UNI 11337-7 and UNI/PdR 78:2020 — ICMQ certificate no. 25-02214, expiry 28/07/2030</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M5 15a7 7 0 0 1 14 0"/><path pathLength="1" d="M3 15h18v2.5H3z"/><path pathLength="1" d="M12 8v7M9.5 9v6M14.5 9v6"/></svg><span>Safety coordinator during design and construction, D.Lgs 81/08 — certificate no. 9092 of 2017, 40-hour five-yearly refresher in 2025</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M12 2.5c1 4 6 6 6 12a6 6 0 0 1-12 0c0-3 2-5 3-6.5 0 2 1 3.5 2.5 3.5 1-3 .5-6 .5-9z"/><path pathLength="1" d="M12 21a2.5 2.5 0 0 1-2.5-2.5c0-1.5 1.5-2.5 2.5-4 1 1.5 2.5 2.5 2.5 4A2.5 2.5 0 0 1 12 21z"/></svg><span>Fire prevention professional, lists of the Ministry of the Interior pursuant to art. 16 of D.Lgs 139/2006 — no. TO11401A01462</span></li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M3 5h9v3.5H3zM7 10.5h10V14H7zM11 16h10v3.5H11z"/></svg><span>Project Manager, UNI 11648:2022 — ICMQ certificate no. 24-01860, expiry 26/09/2029</span></li>
-      </ul>
-    </div>
-  </section>
 
   <section id="gare">
     <div class="container">
