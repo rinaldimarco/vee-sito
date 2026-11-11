@@ -88,7 +88,7 @@
   .brand:hover { text-decoration: none; }
   .brand .payoff { font-family: var(--body); font-weight: 400; font-size: .8rem; line-height: 1.35; color: var(--ink); letter-spacing: .08em; border-left: 1.5px solid var(--ink); padding-left: 16px; }
   @media (max-width: 560px) { .brand { gap: 10px; } .brand .payoff { font-size: .62rem; line-height: 1.3; letter-spacing: .06em; padding-left: 10px; } header .brand svg { height: 44px; } }
-  nav { display: flex; gap: clamp(18px, 2.6vw, 34px); }
+  nav { display: flex; gap: clamp(14px, 1.8vw, 26px); }
   nav a { font-family: var(--display); font-weight: 500; font-size: 0.95rem; color: var(--ink); }
   nav a.is-active { color: var(--teal-ink); }
   .toggle { display: none; background: none; border: 0; width: 40px; height: 40px; cursor: pointer; color: var(--ink); padding: 0; }
@@ -551,7 +551,7 @@
   <div class="container">
     <a class="brand" href="#top" aria-label="VEE — Engineering and architecture firm, Turin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 478 210" aria-hidden="true"><g fill="none" stroke="var(--lg-red)" stroke-width="1.8" stroke-dasharray="7 5"><circle cx="239" cy="105" r="65"/><circle cx="397" cy="105" r="65"/><line x1="0" y1="40" x2="478" y2="40"/><line x1="0" y1="105" x2="478" y2="105"/><line x1="0" y1="170" x2="478" y2="170"/></g><polygon points="10,40 150,40 80,170" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M239 40 A65 65 0 0 0 239 170 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M245 105 L245 40.28 A65 65 0 0 1 304 105 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M397 40 A65 65 0 0 0 397 170 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M403 105 L403 40.28 A65 65 0 0 1 462 105 Z" fill="none" stroke="var(--lg-ink)" stroke-width="3.4" stroke-linejoin="round"/></svg><span class="payoff">engineering and<br>architecture firm<br>turin</span></a>
     <button class="toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open the menu"><svg width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M0 1h22M0 7h22M0 13h22"/></svg></button>
-    <nav id="nav" aria-label="Sections"><a href="/en/servizi/">Services</a><a href="/en/incarichi/">Projects</a><a href="/en/competenze/">Expertise</a><a href="#gare">Tenders</a><a href="/en/incentivi-comuni/">Incentives</a><a href="/en/news/">News</a><a class="nav-login" href="/login/">Login</a></nav>
+    <nav id="nav" aria-label="Sections"><a class="nav-home" href="/en/" aria-current="page">Home</a><a href="/en/servizi/">Services</a><a href="/en/incarichi/">Projects</a><a href="/en/competenze/">Expertise</a><a href="#gare">Tenders</a><a href="/en/incentivi-comuni/">Incentives</a><a href="/en/news/">News</a><a class="nav-login" href="/login/">Login</a></nav>
   </div>
 </header>
 
