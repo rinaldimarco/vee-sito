@@ -158,6 +158,18 @@ table.aprog .cnt { font-family: var(--mono); font-size: 0.66rem; letter-spacing:
 .st-legend i { display: inline-block; width: 14px; height: 14px; }
 .tabs { display: flex; gap: 0; margin-bottom: 12px; border-bottom: 1px solid var(--line); }
 .tabs button { border: 0; background: none; padding: 8px 12px; cursor: pointer; border-bottom: 2px solid transparent; font-size: 0.95rem; color: var(--muted); }
+/* programma: mese e settimane */
+.pmn { max-width: 340px; margin-bottom: 10px; }
+.mn-p { flex: 0 0 46px; border: 1px solid var(--line-strong); background: #fff; color: var(--ink); font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 0; }
+.mn-p:hover { border-color: var(--nebbia); color: var(--nebbia); }
+.mn-p[disabled] { opacity: .35; cursor: default; border-color: var(--line); color: var(--muted); }
+.mn-l { flex: 1; display: flex; align-items: center; justify-content: center; min-height: 42px; border: 1px solid var(--line-strong); background: #fff; color: var(--ink); font-weight: 500; }
+.wtabs { flex-wrap: wrap; }
+.wtabs button { padding: 7px 10px; font-size: 0.88rem; line-height: 1.25; text-align: center; }
+.wtabs button .q { display: block; font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.wtabs button .ck { color: var(--st-u); margin-left: 3px; }
+.wtabs button.passata { opacity: .7; }
+@media (max-width: 560px) { .wtabs { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; } .wtabs button { padding: 6px 2px; font-size: 0.8rem; } }
 .tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--ink); font-weight: 500; }
 .badge { display: inline-block; font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 7px; border: 1px solid currentColor; margin-left: 8px; vertical-align: 2px; }
 .badge.warn { color: var(--warn); }
@@ -283,11 +295,10 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
   </div>
 
   <div class="card" id="c-prog">
-    <h2>Programma della settimana <span id="badge-prog"></span></h2>
-    <div class="tabs" role="tablist">
-      <button type="button" role="tab" id="tab0" aria-selected="true">Questa settimana</button>
-      <button type="button" role="tab" id="tab1" aria-selected="false">Prossima settimana</button>
-    </div>
+    <h2>Programma settimanale <span id="badge-prog"></span></h2>
+    <div class="mn pmn"><button type="button" class="mn-p" id="p-prev" aria-label="Mese precedente">‹</button><span class="mn-l" id="p-mese"></span><button type="button" class="mn-p" id="p-next" aria-label="Mese successivo">›</button></div>
+    <div class="tabs wtabs" role="tablist" id="p-tabs"></div>
+    <p class="small hidden" id="p-pass">Settimana passata: si può solo consultare.</p>
     <table class="week"><tbody id="t-prog"></tbody></table>
     <button class="btn btn-primary" type="button" id="b-prog" style="margin-top:14px">Conferma il programma</button>
     <div id="m-prog"></div>
@@ -323,10 +334,9 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
   <div class="card"><h2>Ore per persona</h2><table id="a-persone"></table></div>
   <div class="card"><h2>Ore per commessa</h2><table id="a-commesse"></table></div>
   <div class="card"><h2>Programma settimanale</h2>
-    <div class="tabs" role="tablist">
-      <button type="button" role="tab" id="atab0" aria-selected="true">Questa settimana</button>
-      <button type="button" role="tab" id="atab1" aria-selected="false">Prossima settimana</button>
-    </div>
+    <div class="mn pmn"><button type="button" class="mn-p" id="ap-prev" aria-label="Mese precedente">‹</button><span class="mn-l" id="ap-mese"></span><button type="button" class="mn-p" id="ap-next" aria-label="Mese successivo">›</button></div>
+    <div class="tabs wtabs" role="tablist" id="a-tabs"></div>
+    <div id="m-aprog"></div>
     <div style="overflow-x:auto"><table id="a-prog" class="aprog"></table></div>
     <div class="st-legend"><span><i class="st-U"></i>In ufficio</span><span><i class="st-R"></i>Da remoto</span><span><i class="st-A"></i>Assente</span><span><i class="st-N"></i>Non indicato</span><span><b class="ok" style="color:var(--st-u)">✓</b>orario svolto</span></div>
   </div>
@@ -356,13 +366,16 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
   var STATI = [['U', 'Ufficio'], ['R', 'Remoto'], ['A', 'Assente']];
   var MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
   var $ = function (id) { return document.getElementById(id); };
-  var pin = '', uid = '', ricorda = false, mieDaCaricare = true, st = null, adm = null, wk = 0, awk = 0, prog = [null, null], skew = 0, vista = '', daRipristinare = '', inCorso = false, progModificato = [false, false], oggiToccato = false, daEliminare = '', tEliminare = null;
+  var pin = '', uid = '', ricorda = false, mieDaCaricare = true, st = null, adm = null, skew = 0, vista = '', daRipristinare = '', inCorso = false, oggiToccato = false, daEliminare = '', tEliminare = null;
 
   function store(get, k, v) { try { if (get) return localStorage.getItem(k); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) { return null; } }
   function show(id) { var cambia = vista !== id; vista = id; document.body.classList.toggle('largo', id === 'v-main'); ['v-config', 'v-login', 'v-pin', 'v-privacy', 'v-main', 'v-admin'].forEach(function (x) { $(x).classList.toggle('hidden', x !== id); }); if (cambia) window.scrollTo(0, 0); }
   // mesi già caricati (riepilogo di Marco e presenze dei collaboratori): si mostrano subito e si aggiornano in background
   var cacheA = {}, cacheP = {}, inVolo = {};
-  var SOLO_LETTURA = ['stato', 'mie_ore', 'mie_presenze', 'admin_mese', 'admin_tutto'];
+  var SOLO_LETTURA = ['stato', 'mie_ore', 'mie_presenze', 'admin_mese', 'admin_tutto', 'programma_mese', 'admin_programma'];
+  // programma settimanale: mese mostrato, settimana scelta (lunedì aaaa-mm-gg), mesi già letti, modifiche non salvate
+  var pBase = null, pMese = null, pSel = null, pCache = {}, pEdit = {}, pMod = {};
+  var aBase = null, aMese = null, aSel = null, aCache = {};
   function svuotaCache() { cacheA = {}; cacheP = {}; }
   function meseVicino(m, d) { var x = new Date(Number(m.slice(0, 4)), Number(m.slice(5, 7)) - 1 + d, 1); return x.getFullYear() + '-' + String(x.getMonth() + 1).padStart(2, '0'); }
   function msg(id, text, cls) { $(id).innerHTML = text ? '<p class="msg ' + (cls || '') + '">' + esc(text) + '</p>' : ''; }
@@ -592,7 +605,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     $('m-giorno').value = ''; fxOggi.imposta([]); fxMan.imposta([]); manToccato = false;
     ['m-ore', 'm-man', 'm-prog'].forEach(function (id) { msg(id, ''); });
     pkOggi.reset(); pkMan.reset(); pkOggi.elenco([], []); pkMan.elenco([], []); pkOggi.avviso(''); pkMan.avviso('');
-    $('d-man').open = false; mieDaCaricare = true; progModificato = [false, false]; inCorso = false; oggiToccato = false; daEliminare = '';
+    $('d-man').open = false; mieDaCaricare = true; pBase = pMese = pSel = null; pCache = {}; pEdit = {}; pMod = {}; aBase = aMese = aSel = null; aCache = {}; inCorso = false; oggiToccato = false; daEliminare = '';
     ['mie-tot', 'mie-commesse', 'pm-tab', 'a-pres', 'a-pres-tot'].forEach(function (id) { $(id).innerHTML = ''; }); $('pm-mese').value = ''; msg('m-pres', ''); $('t-recenti').querySelector('tbody').innerHTML = ''; msg('m-mie', '');
     show('v-login');
   }
@@ -615,11 +628,12 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     renderOggi(); renderMancanti();
     renderRecenti();
     if (mieDaCaricare) { mieDaCaricare = false; caricaMieOre(); }
-    // programma: [settimana scorsa, questa, prossima]; le settimane non confermate si propongono
-    // come l'ultima confermata, altrimenti ufficio 9:00–18:00
-    // le settimane in modifica restano come le ha lasciate la persona
-    if (!progModificato[0] && !progModificato[1]) wk = (!r.settimane[1].salvato || d.getDay() < 4 && d.getDay() > 0) ? 0 : 1;
-    riproponi(-1);
+    // programma: tutte le settimane del mese, si apre su questa settimana; le settimane non confermate
+    // si propongono come l'ultima confermata, altrimenti ufficio 9:00–18:00; quelle in modifica restano come le ha lasciate la persona
+    // (con lo script precedente, senza programmaMese, restano questa settimana e la prossima)
+    var pm = r.programmaMese || { mese: r.settimane[1].settimana.slice(0, 7), settimane: r.settimane.slice(1) };
+    metti(pm.mese, pm.settimane);
+    if (!pMese) { pBase = pMese = pm.mese; pSel = r.settimane[1].settimana; if (r.programmaMese) precarica(meseVicino(pBase, 1)); }
     renderProg();
   }
   /** fasce proposte: dall'orario previsto oggi nel programma (altrimenti 9:00–18:00), non oltre l'ora attuale */
@@ -833,57 +847,134 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
   }
 
   /* ---------- programma settimanale ---------- */
-  function proposta(w) {
-    // w: 1 = questa settimana, 2 = prossima (st.settimane[0] è la settimana scorsa)
+  var MESI3 = MESI.map(function (m) { return m.slice(0, 3); });
+  /** «2–6 nov», «30 nov–4 dic» */
+  function intervallo(iso) {
+    var p = iso.split('-'), a = new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2])), b = new Date(a.getFullYear(), a.getMonth(), a.getDate() + 4);
+    return a.getMonth() === b.getMonth() ? a.getDate() + '–' + b.getDate() + ' ' + MESI3[b.getMonth()] : a.getDate() + ' ' + MESI3[a.getMonth()] + '–' + b.getDate() + ' ' + MESI3[b.getMonth()];
+  }
+  function nomeMese(m) { return MESI[Number(m.slice(5, 7)) - 1] + ' ' + m.slice(0, 4); }
+  function distMesi(a, b) { return (Number(b.slice(0, 4)) - Number(a.slice(0, 4))) * 12 + Number(b.slice(5, 7)) - Number(a.slice(5, 7)); }
+  /** mesi consultabili: dal precedente a due mesi avanti rispetto a quello in corso */
+  function meseOk(base, m) { var d = distMesi(base, m); return d >= -1 && d <= 2; }
+  /** un mese letto dal server; le settimane a cavallo di due mesi si aggiornano anche nell'altro */
+  function metti(mese, settimane) {
+    pCache[mese] = settimane;
+    var per = {}; settimane.forEach(function (w) { per[w.settimana] = w; });
+    Object.keys(pCache).forEach(function (m) { if (m !== mese) pCache[m] = pCache[m].map(function (w) { return per[w.settimana] || w; }); });
+  }
+  function settimana(iso) {
+    var x = null;
+    (pCache[pMese] || []).concat((st && st.settimane) || []).forEach(function (w) { if (!x && w.settimana === iso) x = w; });
+    Object.keys(pCache).forEach(function (m) { pCache[m].forEach(function (w) { if (!x && w.settimana === iso) x = w; }); });
+    return x;
+  }
+  /** proposta per una settimana: la sua, se confermata, altrimenti l'ultima confermata prima; senza nessuna, ufficio 9:00–18:00 */
+  function proposta(iso) {
+    var tutte = {};
+    ((st && st.settimane) || []).forEach(function (w) { tutte[w.settimana] = w; });
+    Object.keys(pCache).forEach(function (m) { pCache[m].forEach(function (w) { tutte[w.settimana] = w; }); });
     var fonte = null;
-    for (var i = w; i >= 0; i--) if (st.settimane[i].salvato) { fonte = st.settimane[i].giorni; break; }
+    Object.keys(tutte).sort().forEach(function (k) { if (k <= iso && tutte[k].salvato) fonte = tutte[k].giorni; });
     return [0, 1, 2, 3, 4].map(function (k) {
       var g = fonte && fonte[k] && fonte[k].s ? fonte[k] : null;
       return { s: g ? g.s : 'U', da: g && g.da ? g.da : '09:00', a: g && g.a ? g.a : '18:00' };
     });
   }
-  function riproponi(tranne) { [0, 1].forEach(function (k) { if (k !== tranne && !progModificato[k]) prog[k] = proposta(k + 1); }); }
+  function giorniForm(iso) { if (!pMod[iso] || !pEdit[iso]) pEdit[iso] = proposta(iso); return pEdit[iso]; }
+  function passata(iso) { return iso < st.settimane[1].settimana; }
+  /** legge un mese in background, se non è già in memoria */
+  function precarica(m) {
+    if (!m || pCache[m] || inVolo['p' + m] || !meseOk(pBase, m)) return inVolo['p' + m];
+    return (inVolo['p' + m] = call({ azione: 'programma_mese', pin: pin, mese: m }).then(function (r) {
+      delete inVolo['p' + m];
+      if (r.ok && r.programmaVisto && pBase) metti(r.programmaVisto.mese, r.programmaVisto.settimane);
+      return r;
+    }));
+  }
+  function vaiMese(d) {
+    var m = meseVicino(pMese, d); if (!meseOk(pBase, m)) return;
+    pMese = m; pSel = null; msg('m-prog', ''); renderProg();
+    if (!pCache[m]) {
+      msg('m-prog', 'Caricamento…');
+      precarica(m).then(function (r) {
+        if (pMese !== m) return;
+        if (!r || !r.ok) return msg('m-prog', (r && r.errore) || 'Connessione non riuscita: riprova', 'err');
+        renderProg();
+      });
+    } else precarica(meseVicino(m, 1));
+  }
+  $('p-prev').addEventListener('click', function () { vaiMese(-1); });
+  $('p-next').addEventListener('click', function () { vaiMese(1); });
   function renderProg() {
-    var s = st.settimane[wk + 1];
-    $('tab0').setAttribute('aria-selected', wk === 0); $('tab1').setAttribute('aria-selected', wk === 1);
-    $('tab0').textContent = 'Questa settimana (' + addDays(st.settimane[1].settimana, 0) + ')';
-    $('tab1').textContent = 'Prossima (' + addDays(st.settimane[2].settimana, 0) + ')';
-    $('badge-prog').innerHTML = s.salvato ? '<span class="badge ok">confermato</span>' : '<span class="badge warn">da confermare</span>';
+    $('p-mese').textContent = nomeMese(pMese);
+    $('p-prev').disabled = !meseOk(pBase, meseVicino(pMese, -1)); $('p-next').disabled = !meseOk(pBase, meseVicino(pMese, 1));
+    var lista = pCache[pMese];
+    if (!lista) { $('p-tabs').innerHTML = ''; $('t-prog').innerHTML = ''; $('badge-prog').innerHTML = ''; $('b-prog').classList.add('hidden'); $('p-pass').classList.add('hidden'); return; }
+    var questa = st.settimane[1].settimana;
+    // settimana scelta: quella dell'utente se è nel mese, altrimenti questa settimana, altrimenti la prima non passata
+    if (!lista.some(function (w) { return w.settimana === pSel; })) {
+      pSel = lista.some(function (w) { return w.settimana === questa; }) ? questa
+        : (lista.filter(function (w) { return !passata(w.settimana); })[0] || lista[0]).settimana;
+    }
+    $('p-tabs').innerHTML = lista.map(function (w) {
+      var q = w.settimana === questa ? '<span class="q">questa</span>' : '';
+      return '<button type="button" role="tab" data-w="' + w.settimana + '" aria-selected="' + (w.settimana === pSel) + '"' + (passata(w.settimana) ? ' class="passata"' : '') + '>' + q + intervallo(w.settimana) + (w.salvato ? '<span class="ck" title="confermato">✓</span>' : '') + '</button>';
+    }).join('');
+    var s = settimana(pSel), sola = passata(pSel);
+    $('p-pass').classList.toggle('hidden', !sola);
+    $('b-prog').classList.toggle('hidden', sola);
+    $('badge-prog').innerHTML = sola ? '' : s.salvato ? '<span class="badge ok">confermato</span>' : '<span class="badge warn">da confermare</span>';
+    var lab = { U: 'Ufficio', R: 'Remoto', A: 'Assente', N: 'Non indicato' };
+    var form = sola ? null : giorniForm(pSel);
     $('t-prog').innerHTML = GIORNI.map(function (g, i) {
-      var x = prog[wk][i], eff = s.giorni[i].eff;
-      return '<tr><td>' + g + ' <span class="small">' + addDays(s.settimana, i) + '</span>' + (eff ? '<div class="small">svolto ' + esc(eff) + '</div>' : '') + '</td><td class="n"><span class="seg">'
+      var eff = s.giorni[i].eff, testa = '<td>' + g + ' <span class="small">' + addDays(s.settimana, i) + '</span>' + (eff ? '<div class="small">svolto ' + esc(eff) + '</div>' : '') + '</td>';
+      if (sola) {
+        var y = s.giorni[i], k = lab[y.s] ? y.s : 'N';
+        return '<tr>' + testa + '<td class="n"><span class="st st-' + k + '"><b>' + lab[k] + '</b>' + (k !== 'A' && k !== 'N' && y.da ? '<small>' + esc(y.da + '–' + y.a) + '</small>' : '') + '</span></td></tr>';
+      }
+      var x = form[i];
+      return '<tr>' + testa + '<td class="n"><span class="seg">'
         + STATI.map(function (y) { return '<button type="button" data-i="' + i + '" data-v="' + y[0] + '" aria-pressed="' + (x.s === y[0]) + '">' + y[1] + '</button>'; }).join('')
         + '</span>' + (x.s === 'A' ? '' : '<div class="orario"><input type="time" data-i="' + i + '" data-o="da" value="' + esc(x.da) + '" aria-label="Dalle"> – <input type="time" data-i="' + i + '" data-o="a" value="' + esc(x.a) + '" aria-label="Alle"></div>')
         + '</td></tr>';
     }).join('');
     $('b-prog').textContent = s.salvato ? 'Aggiorna il programma' : 'Conferma il programma';
-    msg('m-prog', '');
   }
+  $('p-tabs').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-w]'); if (!b) return;
+    pSel = b.getAttribute('data-w'); msg('m-prog', ''); renderProg();
+  });
   $('t-prog').addEventListener('click', function (e) {
-    var b = e.target.closest('button[data-i]'); if (!b) return;
-    prog[wk][Number(b.getAttribute('data-i'))].s = b.getAttribute('data-v'); progModificato[wk] = true; renderProg();
+    var b = e.target.closest('button[data-i]'); if (!b || passata(pSel)) return;
+    giorniForm(pSel)[Number(b.getAttribute('data-i'))].s = b.getAttribute('data-v'); pMod[pSel] = true; renderProg();
   });
   $('t-prog').addEventListener('input', function (e) {
-    var t = e.target; if (!t.getAttribute('data-o')) return;
-    prog[wk][Number(t.getAttribute('data-i'))][t.getAttribute('data-o')] = t.value; progModificato[wk] = true;
+    var t = e.target; if (!t.getAttribute('data-o') || passata(pSel)) return;
+    giorniForm(pSel)[Number(t.getAttribute('data-i'))][t.getAttribute('data-o')] = t.value; pMod[pSel] = true;
   });
-  $('tab0').addEventListener('click', function () { wk = 0; renderProg(); });
-  $('tab1').addEventListener('click', function () { wk = 1; renderProg(); });
   $('b-prog').addEventListener('click', function () {
-    var b = this, giorni = prog[wk];
+    var b = this, iso = pSel, giorni = giorniForm(iso);
+    if (passata(iso)) return;
     for (var i = 0; i < 5; i++) if (giorni[i].s !== 'A' && !(minOra(giorni[i].a) > minOra(giorni[i].da))) return msg('m-prog', 'Controlla l\'orario di ' + GIORNI[i].toLowerCase(), 'err');
     // risposta immediata: la settimana risulta confermata subito, il calendario si aggiorna intanto
-    var w = wk, sett = st.settimane[w + 1], prima = JSON.stringify(sett);
+    var sett = settimana(iso), prima = JSON.parse(JSON.stringify(sett)), mese = pMese;
     var inviati = giorni.map(function (x) { return { s: x.s, da: x.da, a: x.a }; });
-    sett.giorni = sett.giorni.map(function (g, i) { return { s: inviati[i].s, da: inviati[i].s === 'A' ? '' : inviati[i].da, a: inviati[i].s === 'A' ? '' : inviati[i].a, eff: g.eff }; });
-    sett.salvato = true; progModificato[w] = false; riproponi(w); renderProg();
+    var nuova = { settimana: iso, salvato: true, giorni: sett.giorni.map(function (g, i) { return { s: inviati[i].s, da: inviati[i].s === 'A' ? '' : inviati[i].da, a: inviati[i].s === 'A' ? '' : inviati[i].a, eff: g.eff, auto: false }; }) };
+    var sostituisci = function (w) {
+      Object.keys(pCache).forEach(function (m) { pCache[m] = pCache[m].map(function (x) { return x.settimana === iso ? w : x; }); });
+      st.settimane = st.settimane.map(function (x) { return x.settimana === iso ? w : x; });
+    };
+    sostituisci(nuova); pMod[iso] = false; delete pEdit[iso]; renderProg();
     msg('m-prog', 'Programma salvato · aggiornamento del calendario in corso…');
     b.disabled = true;
-    call({ azione: 'programma', pin: pin, settimana: sett.settimana, giorni: inviati }).then(function (r) {
+    call({ azione: 'programma', pin: pin, settimana: iso, giorni: inviati, mese: mese }).then(function (r) {
       b.disabled = false;
-      if (!r.ok) { st.settimane[w + 1] = JSON.parse(prima); progModificato[w] = true; riproponi(w); renderProg(); return msg('m-prog', r.errore, 'err'); }
+      if (!r.ok) { sostituisci(prima); pEdit[iso] = giorni; pMod[iso] = true; renderProg(); return msg('m-prog', r.errore, 'err'); }
       st.settimane = r.settimane; st.mancanti = r.mancanti; renderMancanti();
-      riproponi(w); renderProg(); msg('m-prog', 'Programma salvato');
+      if (r.programmaMese) metti(r.programmaMese.mese, r.programmaMese.settimane);
+      if (r.programmaVisto) metti(r.programmaVisto.mese, r.programmaVisto.settimane);
+      renderProg(); msg('m-prog', 'Programma salvato');
     });
   });
   $('esci').addEventListener('click', esci);
@@ -992,13 +1083,51 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     var nome = adm.persone.filter(function (p) { return p.id === id; })[0].nome;
     adminCall({ azione: 'admin_ripristina_pin', id: id }, b, 'PIN di ' + nome + ' riportato a quello iniziale');
   });
+  /** lunedì (aaaa-mm-gg) della settimana in corso, ora italiana */
+  function lunediOggi() {
+    var p = isoGiorno(0).split('-'), d = new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
+    d.setDate(d.getDate() - ((d.getDay() + 6) % 7));
+    return d.getFullYear() + '-' + p2(d.getMonth() + 1) + '-' + p2(d.getDate());
+  }
+  function vaiMeseA(d) {
+    var m = meseVicino(aMese, d); if (!meseOk(aBase, m)) return;
+    aMese = m; aSel = null; renderAprog();
+    if (!aCache[m]) {
+      msg('m-aprog', 'Caricamento…');
+      call({ azione: 'admin_programma', pin: pin, pmese: m }).then(function (r) {
+        if (r.ok && r.programmaVisto) aCache[r.programmaVisto.mese] = r.programmaVisto;
+        if (aMese !== m) return;
+        if (!r.ok) { if (r.auth === false) { esci(); return msg('m-login', r.errore, 'err'); } return msg('m-aprog', r.errore, 'err'); }
+        msg('m-aprog', ''); renderAprog();
+      });
+    }
+  }
+  $('ap-prev').addEventListener('click', function () { vaiMeseA(-1); });
+  $('ap-next').addEventListener('click', function () { vaiMeseA(1); });
+  $('a-tabs').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-w]'); if (!b) return;
+    aSel = b.getAttribute('data-w'); renderAprog();
+  });
   function renderAprog() {
+    if (adm && adm.programma && adm.programma.persone) {
+      aCache[adm.programma.mese] = adm.programma;
+      if (!aMese) { aBase = aMese = adm.programma.mese; aSel = lunediOggi(); }
+    }
+    if (!aMese) return;
+    $('ap-mese').textContent = nomeMese(aMese);
+    $('ap-prev').disabled = !meseOk(aBase, meseVicino(aMese, -1)); $('ap-next').disabled = !meseOk(aBase, meseVicino(aMese, 1));
+    var dati = aCache[aMese];
+    if (!dati) { $('a-tabs').innerHTML = ''; $('a-prog').innerHTML = ''; return; }
+    var lista = dati.persone[0].settimane.map(function (w) { return w.settimana; }), questa = lunediOggi();
+    if (lista.indexOf(aSel) < 0) aSel = lista.indexOf(questa) >= 0 ? questa : (lista.filter(function (w) { return w >= questa; })[0] || lista[0]);
+    var idx = lista.indexOf(aSel);
+    $('a-tabs').innerHTML = lista.map(function (w) {
+      return '<button type="button" role="tab" data-w="' + w + '" aria-selected="' + (w === aSel) + '"' + (w < questa ? ' class="passata"' : '') + '>' + (w === questa ? '<span class="q">questa</span>' : '') + intervallo(w) + '</button>';
+    }).join('');
     var lab = { U: 'Ufficio', R: 'Remoto', A: 'Assente', N: 'Non indicato' };
-    $('atab0').setAttribute('aria-selected', awk === 0); $('atab1').setAttribute('aria-selected', awk === 1);
-    var s0 = adm.programma[0].settimane[awk].settimana;
     var conta = [0, 1, 2, 3, 4].map(function () { return { U: 0, R: 0, A: 0, N: 0 }; });
-    var righe = adm.programma.map(function (p) {
-      var w = p.settimane[awk];
+    var righe = dati.persone.map(function (p) {
+      var w = p.settimane[idx];
       return '<tr><td class="nm">' + esc(p.nome.split(' ')[0]) + '</td>' + w.giorni.map(function (g, i) {
         var k = lab[g.s] ? g.s : 'N';
         conta[i][k]++;
@@ -1013,11 +1142,9 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
       if (c.A) t.push(c.A + (c.A === 1 ? ' assente' : ' assenti')); if (c.N) t.push(c.N + ' da indicare');
       return '<th class="cnt">' + t.join('<br>') + '</th>';
     }).join('');
-    $('a-prog').innerHTML = '<thead><tr><th></th>' + GIORNI.map(function (g, i) { return '<th>' + g.slice(0, 3) + ' ' + addDays(s0, i) + '</th>'; }).join('') + '</tr>'
+    $('a-prog').innerHTML = '<thead><tr><th></th>' + GIORNI.map(function (g, i) { return '<th>' + g.slice(0, 3) + ' ' + addDays(aSel, i) + '</th>'; }).join('') + '</tr>'
       + '<tr><th></th>' + cnt + '</tr></thead><tbody>' + righe + '</tbody>';
   }
-  $('atab0').addEventListener('click', function () { awk = 0; renderAprog(); });
-  $('atab1').addEventListener('click', function () { awk = 1; renderAprog(); });
   function firma(r) { return JSON.stringify([r.persone, r.righe, r.commesseTotali]); }
   function caricaMeseAdmin(mese) {
     if (inVolo['a' + mese]) return inVolo['a' + mese];
