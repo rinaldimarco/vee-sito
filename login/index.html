@@ -201,6 +201,11 @@ table.aprog .cnt { font-family: var(--mono); font-size: 0.66rem; letter-spacing:
 .ads-tab { max-height: 420px; overflow-y: auto; margin-top: 12px; }
 .ads-tab td.gg { white-space: nowrap; font-family: var(--mono); font-size: 0.8rem; color: var(--ink); }
 .ads-tab tr.zero td { color: var(--muted); }
+.ads-tab tr.altre td { color: var(--ink); font-style: italic; border-top: 2px solid var(--line-strong); }
+.ads-tab table { border-collapse: separate; border-spacing: 0; }
+.ads-tab tfoot { position: sticky; bottom: 0; z-index: 1; }
+.ads-tab tfoot td { background: #fff; }
+.ads-tab tfoot tr.tot td { box-shadow: inset 0 1px 0 var(--ink); }
 .nota { font-size: 0.8rem; color: var(--muted); margin: 14px 0 0; line-height: 1.5; }
 #ads-per button { white-space: nowrap; }
 @media (max-width: 560px) { #ads-per button { padding: 8px 7px; font-size: 0.88rem; } .ads-tab .im { display: none; } .ads-tab td.gg { font-size: 0.74rem; } }
@@ -1360,8 +1365,15 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
       + a.giorni.map(function (x) { return '<tr' + (!x.costo && !x.clic && !x.visite ? ' class="zero"' : '') + '><td class="gg">' + esc(giornoIt(x.g)) + '</td><td class="n">' + (collegato ? euro(x.costo) : '—') + '</td><td class="n">' + (collegato ? nfI(x.clic) : '—') + '</td><td class="n im">' + (collegato ? nfI(x.impr) : '—') + '</td>' + (v.errore ? '' : '<td class="n">' + (x.visite === null ? '—' : nfI(x.visite)) + '</td>') + '</tr>'; }).join('')
       + '</tbody><tfoot><tr class="tot"><td>Totale</td><td class="n">' + (collegato ? euro(t.costo) : '—') + '</td><td class="n">' + (collegato ? nfI(t.clic) : '—') + '</td><td class="n im">' + (collegato ? nfI(t.impr) : '—') + '</td>' + (v.errore ? '' : '<td class="n">' + nfI(v.visite) + '</td>') + '</tr></tfoot></table></div></div>';
     // ricerche e campagne
-    if (a.ricerche && a.ricerche.length) h += '<div class="card"><h2>Ricerche che hanno mostrato gli annunci</h2><p class="small" style="margin:-4px 0 8px">Ultimi 30 giorni, prime ' + a.ricerche.length + ' per impressioni (Google non mostra le ricerche con pochi utenti)</p><div class="ads-tab" style="margin-top:0"><table><thead><tr><th>Ricerca</th><th class="n">Impr.</th><th class="n">Clic</th><th class="n">Spesa</th></tr></thead><tbody>'
-      + a.ricerche.map(function (x) { return '<tr><td>' + esc(x.t) + '</td><td class="n">' + nfI(x.impr) + '</td><td class="n">' + nfI(x.clic) + '</td><td class="n">' + euro(x.costo) + '</td></tr>'; }).join('') + '</tbody></table></div></div>';
+    if (a.ricerche && a.ricerche.length) {
+      // le ricerche visibili sono solo una parte: Google non mostra quelle fatte da poche persone
+      var vr = a.ricerche.reduce(function (t, x) { t.impr += x.impr; t.clic += x.clic; t.costo += x.costo; return t; }, { impr: 0, clic: 0, costo: 0 });
+      var rt = a.ricercheTot, alt = rt ? { impr: Math.max(0, rt.impr - vr.impr), clic: Math.max(0, rt.clic - vr.clic), costo: Math.max(0, Math.round((rt.costo - vr.costo) * 100) / 100) } : null;
+      var riga = function (n, x, cls) { return '<tr' + (cls ? ' class="' + cls + '"' : '') + '><td>' + n + '</td><td class="n">' + nfI(x.impr) + '</td><td class="n">' + nfI(x.clic) + '</td><td class="n">' + euro(x.costo) + '</td></tr>'; };
+      h += '<div class="card"><h2>Ricerche che hanno mostrato gli annunci</h2><p class="small" style="margin:-4px 0 8px">Ultimi 30 giorni escluso oggi. Google mostra solo le ricerche fatte da abbastanza persone: le altre sono sommate nella riga «Altre ricerche».</p><div class="ads-tab" style="margin-top:0"><table><thead><tr><th>Ricerca</th><th class="n">Impr.</th><th class="n">Clic</th><th class="n">Spesa</th></tr></thead><tbody>'
+        + a.ricerche.map(function (x) { return riga(esc(x.t), x); }).join('') + '</tbody>'
+        + (alt ? '<tfoot>' + riga('Altre ricerche' + (a.ricerche.length < 25 ? ' (non mostrate da Google)' : ''), alt, 'altre') + riga('Totale ultimi 30 giorni', rt, 'tot') + '</tfoot>' : '') + '</table></div></div>';
+    }
     if (a.campagne && a.campagne.length) h += '<div class="card"><h2>Campagne</h2><table><thead><tr><th>Campagna</th><th>Stato</th><th class="n">Budget/giorno</th></tr></thead><tbody>'
       + a.campagne.map(function (c) { return '<tr><td>' + esc(c.nome) + '</td><td>' + esc(statoCamp(c)) + '</td><td class="n">' + euro(c.budget) + '</td></tr>'; }).join('') + '</tbody></table></div>';
     h += '<p class="nota">' + (collegato ? 'Google Ads aggiornato il ' + esc(dataOra(a.aggiornato)) + ': lo script gira ogni ora e Google può registrare i costi con qualche ora di ritardo. ' : '')
