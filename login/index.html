@@ -179,6 +179,31 @@ table.aprog .cnt { font-family: var(--mono); font-size: 0.66rem; letter-spacing:
 .legal p { margin: 0 0 10px; }
 .top-actions { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
 .hidden { display: none !important; }
+/* Google Ads e visite */
+.ads-apri { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.ads-apri p { margin: 0; }
+.kpi { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.kpi > div { background: #fff; padding: 14px 14px 12px; min-width: 0; }
+.kpi .k { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); display: block; }
+.kpi .v { display: block; font-size: 1.6rem; font-weight: 600; color: var(--ink); line-height: 1.2; margin-top: 4px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.kpi .d { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 2px; line-height: 1.35; }
+.kpi .su { color: var(--ok); } .kpi .giu { color: var(--warn); }
+@media (max-width: 560px) { .kpi { grid-template-columns: repeat(2, minmax(0, 1fr)); } .kpi .v { font-size: 1.35rem; } }
+.mini { display: block; width: 100%; height: 96px; margin: 4px 0 2px; }
+.mini rect.b { fill: var(--teal-ink); }
+.mini rect.b.vis { fill: var(--st-r); }
+.mini rect.h { fill: transparent; }
+.mini rect.h:hover + rect.b, .mini g:hover rect.b { fill: var(--nebbia); }
+.mini line { stroke: var(--line); stroke-width: 1; }
+.mini-assi { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 0.66rem; color: var(--muted); }
+.mini-t { font-size: 0.85rem; color: var(--ink); margin: 14px 0 0; font-weight: 500; }
+.mini-t span { color: var(--muted); font-weight: 400; }
+.ads-tab { max-height: 420px; overflow-y: auto; margin-top: 12px; }
+.ads-tab td.gg { white-space: nowrap; font-family: var(--mono); font-size: 0.8rem; color: var(--ink); }
+.ads-tab tr.zero td { color: var(--muted); }
+.nota { font-size: 0.8rem; color: var(--muted); margin: 14px 0 0; line-height: 1.5; }
+#ads-per button { white-space: nowrap; }
+@media (max-width: 560px) { #ads-per button { padding: 8px 7px; font-size: 0.88rem; } .ads-tab .im { display: none; } .ads-tab td.gg { font-size: 0.74rem; } }
 details { margin-top: 8px; }
 summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
 @media (max-width: 560px) {
@@ -315,6 +340,19 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
 </section>
 
 <!-- amministrazione -->
+<section id="v-ads" class="hidden">
+  <div class="top-actions">
+    <h1>Google Ads e visite</h1>
+    <span class="row"><button class="link" type="button" id="ads-indietro">← Riepilogo mensile</button><button class="link" type="button" id="ads-esci">Esci</button></span>
+  </div>
+  <p class="sub" id="ads-sub">Spesa della campagna Google Ads e visite al sito www.vee.it</p>
+  <div class="tabs" role="tablist" id="ads-per">
+    <button type="button" role="tab" data-p="avvio" aria-selected="true">Dall'avvio</button><button type="button" role="tab" data-p="mese" aria-selected="false">Questo mese</button><button type="button" role="tab" data-p="30" aria-selected="false">30 giorni</button><button type="button" role="tab" data-p="7" aria-selected="false">7 giorni</button>
+  </div>
+  <div id="m-ads"></div>
+  <div id="ads-corpo"></div>
+</section>
+
 <section id="v-admin" class="hidden">
   <div class="top-actions">
     <h1>Riepilogo mensile</h1>
@@ -326,6 +364,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     <button class="btn" type="button" id="a-xls-tutto" style="align-self:flex-end">Excel completo</button>
   </div>
   <div id="m-admin"></div>
+  <div class="card ads-apri"><p><b style="color:var(--ink);font-weight:500">Google Ads e visite al sito</b><br><span class="small">Spesa e clic della campagna, aggiornati ogni ora, e collegamento alle visite</span></p><button class="btn" type="button" id="a-ads">Apri →</button></div>
   <div class="card"><h2>Presenze del mese</h2>
     <p class="small" style="margin:0 0 6px">Orari registrati giorno per giorno e ore della giornata.</p>
     <div class="pres-wrap"><table id="a-pres" class="pres pres-grid"></table></div>
@@ -369,13 +408,15 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
   var pin = '', uid = '', ricorda = false, mieDaCaricare = true, st = null, adm = null, skew = 0, vista = '', daRipristinare = '', inCorso = false, oggiToccato = false, daEliminare = '', tEliminare = null;
 
   function store(get, k, v) { try { if (get) return localStorage.getItem(k); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) { return null; } }
-  function show(id) { var cambia = vista !== id; vista = id; document.body.classList.toggle('largo', id === 'v-main'); ['v-config', 'v-login', 'v-pin', 'v-privacy', 'v-main', 'v-admin'].forEach(function (x) { $(x).classList.toggle('hidden', x !== id); }); if (cambia) window.scrollTo(0, 0); }
+  function show(id) { var cambia = vista !== id; vista = id; document.body.classList.toggle('largo', id === 'v-main'); ['v-config', 'v-login', 'v-pin', 'v-privacy', 'v-main', 'v-admin', 'v-ads'].forEach(function (x) { $(x).classList.toggle('hidden', x !== id); }); if (cambia) window.scrollTo(0, 0); }
   // mesi già caricati (riepilogo di Marco e presenze dei collaboratori): si mostrano subito e si aggiornano in background
   var cacheA = {}, cacheP = {}, inVolo = {};
-  var SOLO_LETTURA = ['stato', 'mie_ore', 'mie_presenze', 'admin_mese', 'admin_tutto', 'programma_mese', 'admin_programma'];
+  var SOLO_LETTURA = ['stato', 'mie_ore', 'mie_presenze', 'admin_mese', 'admin_tutto', 'programma_mese', 'admin_programma', 'admin_ads'];
   // programma settimanale: mese mostrato, settimana scelta (lunedì aaaa-mm-gg), mesi già letti, modifiche non salvate
   var pBase = null, pMese = null, pSel = null, pCache = {}, pEdit = {}, pMod = {};
   var aBase = null, aMese = null, aSel = null, aCache = {};
+  // Google Ads e visite: periodo scelto e dati già letti
+  var adsPer = 'avvio', adsCache = {};
   function svuotaCache() { cacheA = {}; cacheP = {}; }
   function meseVicino(m, d) { var x = new Date(Number(m.slice(0, 4)), Number(m.slice(5, 7)) - 1 + d, 1); return x.getFullYear() + '-' + String(x.getMonth() + 1).padStart(2, '0'); }
   function msg(id, text, cls) { $(id).innerHTML = text ? '<p class="msg ' + (cls || '') + '">' + esc(text) + '</p>' : ''; }
@@ -605,7 +646,7 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
     $('m-giorno').value = ''; fxOggi.imposta([]); fxMan.imposta([]); manToccato = false;
     ['m-ore', 'm-man', 'm-prog'].forEach(function (id) { msg(id, ''); });
     pkOggi.reset(); pkMan.reset(); pkOggi.elenco([], []); pkMan.elenco([], []); pkOggi.avviso(''); pkMan.avviso('');
-    $('d-man').open = false; mieDaCaricare = true; pBase = pMese = pSel = null; pCache = {}; pEdit = {}; pMod = {}; aBase = aMese = aSel = null; aCache = {}; inCorso = false; oggiToccato = false; daEliminare = '';
+    $('d-man').open = false; mieDaCaricare = true; pBase = pMese = pSel = null; pCache = {}; pEdit = {}; pMod = {}; aBase = aMese = aSel = null; aCache = {}; adsCache = {}; $('ads-corpo').innerHTML = ''; msg('m-ads', ''); inCorso = false; oggiToccato = false; daEliminare = '';
     ['mie-tot', 'mie-commesse', 'pm-tab', 'a-pres', 'a-pres-tot'].forEach(function (id) { $(id).innerHTML = ''; }); $('pm-mese').value = ''; msg('m-pres', ''); $('t-recenti').querySelector('tbody').innerHTML = ''; msg('m-mie', '');
     show('v-login');
   }
@@ -1251,6 +1292,105 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
   $('a-xls-mese').addEventListener('click', function () { excel(this, false); });
   $('a-xls-tutto').addEventListener('click', function () { excel(this, true); });
   $('a-esci').addEventListener('click', esci);
+
+  /* ---------- Google Ads e visite (solo Marco) ---------- */
+  var nfI = function (n, d) { return Number(n || 0).toLocaleString('it-IT', { minimumFractionDigits: d || 0, maximumFractionDigits: d || 0 }); };
+  function euro(n) { return '€ ' + nfI(n, 2); }
+  var UMAMI = 'https://cloud.umami.is/analytics/eu/websites/fb2c2888-b97a-491b-831f-0a49aaca0ff3';
+  function dataOra(iso) { var d = new Date(iso); return d.toLocaleDateString('it-IT', { timeZone: 'Europe/Rome', day: 'numeric', month: 'long' }) + ' alle ' + d.toLocaleTimeString('it-IT', { timeZone: 'Europe/Rome', hour: '2-digit', minute: '2-digit', hour12: false }); }
+  function tile(k, v, d) { return '<div><span class="k">' + esc(k) + '</span><span class="v">' + v + '</span>' + (d ? '<span class="d">' + d + '</span>' : '') + '</div>'; }
+  function delta(ora, prima, giorni) {
+    if (prima === null || prima === undefined) return '';
+    if (!prima) return ora ? 'nei ' + giorni + ' giorni prima: 0' : '';
+    var p = Math.round((ora - prima) / prima * 100);
+    return '<span class="' + (p >= 0 ? 'su' : 'giu') + '">' + (p >= 0 ? '+' : '−') + Math.abs(p) + '%</span> sui ' + giorni + ' giorni prima';
+  }
+  /** barre giorno per giorno (dal più vecchio): una sola serie, valore al passaggio del mouse */
+  function mini(giorni, campo, fmt, cls) {
+    var g = giorni.slice().reverse(), n = g.length, max = 0;
+    g.forEach(function (x) { max = Math.max(max, Number(x[campo] || 0)); });
+    if (!n) return '';
+    var W = 600, H = 96, passo = W / n, larg = Math.max(1, Math.min(passo - 2, 28));
+    var out = '<svg class="mini" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" role="img" aria-label="Andamento giorno per giorno"><line x1="0" y1="' + (H - 0.5) + '" x2="' + W + '" y2="' + (H - 0.5) + '"/>';
+    g.forEach(function (x, i) {
+      var v = Number(x[campo] || 0), h = max ? Math.max(v ? 2 : 0, v / max * (H - 6)) : 0, cx = i * passo + (passo - larg) / 2;
+      out += '<g><title>' + esc(giornoIt(x.g) + ': ' + fmt(v)) + '</title><rect class="h" x="' + (i * passo) + '" y="0" width="' + passo + '" height="' + H + '"/>'
+        + (h ? '<rect class="b' + (cls ? ' ' + cls : '') + '" x="' + cx.toFixed(1) + '" y="' + (H - h).toFixed(1) + '" width="' + larg.toFixed(1) + '" height="' + h.toFixed(1) + '"/>' : '') + '</g>';
+    });
+    return out + '</svg><div class="mini-assi"><span>' + esc(addDays(g[0].g, 0)) + '</span><span>max ' + esc(fmt(max)) + '</span><span>' + esc(addDays(g[n - 1].g, 0)) + '</span></div>';
+  }
+  function renderAds(r) {
+    var a = r.ads, t = a.totali, v = a.visite || {}, h = '', giorni = a.giorni.length;
+    var collegato = !!a.aggiornato;
+    $('ads-sub').textContent = 'Dal ' + dataIt(a.da) + ' a oggi (' + giorni + (giorni === 1 ? ' giorno' : ' giorni') + ')' + (a.avvio && a.periodo === 'avvio' ? ' · campagna attiva dal ' + dataIt(a.avvio) : '');
+    if (!collegato) h += '<p class="msg warn">Google Ads non è ancora collegato: manca lo script «VEE · portale» nell\'account Google Ads (istruzioni nel file Istruzioni Google Ads.txt, cartella registro).</p>';
+    // Google Ads
+    var budget = (a.campagne || []).filter(function (c) { return c.stato === 'ENABLED'; }).reduce(function (s, c) { return s + c.budget; }, 0);
+    h += '<div class="card"><h2>Google Ads</h2><div class="kpi">'
+      + tile('Spesa', collegato ? euro(t.costo) : '—', budget ? 'budget ' + euro(budget).replace(',00', '') + ' al giorno' : '')
+      + tile('Clic sugli annunci', collegato ? nfI(t.clic) : '—', t.impr ? 'su ' + nfI(t.impr) + ' impressioni (' + nfI(t.clic / t.impr * 100, 1) + '%)' : '')
+      + tile('Costo per clic', t.clic ? euro(t.costo / t.clic) : '—', t.clic ? 'medio nel periodo' : '')
+      + (v.errore ? tile('Spesa media al giorno', collegato ? euro(t.costo / Math.max(1, giorni)) : '—', giorni + (giorni === 1 ? ' giorno' : ' giorni') + ' nel periodo')
+        : tile('Arrivi dagli annunci', v.annunci === null || v.annunci === undefined ? '—' : nfI(v.annunci), v.annunci && collegato ? euro(t.costo / v.annunci) + ' per arrivo' : 'visite aperte da un annuncio'))
+      + '</div>';
+    if (t.conv) h += '<p class="small" style="margin:10px 0 0">Conversioni registrate da Google Ads: <b>' + nfI(t.conv, t.conv % 1 ? 1 : 0) + '</b></p>';
+    if (collegato && giorni > 1) h += '<p class="mini-t">Spesa al giorno <span>· passa sulle barre per il valore</span></p>' + mini(a.giorni, 'costo', euro, '');
+    h += '</div>';
+    // visite
+    h += '<div class="card"><h2>Visite al sito</h2>';
+    if (v.errore) {
+      h += '<p class="small" style="margin:0 0 12px">Visite, provenienze e clic sui pulsanti mail sono nella dashboard Umami (accesso con il tuo account).</p><div class="row">'
+        + '<a class="btn" href="' + UMAMI + '" target="_blank" rel="noopener">Visite →</a>'
+        + '<a class="btn" href="' + UMAMI + '/google-ads" target="_blank" rel="noopener">Arrivi da Google Ads →</a>'
+        + '<a class="btn" href="' + UMAMI + '/events" target="_blank" rel="noopener">Clic sui pulsanti mail →</a></div>';
+    } else {
+      h += '<div class="kpi">'
+        + tile('Visite', nfI(v.visite), delta(v.visite, v.visitePrec, giorni))
+        + tile('Visitatori', nfI(v.visitatori), delta(v.visitatori, v.visitatoriPrec, giorni))
+        + tile('Pagine viste', nfI(v.pagine), v.visite ? nfI(v.pagine / v.visite, 1) + ' per visita' : '')
+        + tile('Clic sui contatti mail', v.mail === null || v.mail === undefined ? '—' : nfI(v.mail), 'pulsanti «scrivi» delle pagine Gare')
+        + '</div>';
+      if (giorni > 1) h += '<p class="mini-t">Visite al giorno</p>' + mini(a.giorni, 'visite', function (x) { return nfI(x) + (x === 1 ? ' visita' : ' visite'); }, 'vis');
+      if (v.provenienze && v.provenienze.length) h += '<p class="mini-t">Da dove arrivano <span>· siti di provenienza, escluse le visite dirette</span></p><table><tbody>'
+        + v.provenienze.map(function (p) { return '<tr><td>' + esc(p.x) + '</td><td class="n">' + nfI(p.y) + '</td></tr>'; }).join('') + '</tbody></table>';
+    }
+    h += '</div>';
+    // giorno per giorno
+    h += '<div class="card"><h2>Giorno per giorno</h2><div class="ads-tab"><table><thead><tr><th>Giorno</th><th class="n">Spesa</th><th class="n">Clic</th><th class="n im">Impr.</th>' + (v.errore ? '' : '<th class="n">Visite</th>') + '</tr></thead><tbody>'
+      + a.giorni.map(function (x) { return '<tr' + (!x.costo && !x.clic && !x.visite ? ' class="zero"' : '') + '><td class="gg">' + esc(giornoIt(x.g)) + '</td><td class="n">' + (collegato ? euro(x.costo) : '—') + '</td><td class="n">' + (collegato ? nfI(x.clic) : '—') + '</td><td class="n im">' + (collegato ? nfI(x.impr) : '—') + '</td>' + (v.errore ? '' : '<td class="n">' + (x.visite === null ? '—' : nfI(x.visite)) + '</td>') + '</tr>'; }).join('')
+      + '</tbody><tfoot><tr class="tot"><td>Totale</td><td class="n">' + (collegato ? euro(t.costo) : '—') + '</td><td class="n">' + (collegato ? nfI(t.clic) : '—') + '</td><td class="n im">' + (collegato ? nfI(t.impr) : '—') + '</td>' + (v.errore ? '' : '<td class="n">' + nfI(v.visite) + '</td>') + '</tr></tfoot></table></div></div>';
+    // ricerche e campagne
+    if (a.ricerche && a.ricerche.length) h += '<div class="card"><h2>Ricerche che hanno mostrato gli annunci</h2><p class="small" style="margin:-4px 0 8px">Ultimi 30 giorni, prime ' + a.ricerche.length + ' per impressioni (Google non mostra le ricerche con pochi utenti)</p><div class="ads-tab" style="margin-top:0"><table><thead><tr><th>Ricerca</th><th class="n">Impr.</th><th class="n">Clic</th><th class="n">Spesa</th></tr></thead><tbody>'
+      + a.ricerche.map(function (x) { return '<tr><td>' + esc(x.t) + '</td><td class="n">' + nfI(x.impr) + '</td><td class="n">' + nfI(x.clic) + '</td><td class="n">' + euro(x.costo) + '</td></tr>'; }).join('') + '</tbody></table></div></div>';
+    if (a.campagne && a.campagne.length) h += '<div class="card"><h2>Campagne</h2><table><thead><tr><th>Campagna</th><th>Stato</th><th class="n">Budget/giorno</th></tr></thead><tbody>'
+      + a.campagne.map(function (c) { return '<tr><td>' + esc(c.nome) + '</td><td>' + esc(statoCamp(c)) + '</td><td class="n">' + euro(c.budget) + '</td></tr>'; }).join('') + '</tbody></table></div>';
+    h += '<p class="nota">' + (collegato ? 'Google Ads aggiornato il ' + esc(dataOra(a.aggiornato)) + ': lo script gira ogni ora e Google può registrare i costi con qualche ora di ritardo. ' : '')
+      + (v.errore ? 'Le visite di Umami comprendono anche quelle dello studio.' : 'Le visite (Umami) comprendono anche quelle dello studio. Gli arrivi dagli annunci sono le visite aperte da un annuncio: possono essere meno dei clic, perché alcuni browser bloccano il conteggio o la pagina viene chiusa prima di caricarsi.') + '</p>';
+    $('ads-corpo').innerHTML = h;
+  }
+  function statoCamp(c) {
+    var s = { ENABLED: 'Attiva', PAUSED: 'In pausa', REMOVED: 'Rimossa' }[c.stato] || c.stato;
+    var q = { ELIGIBLE: 'idonea', LIMITED: 'idonea (limitata)', LEARNING: 'in apprendimento', PAUSED: '', PENDING: 'in attesa', MISCONFIGURED: 'da sistemare', NOT_ELIGIBLE: 'non idonea', ENDED: 'terminata', REMOVED: '' }[c.servizio];
+    return q ? s + ' · ' + q : s;
+  }
+  function caricaAds(per) {
+    adsPer = per;
+    Array.prototype.forEach.call($('ads-per').querySelectorAll('button'), function (b) { b.setAttribute('aria-selected', b.getAttribute('data-p') === per ? 'true' : 'false'); });
+    var c = adsCache[per];
+    if (c) { renderAds(c); msg('m-ads', ''); } else { $('ads-corpo').innerHTML = ''; msg('m-ads', 'Caricamento…'); }
+    return call({ azione: 'admin_ads', pin: pin, periodo: per }).then(function (r) {
+      if (adsPer !== per || vista !== 'v-ads') return;
+      if (!r.ok) { if (r.auth === false) { esci(); return msg('m-login', r.errore, 'err'); } return msg('m-ads', r.errore, 'err'); }
+      if (!r.ads) return msg('m-ads', 'Aggiorna lo script Google (Codice.gs) per vedere questa pagina', 'err');
+      adsCache[per] = r; msg('m-ads', ''); renderAds(r);
+    });
+  }
+  $('a-ads').addEventListener('click', function () { show('v-ads'); caricaAds(adsPer); });
+  $('ads-indietro').addEventListener('click', function () { show('v-admin'); });
+  $('ads-esci').addEventListener('click', esci);
+  Array.prototype.forEach.call($('ads-per').querySelectorAll('button'), function (b) {
+    b.addEventListener('click', function () { caricaAds(b.getAttribute('data-p')); });
+  });
 
   /* ---------- avvio ---------- */
   if (!/^https?:\/\//.test(ENDPOINT)) { show('v-config'); return; }
