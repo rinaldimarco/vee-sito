@@ -1373,6 +1373,15 @@ summary { cursor: pointer; color: var(--teal-ink); font-size: 0.95rem; }
         + a.ricerche.map(function (x) { return riga(esc(x.t), x); }).join('') + '</tbody>'
         + (alt ? '<tfoot>' + riga('Altre ricerche' + (a.ricerche.length < 25 ? ' (non mostrate da Google)' : ''), alt, 'altre') + riga('Totale ultimi 30 giorni', rt, 'tot') + '</tfoot>' : '') + '</table></div></div>';
     }
+    // parole chiave: dati completi, Google non nasconde nulla
+    if (a.parole && a.parole.length) {
+      var TIPI = { EXACT: 'esatta', PHRASE: 'a frase', BROAD: 'generica' };
+      var rp = function (n, x, cls) { return '<tr' + (cls ? ' class="' + cls + '"' : '') + '><td>' + n + '</td><td class="n">' + nfI(x.impr) + '</td><td class="n">' + nfI(x.clic) + '</td><td class="n">' + euro(x.costo) + '</td></tr>'; };
+      var pt = a.parole.reduce(function (t, x) { t.impr += x.impr; t.clic += x.clic; t.costo = Math.round((t.costo + x.costo) * 100) / 100; return t; }, { impr: 0, clic: 0, costo: 0 });
+      h += '<div class="card"><h2>Clic per parola chiave</h2><p class="small" style="margin:-4px 0 8px">Ultimi 30 giorni escluso oggi. La parola chiave della campagna che ha fatto comparire l\'annuncio, con il tipo di corrispondenza: qui Google non nasconde nulla.</p><div class="ads-tab" style="margin-top:0"><table><thead><tr><th>Parola chiave</th><th class="n">Impr.</th><th class="n">Clic</th><th class="n">Spesa</th></tr></thead><tbody>'
+        + a.parole.map(function (x) { return rp(esc(x.t) + ' <span class="small">· ' + esc(TIPI[x.m] || String(x.m || '').toLowerCase()) + '</span>', x); }).join('') + '</tbody>'
+        + '<tfoot>' + rp(a.parole.length < 25 ? 'Totale ultimi 30 giorni' : 'Totale delle 25 parole mostrate', pt, 'tot') + '</tfoot></table></div></div>';
+    }
     if (a.campagne && a.campagne.length) h += '<div class="card"><h2>Campagne</h2><table><thead><tr><th>Campagna</th><th>Stato</th><th class="n">Budget/giorno</th></tr></thead><tbody>'
       + a.campagne.map(function (c) { return '<tr><td>' + esc(c.nome) + '</td><td>' + esc(statoCamp(c)) + '</td><td class="n">' + euro(c.budget) + '</td></tr>'; }).join('') + '</tbody></table></div>';
     h += '<p class="nota">' + (collegato ? 'Google Ads aggiornato il ' + esc(dataOra(a.aggiornato)) + ': lo script gira ogni ora e Google può registrare i costi con qualche ora di ritardo. ' : '')
